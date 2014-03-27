@@ -33,7 +33,10 @@ function linktoDropBox() {
 }
 //				$('#home-info').removeClass("ui-disabled");
 
-
+function signOff() {
+	console.log('signing-off...');
+	client.signOff();
+}
 
 var emailCount = 0;
 
