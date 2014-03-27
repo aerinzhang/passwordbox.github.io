@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <script src="https://www.dropbox.com/static/api/dropbox-datastores-1.0-latest.js"></script>
+</head>
+<body>
+    <center>
+        <button id="writeButton">Click to create <code>hello.txt</code> in Dropbox.</button>
+    </center>
+
+    <script>
+        var client = new Dropbox.Client({ key: '8qw6cevpayp0vyd' });
+
+        function doHelloWorld() {
+            client.writeFile('hello.txt', 'Hello, World!', function (error) {
+                if (error) {
+                    alert('Error: ' + error);
+                } else {
+                    alert('File written successfully!');
+                }
+            });
+        }
+
+        // Try to complete OAuth flow.
+        client.authenticate({ interactive: false }, function (error) {
+            if (error) {
+                alert('Error: ' + error);
+            } else {
+                doHelloWorld();
+            }
+        });
+
+        document.getElementById('writeButton').onclick = function () {
+            client.authenticate(function (error, client) {
+                if (error) {
+                    alert('Error: ' + error);
+                } else {
+                    doHelloWorld();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

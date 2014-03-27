@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta name='viewport' content='initial-scale=1.0 maximum-scale=1.0 minimum-scale=1.0 user-scalable=0' />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+
+        <title>
+            Cordova API Examples
+        </title>
+
+        <link href="css/transitions.css" rel="stylesheet" type="text/css">
+
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href="css/reset.css" rel="stylesheet" type="text/css">
+        <link href="css/splashScreen.css" rel="stylesheet" type="text/css">
+        <link href="css/header.css" rel="stylesheet" type="text/css">
+        <link href="css/content.css" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+
+        <script src="libs/cordova-2.1.0.ios.js"></script>
+        <script src="libs/util.js"></script>        
+        <script src="libs/Transitioner.js"></script>
+        <script src="libs/jq/jquery-1.8.2.min.js"></script>
+        <script src="libs/jq/addTappableJQPlugin.js"></script>
+        <script src="libs/jq/addEnterJQPlugin.js"></script>
+		<script type="text/javascript" src="libs/jscolor.js"></script>
+
+        <script src="js/CameraPage.js"></script>
+        <script src="js/EditPage.js"></script>
+
+        <script src="App.js"></script>
+        <script src="load.js"></script>
+    </head>
+    <body>
+    
+    <div data-role="page" id="selectPage" data-theme="b">
+        <div data-role="header">
+            <a href="#" data-rel="back" data-role="button" data-icon="back" data-inline="true">Back</a>
+            <div id="title"> Camera </div>
+        </div>
+        <div data-role="content" class="center">
+            <ul id="list">
+                <li><button id="editablePhoto" onclick="capturePhotoEdit();">Capture Editable Photo</button></li>
+                <li><button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button></li>
+                <li><button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button></li>
+            </ul>
+        
+        <hr />
+        <div id="editPicView" class="right">
+            <a href="#canvasPage" data-iconpos="left" data-inline="true"><img style="display:none;width:320px;height:480px;" id="smallImage" src="" alt='no s-image'/></a>
+        </div>
+        </div>
+        
+    </div>
+    
+    <div data-role="page" id="canvasPage" data-theme="b">
+        <div data-role="header" data-theme="e">
+            <a href="#" data-rel="back" data-role="button" data-icon="back" data-inline="true">Back</a>
+            <h1>Edit Photo</h1>
+        </div>
+        <div data-role="content">
+            <canvas id="canvas1" width="320" height="480"></canvas>
+        <div>
+            <form id="editForm">
+				<label>Pen Size:</label><input type="range" name="slider-1" id="penSize" data-mini="true" value="5" min="1" max="20" data-highlight="true" data-inline="true" /></br>
+				<label>Color:</label><input class="color" id="penColor" data-mini="true" value="#FFFFFF" data-inline="true" /></br>
+				<label>X:</label><input type="range" name="slider1" id="xPosition" data-mini="true" value="0" min="0" max="300" data-highlight="true" data-inline="true" /></br>
+				<label>Y:</label><input type="range" name="slider2" id="yPosition" data-mini="true" value="50" min="0" max="480" data-highlight="true" data-inline="true" /></br>
+				<label>FontSize:</label><input type="range" name="slider3" id="fontSize" data-mini="true" value="20" min="8" max="64" data-highlight="true" data-inline="true" /></br>
+                <label>Comment: </label><input type="text" id="upper" data-mini="true" value="" data-inline="true" /></br>
+				<button type="submit" data-inline="true" data-theme="a" class="submit" value="submit" onclick="handleConfirm">Add Comment</button>
+				<button data-inline="true" data-theme="a" class="save" value="save" onclick="handleSave">Save Image</button>
+            </form>
+        </div>
+		</div>
+    </div>
+    </body>
+</html>

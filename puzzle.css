@@ -1,0 +1,80 @@
+.ui-grid-b {
+	text-align: center;
+	height:300px;
+}
+.ui-grid-b .ui-block-a {
+	height:33%;
+	border-style: solid;
+	border-width: 1px;
+}
+.ui-grid-b .ui-block-b {
+	height:33%;
+	border-style: solid;
+	border-width: 1px;
+}
+.ui-grid-b .ui-block-c {
+	height:33%;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.ui-grid-c {
+	text-align: center;
+	height:300px;
+}
+.ui-grid-c .ui-block-a {
+	height:25%;
+	border-style: solid;
+	border-width: 1px;
+}
+.ui-grid-c .ui-block-b {
+	height:25%;
+	border-style: solid;
+	border-width: 1px;
+}
+.ui-grid-c .ui-block-c {
+	height:25%;
+	border-style: solid;
+	border-width: 1px;
+}
+.ui-grid-c .ui-block-d {
+	height:25%;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.ui-grid-d {
+	text-align: center;
+	height:300px;
+}
+.ui-grid-d .ui-block-a {
+	height:20%;
+	border-style: solid;
+	border-width: 1px;
+}
+.ui-grid-d .ui-block-b {
+	height:20%;
+	border-style: solid;
+	border-width: 1px;
+}
+.ui-grid-d .ui-block-c {
+	height:20%;
+	border-style: solid;
+	border-width: 1px;
+}
+.ui-grid-d .ui-block-d {
+	height:20%;
+	border-style: solid;
+	border-width: 1px;
+}
+.ui-grid-d .ui-block-e {
+	height:20%;
+	border-style: solid;
+	border-width: 1px;
+}
+.h4 {
+	text-align: center;
+}
+#start{
+	font-weight: bold;
+}

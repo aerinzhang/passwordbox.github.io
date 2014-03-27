@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta name='viewport' content='initial-scale=1.0 maximum-scale=1.0 minimum-scale=1.0 user-scalable=0' />
+
+        <title>
+            Cordova API Examples
+        </title>
+
+        <link href="css/transitions.css" rel="stylesheet" type="text/css">
+
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href="css/reset.css" rel="stylesheet" type="text/css">
+        <link href="css/splashScreen.css" rel="stylesheet" type="text/css">
+        <link href="css/header.css" rel="stylesheet" type="text/css">
+        <link href="css/content.css" rel="stylesheet" type="text/css">
+
+        <script>
+          function defaultPage() {
+              window.addEventListener('load', function() {
+                  document.write('<p>Please access either <strong>ios.html</strong> or <strong>android.html</strong> directly, according to your OS.</p>');
+              });
+          }
+        </script>
+        <script src="phonegap.js" onerror="defaultPage();"></script>
+        <script src="libs/util.js"></script>        
+        <script src="libs/Transitioner.js"></script>
+        <script src="libs/jq/jquery-1.8.2.min.js"></script>
+        <script src="libs/jq/addTappableJQPlugin.js"></script>
+        <script src="libs/jq/addEnterJQPlugin.js"></script>
+
+        <script src="js/CameraPage.js"></script>
+
+        <script src="App.js"></script>
+        <script src="load.js"></script>
+    </head>
+    <body>
+        <canvas id="canvas1" width="320" height="480"></canvas>
+        <div id="splashScreen"></div>
+        <div id="header">
+            <button id="back" class="faded"> back</button>
+            <div id="title"> Camera </div>
+        </div>
+        <div id="content" class="center">
+            <ul id="list">
+                <li><button onclick="capturePhoto();">Capture Photo</button></li>
+                <li><button onclick="capturePhotoEdit();">Capture Editable Photo</button></li>
+                <li><button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button></li>
+                <li><button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button></li>
+            </ul>
+        </div>
+    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+    <img style="display:none;" id="largeImage" src="" />
+
+    </body>
+</html>

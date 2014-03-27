@@ -1,0 +1,85 @@
+<html>
+<form action="http://tickets.amtrak.com/itd/amtrak" name="form" method="post"><input type="hidden" name="requestor" value="amtrak.presentation.handler.page.rail.AmtrakRailFareFinderPageHandler" />
+<h2>Tickets</h2>
+
+<div id="ff_tickets_tt_cities_subdiv" class="subdiv level6">
+<div id="tickets_trip_type"><p>
+<input type="hidden" name="xwdf_TripType" value="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/tripType" /><input value="OneWay" type="radio" onclick="javascript:blankReturnDate(false)" id="oneway" checked="checked" name="wdf_TripType" />&nbsp;<label for="oneway">One-Way</label>
+<input type="hidden" name="xwdf_TripType" value="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/tripType" /><input value="Return" type="radio" onclick="javascript:setReturnDate(false)" id="return" name="wdf_TripType" />&nbsp;<label for="return">Round-Trip</label>
+<a href="/itd/amtrak/ComplexRail">Multi-City</a> &gt;</p>
+</div>
+<div id="tickets_dep_city" class="ff_city_wrapper">
+<label for="departs">From</label>
+<input type="hidden" name="xwdf_origin" value="/sessionWorkflow/productWorkflow[@product='Rail']/travelSelection/journeySelection[1]/departLocation/search" /><input autocomplete="off" maxlength="150" type="text" id="departs" name="wdf_origin" />
+<p><span class="find_a_station"><a href="javascript:fieldName='departs'; openStationList();" title="Click for a list of stations.">Find a Station</a></span></p>
+</div>
+<div id="tickets_arr_city" class="ff_city_wrapper level3">
+<label for="arrives">To</label>
+<input type="hidden" name="xwdf_destination" value="/sessionWorkflow/productWorkflow[@product='Rail']/travelSelection/journeySelection[1]/arriveLocation/search" /><input autocomplete="off" maxlength="150" type="text" id="arrives" name="wdf_destination" />
+<p><span class="find_a_station"><a href="javascript:fieldName='arrives'; openStationList();" title="Click for a list of stations.">Find a Station</a></span></p>
+</div>
+<div id="autocomplete_availability_from" class="autocomplete level5" style="display:none"></div>
+<div id="autocomplete_availability_to" class="autocomplete level5" style="display:none"></div>
+</div>
+<div id="ff_tickets_dep_ret_date_subdiv" class="subdiv level3" style="position:static;">
+<div id="tickets_dep_date_time" class="level5">
+<div class="ff_date_wrapper">
+<label for="tickets_dep_date">Departs</label>
+<input value="Fri, Nov 16, 2012" maxlength="22" type="text" class="wdfDate" id="wdfdate1" readonly="readonly" onfocus="dateChangedTimer(1)" size="22" name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date" onblur="dateChangedComplete(1,1)" /><script language="JavaScript" type="text/javascript">
+<!--
+document.write('<a class="calLink noloading" id="calLink1">&nbsp;</a>');//-->
+</script>
+<br /><div id="calContainer1"  class="calContainer" ></div></div><div class="ff_time_wrapper"><label for="wdftime1"><b>Time</b></label><select onchange="timeChanged(1);setTripTypeIfReturnDateSelected(false)" id="wdftime1" onfocus="updateTimeState()" name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departTime.hourmin"><option value="">Anytime</option><option value="07:00">Morning</option><option value="14:00">Afternoon</option><option value="19:00">Evening</option><option value="23:59">Midnight</option><option value="01:00">1 AM</option><option value="02:00">2 AM</option><option value="03:00">3 AM</option><option value="04:00">4 AM</option><option value="05:00">5 AM</option><option value="06:00">6 AM</option><option value="07:00">7 AM</option><option value="08:00">8 AM</option><option value="09:00">9 AM</option><option value="10:00">10 AM</option><option value="11:00">11 AM</option><option value="12:00">Noon</option><option value="13:00">1 PM</option><option value="14:00">2 PM</option><option value="15:00">3 PM</option><option value="16:00">4 PM</option><option value="17:00">5 PM</option><option value="18:00">6 PM</option><option value="19:00">7 PM</option><option value="20:00">8 PM</option><option value="21:00">9 PM</option><option value="22:00">10 PM</option><option value="23:00">11 PM</option></select>
+</div>
+</div>
+
+
+<div id="tickets_ret_date_time" class="hide_section level4">
+<div class="ff_date_wrapper">
+
+<label for="tickets_ret_date">Returns</label>
+<input maxlength="22" type="text" class="wdfDate" id="wdfdate2" readonly="readonly" onfocus="dateChangedTimer(2)" size="22" name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date" onblur="dateChangedComplete(2,1)" /><script language="JavaScript" type="text/javascript">
+<!--
+document.write('<a class="calLink noloading" id="calLink2">&nbsp;</a>');//-->
+</script>
+<br /><div id="calContainer2"  class="calContainer" ></div></div><div class="ff_time_wrapper"><label for="wdftime2"><b>Time</b></label><select onchange="timeChanged(2);setTripTypeIfReturnDateSelected(false)" id="wdftime2" onfocus="updateTimeState()" name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departTime.hourmin"><option value="">Anytime</option><option value="07:00">Morning</option><option value="14:00">Afternoon</option><option value="19:00">Evening</option><option value="23:59">Midnight</option><option value="01:00">1 AM</option><option value="02:00">2 AM</option><option value="03:00">3 AM</option><option value="04:00">4 AM</option><option value="05:00">5 AM</option><option value="06:00">6 AM</option><option value="07:00">7 AM</option><option value="08:00">8 AM</option><option value="09:00">9 AM</option><option value="10:00">10 AM</option><option value="11:00">11 AM</option><option value="12:00">Noon</option><option value="13:00">1 PM</option><option value="14:00">2 PM</option><option value="15:00">3 PM</option><option value="16:00">4 PM</option><option value="17:00">5 PM</option><option value="18:00">6 PM</option><option value="19:00">7 PM</option><option value="20:00">8 PM</option><option value="21:00">9 PM</option><option value="22:00">10 PM</option><option value="23:00">11 PM</option></select>
+</div>
+</div>
+
+</div>
+<div id="ff_tickets_passengers_subdiv" class="subdiv level1">
+<div id="tickets_passengers">
+<div id="ff_adults_wrapper">
+<label style="line-height:1.1;" for="ff_adults"><a href="javascript:var child=window.open('http://www.amtrak.com/servlet/Satellite?SnippetName=IBLegacy&pagename=am/AM_Snippet_C/SnippetWrapper&pass=Adult','pass','directories=0,dependent=1,menubar=0,top=20,left=20,width=680,height=600,scrollbars=1');child.focus();" CLASS="smallblue">Adults</a><br /> (16+)</label>
+<select id="adults" name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/allJourneyRequirements/numberOfTravellers[@key='Adult']"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select>
+</div>
+<div id="ff_kids_wrapper">
+<label style="line-height:1.1;" for="ff_kids"><a href="javascript:var child=window.open('http://www.amtrak.com/servlet/Satellite?SnippetName=IBLegacy&pagename=am/AM_Snippet_C/SnippetWrapper&pass=Child','pass','directories=0,dependent=1,menubar=0,top=20,left=20,width=680,height=600,scrollbars=1');child.focus();" CLASS="smallblue">Children</a><br /> (2-15)</label>
+<select onchange="showChildPopup(this.options[this.selectedIndex].value, document.getElementById('infants').options[document.getElementById('infants').selectedIndex].value, 'child_popup')" id="children" name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/allJourneyRequirements/numberOfTravellers[@key='Child']"><option value="0" selected="selected">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+</div>
+<div id="ff_infants_wrapper">
+<label style="line-height:1.1;" for="ff_infants"><a href="javascript:var child=window.open('http://www.amtrak.com/servlet/Satellite?SnippetName=IBLegacy&pagename=am/AM_Snippet_C/SnippetWrapper&pass=Infant','pass','directories=0,dependent=1,menubar=0,top=20,left=20,width=680,height=600,scrollbars=1');child.focus();" CLASS="smallblue">Infants</a><br /> (under 2)</label>
+<select onchange="showChildPopup(this.options[this.selectedIndex].value, document.getElementById('children').options[document.getElementById('children').selectedIndex].value, 'child_popup')" id="infants" name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/allJourneyRequirements/numberOfTravellers[@key='Infant']"><option value="0" selected="selected">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+</div>
+<div id="ff_submit_button">
+
+
+<input type="image" onclick="javascript:return preFareFinderSubmitActions('The following information is needed to process your request:', 'Problem Pricing the Itinerary: Atlantic City Express Service offers adult fares only for all passengers.  Please modify your selection to continue. \n[Error ID: 1121S]')" src="/images/en/btn_ff_go.gif" alt="Click to Find Tickets" border="0" name="_handler=amtrak.presentation.handler.request.rail.AmtrakRailSearchRequestHandler/_xpath=/sessionWorkflow/productWorkflow[@product='Rail']" />
+
+</div>
+</div>
+</div>
+<br/>
+
+
+
+<div id="child_popup" class="info_childpopup_ff hide_section">Children and infants must travel with an adult who is at least 18 years or older.</div>
+
+
+<div id="ada_link" class="subdiv">
+<label for="ff_ada_link" style="line-height: 1.1;cursor: pointer;font-weight: normal;"><a href="/itd/amtrak/ada">Passengers with a Disability</a></label>
+</div>
+
+</form>
+</div>
+</html>
