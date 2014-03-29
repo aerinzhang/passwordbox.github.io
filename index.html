@@ -1,180 +1,31 @@
+
 <!doctype html>
 <html>
 	<head>
-		<title>Password Manager</title>
-		<!-- src dropbox jquery kendo-->
-		<!--<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>-->
+		<title>My Tasks</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-
-		<script src="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 		<script src="https://www.dropbox.com/static/api/dropbox-datastores-1.0-latest.js"></script>
-		<script type="text/javascript" src='libs/kendo.all.min.js'></script>
-		<!--<script src="tutorial.js"></script>-->
-		<script src='pm.js'></script>
-		<!-- style sheets kendo jquery own -->
+		<script src="pm.js"></script>
 		<link rel="stylesheet" href="style.css">
-		<link rel='stylesheet' href='kendo.common.min.css'/>
-		<link rel='stylesheet' href='kendo.rtl.min.css'/>
-		<link rel='stylesheet' href='kendo.default.min.css'/>
-		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-		<link rel='stylesheet' href='pm.css'/>
-		<link href='https://fonts.googleapis.com/css?family=Linden+Hill' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Chelsea+Market' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
-		<!-- phone gap stuff meta?-->
-		<script type="text/javascript" charset="utf-8" src="phonegap/libs/cordova-2.1.0.ios.js"></script>
-		<meta charset="utf-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0 minimum-scale=1.0 user-scalable=0"/> 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
 	</head>
 	<body>
-		<div data-role="page" data-title="home" id="home">
-			<div data-role="header"><h1>Welcome</h1></div>
-			<div data-role="content">
-				<img src='reminder.png' id='clock'/>
-				<div id="home-words">
-				<p>This is an app that generates random strong passwords, and helps you to remember them.</p>
-				</div>	
-				<p><a href="#accounts" data-role="button">Continue</a></p>
-				<!--<p><a data-role="button" onclick='linktoDropBox()'>Link to Dropbox</a></p>-->
-				<div id='wrapper'>
-					<div id="main" style="display:none">
-				 		Empty list that will be populated with tasks 
-					<ul id="tasks"></ul>
+		<!-- Hide UI until user has authenticated -->
+		<div id="wrapper">
+			<h1>My Tasks</h1>
 
-					Form to collect new tasks 
-					<form id="addForm" method="post">
+			<div id="main" style="display:none">
+				<!-- Empty list that will be populated with tasks -->
+				<ul id="tasks"></ul>
+
+				<!-- Form to collect new tasks -->
+				<form id="addForm" method="post">
 					<input id="newTask" type="text" placeholder="Enter a new task..." />
 					<button id="addButton" type="submit">Add Task</button>
-					</form>
-					</div>
-					<a href='#' data-role='button' onclick='signOff()'>Sign Off</a>
-				<div id="login">
-					<button id="loginButton">Link to Dropbox</button>
-				</div>
-				</div>
+				</form>
+			</div>
 
-			</div>
-			<div data-role='footer' data-id='fool' data-position='fixed'>
-				<div data-role='navbar'>
-					<ul>
-						<!-- make it disabled -->
-						<li><a href='#bank'>Story Bank</a></li>
-						<li><a href='#accounts'>Accounts</a></li>
-						<li><a href='#game'>Game</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- Hide UI until user has authenticated -->
-
-		<!-- BANK PAGE -->
-		<div data-role="page" data-title="bank" id="bank">
-			<div data-role="header"><h1>Story Bank</h1></div>
-			<div data-role="content">
-				<div data-role='content' id='banklist'>
-					<p>Please play the memory game to add stories to story bank</p>
-					<a data-role='button' href='#game'>Play</a> 
-				</div>
-			</div>
-			<div data-role='footer' data-id='fool' data-position='fixed'>
-				<div data-role='navbar'>
-					<ul>
-						<li><a href='#bank'>Story Bank</a></li>
-						<li><a href='#accounts'>Accounts</a></li>
-						<li><a href='#game'>Game</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<!-- ACCOUNT PAGE -->
-		<div data-role="page" data-title="accounts" id="accounts">
-			<div data-role="header"><h1>Accounts</h1></div>
-			<div data-role="content">
-				<div data-role='fieldcontain'>
-					<form action='#' id='accountsList'>
-						<div>
-							<input type='text' name='account-name' id='account-name' value='' placeholder='Enter Website'/> 
-						</div>
-						<fieldset data-role="controlgroup">
-							<input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" />
-							<label for="checkbox-2">use my own photos</label>
-        				</fieldset>
-        				<button type="submit" name="submit" value="submit" id='submitbutton'>Add</button>
-					</form>
-				</div>
-				<ul id='list' data-role='listview' data-inset='true'></ul>
-			</div>
-			<div data-role='footer' data-id='fool' data-position='fixed'>
-				<div data-role='navbar'>
-					<ul>
-						<li><a href='#bank'>Story Bank</a></li>
-						<li><a href='#accounts'>Accounts</a></li>
-						<li><a href='#game'>Game</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- GAME PAGE-->
-		<div data-role="page" data-title="game" id="game">
-			<div data-role="header"><h1>Memory Game</h1></div>
-			<div data-role="content">
-				<div data-role='content' id='gamebeginning'>
-					<p>How many stories can you memorize?</p>
-					<p id='game-text'> Instructions: You will see 10 person-action-object stories in this game. Spend 10 seconds visualizing each story in your head, and try to make it as vivid as possible by thinking of details. For example, if you see the story President Bush is flipping a leaf. When you are picturing it in your head, is the leaf big or small? Is he laughing or frowning? What color is the leaf? What kind of gestures is he making? </p>
-					<div class='buttondiv'>
-						<a class='halfbutton' data-role='button' onclick='startGame()' >Start</a>
-					</div>
-				</div>
-			</div>
-			<div data-role='footer' data-id='fool' data-position='fixed'>
-				<div data-role='navbar'>
-					<ul>
-						<!-- make it disabled -->
-						<li><a href='#bank'>Story Bank</a></li>
-						<li><a href='#accounts'>Accounts</a></li>
-						<li><a href='#game'>Game</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- GAME RELATED PAGES -->
-		
-		<!-- GAME IN PROGRESS -->
-		<div data-role='page' data-title='gamepage' id='gamepage'>
-			<div data-role='header'><h1>Memory Game</h1></div>
-			<div data-role='content'>
-				<div id='progressDiv'>
-					Progress: <progress id='progress-bar' value="0.01"></progress>
-					<span id='progress-val'> 0%</span>
-				</div>
-			<div class='checkMarkDiv'>
-				<img src='images/check.png' id='checkMark'/>
-			</div>
-			<div id='gamestories'></div>
-			</div>
-			<div data-role='footer' data-id='fool' data-position='fixed'>
-				<div data-role='navbar'>
-					<ul>
-						<li><a href='#bank'>Story Bank</a></li>
-						<li><a href='#accounts'>Accounts</a></li>
-						<li><a href='#game'>Game</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div data-role='page' data-title='addStories' id='addStories'>
-			<div data-role='header'><h1>Select Stories to Add</h1></div>
-			<div data-role='content'>
-				<form method='GET' id='addStoryForm'></form>
-			</div>
-		</div>
-		<div data-role='page' data-title='gameForget' id='gameForget'>
-			<div data-role='header'><h1>Memory Game Hint</h1></div>
-			<div data-role='content'>
-				<div id='hintSpace'></div>
-				<a data-role='button' onclick='backtoGame()'>Back to Game</a>
+			<div id="login">
+				<button id="loginButton">Link to Dropbox</button>
 			</div>
 		</div>
 	</body>
