@@ -925,7 +925,39 @@ $( document ).ready(function(){
     });
 
     //DROPBOX FUNCTIONS
+    function insertTask(text) {
+		taskTable.insert({
+			taskname: text,
+			created: new Date(),
+			completed: false
+		});
+	}
 
+	// updateList will be called every time the table changes.
+	function updateList() {
+		$('#tasks').empty();
+
+		var records = taskTable.query();
+
+		// Sort by creation time.
+		records.sort(function (taskA, taskB) {
+			if (taskA.get('created') < taskB.get('created')) return -1;
+			if (taskA.get('created') > taskB.get('created')) return 1;
+			return 0;
+		});
+
+		// Add an item to the list for each task.
+		for (var i = 0; i < records.length; i++) {
+			var record = records[i];
+			$('#tasks').append(
+				renderTask(record.getId(),
+					record.get('completed'),
+					record.get('taskname')));
+		}
+
+		addListeners();
+		$('#newTask').focus();
+	}
     $('#loginButton').click(function (e) {
 		e.preventDefault();
 		// This will redirect the browser to OAuth login.
@@ -960,39 +992,7 @@ $( document ).ready(function(){
 			$('#dropboxButton').hide();
 		});
 	}
-	function insertTask(text) {
-		taskTable.insert({
-			taskname: text,
-			created: new Date(),
-			completed: false
-		});
-	}
-
-	// updateList will be called every time the table changes.
-	function updateList() {
-		$('#tasks').empty();
-
-		var records = taskTable.query();
-
-		// Sort by creation time.
-		records.sort(function (taskA, taskB) {
-			if (taskA.get('created') < taskB.get('created')) return -1;
-			if (taskA.get('created') > taskB.get('created')) return 1;
-			return 0;
-		});
-
-		// Add an item to the list for each task.
-		for (var i = 0; i < records.length; i++) {
-			var record = records[i];
-			$('#tasks').append(
-				renderTask(record.getId(),
-					record.get('completed'),
-					record.get('taskname')));
-		}
-
-		addListeners();
-		$('#newTask').focus();
-	}
+	
 	// Set the completed status of a task with the given ID.
 	function setCompleted(id, completed) {
 		taskTable.get(id).set('completed', completed);
