@@ -36,6 +36,7 @@ function linktoDropBox() {
 function signOff() {
 	console.log('signing-off...');
 	client.signOff();
+	location.reload();
 }
 
 var emailCount = 0;
