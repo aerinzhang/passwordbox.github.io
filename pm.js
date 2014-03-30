@@ -892,7 +892,6 @@ function submit(e){
 	return false;
 }
 $( document ).ready(function(){
-	alert('document ready!');
 	var emaiList = $('#accountsList');
 	var sbutton = $('#submit');
 	$('#accountsList').submit(submit);
