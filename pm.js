@@ -36,9 +36,9 @@ function linktoDropBox() {
 function signOff() {
 	console.log('signing-off...');
 	client.signOff();
-	$('#home-game').removeClass("ui-disabled");
-	$('#home-bank').removeClass("ui-disabled");
-	$('#home-accounts').removeClass("ui-disabled");
+	$('#home-game').addClass("ui-disabled");
+	$('#home-bank').addClass("ui-disabled");
+	$('#home-accounts').addClass("ui-disabled");
 	location.reload();
 }
 
@@ -979,7 +979,9 @@ $( document ).ready(function(){
 		// Client is authenticated. Display UI.
 		$('#loginButton').hide();
 		$('#main').show();
-
+		$('#home-game').removeClass("ui-disabled");
+		$('#home-bank').removeClass("ui-disabled");
+		$('#home-accounts').removeClass("ui-disabled");
 		client.getDatastoreManager().openDefaultDatastore(function (error, datastore) {
 			if (error) {
 				alert('Error opening default datastore: ' + error);
