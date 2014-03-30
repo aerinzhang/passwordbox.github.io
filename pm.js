@@ -36,6 +36,9 @@ function linktoDropBox() {
 function signOff() {
 	console.log('signing-off...');
 	client.signOff();
+	$('#home-game').removeClass("ui-disabled");
+	$('#home-bank').removeClass("ui-disabled");
+	$('#home-accounts').removeClass("ui-disabled");
 	location.reload();
 }
 
