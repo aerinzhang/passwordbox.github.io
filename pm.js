@@ -899,18 +899,18 @@ $( document ).ready(function(){
 	var emaiList = $('#accountsList');
 	var sbutton = $('#submit');
 	$('#accountsList').submit(submit);
-//	$('.image-checkbox-container img').live('click', function(){
-	// if (!$(this).prev().prop('checked')) {
-	// 	if(!$(this).prev('input[type="checkbox"]').prop('checked')){
- //        $(this).prev().prop('checked', true);
- //        console.log($(this).prev());
- //        this.style.border = '4px solid #38A';
- //        this.style.margin = '0px';
- //    } else{
- //        $(this).prev().prop('checked', false);
- //        this.style.border = '0px';
- //        this.style.margin = '4px';
- //    }});
+	$('.image-checkbox-container img').live('click', function(){
+	if (!$(this).prev().prop('checked')) {
+		if(!$(this).prev('input[type="checkbox"]').prop('checked')){
+        $(this).prev().prop('checked', true);
+        console.log($(this).prev());
+        this.style.border = '4px solid #38A';
+        this.style.margin = '0px';
+    } else{
+        $(this).prev().prop('checked', false);
+        this.style.border = '0px';
+        this.style.margin = '4px';
+    }});
     //show story bank
     $('#bank').bind("pageshow", function() {
     	console.log(storyBank);
