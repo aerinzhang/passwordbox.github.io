@@ -899,7 +899,7 @@ $( document ).ready(function(){
 	var emaiList = $('#accountsList');
 	var sbutton = $('#submit');
 	$('#accountsList').submit(submit);
-	$('.image-checkbox-container img').live('click', function(){
+	$('.image-checkbox-container img').on('click', function(){
 	if (!$(this).prev().prop('checked')) {
 		//if(!$(this).prev('input[type="checkbox"]').prop('checked')){
         $(this).prev().prop('checked', true);
