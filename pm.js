@@ -317,7 +317,7 @@ function startChecking() {
 				<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
 				<br><br><div class=halfbuttonDiv><button type='submit' tabindex='3' class=right name='submit; value='submit' onclick='generateNextCheck()' >Check and Next</button>\
 				<a href='#' data-role='button' class=left tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
-	$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene, curScene.replace('_', ' ')));
+	$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ')));
 	getVerbComboBox('game-password');
 	getObjectComboBox('game-password-b');
 	$( "#gamepage" ).page( "destroy" ).page();
@@ -452,7 +452,7 @@ function generateNextCheck() {
 						<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
 						<br><br><div class=halfbuttonDiv><button tabindex='3' class=right type='submit' name='submit; value='submit' onclick='generateNextSequence()' >Check and Next</button>\
 						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
-			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene, curScene.replace('_', ' ') ));
+			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ') ));
 			checkIndex += 1;
 			getVerbComboBox('game-password');
 			getObjectComboBox('game-password-b')
@@ -495,7 +495,7 @@ function forgetStory() {
 	} else {
 		var article = 'a'
 	}
-	$('#hintSpace').html(String.format(html, cS[0], cS[0].split('_').join(' '), cS[1], cS[1], cS[2], cS[2], cS[3], cS[3], article));
+	$('#hintSpace').html(String.format(html, cS[0], cS[0].split('_').join(' '), cS[1], cS[1], cS[2], cS[2], cS[3].toLowerCase(), cS[3], article));
 	$.mobile.changePage("#gameForget");
 }
 
@@ -538,7 +538,7 @@ function generateNextSequence() {
 						<input type='text' autocorrect='off' name='password2' id='game-password-b' value='' placeholder='doing what' tabindex='2'/></span>\
 						<br><br><div class=halfbuttonDiv><button type='submit' class=right name='submit' value='submit' onclick='generateNextSequence()' tabindex='3'>Check and Next</button>\
 						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
-			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene, curScene.replace('_', ' ')));
+			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ')));
 			checkIndex +=1;
 			gameScore = -1;
 			getVerbComboBox('game-password');
@@ -556,7 +556,7 @@ function generateNextSequence() {
 						<input type='text' autocorrect='off' name='password2' id='game-password-b' value='' placeholder='doing what'tabindex='2'/></span>\
 						<br><br><div class=halfbuttonDiv><button type='submit' class=right name='submit' value='submit' tabindex='3' onclick='generateNextSequence()' >Check and Next</button>\
 						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
-			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene, curScene.replace('_', ' ')));
+			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ')));
 			checkIndex +=1;
 			getVerbComboBox('game-password');
 			getObjectComboBox('game-password-b')
@@ -635,7 +635,7 @@ function generateNextStory() {
 	} else {
 		var article = 'a'
 	}
-	$('#gamestories').html(String.format(html, cS[0], cS[0].split('_').join(' '), cS[1], cS[1], cS[2], cS[2], cS[3], cS[3].replace('_' ,' '), article));
+	$('#gamestories').html(String.format(html, cS[0], cS[0].split('_').join(' '), cS[1], cS[1], cS[2], cS[2], cS[3].toLowerCase(), cS[3].replace('_' ,' '), article));
 	storyIndex += 1;
 
 	//$.mobile.changePage("#gamepage");
@@ -719,7 +719,7 @@ function getImages2(web, useMyOwn) {
 			var liold = "       &nbsp&nbsp<span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 					 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span></div>";
 			}
-		var li = String.format(liold, possible[i][0], possible[i][0], possible[i][3], possible[i][3]);
+		var li = String.format(liold, possible[i][0], possible[i][0], possible[i][3].toLowerCase(), possible[i][3]);
 		html += li;
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
