@@ -901,7 +901,7 @@ $( document ).ready(function(){
 	$('#accountsList').submit(submit);
 	$('.image-checkbox-container img').live('click', function(){
 	if (!$(this).prev().prop('checked')) {
-		if(!$(this).prev('input[type="checkbox"]').prop('checked')){
+		//if(!$(this).prev('input[type="checkbox"]').prop('checked')){
         $(this).prev().prop('checked', true);
         console.log($(this).prev());
         this.style.border = '4px solid #38A';
