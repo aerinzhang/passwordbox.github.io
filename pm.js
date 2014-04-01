@@ -320,7 +320,7 @@ function addStories() {
 	for (var i=0; i < 10; i++) {
 		storyBank.push(gamelist[i]);
 		console.log(gamelist[i]);
-		insertStory(gamelist[i]);
+		insertStory(gamelist[i][0], gamelist[i][3]);
 	}
 	console.log(storyBank.length);
 	allPossible = computeCombinations(storyBank, 4);
