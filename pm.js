@@ -705,6 +705,7 @@ function getImages2(web, useMyOwn) {
 	while (existingAccounts.indexOf(possible) != -1) {
 		possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	}
+	insertAccount(web, possible);
 	existingAccounts.push(possible);
 	console.log(existingAccounts);
 
@@ -980,12 +981,12 @@ $( document ).ready(function(){
 		});
 	}
 
-	function insertAccount(name ) {
+	window.insertAccount = function insertAccount(accountName, storyList) {
 		accountTable.insert({
-			accountName: name,
+			account: accountName,
 			created: new Date(),
 			lastRehearsal: new Date(),
-			storyList: []
+			storyList: storyList
 		});
 	}
 
