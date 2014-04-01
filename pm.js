@@ -709,6 +709,15 @@ function convertNestedArraysToString(nestedArray) {
 	return result;
 }
 
+function parseStringToNestedArrays(arrayOfString) {
+	var result = [];
+	for (var i=0; i < arrayOfString.length; i++) {
+		var li = arrayOfString[i].split('|||'); 
+		result.push(li);
+	}
+	return result;
+}
+
 function getImages2(web, useMyOwn) {
 	console.log(allPossible);
 
@@ -921,6 +930,65 @@ function stripStoryFromRecords() {
 	return storyList;
 }
 
+function renderEachAccountElements(web, list) {
+	//check duplicate?
+
+	//create html for each page
+	var head = "<div class='checkMarkDiv'><img src='images/check.png' id='" + web + "checkMark'/></div>";
+	var html = head + "<div id='" + web + "Stories'>";
+	//var html = "<div id='" + web + "Stories'><ul = data-role='listview'>"
+	for (var i=0; i < list.length; i ++) {
+		//var liold = '<li><a href="#"><img src="images/person/{0}.jpg" />{1}</a><li>'
+		if (i % 2 == 0) {
+			var liold = "<div class=twoPairs><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
+					 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span>";
+		}
+		else {
+			var liold = "       &nbsp&nbsp<span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
+					 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span></div>";
+			}
+		var li = String.format(liold, list[i][0], list[i][0], list[i][3].toLowerCase(), list[i][3]);
+		html += li;
+	}
+	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
+			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + allIndex + ")' > Type in your Password</a>"
+	allIndex+=1;	
+	console.log(list);
+	return html;
+}
+
+function renderAccountList(records) {
+	//create each page for each account
+	for (var i=0; i < records.length; i++) {
+		var record = records[i];
+		var list = parseStringToNestedArrays(record.get('storyList'));
+		var web = record.get('account');
+		var pageHtml = renderEachAccountElements(web, list);
+		var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li>\
+					  <a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
+		var newPage = $("<div data-role='page' data-title='"+web+"' id="+web+"Page><div data-role='header' data-position=fixed>\
+						<a href=#accounts data-icon='back'>Back</a><h1>"+ web + "</h1></div><div data-role='content' class=images>"+pageHtml+" </div>"+footer+"</div>");
+		var popupPage = $("<div data-role='page' data-trasntion='pop' data-rel='pop' data-title='generate a password for"+web + "' id="+web+"Password >\
+						  <div data-role='fieldcontain'><form action='#' id='passwordChecking'><div><input type='text' autocorrect='off' name='password' \
+						  id='typein-password" + web + "' value='' placeholder='Type in your password' autofocus='autofocus'/></div><button type='submit'\
+						   name='submit; value='submit' id='passwordSubmit" + web + "' onclick='checkPassword2(\""  + web + "\")' >Check</button></form></div></div>");
+		
+		var keyid = 'button' + emailCount;
+		var estring = 'list'+emailCount;
+		var jbuttonid = '#' + keyid;
+		var listid = '#' +estring;
+		$("#list").append("<li id="+value+ "><a href=#"+value+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + value + "</a></li>");
+		$('#list').listview('refresh');
+		emailCount += 1;
+		//add to confirm tap
+		$("#confirm-friends div").append("<p>" + value + "</p>");
+		newPage.appendTo( $.mobile.pageContainer );
+		popupPage.appendTo( $.mobile.pageContainer);
+	}
+	$('#confirm-friend').collapsible('refresh');
+	//update the account page
+}
+
 function renderStoryBank() {
 	$('#bank').bind("pageshow", function() {
 
@@ -1002,6 +1070,18 @@ $( document ).ready(function(){
 		});
 	}
 
+	function updateAccountList() {
+		var records = accountTable.query();
+
+		//sort by last rehearseal date
+		records.sort(function (accountA, accountB) {
+			if (accountA.get('lastRehearsal') < accountB.get('lastRehearsal')) return -1;
+			if (accountA.get('lastRehearsal') > accountB.get('lastRehearsal')) return 1;
+			return 0;
+		});
+		renderAccountList(records);
+	}
+
 	function updateStoryBankList() {
 		$('#bankStories').empty();
 		var records = storyBankTable.query();
@@ -1012,13 +1092,7 @@ $( document ).ready(function(){
 			if (storyA.get('refCount') > storyB.get('refCount')) return 1;
 			return 0;
 		});
-
-		for (var i = 0; i < records.length; i++) {
-			var record = records[i];
-			//$('#bankStories').append(
-			//	renderStory(record.getId()));
-			renderStoryBank();
-
+		renderStoryBank();
 		}
 
 		
@@ -1089,10 +1163,12 @@ $( document ).ready(function(){
 			// Populate the initial task list.
 			updateList();
 			updateStoryBankList();
+			updateAccountList();
 
 			// Ensure that future changes update the list.
 			datastore.recordsChanged.addListener(updateList);
 			datastore.recordsChanged.addListener(updateStoryBankList);
+			datastore.recordsChanged.addListener(updateAccountList);
 			$('#home-words').html('Welcome Back!');
 			$('#dropboxButton').hide();
 		});
