@@ -904,7 +904,6 @@ function stripStoryFromRecords() {
 	for (var i =0; i < records.length; i++ ){
 		var record = records[i];
 		storyList.push([record.get('person'), record.get('scene')]);
-	console.log(storyList);
 	return storyList;
 	}
 }
@@ -1066,10 +1065,13 @@ $( document ).ready(function(){
 			accountTable = datastore.getTable('accounts');
 
 			//calculate 
-			var tempStoryBank = stripStoryFromRecords();
-			console.log('printing tempStoryBank');
-			console.log(tempStoryBank);
-			allPossible = computeCombinations(tempStoryBank, 4);
+			storyBank = stripStoryFromRecords();
+			console.log('printing initial storyBank....');
+			console.log(storyBank);
+			allPossible = computeCombinations(storyBank, 4);
+			console.log('printing allPossible....');
+			console.log(allPossible);
+
 
 			// Populate the initial task list.
 			updateList();
@@ -1350,8 +1352,6 @@ function computeHash(){
 //bank and rehearse schedule
 
 function computeCombinations(bank, k) {
-	console.log('printing bank.....');
-	console.log(bank);
 	if (bank.length < k) {
 		return [[]]
 	} else if (bank.length == k) {
