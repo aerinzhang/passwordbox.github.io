@@ -705,7 +705,6 @@ function convertNestedArraysToDic(nestedArray) {
 		var li = nestedArray[i];
 		var dic = {person: li[0], scene:li[1]};
 		result.push(dic);
-		}
 	}
 	return result;
 }
