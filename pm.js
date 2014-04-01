@@ -898,6 +898,15 @@ function submit(e){
 	return false;
 }
 
+function stripStoryFromRecords() {
+	var records = accountTable.query();
+	var storyList = [];
+	for (var i =0; i < records.length; i++ ){
+		var record = records[i];
+		storyList.push([record.get('person'), record.get('scene')]);
+	return storyList;
+}
+
 function renderStoryBank() {
 	$('#bank').bind("pageshow", function() {
 
@@ -1053,6 +1062,10 @@ $( document ).ready(function(){
 			taskTable = datastore.getTable('tasks');
 			storyBankTable = datastore.getTable('stories');
 			accountTable = datastore.getTable('accounts');
+
+			//calculate 
+			storyBank = stripStoryFromRecords();
+			allPossible = computeCombinations(storyBank, 4);
 
 			// Populate the initial task list.
 			updateList();
