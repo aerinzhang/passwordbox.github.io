@@ -900,10 +900,14 @@ function submit(e){
 
 function stripStoryFromRecords() {
 	var records = storyBankTable.query();
+	console.log('printing records.....');
+	console.log(records);
 	var storyList = [];
-	for (var i =0; i < records.length; i++ ){
+	for (var i = 0; i < records.length; i++ ){
 		var record = records[i];
 		storyList.push([record.get('person'), record.get('scene')]);
+		console.log('printing each record...');
+		console.log(record);
 	return storyList;
 	}
 }
