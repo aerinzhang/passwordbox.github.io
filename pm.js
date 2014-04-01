@@ -920,9 +920,12 @@ $( document ).ready(function(){
 		});
 	}
 	window.insertStory = function insertStory(scene, person) {
-		//storyBank.insert({
-
-		//});
+		storyBankTable.insert({
+			scene: scene,
+			person: person,
+			created: new Date();
+			refCount: 0
+		});
 	}
 
 	function insertAccount(name ) {
