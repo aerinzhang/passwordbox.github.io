@@ -1066,8 +1066,10 @@ $( document ).ready(function(){
 			accountTable = datastore.getTable('accounts');
 
 			//calculate 
-			storyBank = stripStoryFromRecords();
-			allPossible = computeCombinations(storyBank, 4);
+			var tempStoryBank = stripStoryFromRecords();
+			console.log('printing tempStoryBank');
+			console.log(tempStoryBank);
+			allPossible = computeCombinations(tempStoryBank, 4);
 
 			// Populate the initial task list.
 			updateList();
