@@ -1348,6 +1348,8 @@ function computeHash(){
 //bank and rehearse schedule
 
 function computeCombinations(bank, k) {
+	console.log('printing bank.....');
+	console.log(bank);
 	if (bank.length < k) {
 		return [[]]
 	} else if (bank.length == k) {
