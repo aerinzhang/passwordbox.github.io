@@ -904,6 +904,7 @@ function stripStoryFromRecords() {
 	for (var i =0; i < records.length; i++ ){
 		var record = records[i];
 		storyList.push([record.get('person'), record.get('scene')]);
+	console.log(storyList);
 	return storyList;
 	}
 }
