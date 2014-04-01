@@ -977,7 +977,7 @@ function renderAccountList(records) {
 		var estring = 'list'+emailCount;
 		var jbuttonid = '#' + keyid;
 		var listid = '#' +estring;
-		$("#list").append("<li id="+value+ "><a href=#"+value+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + value + "</a></li>");
+		$("#list").append("<li id="+web+ "><a href=#"+web+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + web + "</a></li>");
 		$('#list').listview('refresh');
 		emailCount += 1;
 		//add to confirm tap
