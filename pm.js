@@ -23,7 +23,14 @@ var accountTable;
 
 
 
-
+function signOff() {
+	console.log('signing-off...');
+	client.signOff();
+	$('#home-game').addClass("ui-disabled");
+	$('#home-bank').addClass("ui-disabled");
+	$('#home-accounts').addClass("ui-disabled");
+	location.reload();
+}
 
 function saveForm(e) {
 	$('#confirm-info div').html('');
@@ -1059,14 +1066,7 @@ $( document ).ready(function(){
 
 
 	//other functions:
-	function signOff() {
-		console.log('signing-off...');
-		client.signOff();
-		$('#home-game').addClass("ui-disabled");
-		$('#home-bank').addClass("ui-disabled");
-		$('#home-accounts').addClass("ui-disabled");
-		location.reload();
-	}
+
 
 	//utility function
 	String.format = function() {
