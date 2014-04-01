@@ -945,7 +945,7 @@ $( document ).ready(function(){
 		//});
 	}
 
-	function insertAccount(name, ) {
+	function insertAccount(name ) {
 		accountTable.insert({
 			accountName: name,
 			created: new Date(),
