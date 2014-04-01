@@ -1093,9 +1093,6 @@ $( document ).ready(function(){
 			return 0;
 		});
 		renderStoryBank();
-		}
-
-		
 	}
 	// updateList will be called every time the table changes.
 	function updateList() {
