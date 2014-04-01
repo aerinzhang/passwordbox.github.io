@@ -905,6 +905,7 @@ function stripStoryFromRecords() {
 		var record = records[i];
 		storyList.push([record.get('person'), record.get('scene')]);
 	return storyList;
+	}
 }
 
 function renderStoryBank() {
