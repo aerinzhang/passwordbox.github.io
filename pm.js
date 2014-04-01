@@ -944,7 +944,7 @@ $( document ).ready(function(){
 		});
 	}
 
-	function updataStoryBankList() {
+	function updateStoryBankList() {
 		$('#bankStories').empty();
 		var records = storyBankTable.query();
 
