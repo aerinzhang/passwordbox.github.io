@@ -923,7 +923,7 @@ $( document ).ready(function(){
 		storyBankTable.insert({
 			scene: scene,
 			person: person,
-			created: new Date();
+			created: new Date(),
 			refCount: 0
 		});
 	}
