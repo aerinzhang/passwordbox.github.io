@@ -698,6 +698,18 @@ function changePerson(person, web) {
 var existingAccounts=[];
 var allIndex = 0
 
+
+function convertNestedArraysToDic(nestedArray) {
+	var result = []
+	for (var i=0; i < nestedArray.length; i ++) {
+		var li = nestedArray[i];
+		var dic = {person: li[0], scene:li[1]};
+		result.push(dic);
+		}
+	}
+	return result;
+}
+
 function getImages2(web, useMyOwn) {
 	console.log(allPossible);
 
@@ -705,7 +717,8 @@ function getImages2(web, useMyOwn) {
 	while (existingAccounts.indexOf(possible) != -1) {
 		possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	}
-	insertAccount(web, possible);
+	var accountStoryList = convertNestedArraysToDic(possible);
+	insertAccount(web, accountStoryList);
 	existingAccounts.push(possible);
 	console.log(existingAccounts);
 
