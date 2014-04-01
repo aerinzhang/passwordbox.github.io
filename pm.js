@@ -899,7 +899,7 @@ function submit(e){
 }
 
 function stripStoryFromRecords() {
-	var records = accountTable.query();
+	var records = storyBankTable.query();
 	var storyList = [];
 	for (var i =0; i < records.length; i++ ){
 		var record = records[i];
