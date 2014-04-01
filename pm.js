@@ -926,10 +926,10 @@ $( document ).ready(function(){
 			completed: false
 		});
 	}
-	window.insertStory = function insertStory(scene, person) {
+	window.insertStory = function insertStory(sceneName, personName) {
 		storyBankTable.insert({
-			scene: scene,
-			person: person,
+			scene: sceneName,
+			person: personName,
 			created: new Date(),
 			refCount: 0
 		});
@@ -1018,8 +1018,8 @@ $( document ).ready(function(){
 			console.log('loading storyBankTable');
 			console.log(storyBankTable);
 			accountTable = datastore.getTable('accounts');
-			storyBankTable.insert({});
-			console.log('insert to storyBank');
+			storyBankTable.insert({fake:true});
+			console.log('insert to storyBank dummy');
 			// Populate the initial task list.
 			updateList();
 			updateStoryBankList();
