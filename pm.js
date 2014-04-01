@@ -981,7 +981,7 @@ function renderAccountList(records) {
 		$('#list').listview('refresh');
 		emailCount += 1;
 		//add to confirm tap
-		$("#confirm-friends div").append("<p>" + value + "</p>");
+		$("#confirm-friends div").append("<p>" + web + "</p>");
 		newPage.appendTo( $.mobile.pageContainer );
 		popupPage.appendTo( $.mobile.pageContainer);
 	}
