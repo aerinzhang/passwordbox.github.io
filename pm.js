@@ -1015,13 +1015,16 @@ $( document ).ready(function(){
 
 			taskTable = datastore.getTable('tasks');
 			storyBankTable = datastore.getTable('stories');
+			console.log('loading storyBankTable');
 			console.log(storyBankTable);
 			accountTable = datastore.getTable('accounts');
 			// Populate the initial task list.
 			updateList();
+			updateStoryBankList();
 
 			// Ensure that future changes update the list.
 			datastore.recordsChanged.addListener(updateList);
+			datastore.recordsChanged.addListener(updateStoryBankList);
 			$('#home-words').html('Welcome Back!');
 			$('#dropboxButton').hide();
 		});
