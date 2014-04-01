@@ -947,6 +947,20 @@ $( document ).ready(function(){
 	function updataStoryBankList() {
 		$('#bankStories').empty();
 		var records = storyBankTable.query();
+
+		//sort by ref counts
+		records.sort(function (storyA, storyB) {
+			if (storyA.get('refCount') < storyB.get('refCount')) return -1;
+			if (storyA.get('refCount') > storyB.get('refCount')) return 1;
+			return 0;
+		});
+
+		for (var i = 0; i < records.length; i++) {
+			var record = records[i];
+			$('#storyBank').append(
+				renderStory(record.getId());
+		}
+
 		
 	}
 	// updateList will be called every time the table changes.
@@ -1001,6 +1015,7 @@ $( document ).ready(function(){
 
 			taskTable = datastore.getTable('tasks');
 			storyBankTable = datastore.getTable('stories');
+			console.log(storyBankTable);
 			accountTable = datastore.getTable('accounts');
 			// Populate the initial task list.
 			updateList();
