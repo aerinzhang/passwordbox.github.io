@@ -940,7 +940,7 @@ $( document ).ready(function(){
 		});
 	}
 	function insertStory(text) {
-		storyBank.insert({
+		//storyBank.insert({
 
 		});
 	}
