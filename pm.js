@@ -16,7 +16,8 @@ var DROPBOX_APP_KEY = '8qw6cevpayp0vyd';
 // Exposed for easy access in the browser console.
 var client = new Dropbox.Client({key: DROPBOX_APP_KEY});
 var taskTable;
-
+var storyBankTable;
+var accountTable;
 
 function linktoDropBox() {
 
@@ -330,7 +331,9 @@ var gameScore = 0;
 
 function addStories() {
 	for (var i=0; i < 10; i++) {
-		storyBank.push(gamelist[i])
+		storyBank.push(gamelist[i]);
+		console.log(gamelist[i]);
+		insertStory(gamelist[i]);
 	}
 	console.log(storyBank.length);
 	allPossible = computeCombinations(storyBank, 4);
@@ -936,7 +939,26 @@ $( document ).ready(function(){
 			completed: false
 		});
 	}
+	function insertStory(text) {
+		storyBank.insert({
 
+		});
+	}
+
+	function insertAccount(name, ) {
+		accountTable.insert({
+			accountName: name,
+			created: new Date(),
+			lastRehearsal: new Date(),
+			storyList: []
+		});
+	}
+
+	function updataStoryBankList() {
+		$('#bankStories').empty();
+		var records = storyBankTable.query();
+		
+	}
 	// updateList will be called every time the table changes.
 	function updateList() {
 		$('#tasks').empty();
@@ -988,7 +1010,8 @@ $( document ).ready(function(){
 			}
 
 			taskTable = datastore.getTable('tasks');
-
+			storyBankTable = datastore.getTable('stories');
+			accountTable = datastore.getTable('accounts');
 			// Populate the initial task list.
 			updateList();
 
