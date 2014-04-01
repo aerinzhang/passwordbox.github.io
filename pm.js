@@ -20,6 +20,7 @@ var client = new Dropbox.Client({key: DROPBOX_APP_KEY});
 var taskTable;
 var storyBankTable;
 var accountTable;
+var allPossible;
 
 
 function deleteAllStories() {
@@ -1051,11 +1052,8 @@ $( document ).ready(function(){
 
 			taskTable = datastore.getTable('tasks');
 			storyBankTable = datastore.getTable('stories');
-			console.log('loading storyBankTable');
-			console.log(storyBankTable);
 			accountTable = datastore.getTable('accounts');
-			storyBankTable.insert({fake:true});
-			console.log('insert to storyBank dummy');
+
 			// Populate the initial task list.
 			updateList();
 			updateStoryBankList();
