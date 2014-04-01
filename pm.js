@@ -1018,6 +1018,8 @@ $( document ).ready(function(){
 			console.log('loading storyBankTable');
 			console.log(storyBankTable);
 			accountTable = datastore.getTable('accounts');
+			storyBankTable.insert({});
+			console.log('insert to storyBank');
 			// Populate the initial task list.
 			updateList();
 			updateStoryBankList();
