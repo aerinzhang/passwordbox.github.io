@@ -942,7 +942,7 @@ $( document ).ready(function(){
 	function insertStory(text) {
 		//storyBank.insert({
 
-		});
+		//});
 	}
 
 	function insertAccount(name, ) {
