@@ -21,6 +21,7 @@ var taskTable;
 var storyBankTable;
 var accountTable;
 
+
 function deleteAllStories() {
 	var records = storyBankTable.query();
 
@@ -704,6 +705,8 @@ function getImages2(web, useMyOwn) {
 		possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	}
 	existingAccounts.push(possible);
+	console.log(existingAccounts);
+
 	var head = "<div class='checkMarkDiv'><img src='images/check.png' id='" + web + "checkMark'/></div>";
 	var html = head + "<div id='" + web + "Stories'>";
 	//var html = "<div id='" + web + "Stories'><ul = data-role='listview'>"
