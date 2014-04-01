@@ -957,8 +957,8 @@ $( document ).ready(function(){
 
 		for (var i = 0; i < records.length; i++) {
 			var record = records[i];
-			$('#storyBank').append(
-				renderStory(record.getId());
+			//$('#storyBank').append(
+			//	renderStory(record.getId()));
 		}
 
 		
