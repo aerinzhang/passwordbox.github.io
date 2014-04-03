@@ -700,7 +700,7 @@ var allIndex = 0
 
 
 function convertNestedArraysToString(nestedArray) {
-	var result = []
+	var result = [];
 	for (var i=0; i < nestedArray.length; i ++) {
 		var li = nestedArray[i];
 		var dic = li[0] + '|||' + li[1];
@@ -745,7 +745,7 @@ function getImages2(web, useMyOwn) {
 			var liold = "       &nbsp&nbsp<span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 					 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span></div>";
 			}
-		var li = String.format(liold, possible[i][0], possible[i][0], possible[i][3].toLowerCase(), possible[i][3]);
+		var li = String.format(liold, possible[i][0], possible[i][0], possible[i][1].toLowerCase(), possible[i][1]);
 		html += li;
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
