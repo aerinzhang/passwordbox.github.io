@@ -712,7 +712,7 @@ function convertNestedArraysToString(nestedArray) {
 function parseStringToNestedArrays(arrayOfString) {
 	var result = [];
 	console.log('in parseStringToNestedArrays.... Printing arrayOfString.length');
-	console.log(arrayOfString.length);
+	console.log(arrayOfString.length());
 	for (var i=0; i < arrayOfString.length; i++) {
 
 		var li = arrayOfString.get(i).split('|||'); 
