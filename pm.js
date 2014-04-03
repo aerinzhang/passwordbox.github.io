@@ -969,7 +969,7 @@ function renderAccountList(records) {
 		var record = records[i];
 		var temp = record.get('storyList');
 		console.log('print record.get("storyList"...');
-		console.log(typeof temp);
+		console.log(temp.length);
 		console.log(parseStringToNestedArrays(temp));
 		var list = parseStringToNestedArrays(record.get('storyList'));
 		var web = record.get('account');
