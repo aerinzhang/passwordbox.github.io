@@ -954,6 +954,7 @@ function renderEachAccountElements(web, list) {
 			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + allIndex + ")' > Type in your Password</a>"
 	allIndex+=1;	
 	console.log(list);
+	console.log(html);
 	return html;
 }
 
