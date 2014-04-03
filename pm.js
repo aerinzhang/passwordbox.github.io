@@ -714,7 +714,7 @@ function parseStringToNestedArrays(arrayOfString) {
 	console.log('in parseStringToNestedArrays.... Printing arrayOfString.length');
 	console.log(arrayOfString.length());
 	for (var i=0; i < arrayOfString.length; i++) {
-
+		console.log(arrayOfString.get(i));
 		var li = arrayOfString.get(i).split('|||'); 
 		result.push(li);
 	}
