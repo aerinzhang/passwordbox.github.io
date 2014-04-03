@@ -711,8 +711,10 @@ function convertNestedArraysToString(nestedArray) {
 
 function parseStringToNestedArrays(arrayOfString) {
 	var result = [];
+	console.log('in parseStringToNestedArrays.... Printing arrayofString.length');
 	for (var i=0; i < arrayOfString.length; i++) {
-		var li = arrayOfString[i].split('|||'); 
+
+		var li = arrayOfString.get(i).split('|||'); 
 		result.push(li);
 	}
 	return result;
@@ -949,7 +951,7 @@ function renderEachAccountElements(web, list) {
 			var liold = "       &nbsp&nbsp<span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 					 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span></div>";
 			}
-		var li = String.format(liold, list[i][0], list[i][0], list[i][3].toLowerCase(), list[i][3]);
+		var li = String.format(liold, list[i][0], list[i][0], list[i][1].toLowerCase(), list[i][1]);
 		html += li;
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
