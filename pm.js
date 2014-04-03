@@ -726,6 +726,8 @@ function getImages2(web, useMyOwn) {
 		possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	}
 	var accountStoryList = convertNestedArraysToString(possible);
+	console.log('printing accountStoryList...');
+	console.log(accountStoryList);
 	insertAccount(web, accountStoryList);
 	existingAccounts.push(possible);
 	console.log(existingAccounts);
