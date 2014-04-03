@@ -961,6 +961,7 @@ function renderEachAccountElements(web, list) {
 }
 
 function renderAccountList(records) {
+	var records = accountTable.query();
 	//create each page for each account
 	for (var i=0; i < records.length; i++) {
 		var record = records[i];
@@ -971,8 +972,6 @@ function renderAccountList(records) {
 		var list = parseStringToNestedArrays(record.get('storyList'));
 		var web = record.get('account');
 		var pageHtml = renderEachAccountElements(web, list);
-		console.log('printing pageHtml....');
-		console.log(pageHtml);
 		var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li>\
 					  <a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
 		var newPage = $("<div data-role='page' data-title='"+web+"' id="+web+"Page><div data-role='header' data-position=fixed>\
@@ -1088,7 +1087,7 @@ $( document ).ready(function(){
 			if (accountA.get('lastRehearsal') > accountB.get('lastRehearsal')) return 1;
 			return 0;
 		});
-		renderAccountList(records);
+		renderAccountList();
 	}
 
 	function updateStoryBankList() {
