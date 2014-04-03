@@ -954,7 +954,7 @@ function renderEachAccountElements(web, list) {
 			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + allIndex + ")' > Type in your Password</a>"
 	allIndex+=1;	
 	console.log(list);
-	console.log(html);
+	//console.log(html);
 	return html;
 }
 
@@ -962,6 +962,10 @@ function renderAccountList(records) {
 	//create each page for each account
 	for (var i=0; i < records.length; i++) {
 		var record = records[i];
+		var temp = record.get('storyList');
+		console.log('print record.get("storyList"...');
+		console.log(temp);
+		console.log(parseStringToNestedArrays(temp));
 		var list = parseStringToNestedArrays(record.get('storyList'));
 		var web = record.get('account');
 		var pageHtml = renderEachAccountElements(web, list);
