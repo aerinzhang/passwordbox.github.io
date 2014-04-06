@@ -1,5 +1,3 @@
-var events = [];
-var eventCount = 0;
 var buttonCounter = 0;
 var currentPageID;
 var currentCanvasCount = 0;
@@ -8,6 +6,7 @@ var personList = [];
 var actionList = [];
 var objectList = [];
 var storyIndex = 0;
+var gameScore = 0;
 var storyBank = [];
 var progress = 0;
 var emailCount = 0;
@@ -21,18 +20,64 @@ var taskTable;
 var storyBankTable;
 var accountTable;
 var allPossible;
+var allIndex;
+//existing combinations 
+var existingAccounts=[];
 
 
+//CONSTANT VALUES: ALL PAO LISTS
+var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
+				  "Ben_Affleck", "Beyonce", "Bill_Clinton", "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", "Hillary_Clinton", "Homer_Simpson",
+			      "Indiana_Jones", "Marilyn_Monroe", "Superman", "Steve_Jobs", "Michael_Jordan"];
+
+var actionList = ['balancing', 'bending', 'biting', 'bouncing', 'building', 'burning' , 'chasing', 'clapping', 'climbing' ,'cooking', 'digging',
+				  'drinking', 'enlarging', 'exploding', 'feeding', 'fighting', 'flipping', 'hanging', 'hiding', 'hugging', 'juggling', 'kissing',
+				  'licking', 'painting', 'piloting', 'pushing', 'repairing', 'rubbing', 'scratching', 'shooting', 'smelling', 'swinging','throwing',
+				  'tickling', 'tying', 'washing', 'wrapping', 'zooming'];
+
+var objectList = ['dome','hammer','heel','hen','igloo','leaf', 'lock', 'moose', 'seal', 'smore', 'snowflake','suit','daisy','dice','safe','toilet',
+				  'moon', 'map','lollipop','peach', 'bus'];
+
+var sceneList = ['airport', 'baseball_field', 'basketball_court', 'bakery', 'bridge', 'Capitol_Building', 'castle', 'court', 'Eiffel_Tower', 
+				  'fancy_house', 'fitness_center', 'forest', 'garden', 'glacier', 'Grand_Canyon', 'Great_Wall', 'hanging_bridge', 'island', 'lake',
+				  'library', 'lighthouse', 'mountain', 'Niagara_Falls', 'ocean', 'pool_bar', 'pyramids', 'restaurant', 'swimming_pool', 'Taj_Mahal',
+				  'tropical_beach'];
+
+
+
+//functions
+
+//load variables & tables for the program
+function loadProgramValues(datastore){
+	storyBankTable = datastore.getTable('stories');
+	accountTable = datastore.getTable('accounts');
+	generalTable = datastore.getTable('general');
+
+	//extract storyBank from DropBox records
+	storyBank = stripStoryFromRecords();
+	//compute all possible combinations of four stories
+	allPossible = computeCombinations(storyBank, 4);
+
+}
+
+
+//testing purposes : delete all dropbox records
 function deleteAllStories() {
 	var records = storyBankTable.query();
-
 	for (var i = 0; i < records.length; i++) {
 		var record = records[i];
 		storyBankTable.get(record.getId()).deleteRecord();
 	}
 
+	var records = accountTable.query();
+	for (var i = 0; i < records.length; i++) {
+		var record = records[i];
+		storyBankTable.get(record.getId()).deleteRecord();
+	}
 }
 
+//signoff DropBox Account & disable UI buttons & change back to home?
+// where else to add sign-off button?
 function signOff() {
 	console.log('signing-off...');
 	client.signOff();
@@ -42,29 +87,15 @@ function signOff() {
 	location.reload();
 }
 
-function saveForm(e) {
-	$('#confirm-info div').html('');
-	console.log($('#confirm-info div').html());
-	var namesave = $("#name").val();
-	if (namesave != '') $("#confirm-info div").append("<p> Name: " + namesave + "</p>");
-	var agesave = $("input[type='range']").val();
-	if (agesave != '') $("#confirm-info div").append("<p> Age: " + agesave + "</p>");
-	var gender = $("input:radio[name='radio-g']:checked").val();
-	$("#confirm-info div").append("<p> Gender: " + gender + "</p>");
-	var email = $("#email").val();
-	if (isEmail(email)) {
-		$("#confirm-info div").append("<p> Email: " + email + "</p>");
-	} else alert('email not valid');
-	var state = $("#states option:selected()").val();
-	if (state != '') $("#confirm-info div").append("<p> State: " + state + "</p>");
-	alert('Data daved');
-	return false;
-}
+
+//check if the account is a valid user account & 
+//other constraints like length? invalid symbols? what else 
 function isEmail(a){
 	return a != '' ;///^([\w!.%+\-])+(?:\.[\w\-]+)+$/.test(a);
 }
 
-//utility function
+
+//utility function : string formatting for Javascript
 String.format = function() {
 	var s = arguments[0];
 	for (var i = 0; i < arguments.length - 1; i++) {       
@@ -74,124 +105,31 @@ String.format = function() {
 	return s;
 }
 
-function actionHandler(event, web, action) {
-	if (event.handled !== true) 
-	{
-		var actionListResult = "";
-		var actionListHead = "<p><img class=clue src='images/action/";
-		for (var i = 0; i < action_num; i++) {
-			actionListResult += actionListHead + action + (i+1).toString() + ".jpg'</p>";
-		}
-		var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li><a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
-		var newPage = $("<div data-role='page' data-title='"+web+action+"' id="+web+action+"><div data-role='header' data-position=fixed><a href=#" + web + "Page data-icon='back'>Back</a><h1>"+action+"</h1></div><div data-role='content' class=images>"+actionListResult+"</div>"+footer+"</div>");
-		newPage.appendTo( $.mobile.pageContainer );
-		$.mobile.changePage(newPage);
-		event.handled = true;
+//given a nested array, flatten each inner arrat into a string seperated by |||
+function convertNestedArraysToString(nestedArray) {
+	var result = [];
+	for (var i=0; i < nestedArray.length; i ++) {
+		var li = nestedArray[i];
+		var dic = li[0] + '|||' + li[1];
+		result.push(dic);
 	}
-	return false; 
-};
+	return result;
+}
 
-
-function objectHandler(event, web, object) {
-	if (event.handled !== true) 
-	{
-		var objectListResult = "";
-		var objectListHead = "<p><img class=clue src='images/object/";
-		for (var i = 0; i < object_num; i++) {
-			objectListResult += objectListHead + object + (i+1).toString() + ".jpg'</p>";
-		}
-		var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li><a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
-		var newPage = $("<div data-role='page' data-title='"+web+object+"' id="+web+object+"><div data-role='header' data-position=fixed><a href=#" + web+"Page data-icon='back'>Back</a><h1>"+object+"</h1></div><div data-role='content' class=images>"+objectListResult+"</div>"+footer+"</div>");
-		newPage.appendTo( $.mobile.pageContainer );
-		$.mobile.changePage(newPage);
-		event.handled = true;
+//given a string make it into a nested array
+function parseStringToNestedArrays(arrayOfString) {
+	var result = [];
+	for (var i=0; i < arrayOfString.length(); i++) {
+		var li = arrayOfString.get(i).split('|||'); 
+		result.push(li);
 	}
-	return false; 
-};
-
-function addActionImage(actionName, web){
-	//get the webPage referred to	
-	var webPage = $('#'+web +"Page");
-	//insert image there / get rid of the button
-	var action = $('#'+web +"Page").find(".actionButton").text();
-	$('#'+web +"Page").find(".actionButton").empty();
-	var base = "<p>{0}</p><img class=clue src=images/action/{1}.jpg>"
-	var result = String.format(base, action, actionName);
-	$('#'+web +"Page").find(".actionButton").html(result);
-	//change to that page
-	$.mobile.changePage(webPage);
+	return result;
 }
 
-
-function addObjectImage(objectName, web){
-	//get the webPage referred to	
-	var webPage = $('#'+web +"Page");
-	//insert image there / get rid of the button
-	var object = $('#'+web +"Page").find(".objectButton").text();
-	$('#'+web +"Page").find(".objectButton").empty();
-	var base = "<p>{0}</p><img class=clue src=images/object/{1}.jpg>"
-	var result = String.format(base, object, objectName);
-	$('#'+web +"Page").find(".objectButton").html(result);
-	//change to that page
-	$.mobile.changePage(webPage);
-}
+//end of unitilies 
 
 
-//this function creates the action images page
-function createActionImagePage(web, action, action_num) {
-	var actionListResult = "";
-	var actionListHead = "<p><input type='image' src='images/action/";
-
-	for (var i = 0; i < action_num; i++) {
-		var actionName = action + (i+1).toString();
-		var actionListMiddle = "value='" + actionName+ "' onclick='addActionImage(\""  + actionName + "\", \"" + web + "\")' ";
-		actionListResult += actionListHead + actionName + ".jpg' " + actionListMiddle + "/></p>";
-	}
-	console.log(actionListResult);
-	var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li><a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
-	var newPage = $("<div data-role='page' data-title='"+web+action+"' id="+web+action+"><div data-role='header' data-position=fixed><a href=#" + web + "Page data-icon='back'>Back</a><h1>"+action+"</h1></div><div data-role='content' class=images>"+actionListResult+"</div>"+footer+"</div>");
-	return newPage;
-	//newPage.appendTo( $.mobile.pageContainer );
-	//$.mobile.changePage(newPage);
-}
-	
-
-//this function creates the object images page
-function createObjectImagePage(web, object, object_num) {
-	var objectListResult = "";
-	var objectListHead = "<p><input type='image' src='images/object/";
-
-	for (var i = 0; i < object_num; i++) {
-		var objectName = object + (i+1).toString();
-		var objectListMiddle = "value='" + objectName+ "' onclick='addObjectImage(\""  + objectName + "\", \"" + web + "\")' ";
-		objectListResult += objectListHead + objectName + ".jpg' " + objectListMiddle + "/></p>";
-	}
-	var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li><a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
-	var newPage = $("<div data-role='page' data-title='"+web+object+"' id="+web+object+"><div data-role='header' data-position=fixed><a href=#" + web+"Page data-icon='back'>Back</a><h1>"+object+"</h1></div><div data-role='content' class=images>"+objectListResult+"</div>"+footer+"</div>");
-	return newPage;
-	//newPage.appendTo( $.mobile.pageContainer );
-	//$.mobile.changePage(newPage);
-}
-
-function getCurrentCanvasID() {
-	var canvasID = 'photoCanvas' + currentPageID;//currentCanvasCount.toString(); 
-	return canvasID;
-}
-function getNextCanvasID(){
-	return 
-}
-
-function checkPassword(action) {
-	//create a pop-up page to type in the password and do checking
-	//var passwordPopup = $("<div data-role='dialog' data-title='generate a password for"+web + "' id="+web+"Password data-transition='pop' >"+"</div>");
-	//passwordPopup.appendTo( $.mobile.pageContainer );
- 	$.mobile.changePage('#' + action + "Password");
-	return
-
-
-}
-
-
+//PHONE GAP : SHOWING CORRECT
 function showAlertRight() {
     navigator.notification.alert(
         'Success!',  // message
@@ -200,6 +138,7 @@ function showAlertRight() {
         'Okay'                  // buttonName
   	);
 }
+//PHONE GAP : SHOWING CORRECT
 function showAlertWrong() {
     navigator.notification.alert(
         'Please use the action and the object!',  // message
@@ -209,6 +148,7 @@ function showAlertWrong() {
   	);
 }
 
+
 function updateTimeDic(web) {
 	alert("update Rehearse Time");
 	console.log(timeDic);
@@ -216,6 +156,8 @@ function updateTimeDic(web) {
 	timeDic[web] = newtime.getTime();
 	$.mobile.changePage("#accounts");
 }
+
+
 function checkPassword2(web) {
 	event.preventDefault();
 
@@ -247,56 +189,38 @@ function checkPassword2(web) {
 
 
 }
-function changeDisplay(text) {
-	$('#gamebeginning').html(text);
-}
 
 var gamepersonlist = [];
 //generate 10 stories to use later
 function generateList() {
-	var person_list = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
-						"Ben_Affleck", "Beyonce", "Bill_Clinton", "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", "Hillary_Clinton", "Homer_Simpson",
-						"Indiana_Jones", "Marilyn_Monroe", "Superman", "Steve_Jobs", "Michael_Jordan"];
-
-	var action_list = ['balancing', 'bending', 'biting', 'bouncing', 'building', 'burning' , 'chasing', 'clapping', 'climbing' ,'cooking', 'digging',
-						'drinking', 'enlarging', 'exploding', 'feeding', 'fighting', 'flipping', 'hanging', 'hiding', 'hugging', 'juggling', 'kissing',
-						'licking', 'painting', 'piloting', 'pushing', 'repairing', 'rubbing', 'scratching', 'shooting', 'smelling', 'swinging','throwing',
-						'tickling', 'tying', 'washing', 'wrapping', 'zooming'];
-
-	var object_list = ['dome','hammer','heel','hen','igloo','leaf', 'lock', 'moose', 'seal', 'smore', 'snowflake','suit','daisy','dice','safe','toilet',
-						'moon', 'map','lollipop','peach', 'bus'];
-
-	var scene_list = ['airport', 'baseball_field', 'basketball_court', 'bakery', 'bridge', 'Capitol_Building', 'castle', 'court', 'Eiffel_Tower', 
-					  'fancy_house', 'fitness_center', 'forest', 'garden', 'glacier', 'Grand_Canyon', 'Great_Wall', 'hanging_bridge', 'island', 'lake',
-					  'library', 'lighthouse', 'mountain', 'Niagara_Falls', 'ocean', 'pool_bar', 'pyramids', 'restaurant', 'swimming_pool', 'Taj_Mahal',
-					  'tropical_beach'];
+	
 	var gamelist = [];
 	var gameobjectlist = [];
 	var gameactionlist = [];
 	var gamescenelist = [];
 	for (var i = 0; i < 10; i++) {
-		var person = person_list[Math.floor(Math.random() * person_list.length)];
+		var person = personList[Math.floor(Math.random() * personList.length)];
 
 		while (gamepersonlist.indexOf(person) != -1) {
-			var person = person_list[Math.floor(Math.random() * person_list.length)];
+			var person = personList[Math.floor(Math.random() * personList.length)];
 		}
 		gamepersonlist.push(person);
 
-		var action = action_list[Math.floor(Math.random() * action_list.length)];
+		var action = actionList[Math.floor(Math.random() * actionList.length)];
 		while (gameactionlist.indexOf(action) != -1) {
-			var action = action_list[Math.floor(Math.random() * action_list.length)];
+			var action = actionList[Math.floor(Math.random() * actionList.length)];
 		}
 		gameactionlist.push(action);
 
-		var object = object_list[Math.floor(Math.random() * object_list.length)];
+		var object = objectList[Math.floor(Math.random() * objectList.length)];
 		while (gameobjectlist.indexOf(object) != -1) {
-			var object = object_list[Math.floor(Math.random() * object_list.length)];		
+			var object = objectList[Math.floor(Math.random() * objectList.length)];		
 		}
 		gameobjectlist.push(object);
 
-		var scene = scene_list[Math.floor(Math.random() * scene_list.length)];
+		var scene = sceneList[Math.floor(Math.random() * sceneList.length)];
 		while (gamescenelist.indexOf(scene) != -1) {
-			scene = scene_list[Math.floor(Math.random() * scene_list.length)];
+			scene = sceneList[Math.floor(Math.random() * sceneList.length)];
 		}
 		gamescenelist.push(scene);
 		gamelist.push([person, action, object, scene]);
@@ -323,9 +247,9 @@ function startChecking() {
 
 
 }
-var gameScore = 0;
 
 
+//add all stories from the bank to dropBox and storyBank
 function addStories() {
 	for (var i=0; i < 10; i++) {
 		storyBank.push(gamelist[i]);
@@ -339,6 +263,7 @@ function addStories() {
 
 }
 
+//add selected stories to the story bank
 function addSelect() {
 	$('.image-checkbox-container img').each(function() {
 		if (this.style.border != '') {
@@ -680,14 +605,10 @@ function startGame() {
 	//}
 }
 function changePerson(person, web) {
-	var person_list = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
-						"Ben_Affleck", "Beyonce", "Bill_Clinton", "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", "Hillary_Clinton", "Homer_Simpson",
-						"Indiana_Jones", "Marilyn_Monroe", "Superman", "Steve_Jobs", "Michael_Jordan"];
-
-	var newperson = person_list[Math.floor(Math.random() * person_list.length)];
+	var newperson = personList[Math.floor(Math.random() * personList.length)];
 
 	while (personList.indexOf(newperson) != -1) {
-		newperson = person_list[Math.floor(Math.random() * person_list.length)];
+		newperson = personList[Math.floor(Math.random() * personList.length)];
 	}
 	personList.push(newperson);
 	document.getElementById(web+'Person').src = "images/person/" + newperson + '.jpg';
@@ -695,28 +616,7 @@ function changePerson(person, web) {
 
 }
 //end of utility function
-var existingAccounts=[];
-var allIndex = 0
 
-
-function convertNestedArraysToString(nestedArray) {
-	var result = [];
-	for (var i=0; i < nestedArray.length; i ++) {
-		var li = nestedArray[i];
-		var dic = li[0] + '|||' + li[1];
-		result.push(dic);
-	}
-	return result;
-}
-
-function parseStringToNestedArrays(arrayOfString) {
-	var result = [];
-	for (var i=0; i < arrayOfString.length(); i++) {
-		var li = arrayOfString.get(i).split('|||'); 
-		result.push(li);
-	}
-	return result;
-}
 
 function getImages2(web, useMyOwn) {
 	console.log(allPossible);
@@ -726,11 +626,8 @@ function getImages2(web, useMyOwn) {
 		possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	}
 	var accountStoryList = convertNestedArraysToString(possible);
-	console.log('printing accountStoryList...');
-	console.log(accountStoryList);
 	insertAccount(web, accountStoryList);
 	existingAccounts.push(possible);
-	console.log(existingAccounts);
 
 	var head = "<div class='checkMarkDiv'><img src='images/check.png' id='" + web + "checkMark'/></div>";
 	var html = head + "<div id='" + web + "Stories'>";
@@ -750,8 +647,8 @@ function getImages2(web, useMyOwn) {
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
 			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + allIndex + ")' > Type in your Password</a>"
-	allIndex+=1;	
-	console.log(possible);
+	allIndex+=1;
+	generalTable.get('allIndex') += 1;	
 	return html;
 }
 function showPopupRight(web) {
@@ -787,95 +684,6 @@ function checkPasswordNew(web, index) {
 	showPopupRight(web);
 }
 
-function getImages(web, useMyOwn) {
-	//how to generate /where to list
-	var person_list = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
-						"Ben_Affleck", "Beyonce", "Bill_Clinton", "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", "Hillary_Clinton", "Homer_Simpson",
-						"Indiana_Jones", "Marilyn_Monroe", "Superman", "Steve_Jobs", "Michael_Jordan"];
-
-	var action_list = ['balancing', 'bending', 'biting', 'bouncing', 'building', 'burning' , 'chasing', 'clapping', 'climbing' ,'cooking', 'digging',
-						'drinking', 'enlarging', 'exploding', 'feeding', 'fighting', 'flipping', 'hanging', 'hiding', 'hugging', 'juggling', 'kissing',
-						'licking', 'painting', 'piloting', 'pushing', 'repairing', 'rubbing', 'scratching', 'shooting', 'smelling', 'swinging','throwing',
-						'tickling', 'tying', 'washing', 'wrapping', 'zooming'];
-
-	var object_list = ['dome','hammer','heel','hen','igloo','leaf', 'lock', 'moose', 'seal', 'smore', 'snowflake','suit','daisy','dice','safe','toilet',
-						'moon', 'map','lollipop','peach', 'bus'];
-
-	var action_num = 3;
-	var object_num = 3;
-
-
-	var person = person_list[Math.floor(Math.random() * person_list.length)];
-
-	while (personList.indexOf(person) != -1) {
-		var person = person_list[Math.floor(Math.random() * person_list.length)];
-	}
-	personList.push(person);
-
-	var action = action_list[Math.floor(Math.random() * action_list.length)];
-	while (actionList.indexOf(action) != -1) {
-		var action = action_list[Math.floor(Math.random() * action_list.length)];
-	}
-	actionList.push(action);
-
-	var object = object_list[Math.floor(Math.random() * object_list.length)];
-	while (objectList.indexOf(object) != -1) {
-		var object = object_list[Math.floor(Math.random() * object_list.length)];
-	}
-	objectList.push(object);
-	//html = "<p>{0}</p><img class=clue src=images/person/{1}.jpg><p>is</p><p>{2}</p><p>a/an</p><p>{3}.</p>"
-	
-
-	//action button
-	var webPageIdDOM = '#' + web + 'Page';
-	var actionPageIdDOM = '#' + web + action;
-	var objectPageIdDOM = '#' + web + object;
-	if (useMyOwn) {
-		var canvas = '<img style="display:none;width:80px;height:80px; margin:0px auto" class="ownPhotos" id=photoCanvas' + web + ' src="" />'
-	//<img style="display:none;" id="largeImage" src="" />
-		var html = "<div class=rehearseButton1></div>" + canvas + "<div class='private'><p>is</p>{2} a/an {3} <a href=# id='fix' data-role='button' data-rel='popup' onclick='checkPassword(\""  + web + "\")' > Type in your Password</a> </div><div class=rehearseButton2></div>";
-	} else {
-		//var popupPage = $("<div data-role='popup' data-title='generate a password for"+web + "' id="+web+"Password > PASSWORD </div>");
-		//popupPage.appendTo( $.mobile.pageContainer );
-
-		//var html = "<p>{0}</p><img class=clue src=images/person/{1}.jpg /><p>is</p>{2} a/an {3} <div data-role='popup' data-title='generate a password for"+web + "' id="+web+"Password > PASSWORD </div> <a data-role='button' data-rel='popup' href=#amazonPassword"+ " data-transition='pop' data-position-to='window'>Type in your Password</a>";//" onclick='checkPassword(\""  + action + "\", \"" + web + "\", \"" + object + "\")' data-rel='dialog'>Type in your Password</a>";
-		var html = "<div class=rehearseButton1></div><p id="+ web + "Name >{0}</p><div class=personDiv><img class=clue id=" + web + "Person src=images/person/{1}.jpg /></div><div class='private'><a data-role='button' onclick='changePerson(\"" + person + '","' + web + "\")'>Change Person</a><p>is</p>{2} a/an {3} <a href=# id='fix' data-role='button' data-rel='popup' onclick='checkPassword(\""  + web + "\")' > Type in your Password</a></div><div class=rehearseButton2></div>";
-
-	}
-
-	var buttonActionId = 'buttonAction' + buttonCounter.toString();
-	var buttonObjectId = 'buttonObject' + buttonCounter.toString();
-	buttonCounter += 1;
-
-	//var buttonAction = "<input type='button' id='" + buttonActionId + "' value='" + action + "' href='" + actionPageIdDOM + "' />";
-	//var buttonObject =  "<input type='button' id='" + buttonObjectId + "' value='" + object + "' href='" + objectPageIdDOM + "' />";
-	var buttonObject = "<div class=objectButton><a data-role='button' href=" + objectPageIdDOM + ">" + object + "</a></div>";
-	var buttonAction = "<div class=actionButton><a data-role='button' href=" + actionPageIdDOM + ">" + action + "</a></div>";
-
-
-	//var actionLambda = function (event) {  };
-	//var objectLambda = function (event) { objectHandler(event, web, object); };
-
-	var buttonActionIdDOM = '#' + buttonActionId;
-	var buttonObjectIdDOM = '#' + buttonObjectId;
-
-	//create two pages and then bind the buttons
-	var actionPage = createActionImagePage(web, action, action_num);
-	var objectPage = createObjectImagePage(web, object, object_num);
-
-	
-	actionPage.appendTo( $.mobile.pageContainer );
-	objectPage.appendTo( $.mobile.pageContainer );
-
-	//var objectLambda = function (event) {alert('hi');$.mobile.changePage($(objectPageIdDOM));} ;
-	//var actionLambda = function (event) {$.mobile.changePage($(actionPageIdDOM))} ;
-
-	$(buttonObjectId).live('click', function(event){});
-	//$(buttonObjectId).live('click', objectLambda);
-	//$(buttonActionId).live('click', actionLambda);
-	return String.format(html, person, person, buttonAction, buttonObject);//person, action, object);
-	//return "<p><img class=clue src=images/pic"+pic1+".jpg></p><p><img class=clue src=pictures/pic"+pic2+".jpg></p><p><img class=clue src=pictures/pic"+pic3+".jpg></p>"
-}
 function submit(e){
 	console.log('sumbit!!!');
 	if (((e.keyCode === 13) || (e.keyCode == undefined)) && ($("#entry:focus"))) {
@@ -954,7 +762,8 @@ function renderEachAccountElements(web, list) {
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
 			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + allIndex + ")' > Type in your Password</a>"
-	allIndex+=1;	
+	allIndex+=1;
+	generalTable.get('allIndex') += 1;
 	console.log(list);
 	//console.log(html);
 	return html;
@@ -1157,7 +966,10 @@ $( document ).ready(function(){
 			taskTable = datastore.getTable('tasks');
 			storyBankTable = datastore.getTable('stories');
 			accountTable = datastore.getTable('accounts');
-
+			
+			//store general information like persons used
+			generalTable = datastore.getTable('general');
+			allIndex = generalTable.get('allIndex');
 			//calculate 
 			storyBank = stripStoryFromRecords();
 			console.log('printing initial storyBank....');
