@@ -648,7 +648,7 @@ function getImages2(web, useMyOwn) {
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
 			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + allIndex + ")' > Type in your Password</a>"
 	allIndex+=1;
-	generalTable.get('allIndex') += 1;	
+	generalTable.get('allIndex') = generalTable.get('allIndex') + 1;	
 	return html;
 }
 function showPopupRight(web) {
@@ -763,7 +763,7 @@ function renderEachAccountElements(web, list) {
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
 			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + allIndex + ")' > Type in your Password</a>"
 	allIndex+=1;
-	generalTable.get('allIndex') += 1;
+	generalTable.get('allIndex') = generalTable.get('allIndex') + 1;
 	console.log(list);
 	//console.log(html);
 	return html;
