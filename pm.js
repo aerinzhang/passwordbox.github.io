@@ -69,8 +69,8 @@ function loadProgramValues(datastore){
 		accountIndex = programRecord.get('accountIndex');
 		existingAccountIndex = programRecord.get('existingAccountIndex');
 		existingAccounts = programRecord.get('existingAccounts').toArray();
-		existingPersonList = programRecord.get('existingPersonList');
-		existingSceneList = programRecord.get('existingSceneList');
+		existingPersonList = programRecord.get('existingPersonList').toArray();
+		existingSceneList = programRecord.get('existingSceneList').toArray();
 
 	} else {
 		//error should never get here
@@ -625,10 +625,10 @@ function startGame() {
 function changePerson(person, web) {
 	var newperson = personList[Math.floor(Math.random() * personList.length)];
 
-	while (personList.indexOf(newperson) != -1) {
+	while (existingPersonList.indexOf(newperson) != -1) {
 		newperson = personList[Math.floor(Math.random() * personList.length)];
 	}
-	personList.push(newperson);
+	existingPersonList.push(newperson);
 	document.getElementById(web+'Person').src = "images/person/" + newperson + '.jpg';
 	$('#' + web + 'Name').html(newperson);
 
@@ -641,9 +641,9 @@ function getImages2(web, useMyOwn) {
 
 	var possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	console.log(typeof(existingAccounts));
-	while (existingAccounts.indexOf(possible) != -1) {
-		possible = allPossible[Math.floor(Math.random() * allPossible.length)];
-	}
+	//while (existingAccounts.indexOf(possible) != -1) {
+	//	possible = allPossible[Math.floor(Math.random() * allPossible.length)];
+	//}
 	var accountStoryList = convertNestedArraysToString(possible);
 	insertAccount(web, accountStoryList);
 	existingAccounts.push(possible);
