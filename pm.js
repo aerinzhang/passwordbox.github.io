@@ -660,6 +660,7 @@ function changePerson(person, web) {
 
 function getImages2(web, useMyOwn) {
 	var possible = allPossible[Math.floor(Math.random() * allPossible.length)];
+	console.log(possible);
 	var accountStoryList = convertNestedArraysToString(possible);
 	var accountInfo = convertNestedStoriesToString(accountStoryList);
 
@@ -751,16 +752,12 @@ function submit(e){
 			//add to confirm tap
 			$("#confirm-friends div").append("<p>" + value + "</p>");
 			$('#confirm-friend').collapsible('refresh');
-			console.log('debugging......1');
 			//var images = getImages(value, useMyOwn);
 			var images = getImages2(value, useMyOwn);
 			var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li><a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
 			var newPage = $("<div data-role='page' data-title='"+value+"' id="+value+"Page><div data-role='header' data-position=fixed><a href=#accounts data-icon='back'>Back</a><h1>"+ value + "</h1></div><div data-role='content' class=images>"+images+" </div>"+footer+"</div>");
 			var popupPage = $("<div data-role='page' data-trasntion='pop' data-rel='pop' data-title='generate a password for"+value + "' id="+value+"Password ><div data-role='fieldcontain'><form action='#' id='passwordChecking'><div><input type='text' autocorrect='off' name='password' id='typein-password" + value + "' value='' placeholder='Type in your password' autofocus='autofocus'/></div><button type='submit' name='submit; value='submit' id='passwordSubmit" + value + "' onclick='checkPassword2(\""  + value + "\")' >Check</button></form></div></div>");
 			$('.images').css('text-align','center');
-			var copy = new Date();
-			timeDic[value] = copy.getTime();
-			console.log('debugging......2');
 
 			newPage.appendTo( $.mobile.pageContainer );
 			popupPage.appendTo( $.mobile.pageContainer);
