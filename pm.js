@@ -719,6 +719,7 @@ function submit(e){
 			$("#list").append("<li id="+value+ "><a href=#"+value+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + value + "</a></li>");
 			$('#list').listview('refresh');
 			accountIndex += 1;
+			programRecord.set('accountIndex', accountIndex);
 			//add to confirm tap
 			$("#confirm-friends div").append("<p>" + value + "</p>");
 			$('#confirm-friend').collapsible('refresh');
@@ -790,8 +791,7 @@ function renderEachAccountElements(web, list) {
 
 function renderAccountList() {
 	var records = accountTable.query();
-	console.log('rendering Account List...');
-	console.log(records.length);
+
 	//create each page for each account
 	for (var i=0; i < records.length; i++) {
 		var record = records[i];
