@@ -19,7 +19,6 @@ var existingPersonList;
 var existingSceneList;
 
 
-
 //new values for each launch
 var storyIndex = 0;
 var gameScore = 0;
@@ -295,7 +294,6 @@ function addStories() {
 		storyBank.push([gamelist[i][0], gamelist[i][3]]);
 		insertStory(gamelist[i][0], gamelist[i][3]);
 	}
-	console.log(storyBank.length);
 	allPossible = computeCombinations(storyBank, 4);
 	$.mobile.changePage('#accounts');
 
@@ -624,29 +622,14 @@ function startGame() {
 	gamelist = generateList();
 	console.log(gamelist);
 
-	//while (sequenceIndex != 9) {
-		generateNextSequence();
-	//	sequenceIndex += 1;
-	/*	
-	if (storyIndex == 8) {
-		//end of storylist
-		var html="<p>{0}</p><div class=personDiv><img class=clue src=images/person/{1}.jpg /></div><p>is</p>{2}<div class=actionDiv><img class=clue src=images/action/{3}1.jpg /></div><p>a/an</p> <p>{4}</p><div class=objectDiv><img class=clue src=images/object/{5}1.jpg /></div><a href='#' data-role='button' onclick='startChecking();' >Finish</a>";
+	generateNextSequence();
 
-	} else {
-		//more to come
-		var html="<p>{0}</p><div class=personDiv><img class=clue src=images/person/{1}.jpg /></div><p>is</p>{2}<div class=actionDiv><img class=clue src=images/action/{3}1.jpg /></div><p>a/an</p> <p>{4}</p><div class=objectDiv><img class=clue src=images/object/{5}1.jpg /></div><a href='#' data-role='button' onclick='generateNextStory();' >Next</a>";
-	}
-
-	var cS = gamelist[storyIndex];
-	$('#gamestories').html(String.format(html, cS[0], cS[0], cS[1], cS[1], cS[2], cS[2]));
-	$.mobile.changePage("#gamepage");
-	*/
-	//}
 }
+
 function changePerson(person, web) {
 	var newperson = personList[Math.floor(Math.random() * personList.length)];
 
-	while (existingPersonList.indexOf(newperson) != -1) {
+	while (searchDropBoxList(existingPersonList, newperson) != -1) {
 		newperson = personList[Math.floor(Math.random() * personList.length)];
 	}
 	existingPersonList.push(newperson);
@@ -654,14 +637,10 @@ function changePerson(person, web) {
 	$('#' + web + 'Name').html(newperson);
 
 }
-//end of utility function
 
 
 function getImages2(web, useMyOwn) {
-	console.log(allPossible);
 	var possible = allPossible[Math.floor(Math.random() * allPossible.length)];
-	console.log('printing possible');
-	console.log(possible);
 	var accountStoryList = convertNestedArraysToString(possible);
 	var accountInfo = convertNestedStoriesToString(accountStoryList);
 
@@ -754,14 +733,15 @@ function submit(e){
 			$("#confirm-friends div").append("<p>" + value + "</p>");
 			$('#confirm-friend').collapsible('refresh');
 			//var images = getImages(value, useMyOwn);
-			var images = getImages2(value, useMyOwn);
-			var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li><a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
-			var newPage = $("<div data-role='page' data-title='"+value+"' id="+value+"Page><div data-role='header' data-position=fixed><a href=#accounts data-icon='back'>Back</a><h1>"+ value + "</h1></div><div data-role='content' class=images>"+images+" </div>"+footer+"</div>");
-			var popupPage = $("<div data-role='page' data-trasntion='pop' data-rel='pop' data-title='generate a password for"+value + "' id="+value+"Password ><div data-role='fieldcontain'><form action='#' id='passwordChecking'><div><input type='text' autocorrect='off' name='password' id='typein-password" + value + "' value='' placeholder='Type in your password' autofocus='autofocus'/></div><button type='submit' name='submit; value='submit' id='passwordSubmit" + value + "' onclick='checkPassword2(\""  + value + "\")' >Check</button></form></div></div>");
+			//var images = getImages2(value, useMyOwn);
+			//var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li><a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
+			//var newPage = $("<div data-role='page' data-title='"+value+"' id="+value+"Page><div data-role='header' data-position=fixed><a href=#accounts data-icon='back'>Back</a><h1>"+ value + "</h1></div><div data-role='content' class=images>"+images+" </div>"+footer+"</div>");
+			//var popupPage = $("<div data-role='page' data-trasntion='pop' data-rel='pop' data-title='generate a password for"+value + "' id="+value+"Password ><div data-role='fieldcontain'><form action='#' id='passwordChecking'><div><input type='text' autocorrect='off' name='password' id='typein-password" + value + "' value='' placeholder='Type in your password' autofocus='autofocus'/></div><button type='submit' name='submit; value='submit' id='passwordSubmit" + value + "' onclick='checkPassword2(\""  + value + "\")' >Check</button></form></div></div>");
+			
 			$('.images').css('text-align','center');
-
-			newPage.appendTo( $.mobile.pageContainer );
-			popupPage.appendTo( $.mobile.pageContainer);
+			renderAccountList();
+			//newPage.appendTo( $.mobile.pageContainer );
+			//popupPage.appendTo( $.mobile.pageContainer);
 			currentPageID = value;
 			if (useMyOwn) {
 				$.mobile.changePage($("#camera"));
@@ -769,7 +749,7 @@ function submit(e){
 				return false;
 			}
 			
-			$.mobile.changePage(newPage);
+			//$.mobile.changePage(newPage);
 
 			console.log('page changed');
 		}
@@ -848,6 +828,8 @@ function renderAccountList() {
 	}
 	$('#confirm-friend').collapsible('refresh');
 	//update the account page
+	$.mobile.changePage(newPage);
+
 }
 
 function renderStoryBank() {
