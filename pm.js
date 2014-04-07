@@ -641,6 +641,8 @@ function changePerson(person, web) {
 
 function getImages2(web, useMyOwn) {
 	var possible = allPossible[Math.floor(Math.random() * allPossible.length)];
+	console.log('printing possible...');
+	console.log(possible);
 	console.log(typeof(existingAccounts));
 	//while (existingAccounts.indexOf(possible) != -1) {
 	//	possible = allPossible[Math.floor(Math.random() * allPossible.length)];
@@ -658,7 +660,7 @@ function getImages2(web, useMyOwn) {
 	programRecord.set('existingAccountIndex', existingAccountIndex) ;	
 
 	console.log('debugging....5');
-
+	console.log(accountStoryList);
 	existingAccounts.push(accountStoryList);
 	console.log('debugging....6');
 
