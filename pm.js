@@ -975,8 +975,8 @@ $( document ).ready(function(){
 					record.get('taskname')));
 		}
 
-		addListeners();
-		$('#newTask').focus();
+		//addListeners();
+		//$('#newTask').focus();
 	}
     $('#loginButton').click(function (e) {
 		e.preventDefault();
