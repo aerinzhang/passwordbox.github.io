@@ -659,6 +659,7 @@ function changePerson(person, web) {
 
 
 function getImages2(web, useMyOwn) {
+	console.log(allPossible);
 	var possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	console.log(possible);
 	var accountStoryList = convertNestedArraysToString(possible);
