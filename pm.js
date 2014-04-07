@@ -60,14 +60,11 @@ function loadProgramValues(datastore){
 	programRecord = generalTable.query();
 	if (programRecord.length == 0) {
 		//initialize values
-		accountIndex = 0;
-		existingAccountIndex = 0;
-		existingAccounts = [];
-		existingSceneList = [];
-		existingPersonList = [];
+		insertProgramRecord(generalTable);
 
 
 	} else if (programRecord.length == 1) {
+		programRecord = programRecord[0];
 		//load stored values
 		accountIndex = programRecord.get('accountIndex');
 		existingAccountIndex = programRecord.get('existingAccountIndex');
@@ -909,7 +906,15 @@ $( document ).ready(function(){
 			storyList: storyList
 		});
 	}
-
+	window.insertProgramRecord = function insertProgramRecord(generalTable) {
+		generalTable.insert({
+			accountIndex = 0;
+			existingAccountIndex = 0;
+			existingAccounts = [];
+			existingSceneList = [];
+			existingPersonList = [];
+		});
+	}
 	function updateAccountList() {
 		var records = accountTable.query();
 
