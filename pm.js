@@ -248,6 +248,7 @@ function generateList() {
 			var person = personList[Math.floor(Math.random() * personList.length)];
 		}
 		existingPersonList.push(person);
+		gamepersonlist.push(person);
 
 		var action = actionList[Math.floor(Math.random() * actionList.length)];
 		while (gameactionlist.indexOf(action) != -1) {
