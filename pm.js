@@ -653,28 +653,20 @@ function changePerson(person, web) {
 
 function getImages2(web, useMyOwn) {
 	var possible = allPossible[Math.floor(Math.random() * allPossible.length)];
-	console.log('printing possible...');
-	console.log(possible);
-	console.log(typeof(existingAccounts));
 	//while (existingAccounts.indexOf(possible) != -1) {
 	//	possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	//}
-	console.log('debugging....3');
 	var accountStoryList = convertNestedArraysToString(possible);
 	console.log(accountStoryList);
 
-	console.log('debugging....4NEW');
 	console.log(possible);
-
 	insertAccount(web, accountStoryList, existingAccountIndex);
 	//add one to existingAccountIndex
 	existingAccountIndex+=1;
 	programRecord.set('existingAccountIndex', existingAccountIndex) ;	
 
-	console.log('debugging....5');
 	console.log(convertNestedStoriesToString(accountStoryList));
 	existingAccounts.push(convertNestedStoriesToString(accountStoryList));
-	console.log('debugging....6');
 
 	var html = "<div id='" + web + "Stories'>";
 	//var html = "<div id='" + web + "Stories'><ul = data-role='listview'>"
@@ -692,9 +684,9 @@ function getImages2(web, useMyOwn) {
 		html += li;
 	}
 	console.log('debugging....7');
-
+	var temp = existingAccountIndex-1
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
-			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + existingAccountIndex-1 + ")' > Type in your Password</a>"
+			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + temp + ")' > Type in your Password</a>"
 	console.log('debugging....8');
 	return html;
 }
