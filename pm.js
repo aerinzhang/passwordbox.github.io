@@ -92,6 +92,12 @@ function deleteAllStories() {
 		var record = records[i];
 		accountTable.get(record.getId()).deleteRecord();
 	}
+
+	var records = generalTable.query();
+	for (var i = 0; i < records.length; i++) {
+		var record = records[i];
+		generalTable.get(record.getId()).deleteRecord();
+	}
 }
 
 //signoff DropBox Account & disable UI buttons & change back to home?
