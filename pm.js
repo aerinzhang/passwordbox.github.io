@@ -640,6 +640,7 @@ function getImages2(web, useMyOwn) {
 	console.log(allPossible);
 
 	var possible = allPossible[Math.floor(Math.random() * allPossible.length)];
+	console.log(typeof(existingAccounts));
 	while (existingAccounts.indexOf(possible) != -1) {
 		possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	}
