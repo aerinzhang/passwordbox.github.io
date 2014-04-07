@@ -90,7 +90,7 @@ function deleteAllStories() {
 	var records = accountTable.query();
 	for (var i = 0; i < records.length; i++) {
 		var record = records[i];
-		storyBankTable.get(record.getId()).deleteRecord();
+		accountTable.get(record.getId()).deleteRecord();
 	}
 }
 
