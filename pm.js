@@ -230,14 +230,13 @@ function generateList() {
 	var gamelist = [];
 	var gameobjectlist = [];
 	var gameactionlist = [];
-	var gamescenelist = [];
 	for (var i = 0; i < 10; i++) {
 		var person = personList[Math.floor(Math.random() * personList.length)];
 
-		while (gamepersonlist.indexOf(person) != -1) {
+		while (existingPersonList.indexOf(person) != -1) {
 			var person = personList[Math.floor(Math.random() * personList.length)];
 		}
-		gamepersonlist.push(person);
+		existingPersonList.push(person);
 
 		var action = actionList[Math.floor(Math.random() * actionList.length)];
 		while (gameactionlist.indexOf(action) != -1) {
@@ -252,10 +251,10 @@ function generateList() {
 		gameobjectlist.push(object);
 
 		var scene = sceneList[Math.floor(Math.random() * sceneList.length)];
-		while (gamescenelist.indexOf(scene) != -1) {
+		while (existingSceneList.indexOf(scene) != -1) {
 			scene = sceneList[Math.floor(Math.random() * sceneList.length)];
 		}
-		gamescenelist.push(scene);
+		existingSceneList.push(scene);
 		gamelist.push([person, action, object, scene]);
 
 	};
