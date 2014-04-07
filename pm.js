@@ -793,37 +793,49 @@ function renderEachAccountElements(web, list, index) {
 }
 
 function renderAccountList() {
-	var records = accountTable.query();
 
-	//create each page for each account
-	for (var i=0; i < records.length; i++) {
-		var record = records[i];
-		var temp = record.get('storyList');
-		var list = parseStringToNestedArrays(record.get('storyList'));
-		var web = record.get('account');
-		var accountIndexForChecking = record.get('existingAccountIndex');
-		var pageHtml = renderEachAccountElements(web, list, accountIndexForChecking);
-		var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li>\
-					  <a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
-		var newPage = $("<div data-role='page' data-title='"+web+"' id="+web+"Page><div data-role='header' data-position=fixed>\
-						<a href=#accounts data-icon='back'>Back</a><h1>"+ web + "</h1></div><div data-role='content' class=images>"+pageHtml+" </div>"+footer+"</div>");
-		var popupPage = $("<div data-role='page' data-trasntion='pop' data-rel='pop' data-title='generate a password for"+web + "' id="+web+"Password >\
-						  <div data-role='fieldcontain'><form action='#' id='passwordChecking'><div><input type='text' autocorrect='off' name='password' \
-						  id='typein-password" + web + "' value='' placeholder='Type in your password' autofocus='autofocus'/></div><button type='submit'\
-						   name='submit; value='submit' id='passwordSubmit" + web + "' onclick='checkPassword2(\""  + web + "\")' >Check</button></form></div></div>");
-		
-		var keyid = 'button' + accountIndex;
-		var estring = 'list'+accountIndex;
-		var jbuttonid = '#' + keyid;
-		var listid = '#' +estring;
-		$("#list").append("<li id="+web+ "><a href=#"+web+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + web + "</a></li>");
-		$('#list').listview('refresh');
-		accountIndex += 1;
-		newPage.appendTo( $.mobile.pageContainer );
-		popupPage.appendTo( $.mobile.pageContainer);
-	}
-	//update the account page
-	$.mobile.changePage(newPage);
+	$('#account').bind('pageshow' function() {
+
+
+		var records = accountTable.query();
+		var stories = storyBankTable.query();
+
+		//if there are stories in the bank
+		if (stories.length > 0) {
+			//create each page for each account
+			for (var i=0; i < records.length; i++) {
+				var record = records[i];
+				var temp = record.get('storyList');
+				var list = parseStringToNestedArrays(record.get('storyList'));
+				var web = record.get('account');
+				var accountIndexForChecking = record.get('existingAccountIndex');
+				var pageHtml = renderEachAccountElements(web, list, accountIndexForChecking);
+				var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li>\
+							  <a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
+				var newPage = $("<div data-role='page' data-title='"+web+"' id="+web+"Page><div data-role='header' data-position=fixed>\
+								<a href=#accounts data-icon='back'>Back</a><h1>"+ web + "</h1></div><div data-role='content' class=images>"+pageHtml+" </div>"+footer+"</div>");
+				var popupPage = $("<div data-role='page' data-trasntion='pop' data-rel='pop' data-title='generate a password for"+web + "' id="+web+"Password >\
+								  <div data-role='fieldcontain'><form action='#' id='passwordChecking'><div><input type='text' autocorrect='off' name='password' \
+								  id='typein-password" + web + "' value='' placeholder='Type in your password' autofocus='autofocus'/></div><button type='submit'\
+								   name='submit; value='submit' id='passwordSubmit" + web + "' onclick='checkPassword2(\""  + web + "\")' >Check</button></form></div></div>");
+				
+				var keyid = 'button' + accountIndex;
+				var estring = 'list'+accountIndex;
+				var jbuttonid = '#' + keyid;
+				var listid = '#' +estring;
+				$("#list").append("<li id="+web+ "><a href=#"+web+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + web + "</a></li>");
+				$('#list').listview('refresh');
+				accountIndex += 1;
+				newPage.appendTo( $.mobile.pageContainer );
+				popupPage.appendTo( $.mobile.pageContainer);
+			}
+			//update the account page
+			$.mobile.changePage(newPage);
+		} else {
+			alert('play the game!');
+		}
+
+	})
 
 }
 
@@ -883,13 +895,6 @@ $( document ).ready(function(){
     // });
 
     //DROPBOX FUNCTIONS
-    function insertTask(text) {
-		taskTable.insert({
-			taskname: text,
-			created: new Date(),
-			completed: false
-		});
-	}
 	window.insertStory = function insertStory(personName, sceneName) {
 		storyBankTable.insert({
 			scene: sceneName,
