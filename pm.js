@@ -723,6 +723,7 @@ function submit(e){
 			//add to confirm tap
 			$("#confirm-friends div").append("<p>" + value + "</p>");
 			$('#confirm-friend').collapsible('refresh');
+			console.log('debugging......1');
 			//var images = getImages(value, useMyOwn);
 			var images = getImages2(value, useMyOwn);
 			var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li><a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
@@ -731,6 +732,8 @@ function submit(e){
 			$('.images').css('text-align','center');
 			var copy = new Date();
 			timeDic[value] = copy.getTime();
+			console.log('debugging......2');
+
 			newPage.appendTo( $.mobile.pageContainer );
 			popupPage.appendTo( $.mobile.pageContainer);
 			currentPageID = value;
@@ -741,6 +744,7 @@ function submit(e){
 			}
 			
 			$.mobile.changePage(newPage);
+
 			console.log('page changed');
 		}
 
