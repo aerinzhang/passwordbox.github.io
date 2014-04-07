@@ -1019,7 +1019,6 @@ $( document ).ready(function(){
 
 
 			} else if (programRecord.length == 1) {
-				console.log('length is one');
 				programRecord = programRecord[0];
 				//load stored values
 				accountIndex = programRecord.get('accountIndex');
