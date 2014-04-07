@@ -1,15 +1,5 @@
-var buttonCounter = 0;
 var currentPageID;
-var currentCanvasCount = 0;
 var timeDic = {};
-var personList = [];
-var actionList = [];
-var objectList = [];
-var storyIndex = 0;
-var gameScore = 0;
-var storyBank = [];
-var progress = 0;
-var emailCount = 0;
 
 // Insert your Dropbox app key here:
 var DROPBOX_APP_KEY = '8qw6cevpayp0vyd';
@@ -20,11 +10,20 @@ var taskTable;
 var storyBankTable;
 var accountTable;
 var allPossible;
-var allIndex;
+var storyBank;
+var existingAccountIndex;
+var accountIndex;
 //existing combinations 
-var existingAccounts=[];
+var existingAccounts;
+var existingPersonList;
+var existingSceneList;
 
 
+
+//new values for each launch
+var storyIndex = 0;
+var gameScore = 0;
+var progress = 0;
 //CONSTANT VALUES: ALL PAO LISTS
 var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
 				  "Ben_Affleck", "Beyonce", "Bill_Clinton", "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", "Hillary_Clinton", "Homer_Simpson",
@@ -57,6 +56,29 @@ function loadProgramValues(datastore){
 	storyBank = stripStoryFromRecords();
 	//compute all possible combinations of four stories
 	allPossible = computeCombinations(storyBank, 4);
+	//from generalTable load variables
+	programRecord = generalTable.query();
+	if (programRecord.length == 0) {
+		//initialize values
+		accountIndex = 0;
+		existingAccountIndex = 0;
+		existingAccounts = [];
+		existingSceneList = [];
+		existingPersonList = [];
+
+
+	} else if (programRecord.length == 1) {
+		//load stored values
+		accountIndex = programRecord.get('accountIndex');
+		existingAccountIndex = programRecord.get('existingAccountIndex');
+		existingAccounts = programRecord.get('existingAccounts');
+		existingPersonList = programRecord.get('existingPersonList');
+		existingSceneList = programRecord.get('existingSceneList');
+
+	} else {
+		//error should never get here
+	}
+	existingAccountIndex = generalTable.get('existingAccountIndex');
 
 }
 
@@ -646,9 +668,9 @@ function getImages2(web, useMyOwn) {
 		html += li;
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
-			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + allIndex + ")' > Type in your Password</a>"
-	allIndex+=1;
-	generalTable.get('allIndex') = generalTable.get('allIndex') + 1;	
+			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + existingAccountIndex + ")' > Type in your Password</a>"
+	existingAccountIndex+=1;
+	generalTable.get('existingAccountIndex') = generalTable.get('existingAccountIndex') + 1;	
 	return html;
 }
 function showPopupRight(web) {
@@ -690,16 +712,16 @@ function submit(e){
 		e.preventDefault();
 		//if pass validation of data
 		var useMyOwn = document.getElementById('checkbox-2').checked;
-		var keyid = 'button' + emailCount;
+		var keyid = 'button' + accountIndex;
 		var value = $('#account-name').val();
 		$('#account-name').val('');
 		if (isEmail(value)) {
-			var estring = 'list'+emailCount;
+			var estring = 'list'+accountIndex;
 			var jbuttonid = '#' + keyid;
 			var listid = '#' +estring;
 			$("#list").append("<li id="+value+ "><a href=#"+value+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + value + "</a></li>");
 			$('#list').listview('refresh');
-			emailCount += 1;
+			accountIndex += 1;
 			//add to confirm tap
 			$("#confirm-friends div").append("<p>" + value + "</p>");
 			$('#confirm-friend').collapsible('refresh');
@@ -761,9 +783,9 @@ function renderEachAccountElements(web, list) {
 		html += li;
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
-			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + allIndex + ")' > Type in your Password</a>"
-	allIndex+=1;
-	generalTable.get('allIndex') = generalTable.get('allIndex') + 1;
+			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + existingAccountIndex + ")' > Type in your Password</a>"
+	existingAccountIndex+=1;
+	generalTable.get('existingAccountIndex') = generalTable.get('existingAccountIndex') + 1;
 	console.log(list);
 	//console.log(html);
 	return html;
@@ -792,13 +814,13 @@ function renderAccountList(records) {
 						  id='typein-password" + web + "' value='' placeholder='Type in your password' autofocus='autofocus'/></div><button type='submit'\
 						   name='submit; value='submit' id='passwordSubmit" + web + "' onclick='checkPassword2(\""  + web + "\")' >Check</button></form></div></div>");
 		
-		var keyid = 'button' + emailCount;
-		var estring = 'list'+emailCount;
+		var keyid = 'button' + accountIndex;
+		var estring = 'list'+accountIndex;
 		var jbuttonid = '#' + keyid;
 		var listid = '#' +estring;
 		$("#list").append("<li id="+web+ "><a href=#"+web+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + web + "</a></li>");
 		$('#list').listview('refresh');
-		emailCount += 1;
+		accountIndex += 1;
 		//add to confirm tap
 		$("#confirm-friends div").append("<p>" + web + "</p>");
 		newPage.appendTo( $.mobile.pageContainer );
@@ -969,7 +991,7 @@ $( document ).ready(function(){
 			
 			//store general information like persons used
 			generalTable = datastore.getTable('general');
-			allIndex = generalTable.get('allIndex');
+			existingAccountIndex = generalTable.get('existingAccountIndex');
 			//calculate 
 			storyBank = stripStoryFromRecords();
 			console.log('printing initial storyBank....');
