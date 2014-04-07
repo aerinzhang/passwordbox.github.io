@@ -793,7 +793,7 @@ function renderAccountList(records) {
 	console.log('rendering Account List...');
 	console.log(records.length);
 	//create each page for each account
-	for (var i=0; i < records.length; i++) {
+	for (var i=0; i < records.length(); i++) {
 		var record = records[i];
 		var temp = record.get('storyList');
 		console.log('print record.get("storyList"...');
