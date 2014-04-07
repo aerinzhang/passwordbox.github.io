@@ -161,6 +161,15 @@ function convertNestedStoriesToString(array) {
 	}
 	return result;
 }
+
+//search the given element in a dropbox list
+function searchDropBoxList(list, element) {
+	for (var i=0; i<list.length; i++) {
+		if list.get(i) == element:
+			return i;
+	}
+	return -1;
+}
 //end of unitilies 
 
 
@@ -236,7 +245,7 @@ function generateList() {
 	for (var i = 0; i < 10; i++) {
 		var person = personList[Math.floor(Math.random() * personList.length)];
 
-		while (existingPersonList.indexOf(person) != -1) {
+		while (searchDropBoxList(existingPersonList, person) != -1) {
 			var person = personList[Math.floor(Math.random() * personList.length)];
 		}
 		existingPersonList.push(person);
@@ -254,7 +263,7 @@ function generateList() {
 		gameobjectlist.push(object);
 
 		var scene = sceneList[Math.floor(Math.random() * sceneList.length)];
-		while (existingSceneList.indexOf(scene) != -1) {
+		while (searchDropBoxList(existingSceneList, scene) != -1) {
 			scene = sceneList[Math.floor(Math.random() * sceneList.length)];
 		}
 		existingSceneList.push(scene);
@@ -655,20 +664,21 @@ function changePerson(person, web) {
 
 function getImages2(web, useMyOwn) {
 	var possible = allPossible[Math.floor(Math.random() * allPossible.length)];
-	//while (existingAccounts.indexOf(possible) != -1) {
-	//	possible = allPossible[Math.floor(Math.random() * allPossible.length)];
-	//}
 	var accountStoryList = convertNestedArraysToString(possible);
-	console.log(accountStoryList);
+	var accountInfo = convertNestedStoriesToString(accountStoryList);
 
-	console.log(possible);
+	while (searchDropBoxList(existingAccounts, accountInfo) != -1) {
+		possible = allPossible[Math.floor(Math.random() * allPossible.length)];
+		accountStoryList = convertNestedArraysToString(possible);
+		accountInfo = convertNestedStoriesToString(accountStoryList);
+	}
+
 	insertAccount(web, accountStoryList, existingAccountIndex);
 	//add one to existingAccountIndex
 	existingAccountIndex+=1;
 	programRecord.set('existingAccountIndex', existingAccountIndex) ;	
 
-	console.log(convertNestedStoriesToString(accountStoryList));
-	existingAccounts.push(convertNestedStoriesToString(accountStoryList));
+	existingAccounts.push(accountInfo);
 
 	var html = "<div id='" + web + "Stories'>";
 	//var html = "<div id='" + web + "Stories'><ul = data-role='listview'>"
