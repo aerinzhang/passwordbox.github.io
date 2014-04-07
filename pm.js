@@ -908,11 +908,11 @@ $( document ).ready(function(){
 	}
 	window.insertProgramRecord = function insertProgramRecord(generalTable) {
 		generalTable.insert({
-			accountIndex = 0;
-			existingAccountIndex = 0;
-			existingAccounts = [];
-			existingSceneList = [];
-			existingPersonList = [];
+			accountIndex : 0;
+			existingAccountIndex : 0;
+			existingAccounts : [];
+			existingSceneList : [];
+			existingPersonList : [];
 		});
 	}
 	function updateAccountList() {
