@@ -659,7 +659,7 @@ function getImages2(web, useMyOwn) {
 	existingAccounts.push(accountStoryList);
 	console.log('debugging....6');
 
-	var html = head + "<div id='" + web + "Stories'>";
+	var html = "<div id='" + web + "Stories'>";
 	//var html = "<div id='" + web + "Stories'><ul = data-role='listview'>"
 	for (var i=0; i < possible.length; i ++) {
 		//var liold = '<li><a href="#"><img src="images/person/{0}.jpg" />{1}</a><li>'
@@ -779,7 +779,7 @@ function renderEachAccountElements(web, list, index) {
 	//check duplicate?
 
 	//create html for each page
-	var html = head + "<div id='" + web + "Stories'>";
+	var html = "<div id='" + web + "Stories'>";
 	//var html = "<div id='" + web + "Stories'><ul = data-role='listview'>"
 	for (var i=0; i < list.length; i ++) {
 		//var liold = '<li><a href="#"><img src="images/person/{0}.jpg" />{1}</a><li>'
