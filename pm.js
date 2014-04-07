@@ -647,6 +647,7 @@ function getImages2(web, useMyOwn) {
 	console.log('debugging....3');
 	var accountStoryList = convertNestedArraysToString(possible);
 	console.log('debugging....4');
+	console.log(accountStoryList);
 	insertAccount(web, accountStoryList);
 	console.log('debugging....5');
 
