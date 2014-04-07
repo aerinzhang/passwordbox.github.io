@@ -292,8 +292,7 @@ function startChecking() {
 //add all stories from the bank to dropBox and storyBank
 function addStories() {
 	for (var i=0; i < 10; i++) {
-		storyBank.push(gamelist[i]);
-		console.log(gamelist[i]);
+		storyBank.push([gamelist[i][0], gamelist[i][3]]);
 		insertStory(gamelist[i][0], gamelist[i][3]);
 	}
 	console.log(storyBank.length);
