@@ -167,8 +167,7 @@ function searchDropBoxList(list, element) {
 	console.log('finding...' + element.toString() + ' in ' + list.toString());
 	console.log(list);
 	console.log('list has length' + list.length.toString());
-	for (var i=0; i<list.length; i++) {
-		console.log(list.get(i))
+	for (var i=0; i<list.length(); i++) {
 		if (list.get(i) == element) return i;
 	}
 	return -1;
