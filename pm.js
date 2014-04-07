@@ -17,8 +17,7 @@ var accountIndex;
 var existingAccounts;
 var existingPersonList;
 var existingSceneList;
-//temp
-var taskTable;
+
 
 
 //new values for each launch
@@ -52,7 +51,6 @@ function loadProgramValues(datastore){
 	storyBankTable = datastore.getTable('stories');
 	accountTable = datastore.getTable('accounts');
 	generalTable = datastore.getTable('general');
-	taskTable = datastore.getTable('tasks');
 
 
 	//extract storyBank from DropBox records
@@ -100,11 +98,6 @@ function deleteAllStories() {
 	for (var i = 0; i < records.length; i++) {
 		var record = records[i];
 		generalTable.get(record.getId()).deleteRecord();
-	}
-	var records = taskTable.query();
-	for (var i = 0; i < records.length; i++) {
-		var record = records[i];
-		taskTable.get(record.getId()).deleteRecord();
 	}
 }
 
@@ -1022,7 +1015,6 @@ $( document ).ready(function(){
 			if (error) {
 				alert('Error opening default datastore: ' + error);
 			}
-			taskTable = datastore.getTable('tasks');
 			storyBankTable = datastore.getTable('stories');
 			accountTable = datastore.getTable('accounts');
 			generalTable = datastore.getTable('general');
