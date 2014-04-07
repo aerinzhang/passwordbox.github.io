@@ -146,7 +146,15 @@ function parseStringToNestedArrays(arrayOfString) {
 	}
 	return result;
 }
-
+//given four stories merge into one
+function convertNestedStoriesToString(array) {
+	var result = "";
+	for (var i=0; i<array.length; i++) {
+		var li = array[i];
+		result += (li + '&&&&&&');
+	}
+	return result;
+}
 //end of unitilies 
 
 
@@ -660,8 +668,8 @@ function getImages2(web, useMyOwn) {
 	programRecord.set('existingAccountIndex', existingAccountIndex) ;	
 
 	console.log('debugging....5');
-	console.log(accountStoryList);
-	existingAccounts.push(accountStoryList);
+	console.log(convertNestedStoriesToString(accountStoryList));
+	existingAccounts.push(convertNestedStoriesToString(accountStoryList));
 	console.log('debugging....6');
 
 	var html = "<div id='" + web + "Stories'>";
