@@ -78,7 +78,6 @@ function loadProgramValues(datastore){
 	} else {
 		//error should never get here
 	}
-	existingAccountIndex = generalTable.get('existingAccountIndex');
 
 }
 
@@ -670,7 +669,7 @@ function getImages2(web, useMyOwn) {
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
 			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + existingAccountIndex + ")' > Type in your Password</a>"
 	existingAccountIndex+=1;
-	generalTable.get('existingAccountIndex') = generalTable.get('existingAccountIndex') + 1;	
+	programRecord.set('existingAccountIndex', existingAccountIndex) ;	
 	return html;
 }
 function showPopupRight(web) {
@@ -785,7 +784,7 @@ function renderEachAccountElements(web, list) {
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
 			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + existingAccountIndex + ")' > Type in your Password</a>"
 	existingAccountIndex+=1;
-	generalTable.get('existingAccountIndex') = generalTable.get('existingAccountIndex') + 1;
+	programRecord.set('existingAccountIndex', existingAccountIndex);
 	console.log(list);
 	//console.log(html);
 	return html;
@@ -985,21 +984,22 @@ $( document ).ready(function(){
 				alert('Error opening default datastore: ' + error);
 			}
 
-			taskTable = datastore.getTable('tasks');
-			storyBankTable = datastore.getTable('stories');
-			accountTable = datastore.getTable('accounts');
+			// taskTable = datastore.getTable('tasks');
+			// storyBankTable = datastore.getTable('stories');
+			// accountTable = datastore.getTable('accounts');
 			
-			//store general information like persons used
-			generalTable = datastore.getTable('general');
-			existingAccountIndex = generalTable.get('existingAccountIndex');
-			//calculate 
-			storyBank = stripStoryFromRecords();
-			console.log('printing initial storyBank....');
-			console.log(storyBank);
-			allPossible = computeCombinations(storyBank, 4);
-			console.log('printing allPossible....');
-			console.log(allPossible);
+			// //store general information like persons used
+			// generalTable = datastore.getTable('general');
+			// existingAccountIndex = generalTable.get('existingAccountIndex');
+			// //calculate 
+			// storyBank = stripStoryFromRecords();
+			// console.log('printing initial storyBank....');
+			// console.log(storyBank);
+			// allPossible = computeCombinations(storyBank, 4);
+			// console.log('printing allPossible....');
+			// console.log(allPossible);
 
+			loadProgramValues(datastore);
 
 			// Populate the initial task list.
 			updateList();
