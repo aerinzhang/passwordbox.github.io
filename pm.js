@@ -165,7 +165,8 @@ function convertNestedStoriesToString(array) {
 //search the given element in a dropbox list
 function searchDropBoxList(list, element) {
 	for (var i=0; i<list.length; i++) {
-		if (list.get(i) === element) return i;
+		console.log(list.get(i))
+		if (list.get(i) == element) return i;
 	}
 	return -1;
 }
