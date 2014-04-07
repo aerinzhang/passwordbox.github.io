@@ -84,7 +84,7 @@ function deleteAllStories() {
 	var records = storyBankTable.query();
 	for (var i = 0; i < records.length; i++) {
 		var record = records[i];
-		//storyBankTable.get(record.getId()).deleteRecord();
+		storyBankTable.get(record.getId()).deleteRecord();
 	}
 
 	var records = accountTable.query();
