@@ -1002,12 +1002,12 @@ $( document ).ready(function(){
 			loadProgramValues(datastore);
 
 			// Populate the initial task list.
-			updateList();
+			//updateList();
 			updateStoryBankList();
 			updateAccountList();
 
 			// Ensure that future changes update the list.
-			datastore.recordsChanged.addListener(updateList);
+			//datastore.recordsChanged.addListener(updateList);
 			datastore.recordsChanged.addListener(updateStoryBankList);
 			datastore.recordsChanged.addListener(updateAccountList);
 			$('#home-words').html('Welcome Back!');
