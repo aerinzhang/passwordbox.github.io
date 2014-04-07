@@ -459,7 +459,7 @@ function generateNextSequence() {
 			} else {
 				var article = 'a'
 			}
-			$('#gamestories').html(String.format(html, cS[0], cS[0].split('_').join(' '), cS[1], cS[1], cS[2], cS[2], cS[3], cS[3], article));
+			$('#gamestories').html(String.format(html, cS[0], cS[0].split('_').join(' '), cS[1], cS[1], cS[2], cS[2], cS[3].toLowerCase(), cS[3], article));
 			$.mobile.changePage("#gamepage");
 			storyIndex += 1;
 			$( "#gamepage" ).page( "destroy" ).page();
