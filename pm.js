@@ -226,7 +226,8 @@ function checkPassword2(web) {
 var gamepersonlist = [];
 //generate 10 stories to use later
 function generateList() {
-	
+	console.log('printing... existingPersonList');
+	console.log(existingPersonList);
 	var gamelist = [];
 	var gameobjectlist = [];
 	var gameactionlist = [];
