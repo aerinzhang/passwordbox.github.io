@@ -1003,22 +1003,34 @@ $( document ).ready(function(){
 				alert('Error opening default datastore: ' + error);
 			}
 
-			// taskTable = datastore.getTable('tasks');
-			// storyBankTable = datastore.getTable('stories');
-			// accountTable = datastore.getTable('accounts');
-			
-			// //store general information like persons used
-			// generalTable = datastore.getTable('general');
-			// existingAccountIndex = generalTable.get('existingAccountIndex');
-			// //calculate 
-			// storyBank = stripStoryFromRecords();
-			// console.log('printing initial storyBank....');
-			// console.log(storyBank);
-			// allPossible = computeCombinations(storyBank, 4);
-			// console.log('printing allPossible....');
-			// console.log(allPossible);
+			storyBankTable = datastore.getTable('stories');
+			accountTable = datastore.getTable('accounts');
+			generalTable = datastore.getTable('general');
 
-			loadProgramValues(datastore);
+			//extract storyBank from DropBox records
+			storyBank = stripStoryFromRecords();
+			//compute all possible combinations of four stories
+			allPossible = computeCombinations(storyBank, 4);
+			//from generalTable load variables
+			programRecord = generalTable.query();
+			if (programRecord.length == 0) {
+				//initialize values
+				insertProgramRecord(generalTable);
+
+
+			} else if (programRecord.length == 1) {
+				console.log('length is one');
+				programRecord = programRecord[0];
+				//load stored values
+				accountIndex = programRecord.get('accountIndex');
+				existingAccountIndex = programRecord.get('existingAccountIndex');
+				existingAccounts = programRecord.get('existingAccounts');//.toArray();
+				existingPersonList = programRecord.get('existingPersonList');//.toArray();
+				existingSceneList = programRecord.get('existingSceneList');//.toArray();
+
+			} else {
+				//error should never get here
+			}			
 
 			// Populate the initial task list.
 			//updateList();
