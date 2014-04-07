@@ -17,7 +17,8 @@ var accountIndex;
 var existingAccounts;
 var existingPersonList;
 var existingSceneList;
-
+//temp
+var taskTable;
 
 
 //new values for each launch
@@ -51,6 +52,8 @@ function loadProgramValues(datastore){
 	storyBankTable = datastore.getTable('stories');
 	accountTable = datastore.getTable('accounts');
 	generalTable = datastore.getTable('general');
+	taskTable = datastore.getTable('tasks');
+
 
 	//extract storyBank from DropBox records
 	storyBank = stripStoryFromRecords();
@@ -98,7 +101,11 @@ function deleteAllStories() {
 		var record = records[i];
 		generalTable.get(record.getId()).deleteRecord();
 	}
-
+	var records = taskTable.query();
+	for (var i = 0; i < records.length; i++) {
+		var record = records[i];
+		taskTable.get(record.getId()).deleteRecord();
+	}
 }
 
 //signoff DropBox Account & disable UI buttons & change back to home?
