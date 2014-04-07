@@ -653,7 +653,7 @@ function getImages2(web, useMyOwn) {
 	insertAccount(web, accountStoryList);
 	console.log('debugging....5');
 
-	existingAccounts.push(possible);
+	existingAccounts.push(accountStoryList);
 	console.log('debugging....6');
 
 	var head = "<div class='checkMarkDiv'><img src='images/check.png' id='" + web + "checkMark'/></div>";
