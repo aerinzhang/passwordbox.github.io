@@ -6,12 +6,11 @@ var DROPBOX_APP_KEY = '8qw6cevpayp0vyd';
 
 // Exposed for easy access in the browser console.
 var client = new Dropbox.Client({key: DROPBOX_APP_KEY});
-var taskTable;
 var storyBankTable;
 var accountTable;
 var allPossible;
 var storyBank;
-var programRecord;
+var generalTable;
 var existingAccountIndex;
 var accountIndex;
 //existing combinations 
@@ -94,7 +93,12 @@ function deleteAllStories() {
 		accountTable.get(record.getId()).deleteRecord();
 	}
 
-	programRecord.getId().deleteRecord();
+	var records = generalTable.query();
+	for (var i = 0; i < records.length; i++) {
+		var record = records[i];
+		generalTable.get(record.getId()).deleteRecord();
+	}
+
 }
 
 //signoff DropBox Account & disable UI buttons & change back to home?
