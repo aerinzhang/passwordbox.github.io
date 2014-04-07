@@ -1022,7 +1022,7 @@ $( document ).ready(function(){
 			if (error) {
 				alert('Error opening default datastore: ' + error);
 			}
-
+			taskTable = datastore.getTable('tasks');
 			storyBankTable = datastore.getTable('stories');
 			accountTable = datastore.getTable('accounts');
 			generalTable = datastore.getTable('general');
