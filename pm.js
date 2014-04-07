@@ -788,7 +788,7 @@ function renderEachAccountElements(web, list) {
 	return html;
 }
 
-function renderAccountList(records) {
+function renderAccountList() {
 	var records = accountTable.query();
 	console.log('rendering Account List...');
 	console.log(records.length);
