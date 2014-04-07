@@ -126,7 +126,7 @@ String.format = function() {
 //given a nested array, flatten each inner arrat into a string seperated by |||
 function convertNestedArraysToString(nestedArray) {
 	var result = [];
-	for (var i=0; i < nestedArray.length; i ++) {
+	for (var i=0; i < nestedArray.length; i++) {
 		var li = nestedArray[i];
 		var dic = li[0] + '|||' + li[1];
 		result.push(dic);
@@ -648,6 +648,7 @@ function getImages2(web, useMyOwn) {
 	var accountStoryList = convertNestedArraysToString(possible);
 	console.log('debugging....4');
 	console.log(accountStoryList);
+	console.log(possible);
 	insertAccount(web, accountStoryList);
 	console.log('debugging....5');
 
