@@ -71,8 +71,6 @@ function loadProgramValues(datastore){
 		existingAccountIndex = programRecord.get('existingAccountIndex');
 		existingAccounts = programRecord.get('existingAccounts');//.toArray();
 		existingPersonList = programRecord.get('existingPersonList');//.toArray();
-		console.log(typeof existingPersonList);
-		console.log(existingPersonList.toArray());
 		existingSceneList = programRecord.get('existingSceneList');//.toArray();
 
 	} else {
@@ -164,9 +162,6 @@ function convertNestedStoriesToString(array) {
 
 //search the given element in a dropbox list
 function searchDropBoxList(list, element) {
-	console.log('finding...' + element.toString() + ' in ' + list.toString());
-	console.log(list);
-	console.log('list has length' + list.length.toString());
 	for (var i=0; i<list.length(); i++) {
 		if (list.get(i) == element) return i;
 	}
@@ -239,8 +234,6 @@ function checkPassword2(web) {
 var gamepersonlist = [];
 //generate 10 stories to use later
 function generateList() {
-	console.log('printing... existingPersonList');
-	console.log(existingPersonList);
 	var gamelist = [];
 	var gameobjectlist = [];
 	var gameactionlist = [];
