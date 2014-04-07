@@ -797,7 +797,7 @@ function renderAccountList() {
 		var record = records[i];
 		var temp = record.get('storyList');
 		console.log('print record.get("storyList"...');
-		console.log(temp.length);
+		console.log(temp.length());
 		console.log('printing records.length');
 		console.log(records.length);
 		console.log(parseStringToNestedArrays(temp));
