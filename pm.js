@@ -646,9 +646,12 @@ function getImages2(web, useMyOwn) {
 	//}
 	console.log('debugging....3');
 	var accountStoryList = convertNestedArraysToString(possible);
-	insertAccount(web, accountStoryList);
-	existingAccounts.push(possible);
 	console.log('debugging....4');
+	insertAccount(web, accountStoryList);
+	console.log('debugging....5');
+
+	existingAccounts.push(possible);
+	console.log('debugging....6');
 
 	var head = "<div class='checkMarkDiv'><img src='images/check.png' id='" + web + "checkMark'/></div>";
 	var html = head + "<div id='" + web + "Stories'>";
