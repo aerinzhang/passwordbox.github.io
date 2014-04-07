@@ -729,9 +729,7 @@ function submit(e){
 			$('#list').listview('refresh');
 			accountIndex += 1;
 			programRecord.set('accountIndex', accountIndex);
-			//add to confirm tap
-			$("#confirm-friends div").append("<p>" + value + "</p>");
-			$('#confirm-friend').collapsible('refresh');
+			
 			//var images = getImages(value, useMyOwn);
 			//var images = getImages2(value, useMyOwn);
 			//var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li><a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
@@ -821,12 +819,9 @@ function renderAccountList() {
 		$("#list").append("<li id="+web+ "><a href=#"+web+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + web + "</a></li>");
 		$('#list').listview('refresh');
 		accountIndex += 1;
-		//add to confirm tap
-		$("#confirm-friends div").append("<p>" + web + "</p>");
 		newPage.appendTo( $.mobile.pageContainer );
 		popupPage.appendTo( $.mobile.pageContainer);
 	}
-	$('#confirm-friend').collapsible('refresh');
 	//update the account page
 	$.mobile.changePage(newPage);
 
