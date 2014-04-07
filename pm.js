@@ -644,9 +644,11 @@ function getImages2(web, useMyOwn) {
 	//while (existingAccounts.indexOf(possible) != -1) {
 	//	possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	//}
+	console.log('debugging....3');
 	var accountStoryList = convertNestedArraysToString(possible);
 	insertAccount(web, accountStoryList);
 	existingAccounts.push(possible);
+	console.log('debugging....4');
 
 	var head = "<div class='checkMarkDiv'><img src='images/check.png' id='" + web + "checkMark'/></div>";
 	var html = head + "<div id='" + web + "Stories'>";
@@ -664,9 +666,13 @@ function getImages2(web, useMyOwn) {
 		var li = String.format(liold, possible[i][0], possible[i][0], possible[i][1].toLowerCase(), possible[i][1]);
 		html += li;
 	}
+	console.log('debugging....5');
+
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
 			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + existingAccountIndex + ")' > Type in your Password</a>"
 	existingAccountIndex+=1;
+	console.log('debugging....6');
+
 	programRecord.set('existingAccountIndex', existingAccountIndex) ;	
 	return html;
 }
