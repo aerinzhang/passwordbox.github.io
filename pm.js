@@ -68,7 +68,7 @@ function loadProgramValues(datastore){
 		//load stored values
 		accountIndex = programRecord.get('accountIndex');
 		existingAccountIndex = programRecord.get('existingAccountIndex');
-		existingAccounts = programRecord.get('existingAccounts');
+		existingAccounts = programRecord.get('existingAccounts').toArray();
 		existingPersonList = programRecord.get('existingPersonList');
 		existingSceneList = programRecord.get('existingSceneList');
 
