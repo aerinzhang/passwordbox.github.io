@@ -637,8 +637,6 @@ function changePerson(person, web) {
 
 
 function getImages2(web, useMyOwn) {
-	console.log(allPossible);
-
 	var possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	console.log(typeof(existingAccounts));
 	//while (existingAccounts.indexOf(possible) != -1) {
@@ -648,15 +646,19 @@ function getImages2(web, useMyOwn) {
 	var accountStoryList = convertNestedArraysToString(possible);
 	console.log(accountStoryList);
 
-	console.log('debugging....4');
+	console.log('debugging....4NEW');
 	console.log(possible);
-	insertAccount(web, accountStoryList);
+
+	insertAccount(web, accountStoryList, existingAccountIndex);
+	//add one to existingAccountIndex
+	existingAccountIndex+=1;
+	programRecord.set('existingAccountIndex', existingAccountIndex) ;	
+
 	console.log('debugging....5');
 
 	existingAccounts.push(accountStoryList);
 	console.log('debugging....6');
 
-	var head = "<div class='checkMarkDiv'><img src='images/check.png' id='" + web + "checkMark'/></div>";
 	var html = head + "<div id='" + web + "Stories'>";
 	//var html = "<div id='" + web + "Stories'><ul = data-role='listview'>"
 	for (var i=0; i < possible.length; i ++) {
@@ -675,11 +677,8 @@ function getImages2(web, useMyOwn) {
 	console.log('debugging....7');
 
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
-			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + existingAccountIndex + ")' > Type in your Password</a>"
-	existingAccountIndex+=1;
+			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + existingAccountIndex-1 + ")' > Type in your Password</a>"
 	console.log('debugging....8');
-
-	programRecord.set('existingAccountIndex', existingAccountIndex) ;	
 	return html;
 }
 function showPopupRight(web) {
@@ -776,11 +775,10 @@ function stripStoryFromRecords() {
 	return storyList;
 }
 
-function renderEachAccountElements(web, list) {
+function renderEachAccountElements(web, list, index) {
 	//check duplicate?
 
 	//create html for each page
-	var head = "<div class='checkMarkDiv'><img src='images/check.png' id='" + web + "checkMark'/></div>";
 	var html = head + "<div id='" + web + "Stories'>";
 	//var html = "<div id='" + web + "Stories'><ul = data-role='listview'>"
 	for (var i=0; i < list.length; i ++) {
@@ -797,11 +795,7 @@ function renderEachAccountElements(web, list) {
 		html += li;
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
-			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + existingAccountIndex + ")' > Type in your Password</a>"
-	existingAccountIndex+=1;
-	programRecord.set('existingAccountIndex', existingAccountIndex);
-	console.log(list);
-	//console.log(html);
+			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + index + ")' > Type in your Password</a>"
 	return html;
 }
 
@@ -814,7 +808,8 @@ function renderAccountList() {
 		var temp = record.get('storyList');
 		var list = parseStringToNestedArrays(record.get('storyList'));
 		var web = record.get('account');
-		var pageHtml = renderEachAccountElements(web, list);
+		var accountIndexForChecking = record.get('existingAccountIndex');
+		var pageHtml = renderEachAccountElements(web, list, accountIndexForChecking);
 		var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li>\
 					  <a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
 		var newPage = $("<div data-role='page' data-title='"+web+"' id="+web+"Page><div data-role='header' data-position=fixed>\
@@ -912,12 +907,13 @@ $( document ).ready(function(){
 		});
 	}
 
-	window.insertAccount = function insertAccount(accountName, storyList) {
+	window.insertAccount = function insertAccount(accountName, storyList, index) {
 		accountTable.insert({
 			account: accountName,
 			created: new Date(),
 			lastRehearsal: new Date(),
-			storyList: storyList
+			storyList: storyList,
+			existingAccountIndex: index
 		});
 	}
 	window.insertProgramRecord = function insertProgramRecord(generalTable) {
