@@ -646,8 +646,9 @@ function getImages2(web, useMyOwn) {
 	//}
 	console.log('debugging....3');
 	var accountStoryList = convertNestedArraysToString(possible);
-	console.log('debugging....4');
 	console.log(accountStoryList);
+
+	console.log('debugging....4');
 	console.log(possible);
 	insertAccount(web, accountStoryList);
 	console.log('debugging....5');
@@ -671,12 +672,12 @@ function getImages2(web, useMyOwn) {
 		var li = String.format(liold, possible[i][0], possible[i][0], possible[i][1].toLowerCase(), possible[i][1]);
 		html += li;
 	}
-	console.log('debugging....5');
+	console.log('debugging....7');
 
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
 			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + existingAccountIndex + ")' > Type in your Password</a>"
 	existingAccountIndex+=1;
-	console.log('debugging....6');
+	console.log('debugging....8');
 
 	programRecord.set('existingAccountIndex', existingAccountIndex) ;	
 	return html;
