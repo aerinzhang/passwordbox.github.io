@@ -775,7 +775,7 @@ function submit(e){
 			}
 
 			insertAccount(value, accountStoryList, existingAccountIndex);
-			updateStoryRefCount(web, possible);
+			updateStoryRefCount(value, possible);
 			//add one to existingAccountIndex
 			existingAccountIndex+=1;
 			programRecord.set('existingAccountIndex', existingAccountIndex) ;	
