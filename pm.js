@@ -812,7 +812,7 @@ function renderEachAccountElements(web, list, index) {
 	return html;
 }
 
-function renderAccountList(changePage, update) {
+function renderAccountList(changePage) {
 
 	$('#accounts').bind('pageshow', function() {
 
