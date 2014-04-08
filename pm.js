@@ -823,7 +823,8 @@ function renderAccountList(changePage) {
 		//if there are stories in the bank
 		if (stories.length > 0) {
 			console.log('hiiii');
-			console.log(updateListBool||changePage);
+			console.log(updateListBool);
+			//console.log(changePage);
 			//create each page for each account
 			for (var i=0; i < records.length; i++) {
 				var record = records[i];
