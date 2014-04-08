@@ -864,7 +864,9 @@ function renderAccountList(changePage) {
 
 			$.mobile.changePage(newPage);
 		}
+
 	})
+	updateListBool = false;
 
 }
 
@@ -1064,7 +1066,7 @@ $( document ).ready(function(){
 			datastore.recordsChanged.addListener(updateAccountList);
 			$('#home-words').html('Welcome Back!');
 			$('#dropboxButton').hide();
-			updateListBool = false;
+			//updateListBool = false;
 		});
 	}
 	
