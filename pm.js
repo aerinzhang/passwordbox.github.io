@@ -737,6 +737,24 @@ function submit(e){
 			//var popupPage = $("<div data-role='page' data-trasntion='pop' data-rel='pop' data-title='generate a password for"+value + "' id="+value+"Password ><div data-role='fieldcontain'><form action='#' id='passwordChecking'><div><input type='text' autocorrect='off' name='password' id='typein-password" + value + "' value='' placeholder='Type in your password' autofocus='autofocus'/></div><button type='submit' name='submit; value='submit' id='passwordSubmit" + value + "' onclick='checkPassword2(\""  + value + "\")' >Check</button></form></div></div>");
 			
 			$('.images').css('text-align','center');
+
+			var possible = allPossible[Math.floor(Math.random() * allPossible.length)];
+			var accountStoryList = convertNestedArraysToString(possible);
+			var accountInfo = convertNestedStoriesToString(accountStoryList);
+
+			while (searchDropBoxList(existingAccounts, accountInfo) != -1) {
+				possible = allPossible[Math.floor(Math.random() * allPossible.length)];
+				accountStoryList = convertNestedArraysToString(possible);
+				accountInfo = convertNestedStoriesToString(accountStoryList);
+			}
+
+			insertAccount(web, accountStoryList, existingAccountIndex);
+			//add one to existingAccountIndex
+			existingAccountIndex+=1;
+			programRecord.set('existingAccountIndex', existingAccountIndex) ;	
+
+			existingAccounts.push(accountInfo);	
+			
 			renderAccountList();
 			//newPage.appendTo( $.mobile.pageContainer );
 			//popupPage.appendTo( $.mobile.pageContainer);
