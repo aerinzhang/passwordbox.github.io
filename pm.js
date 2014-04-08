@@ -724,8 +724,29 @@ function checkPasswordNew(web, index) {
 	//var answer = existingAccounts[index];
 	var answer = $('#' + web + 'Page').find('#' + web+'-password').val(); 
 	if (answer != '') {
-		//update reherasal time
-
+		//update reherasal time of each story as well as the account
+		var records = accountTable.query();
+		for (var i=0; i<records.length; i++) {
+			var record = records[i];
+			if (record.get('account') == web) {
+				//find the account record & set the time
+				record.set('lastRehearsal', new Date());
+				var storyList = record.get('storyList');
+			}
+		}
+		storyList = parseStringToNestedArrays(storyList);
+		var records = storyBankTable.query();
+		for (var i=0; i<records.length; i++) {
+			//check each story and update it
+			var record = records[i];
+			for (var j=0; j<storyList.length; j++) {
+				var story = storyList[j];
+				if (record.get('person') == story[0] && record.get('scene') == story[1]) {
+					//update record time
+					record.set('lastRehearsed', new Date());
+				}
+			}
+		}
 	}
 	
 	//for (var i=0; i < answer.length; i ++) {
