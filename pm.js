@@ -755,7 +755,7 @@ function submit(e){
 
 			existingAccounts.push(accountInfo);	
 
-			renderAccountList(true);
+			renderAccountList(true, true);
 			//newPage.appendTo( $.mobile.pageContainer );
 			//popupPage.appendTo( $.mobile.pageContainer);
 			currentPageID = value;
@@ -810,7 +810,7 @@ function renderEachAccountElements(web, list, index) {
 	return html;
 }
 
-function renderAccountList(changePage) {
+function renderAccountList(changePage, updateList) {
 
 	$('#accounts').bind('pageshow', function() {
 
@@ -842,7 +842,7 @@ function renderAccountList(changePage) {
 				accountIndex += 1;
 				newPage.appendTo( $.mobile.pageContainer );
 				popupPage.appendTo( $.mobile.pageContainer);
-				if (changePage) {
+				if (updateList) {
 					//if insert the first time
 					var keyid = 'button' + accountIndex;
 					var estring = 'list'+accountIndex;
@@ -851,6 +851,8 @@ function renderAccountList(changePage) {
 					$("#list").append("<li id="+web+ "><a href=#"+web+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + web + "</a></li>");
 					$('#list').listview('refresh');
 				}
+				
+
 			}
 			//update the account page
 		} else {
@@ -956,7 +958,8 @@ $( document ).ready(function(){
 			if (accountA.get('lastRehearsal') > accountB.get('lastRehearsal')) return 1;
 			return 0;
 		});
-		renderAccountList(false);
+		//changePage? update?
+		renderAccountList(false, true);
 	}
 
 	function updateStoryBankList() {
