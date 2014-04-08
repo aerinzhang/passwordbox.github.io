@@ -755,7 +755,7 @@ function submit(e){
 
 			existingAccounts.push(accountInfo);	
 
-			renderAccountList(True);
+			renderAccountList(true);
 			//newPage.appendTo( $.mobile.pageContainer );
 			//popupPage.appendTo( $.mobile.pageContainer);
 			currentPageID = value;
@@ -951,7 +951,7 @@ $( document ).ready(function(){
 			if (accountA.get('lastRehearsal') > accountB.get('lastRehearsal')) return 1;
 			return 0;
 		});
-		renderAccountList(False);
+		renderAccountList(false);
 	}
 
 	function updateStoryBankList() {
