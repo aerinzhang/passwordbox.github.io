@@ -812,7 +812,7 @@ function renderEachAccountElements(web, list, index) {
 
 function renderAccountList() {
 
-	$('#account').bind('pageshow', function() {
+	$('#accounts').bind('pageshow', function() {
 
 
 		var records = accountTable.query();
