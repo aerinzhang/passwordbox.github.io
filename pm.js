@@ -853,7 +853,12 @@ function renderAccountList(changePage) {
 					var jbuttonid = '#' + keyid;
 					var listid = '#' +estring;
 					$("#list").append("<li id="+web+ "><a href=#"+web+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + web + "</a></li>");
-					$('#list').listview('refresh');
+					if ($('#list').hasClass('ui-listview')) {
+						$('#list').listview('refresh');
+					} else {
+						$('#list').trigger('create');
+					}
+					//$('#list').listview('refresh');
 				}
 				
 
