@@ -23,6 +23,8 @@ var existingSceneList;
 var storyIndex = 0;
 var gameScore = 0;
 var progress = 0;
+var updateList = true;
+
 //CONSTANT VALUES: ALL PAO LISTS
 var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
 				  "Ben_Affleck", "Beyonce", "Bill_Clinton", "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", "Hillary_Clinton", "Homer_Simpson",
@@ -755,7 +757,7 @@ function submit(e){
 
 			existingAccounts.push(accountInfo);	
 
-			renderAccountList(true, true);
+			renderAccountList(true);
 			//newPage.appendTo( $.mobile.pageContainer );
 			//popupPage.appendTo( $.mobile.pageContainer);
 			currentPageID = value;
@@ -810,7 +812,7 @@ function renderEachAccountElements(web, list, index) {
 	return html;
 }
 
-function renderAccountList(changePage, updateList) {
+function renderAccountList(changePage, update) {
 
 	$('#accounts').bind('pageshow', function() {
 
@@ -842,7 +844,7 @@ function renderAccountList(changePage, updateList) {
 				accountIndex += 1;
 				newPage.appendTo( $.mobile.pageContainer );
 				popupPage.appendTo( $.mobile.pageContainer);
-				if (changePage) {
+				if (updateList || changePage) {
 					//if insert the first time
 					var keyid = 'button' + accountIndex;
 					var estring = 'list'+accountIndex;
@@ -850,6 +852,7 @@ function renderAccountList(changePage, updateList) {
 					var listid = '#' +estring;
 					$("#list").append("<li id="+web+ "><a href=#"+web+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + web + "</a></li>");
 					$('#list').listview('refresh');
+					updateList = false;
 				}
 				
 
@@ -959,7 +962,7 @@ $( document ).ready(function(){
 			return 0;
 		});
 		//changePage? update?
-		renderAccountList(false, true);
+		renderAccountList(false);
 	}
 
 	function updateStoryBankList() {
