@@ -845,11 +845,11 @@ function renderEachAccountElements(time, web, list, index) {
 		var liold = "<p>Last Rehearsal Time: {0}</p>";
 		//var liold = '<li><a href="#"><img src="images/person/{0}.jpg" />{1}</a><li>'
 		if (i % 2 == 0) {
-			var liold += "<div class=twoPairs><span class='pairdiv'><figure><img class=pair src=images/person/{1}.jpg /><figcaption>{2}</figcaption></figure>\
+			liold = liold + "<div class=twoPairs><span class='pairdiv'><figure><img class=pair src=images/person/{1}.jpg /><figcaption>{2}</figcaption></figure>\
 					 	<figure><img class=pair src=images/scene/{3}.jpg /><figcaption>{4}</figcaption></figure></span>";
 		}
 		else {
-			var liold += "       &nbsp&nbsp<span class='pairdiv'><figure><img class=pair src=images/person/{1}.jpg /><figcaption>{2}</figcaption></figure>\
+			liold = liold + "       &nbsp&nbsp<span class='pairdiv'><figure><img class=pair src=images/person/{1}.jpg /><figcaption>{2}</figcaption></figure>\
 					 	<figure><img class=pair src=images/scene/{3}.jpg /><figcaption>{4}</figcaption></figure></span></div>";
 			}
 		var li = String.format(liold, time, list[i][0], list[i][0], list[i][1].toLowerCase(), list[i][1]);
