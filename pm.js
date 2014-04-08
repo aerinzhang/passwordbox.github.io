@@ -856,10 +856,9 @@ function renderAccountList(changePage, update) {
 				
 
 			}
-			updateList = false;
 			//update the account page
 		} else {
-			alert('play the game!');
+			//alert('play the game!');
 		}
 		if (changePage) {
 
@@ -1065,6 +1064,7 @@ $( document ).ready(function(){
 			datastore.recordsChanged.addListener(updateAccountList);
 			$('#home-words').html('Welcome Back!');
 			$('#dropboxButton').hide();
+			updateList = false;
 		});
 	}
 	
