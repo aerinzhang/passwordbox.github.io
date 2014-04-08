@@ -23,7 +23,7 @@ var existingSceneList;
 var storyIndex = 0;
 var gameScore = 0;
 var progress = 0;
-var updateList = true;
+var updateListBool = true;
 
 //CONSTANT VALUES: ALL PAO LISTS
 var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
@@ -844,7 +844,7 @@ function renderAccountList(changePage, update) {
 				accountIndex += 1;
 				newPage.appendTo( $.mobile.pageContainer );
 				popupPage.appendTo( $.mobile.pageContainer);
-				if (updateList || changePage) {
+				if (updateListBool || changePage) {
 					//if insert the first time
 					var keyid = 'button' + accountIndex;
 					var estring = 'list'+accountIndex;
@@ -1064,7 +1064,7 @@ $( document ).ready(function(){
 			datastore.recordsChanged.addListener(updateAccountList);
 			$('#home-words').html('Welcome Back!');
 			$('#dropboxButton').hide();
-			updateList = false;
+			updateListBool = false;
 		});
 	}
 	
