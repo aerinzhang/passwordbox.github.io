@@ -640,7 +640,22 @@ function changePerson(person, web) {
 
 }
 
-
+function updateStoryRefCount(webName, accountNestedList){
+	//for each story find the story record then add one to ref count
+	var records = storyBankTable.query();
+	for (var i=0; i<records.length; i++) {
+		var record = records[i];
+		for (var j=0; j<records.length; j++) {
+			var person = accountNestedList[j][0];
+			var scene = accountNestedList[j][1];
+			if (record.get('scene') == scene && record.get('person') == person) {
+				record.set('refCount', record.get('refCount')+1);
+				var tempList = record.get('refList');
+				tempList.push(webName);
+			}
+		}
+	}
+}
 function getImages2(web, useMyOwn) {
 	var possible = allPossible[Math.floor(Math.random() * allPossible.length)];
 	var accountStoryList = convertNestedArraysToString(possible);
@@ -653,6 +668,7 @@ function getImages2(web, useMyOwn) {
 	}
 
 	insertAccount(web, accountStoryList, existingAccountIndex);
+	updateStoryRefCount(web, possible);
 	//add one to existingAccountIndex
 	existingAccountIndex+=1;
 	programRecord.set('existingAccountIndex', existingAccountIndex) ;	
@@ -702,16 +718,23 @@ function showPopupWrong(web) {
 }
 
 function checkPasswordNew(web, index) {
-	var answer = existingAccounts[index];
-	var guess = $('#' + web + 'Page').find('#' + web+'-password').val(); 
-	for (var i=0; i < answer.length; i ++) {
-		if ((guess.indexOf(answer[i][1]) == -1) || (guess.indexOf(answer[i][2]) == -1)) {
-			//passwork wrong
-			showPopupWrong(web);
-			return;
-		}
+	//update rehearsal time
+
+	//var answer = existingAccounts[index];
+	var answer = $('#' + web + 'Page').find('#' + web+'-password').val(); 
+	if (answer != '') {
+		//update reherasal time
+
 	}
-	showPopupRight(web);
+	
+	//for (var i=0; i < answer.length; i ++) {
+	//	if ((guess.indexOf(answer[i][1]) == -1) || (guess.indexOf(answer[i][2]) == -1)) {
+	//		//passwork wrong
+	//		showPopupWrong(web);
+	//		return;
+	//	}
+	//}
+	//showPopupRight(web);
 }
 
 function submit(e){
@@ -940,7 +963,9 @@ $( document ).ready(function(){
 			scene: sceneName,
 			person: personName,
 			created: new Date(),
-			refCount: 0
+			lastRehearsed: new Date(),
+			refCount: 0,
+			refList: []
 		});
 	}
 
