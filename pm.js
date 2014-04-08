@@ -814,7 +814,7 @@ function renderEachAccountElements(web, list, index) {
 
 function renderAccountList(changePage) {
 
-	$('#accounts').bind('pageshow', function() {
+	//$('#accounts').bind('pageshow', function() {
 
 
 		var records = accountTable.query();
@@ -865,7 +865,7 @@ function renderAccountList(changePage) {
 			$.mobile.changePage(newPage);
 		}
 
-	})
+	//})
 	updateListBool = false;
 
 }
