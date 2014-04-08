@@ -755,7 +755,7 @@ function submit(e){
 
 			existingAccounts.push(accountInfo);	
 
-			renderAccountList();
+			renderAccountList(True);
 			//newPage.appendTo( $.mobile.pageContainer );
 			//popupPage.appendTo( $.mobile.pageContainer);
 			currentPageID = value;
@@ -810,7 +810,7 @@ function renderEachAccountElements(web, list, index) {
 	return html;
 }
 
-function renderAccountList() {
+function renderAccountList(changePage) {
 
 	$('#accounts').bind('pageshow', function() {
 
@@ -849,11 +849,12 @@ function renderAccountList() {
 				popupPage.appendTo( $.mobile.pageContainer);
 			}
 			//update the account page
-			$.mobile.changePage(newPage);
 		} else {
 			alert('play the game!');
 		}
-
+		if (changePage) {
+			$.mobile.changePage(newPage);
+		}
 	})
 
 }
@@ -950,7 +951,7 @@ $( document ).ready(function(){
 			if (accountA.get('lastRehearsal') > accountB.get('lastRehearsal')) return 1;
 			return 0;
 		});
-		renderAccountList();
+		renderAccountList(False);
 	}
 
 	function updateStoryBankList() {
