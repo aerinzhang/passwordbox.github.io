@@ -727,10 +727,10 @@ function submit(e){
 			var estring = 'list'+accountIndex;
 			var jbuttonid = '#' + keyid;
 			var listid = '#' +estring;
-			$("#list").append("<li id="+value+ "><a href=#"+value+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + value + "</a></li>");
-			$('#list').listview('refresh');
-			accountIndex += 1;
-			programRecord.set('accountIndex', accountIndex);
+			//$("#list").append("<li id="+value+ "><a href=#"+value+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + value + "</a></li>");
+			//$('#list').listview('refresh');
+			//accountIndex += 1;
+			//programRecord.set('accountIndex', accountIndex);
 			
 			//var images = getImages(value, useMyOwn);
 			//var images = getImages2(value, useMyOwn);
@@ -841,7 +841,7 @@ function renderAccountList(changePage) {
 								   name='submit; value='submit' id='passwordSubmit" + web + "' onclick='checkPassword2(\""  + web + "\")' >Check</button></form></div></div>");
 				
 				
-				accountIndex += 1;
+
 				newPage.appendTo( $.mobile.pageContainer );
 				popupPage.appendTo( $.mobile.pageContainer);
 				if (updateListBool || changePage) {
@@ -861,7 +861,8 @@ function renderAccountList(changePage) {
 			//alert('play the game!');
 		}
 		if (changePage) {
-
+			accountIndex += 1;
+			programRecord.set('accountIndex', accountIndex);
 			$.mobile.changePage(newPage);
 		}
 
