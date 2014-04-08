@@ -846,7 +846,7 @@ function renderAccountList(changePage) {
 
 				newPage.appendTo( $.mobile.pageContainer );
 				popupPage.appendTo( $.mobile.pageContainer);
-				if (updateListBool || (changePage && i==records.length)) {
+				if (updateListBool || (changePage && i==records.length-1)) {
 					//if insert the first time
 					var keyid = 'button' + accountIndex;
 					var estring = 'list'+accountIndex;
