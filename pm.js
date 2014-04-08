@@ -642,10 +642,11 @@ function changePerson(person, web) {
 
 function updateStoryRefCount(webName, accountNestedList){
 	//for each story find the story record then add one to ref count
+	console.log(accountNestedList);
 	var records = storyBankTable.query();
 	for (var i=0; i<records.length; i++) {
 		var record = records[i];
-		for (var j=0; j<records.length; j++) {
+		for (var j=0; j<accountNestedList.length; j++) {
 			var person = accountNestedList[j][0];
 			var scene = accountNestedList[j][1];
 			if (record.get('scene') == scene && record.get('person') == person) {
