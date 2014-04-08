@@ -748,13 +748,13 @@ function submit(e){
 				accountInfo = convertNestedStoriesToString(accountStoryList);
 			}
 
-			insertAccount(web, accountStoryList, existingAccountIndex);
+			insertAccount(value, accountStoryList, existingAccountIndex);
 			//add one to existingAccountIndex
 			existingAccountIndex+=1;
 			programRecord.set('existingAccountIndex', existingAccountIndex) ;	
 
 			existingAccounts.push(accountInfo);	
-			
+
 			renderAccountList();
 			//newPage.appendTo( $.mobile.pageContainer );
 			//popupPage.appendTo( $.mobile.pageContainer);
