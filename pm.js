@@ -936,8 +936,8 @@ function renderStoryBank() {
 				var record = records[i];
 				//var li = '<li><a href="#" ><img src="images/person/{0}.jpg"><p>{1}</p></a></li>'
 				var pair = "<div><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure> \
-						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span></div>";
-				var newli = String.format(pair, record.get('person'), record.get('person'), record.get('scene').toLowerCase(), record.get('scene'));
+						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span>{4}</div>";
+				var newli = String.format(pair, record.get('person'), record.get('person'), record.get('scene').toLowerCase(), record.get('scene'), record.get('lastRehearsed').toString());
 	    		listHTML += newli;
 	    	}
 	    	listHTML += "</ul></div>";
