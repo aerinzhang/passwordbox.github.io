@@ -838,21 +838,26 @@ function renderAccountList(changePage) {
 								  id='typein-password" + web + "' value='' placeholder='Type in your password' autofocus='autofocus'/></div><button type='submit'\
 								   name='submit; value='submit' id='passwordSubmit" + web + "' onclick='checkPassword2(\""  + web + "\")' >Check</button></form></div></div>");
 				
-				var keyid = 'button' + accountIndex;
-				var estring = 'list'+accountIndex;
-				var jbuttonid = '#' + keyid;
-				var listid = '#' +estring;
-				$("#list").append("<li id="+web+ "><a href=#"+web+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + web + "</a></li>");
-				$('#list').listview('refresh');
+				
 				accountIndex += 1;
 				newPage.appendTo( $.mobile.pageContainer );
 				popupPage.appendTo( $.mobile.pageContainer);
+				if (changePage) {
+					//if insert the first time
+					var keyid = 'button' + accountIndex;
+					var estring = 'list'+accountIndex;
+					var jbuttonid = '#' + keyid;
+					var listid = '#' +estring;
+					$("#list").append("<li id="+web+ "><a href=#"+web+"Page id="+keyid+" data-wrapperels='span' data-inline='true' data-icon='delete' data-iconpos='right' data-theme='a'>" + web + "</a></li>");
+					$('#list').listview('refresh');
+				}
 			}
 			//update the account page
 		} else {
 			alert('play the game!');
 		}
 		if (changePage) {
+
 			$.mobile.changePage(newPage);
 		}
 	})
