@@ -747,6 +747,7 @@ function checkPasswordNew(web, index) {
 				}
 			}
 		}
+		$.mobile.changePage($("#accounts"));
 	}
 	
 	//for (var i=0; i < answer.length; i ++) {
