@@ -57,7 +57,9 @@ Sha256.generate = function (input, num) {
       var newPersonList = existingPersonList.toArray();
       var newSceneList = existingSceneList.toArray();
       console.log(newPersonList);
-      console.log(newPersonList.length);
+      console.log(newPersonList.length);   
+      console.log(newSceneList);
+      console.log(newSceneList.length);                
       for (var i=0; i<num; i++) {
             itemCounter = 0;
             while (itemCounter < 4) {
