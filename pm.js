@@ -171,6 +171,7 @@ function searchDropBoxList(list, element) {
 //end of unitilies 
 
 
+
 //PHONE GAP : SHOWING CORRECT
 function showAlertRight() {
     navigator.notification.alert(
