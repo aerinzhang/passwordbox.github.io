@@ -7,7 +7,7 @@
 var Sha256 = {};  // Sha256 namespace
 
       
-var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama',\
+var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama',
                   'Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama',\
                    "Bart_Simpson", "Ben_Affleck", "Beyonce", "Bill_Clinton",\
                    "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", \
