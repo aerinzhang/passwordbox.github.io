@@ -293,6 +293,8 @@ function startChecking() {
 function addStories() {
 	for (var i=0; i < 10; i++) {
 		storyBank.push([gamelist[i][0], gamelist[i][3]]);
+		existingPersonList.push(gamelist[i][0]);
+		existingSceneList.push(gamelist[i][3]);
 		insertStory(gamelist[i][0], gamelist[i][3]);
 	}
 	allPossible = computeCombinations(storyBank, 4);
