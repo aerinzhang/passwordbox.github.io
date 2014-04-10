@@ -607,6 +607,7 @@ function generateNextStory() {
 }
 
 function randomnessGenerator(){
+	console.log('randomnessGenerator called');
 	//before starting the game direct to the text box page and ask the users to 
 	$.mobile.changePage('#generateRandomness');
 }
@@ -627,6 +628,7 @@ function startGame() {
 
 	//Step1: first generate the 10-story list
 	var temp = $('#randomness').val();
+	console.log('hiiii before Sha256');
 	gamelist = Sha256.generate(temp, 10);
 	//gamelist = generateList();
 	console.log(gamelist);
