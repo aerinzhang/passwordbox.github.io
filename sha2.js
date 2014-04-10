@@ -44,6 +44,7 @@ var sceneList = [ 'airport', 'baseball_field', 'basketball_court', 'bakery',
 */
 
 Sha256.generate = function (input, num) {
+      console.log('hi from sha256 generator');
       var sha = Sha256.hash(input);
       var lengthOfString = sha.length;
       var persons = new Array(num);
@@ -79,7 +80,7 @@ Sha256.generate = function (input, num) {
                         while (searchDropBoxList(existingSceneList, scene) != -1) {
                               theIndex = (Math.round(Math.random() * scenes.length) + 
                                           Sha256.fromCharacter(sha.charAt(4 * i)) + 
-                                          16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
+                                          16 * Sha256.gfromCharacter(sha.charAt(4 * i + 1)) + 
                                           256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
                                           256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
                         }
