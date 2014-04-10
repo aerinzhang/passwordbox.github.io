@@ -8,31 +8,31 @@ var Sha256 = {};  // Sha256 namespace
 
       
 var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama',
-                  'Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama',\
-                   "Bart_Simpson", "Ben_Affleck", "Beyonce", "Bill_Clinton",\
-                   "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", \
-                   "Hillary_Clinton", "Homer_Simpson", "Indiana_Jones", \
+                  'Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama',
+                   "Bart_Simpson", "Ben_Affleck", "Beyonce", "Bill_Clinton",
+                   "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", 
+                   "Hillary_Clinton", "Homer_Simpson", "Indiana_Jones", 
                    "Marilyn_Monroe", "Superman", "Steve_Jobs", "Michael_Jordan"];
 
-var actionList = ['balancing', 'bending', 'biting', 'bouncing', 'building', \
-                  'burning' , 'chasing', 'clapping', 'climbing' ,'cooking', \
-                  'digging','drinking', 'enlarging', 'exploding', 'feeding', \
-                  'fighting', 'flipping', 'hanging', 'hiding', 'hugging', \
-                  'juggling', 'kissing', 'licking', 'painting', 'piloting',\
-                  'pushing', 'repairing', 'rubbing', 'scratching', 'shooting',\
-                  'smelling', 'swinging','throwing', 'tickling', 'tying', \
+var actionList = ['balancing', 'bending', 'biting', 'bouncing', 'building', 
+                  'burning' , 'chasing', 'clapping', 'climbing' ,'cooking',
+                  'digging','drinking', 'enlarging', 'exploding', 'feeding',
+                  'fighting', 'flipping', 'hanging', 'hiding', 'hugging',
+                  'juggling', 'kissing', 'licking', 'painting', 'piloting',
+                  'pushing', 'repairing', 'rubbing', 'scratching', 'shooting',
+                  'smelling', 'swinging','throwing', 'tickling', 'tying',
                   'washing', 'wrapping', 'zooming'];
 
-var objectList = ['dome','hammer','heel','hen','igloo','leaf', 'lock', 'moose',\
-                  'seal','smore','snowflake','suit','daisy','dice','safe',\
+var objectList = ['dome','hammer','heel','hen','igloo','leaf', 'lock', 'moose',
+                  'seal','smore','snowflake','suit','daisy','dice','safe',
                   'toilet','moon', 'map','lollipop','peach', 'bus'];
 
-var sceneList = [ 'airport', 'baseball_field', 'basketball_court', 'bakery', \
-                  'bridge', 'Capitol_Building', 'castle', 'court', 'Eiffel_Tower',\
-                  'fancy_house', 'fitness_center', 'forest', 'garden', 'glacier',\
-                  'Grand_Canyon', 'Great_Wall', 'hanging_bridge', 'island', \
-                  'lake', 'library', 'lighthouse', 'mountain', 'Niagara_Falls', \
-                  'ocean', 'pool_bar', 'pyramids', 'restaurant', 'swimming_pool', \
+var sceneList = [ 'airport', 'baseball_field', 'basketball_court', 'bakery', 
+                  'bridge', 'Capitol_Building', 'castle', 'court', 'Eiffel_Tower',
+                  'fancy_house', 'fitness_center', 'forest', 'garden', 'glacier',
+                  'Grand_Canyon', 'Great_Wall', 'hanging_bridge', 'island', 
+                  'lake', 'library', 'lighthouse', 'mountain', 'Niagara_Falls', 
+                  'ocean', 'pool_bar', 'pyramids', 'restaurant', 'swimming_pool',
                   'Taj_Mahal','tropical_beach'];
 
 /**
@@ -54,11 +54,11 @@ Sha256.generate = function (input, num) {
 
       for (var i=0; i<num; i++) {
             while (itemCounter < 4) {
-                  theIndex = (Math.round(Math.random() * words.length) + \
-                              Sha256.fromCharacter(sha.charAt(4 * i)) + \
-                              16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + \
-                              256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + \
-                              256 * 16 * Sha256.fromCharacter(sha.charAt(4 * it + 3)))\
+                  theIndex = (Math.round(Math.random() * words.length) + 
+                              Sha256.fromCharacter(sha.charAt(4 * i)) + 
+                              16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
+                              256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
+                              256 * 16 * Sha256.fromCharacter(sha.charAt(4 * it + 3)))
                                % common_words.length;
                   if (itemCounter == 0) {
                         var person = personList[theIndex];
