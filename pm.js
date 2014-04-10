@@ -973,6 +973,10 @@ $( document ).ready(function(){
         this.style.border = '0px';
         this.style.margin = '4px';
     }});
+    $.getScript("sha2.js", function(){
+    	alert("Script loaded and executed.");
+    	// Here you can use anything you defined in the loaded script
+    });
     //show story bank
     // $('#bank').bind("pageshow", function() {
     // 	console.log(storyBank);
