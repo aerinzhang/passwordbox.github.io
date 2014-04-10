@@ -89,9 +89,9 @@ Sha256.generate = function (input, num) {
                         //should never get here
                         alert('something is wrong!');
                   }
-                  itemCounter +=1;
-                  
+                  itemCounter +=1;      
             }
+            console.log('hi from sha256 generator!!');
             finalList[i] = [person, action, object, scene];
       }
       console.log(finalList);
