@@ -54,12 +54,12 @@ Sha256.generate = function (input, num) {
 
       for (var i=0; i<num; i++) {
             while (itemCounter < 4) {
-                  theIndex = (Math.round(Math.random() * words.length) + 
+                  theIndex = (Math.round(Math.random() * scenes.length) + 
                               Sha256.fromCharacter(sha.charAt(4 * i)) + 
                               16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
                               256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
                               256 * 16 * Sha256.fromCharacter(sha.charAt(4 * it + 3)))
-                               % common_words.length;
+                               % sceneList.length;
                   if (itemCounter == 0) {
                         var person = personList[theIndex];
                   } else if (itemCounter == 1) {
