@@ -10,6 +10,7 @@
 		<script src="https://www.dropbox.com/static/api/dropbox-datastores-1.0-latest.js"></script>
 		<script type="text/javascript" src='kendo.all.min.js'></script>
 		<!--<script src="tutorial.js"></script>-->
+		<script type="text/javascript" src='sha2.js'></script>
 		<script src='pm.js'></script>
 		<!-- style sheets kendo jquery own -->
 		<link rel="stylesheet" href="style.css">
@@ -47,6 +48,7 @@
 					<p><a href="#accounts" data-role="button">Continue</a></p>
 					<a href='#' data-role='button' onclick='signOff()'>Sign Off</a>
 					<a href='#' data-role='button' onclick='deleteAllStories()'>Delete</a>
+					<a href='#generateRandomness' data-role='button'>SHA PAge</a>
 					</div>
 				<div id="login">
 					<button id="loginButton">Link to Dropbox</button>
@@ -176,5 +178,13 @@
 				<a data-role='button' onclick='backtoGame()'>Back to Game</a>
 			</div>
 		</div>
+		<div data-role='page' data-title='Randomness Generator' id='generateRandomness'>
+			<div data-role='header'><h1>Let us make some real randomness</h1></div>
+			<div data-role='content'>
+				<h2></h2>
+				<p><textarea id='randomness' cols='100' rows='10'> </textarea></p>
+				<input id='submitRandom' type='submit' value='Generate Randomness' onclick='Sha256.generate(randomness.value, 10); '/>
+
+			</div>
 	</body>
 </html>

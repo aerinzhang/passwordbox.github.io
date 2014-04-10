@@ -842,17 +842,16 @@ function renderEachAccountElements(time, web, list, index) {
 	var html = "<div id='" + web + "Stories'>";
 	//var html = "<div id='" + web + "Stories'><ul = data-role='listview'>"
 	for (var i=0; i < list.length; i ++) {
-		var liold = "<p>Last Rehearsal Time: {0}</p>";
 		//var liold = '<li><a href="#"><img src="images/person/{0}.jpg" />{1}</a><li>'
 		if (i % 2 == 0) {
-			liold = liold + "<div class=twoPairs><span class='pairdiv'><figure><img class=pair src=images/person/{1}.jpg /><figcaption>{2}</figcaption></figure>\
-					 	<figure><img class=pair src=images/scene/{3}.jpg /><figcaption>{4}</figcaption></figure></span>";
+			var liold = liold + "<div class=twoPairs><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
+					 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span>";
 		}
 		else {
-			liold = liold + "       &nbsp&nbsp<span class='pairdiv'><figure><img class=pair src=images/person/{1}.jpg /><figcaption>{2}</figcaption></figure>\
-					 	<figure><img class=pair src=images/scene/{3}.jpg /><figcaption>{4}</figcaption></figure></span></div>";
+			var liold = liold + "       &nbsp&nbsp<span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
+					 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span></div>";
 			}
-		var li = String.format(liold, time, list[i][0], list[i][0], list[i][1].toLowerCase(), list[i][1]);
+		var li = String.format(liold, list[i][0], list[i][0], list[i][1].toLowerCase(), list[i][1]);
 		html += li;
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
