@@ -232,7 +232,6 @@ function checkPassword2(web) {
 
 }
 
-var gamepersonlist = [];
 //generate 10 stories to use later
 function generateList() {
 	var gamelist = [];
@@ -615,6 +614,16 @@ var gamelist;
 var gamepersonlist;
 var sequenceIndex;
 var checkIndex;
+
+//given a gamelist, get the personlist from 
+function stripPersonFromList(glist) {
+	var result = [];
+	for (var i=0; i<glist.length; i++) {
+		result.push(glist[i][0]);
+	}
+	return result;
+}
+
 //start the memory game
 function startGame() {
 	storyIndex = 0;
@@ -628,8 +637,9 @@ function startGame() {
 
 	//Step1: first generate the 10-story list
 	var temp = $('#randomness').val();
-	console.log('hiiii before Sha256');
 	gamelist = Sha256.generate(temp, 10);
+	gamepersonlist = stripPersonFromList(gamelist);
+
 	//gamelist = generateList();
 	console.log(gamelist);
 	generateNextSequence();
