@@ -59,16 +59,31 @@ Sha256.generate = function (input, num) {
                               Sha256.fromCharacter(sha.charAt(4 * i)) + 
                               16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
                               256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
-                              256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)))
-                               % sceneList.length;
+                              256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
                   if (itemCounter == 0) {
-                        var person = personList[theIndex];
+                        var person = personList[theIndex % personList.length];
+                        while (persons.indexOf(person) != -1) {
+                              theIndex = (Math.round(Math.random() * persons.length) + 
+                                          Sha256.fromCharacter(sha.charAt(4 * i)) + 
+                                          16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
+                                          256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
+                                          256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
+                        }
+                        persons[i] = person;
                   } else if (itemCounter == 1) {
-                        var action = actionList[theIndex];
+                        var action = actionList[theIndex % actionList.length];
                   } else if (itemCounter == 2) {
-                        var object = objectList[theIndex];
+                        var object = objectList[theIndex % objectList.length];
                   } else if (itemCounter == 3) {
-                        var scene = sceneList[theIndex];
+                        var scene = sceneList[theIndex % sceneList.length];
+                        while (scenes.indexOf(scene) != -1) {
+                              theIndex = (Math.round(Math.random() * scenes.length) + 
+                                          Sha256.fromCharacter(sha.charAt(4 * i)) + 
+                                          16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
+                                          256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
+                                          256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
+                        }
+                        scene[i] = scene;
                   } else {
                         //should never get here
                         alert('something is wrong!');
@@ -76,8 +91,6 @@ Sha256.generate = function (input, num) {
                   itemCounter +=1;
                   
             }
-            persons[i] = person;
-            scenes[i] = scene;
             finalList[i] = [person, action, object, scene];
       }
       console.log(finalList);
