@@ -83,7 +83,7 @@ Sha256.generate = function (input, num) {
                         while (searchDropBoxList(existingSceneList, scene) != -1) {
                               theIndex = (Math.round(Math.random() * scenes.length) + 
                                           Sha256.fromCharacter(sha.charAt(4 * i)) + 
-                                          16 * Sha256.gfromCharacter(sha.charAt(4 * i + 1)) + 
+                                          16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
                                           256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
                                           256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
                               scene = sceneList[theIndex % sceneList.length];
