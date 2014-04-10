@@ -58,7 +58,7 @@ Sha256.generate = function (input, num) {
                               Sha256.fromCharacter(sha.charAt(4 * i)) + 
                               16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
                               256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
-                              256 * 16 * Sha256.fromCharacter(sha.charAt(4 * it + 3)))
+                              256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)))
                                % sceneList.length;
                   if (itemCounter == 0) {
                         var person = personList[theIndex];
