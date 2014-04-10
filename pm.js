@@ -605,6 +605,11 @@ function generateNextStory() {
 	//$.mobile.changePage("#gamepage");
 
 }
+
+function randomnessGenerator(){
+	//before starting the game direct to the text box page and ask the users to 
+	$.mobile.changePage('#generateRandomness');
+}
 var gamelist;
 var gamepersonlist;
 var sequenceIndex;
@@ -621,9 +626,10 @@ function startGame() {
 	//var myVar=window.setTimeout(function(){changeDisplay('<p>Ready?<p>')},1000);
 
 	//Step1: first generate the 10-story list
-	gamelist = generateList();
+	var temp = $('#randomness').val();
+	gamelist = Sha256.generate(temp, 10);
+	//gamelist = generateList();
 	console.log(gamelist);
-
 	generateNextSequence();
 
 }

@@ -62,7 +62,7 @@ Sha256.generate = function (input, num) {
                               256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
                   if (itemCounter == 0) {
                         var person = personList[theIndex % personList.length];
-                        while (persons.indexOf(person) != -1) {
+                        while (searchDropBoxList(existingPersonList, person) != -1) {
                               theIndex = (Math.round(Math.random() * persons.length) + 
                                           Sha256.fromCharacter(sha.charAt(4 * i)) + 
                                           16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
@@ -76,7 +76,7 @@ Sha256.generate = function (input, num) {
                         var object = objectList[theIndex % objectList.length];
                   } else if (itemCounter == 3) {
                         var scene = sceneList[theIndex % sceneList.length];
-                        while (scenes.indexOf(scene) != -1) {
+                        while (searchDropBoxList(existingSceneList, scene) != -1) {
                               theIndex = (Math.round(Math.random() * scenes.length) + 
                                           Sha256.fromCharacter(sha.charAt(4 * i)) + 
                                           16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 

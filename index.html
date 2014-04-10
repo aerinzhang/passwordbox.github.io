@@ -125,7 +125,7 @@
 					<p>How many stories can you memorize?</p>
 					<p id='game-text'> Instructions: You will see 10 person-action-object stories in this game. Spend 10 seconds visualizing each story in your head, and try to make it as vivid as possible by thinking of details. For example, if you see the story President Bush is flipping a leaf. When you are picturing it in your head, is the leaf big or small? Is he laughing or frowning? What color is the leaf? What kind of gestures is he making? </p>
 					<div class='buttondiv'>
-						<a class='halfbutton' data-role='button' onclick='startGame()' >Start</a>
+						<a class='halfbutton' data-role='button' onclick='randomnessGenerator()' >Start</a>
 					</div>
 				</div>
 			</div>
@@ -183,7 +183,7 @@
 			<div data-role='content'>
 				<h2></h2>
 				<p><textarea id='randomness' cols='100' rows='10'> </textarea></p>
-				<input id='submitRandom' type='submit' value='Generate Randomness' onclick='Sha256.generate(randomness.value, 10); '/>
+				<input id='submitRandom' type='submit' value='Generate Randomness & Start' onclick='startGame()'/>
 
 			</div>
 	</body>
