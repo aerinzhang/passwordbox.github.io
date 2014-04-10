@@ -53,6 +53,7 @@ Sha256.generate = function (input, num) {
       var itemCounter = 0;
 
       for (var i=0; i<num; i++) {
+            itemCounter = 0;
             while (itemCounter < 4) {
                   theIndex = (Math.round(Math.random() * scenes.length) + 
                               Sha256.fromCharacter(sha.charAt(4 * i)) + 
