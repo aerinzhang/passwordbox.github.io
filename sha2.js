@@ -52,10 +52,12 @@ Sha256.generate = function (input, num) {
       var finalList = new Array(num);
       var theIndex = 0;
       var itemCounter = 0;
+      console.log('hi from sha256 generator!');
 
       for (var i=0; i<num; i++) {
             itemCounter = 0;
             while (itemCounter < 4) {
+                  console.log('hi from sha256 generator!!!');
                   theIndex = (Math.round(Math.random() * scenes.length) + 
                               Sha256.fromCharacter(sha.charAt(4 * i)) + 
                               16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
@@ -63,6 +65,7 @@ Sha256.generate = function (input, num) {
                               256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
                   if (itemCounter == 0) {
                         var person = personList[theIndex % personList.length];
+                        console.log('hi from sha256 generator!!!!');
                         while (searchDropBoxList(existingPersonList, person) != -1) {
                               theIndex = (Math.round(Math.random() * persons.length) + 
                                           Sha256.fromCharacter(sha.charAt(4 * i)) + 
