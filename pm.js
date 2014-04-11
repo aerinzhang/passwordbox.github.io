@@ -324,9 +324,6 @@ function calculateTotalInterval(num) {
 	return totalTime; 
 }
 
-function calculateTotalInterval(num) {
-
-}
 
 //given the last rehearsal time and the time now calculate 
 function calculateElapsedTime(oldDate, newDate) {
