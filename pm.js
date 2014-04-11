@@ -271,7 +271,7 @@ function rehearsalSatisfied() {
 
 function needRehearsal(originalDate, currentDate, record) {
 	//first step calculate the elapsedTime from starting position in millsecs
-	var elapsedMills = currentDate.getMilliseconds() - originalDate.getMilliseconds();
+	var elapsedMills = currentDate.getTime() - originalDate.getTime();
 	console.log(originalDate.toString() + '|||' + currentDate.toString());
 	console.log('elapsedMills is ' + elapsedMills.toString());
 	//second get the intervalNum and calcualte total
