@@ -916,15 +916,7 @@ function renderAccountList(changePage) {
 							  <a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
 				var newPage = $("<div data-role='page' data-title='"+web+"' id="+web+"Page><div data-role='header' data-position=fixed>\
 								<a href=#accounts data-icon='back'>Back</a><h1>"+ web + "</h1></div><div data-role='content' class=images>"+pageHtml+" </div>"+footer+"</div>");
-				// var popupPage = $("<div data-role='page' data-trasntion='pop' data-rel='pop' data-title='generate a password for"+web + "' id="+web+"Password >\
-				// 				  <div data-role='fieldcontain'><form action='#' id='passwordChecking'><div><input type='text' autocorrect='off' name='password' \
-				// 				  id='typein-password" + web + "' value='' placeholder='Type in your password' autofocus='autofocus'/></div><button type='submit'\
-				// 				   name='submit; value='submit' id='passwordSubmit" + web + "' onclick='checkPassword2(\""  + web + "\")' >Check</button></form></div></div>");
 				
-				
-
-				// popupPage.appendTo( $.mobile.pageContainer);
-
 				if (updateListBool || (changePage && i==records.length-1)) {
 					//if insert the first time
 					var keyid = 'button' + accountIndex;
@@ -940,6 +932,7 @@ function renderAccountList(changePage) {
 					//$('#list').listview('refresh');
 					if (updateListBool) {
 						newPage.appendTo( $.mobile.pageContainer );
+						console.log('PAGE APPENDEDDDD!!!!!!!!!!');
 					}
 
 				}
