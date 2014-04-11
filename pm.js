@@ -300,7 +300,7 @@ function eachInterval(index) {
 	} else if (index == 1) {
 		return 5 * msecPerMinute;
 	} else {
-		return Math(2, (index-2)) * 12 * msecPerMinute;
+		return Math.pow(2, (index-2)) * 12 * msecPerMinute;
 	}
 }
 
