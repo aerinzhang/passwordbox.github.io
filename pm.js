@@ -233,6 +233,18 @@ function checkPassword2(web) {
 
 }
 
+//given the last rehearsal time and the time now calculate 
+function calculateElapsedTime(oldDate, newDate) {
+	var day = newDate.getDate() - oldDate.getDate();
+	var month = newDate.getMonth() - oldDate.getMonth();
+	var year = newDate.getFullYear() - oldDate.getFullYear();
+	var time = newDate.getTime() - oldDate.getTime();
+	console.log('year ' + year.toString() + ' month ' + month.toString() + ' day ' + day.toString() + ' time ' + time.toString());
+	console.log(newDate.getDate().toString() + ' ' + newDate.getMonth().toString() + ' ' + newDate.getDate().toString() + ' ' + newDate.getTime().toString());
+
+}
+
+
 //generate 10 stories to use later
 function generateList() {
 	var gamelist = [];
@@ -764,9 +776,12 @@ function checkPasswordNew(web, index) {
 				var story = storyList[j];
 				if (record.get('person') == story[0] && record.get('scene') == story[1]) {
 					//update record time
-					record.set('lastRehearsed', new Date());
+					var date = new Date();
+					console.log('calculating old ' + record.get('lastRehearsed').toString()  + ' new ' + date.toString());
+					calculateElapsedTime(record.get('lastRehearsed'), date)
+					record.set('lastRehearsed', date);
 					console.log('story last reherased....');
-					console.log(new Date());
+					console.log(date);
 				}
 			}
 		}
