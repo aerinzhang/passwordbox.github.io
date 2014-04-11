@@ -279,7 +279,8 @@ function needRehearsal(originalDate, currentDate, record) {
 
 	var elapsedSinceLastTime = elapsedMills - prevTimeInterval;
 	var rehearsalInterval = nextTimeInterval - prevTimeInterval;
-
+	console.log('elapsedSinceLastTime is ' + elapsedSinceLastTime.toString());
+	console.log('rehearsalInterval is ' rehearsalInterval.toString());
 	if (elapsedSinceLastTime < rehearsalInterval * 0.75) {
 		return NO_NEED_TO_REHEARSE;
 	} else if (rehearsalInterval * 0.75 < elapsedSinceLastTime && elapsedSinceLastTime < rehearsalInterval * 0.99) {
