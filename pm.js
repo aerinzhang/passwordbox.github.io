@@ -255,13 +255,13 @@ function checkEachStory() {
 		var check = needRehearsal(originalDate, currentDate);
 		if (check == NEED_URGENT_REHEARSAL) {
 			var old = $('#rehearsalReminder').html()
-			$('#rehearsalReminder').html( old + ' ' + record.get('person') + ' ' + record.get('scene'));
-			console.log(old + ' ' + record.get('person') + ' ' + record.get('scene'));
+			$('#rehearsalReminder').html( old + ' ' + story.get('person') + ' ' + story.get('scene'));
+			console.log(old + ' ' + story.get('person') + ' ' + story.get('scene'));
 		} else if (check == NEED_REHEARSAL_SOON) {
-			console.log('urgent!' + record.get('person') + ' ' + record.get('scene'));
+			console.log('urgent!' + story.get('person') + ' ' + story.get('scene'));
 		} else {
 			//no need to rehearse
-			console.log('safe!' + record.get('person') + ' ' + record.get('scene'));
+			console.log('safe!' + story.get('person') + ' ' + story.get('scene'));
 		}
 	}
 }
