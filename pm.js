@@ -274,8 +274,8 @@ function needRehearsal(originalDate, currentDate, record) {
 	var elapsedMills = currentDate.getMilliseconds() - originalDate.getMilliseconds();
 	console.log('elapsedMills is ' + elapsedMills.toString());
 	//second get the intervalNum and calcualte total
-	var nextTimeInterval = calculateTotalInterval(record.get('intervalNum'));
-	var prevTimeInterval = calculateTotalInterval(record.get('intervalNum')-1);
+	var nextTimeInterval = calculateTotalInterval(record.get('intervalNum')+1);
+	var prevTimeInterval = calculateTotalInterval(record.get('intervalNum'));
 	console.log('intervalNum is ' + record.get('intervalNum').toString());
 	console.log('nextTimeInterval is ' + nextTimeInterval.toString());
 	console.log('prevTimeInterval is ' + prevTimeInterval.toString());
