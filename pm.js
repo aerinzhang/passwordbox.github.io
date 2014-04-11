@@ -240,7 +240,7 @@ function calculateElapsedTime(oldDate, newDate) {
 	var year = newDate.getFullYear() - oldDate.getFullYear();
 	var time = newDate.getTime() - oldDate.getTime();
 	console.log('year ' + year.toString() + ' month ' + month.toString() + ' day ' + day.toString() + ' time ' + time.toString());
-	console.log(newDate.getDate().toString() + ' ' + newDate.getMonth().toString() + ' ' + newDate.getDate().toString() + ' ' + newDate.getTime().toString());
+	console.log(newDate.getFullYear().toString() + ' ' + newDate.getMonth().toString() + ' ' + newDate.getDate().toString() + ' ' + newDate.getTime().toString());
 
 }
 
@@ -621,7 +621,6 @@ function generateNextStory() {
 }
 
 function randomnessGenerator(){
-	console.log('randomnessGenerator called');
 	//before starting the game direct to the text box page and ask the users to 
 	$.mobile.changePage('#generateRandomness');
 }
@@ -724,11 +723,9 @@ function getImages2(web, useMyOwn) {
 		var li = String.format(liold, possible[i][0], possible[i][0], possible[i][1].toLowerCase(), possible[i][1]);
 		html += li;
 	}
-	console.log('debugging....7');
 	var temp = existingAccountIndex-1
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
 			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + temp + ")' > Type in your Password</a>"
-	console.log('debugging....8');
 	return html;
 }
 function showPopupRight(web) {
@@ -799,7 +796,6 @@ function checkPasswordNew(web, index) {
 }
 
 function submit(e){
-	console.log('sumbit!!!');
 	if (((e.keyCode === 13) || (e.keyCode == undefined)) && ($("#entry:focus"))) {
 		e.preventDefault();
 		//if pass validation of data
@@ -907,8 +903,6 @@ function renderAccountList(changePage) {
 
 		//if there are stories in the bank
 		if (stories.length > 0) {
-			console.log(updateListBool);
-			//console.log(changePage);
 			//create each page for each account
 			for (var i=0; i < records.length; i++) {
 				var record = records[i];
