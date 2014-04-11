@@ -1079,9 +1079,7 @@ $( document ).ready(function(){
     $.getScript("sha2.js", function(){
     	console.log("SHA 256 loaded and executed.");
     });
-    console.log('checking each story......');
-    checkEachStory();
-    console.log('finish');
+
     //show story bank
     // $('#bank').bind("pageshow", function() {
     // 	console.log(storyBank);
@@ -1245,6 +1243,9 @@ $( document ).ready(function(){
 			datastore.recordsChanged.addListener(updateAccountList);
 			$('#home-words').html('Welcome Back!');
 			$('#dropboxButton').hide();
+			console.log('checking each story......');
+    		checkEachStory();
+    		console.log('finish');
 			//updateListBool = false;
 		});
 	}
