@@ -152,3 +152,18 @@ figcaption {
 	width:100px;
 
 }
+
+
+.pair2 {
+	height: 100px;
+}
+
+.pairdiv2 {
+	border-style: solid;
+	padding-top: 254px;
+}
+
+.pairdiv2>figure {
+	margin:0px;
+
+}

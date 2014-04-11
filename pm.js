@@ -254,16 +254,24 @@ function checkEachStory() {
 		// if the story needs to be rehearsed then display it in home page
 		var check = needRehearsal(originalDate, currentDate, story);
 		if (check == NEED_URGENT_REHEARSAL) {
-			var old = $('#rehearsalReminder').html()
-			$('#rehearsalReminder').html( old + ' ' + story.get('person') + ' ' + story.get('scene'));
-			console.log(old + ' ' + story.get('person') + ' ' + story.get('scene'));
+			var old = $('#urgentRehearsal').html()
+			$('#urgentRehearsal').html( old + renderStoriesToBeRehearsed(story));
+			console.log('urgent!' + story.get('person') + ' ' + story.get('scene'));)
 		} else if (check == NEED_REHEARSAL_SOON) {
-			console.log('urgent!' + story.get('person') + ' ' + story.get('scene'));
+			var old = $('#regularRehearsal').html(old + renderStoriesToBeRehearsed(story));
+			console.log('rehearse soon!' + story.get('person') + ' ' + story.get('scene'));
 		} else {
 			//no need to rehearse
 			console.log('safe!' + story.get('person') + ' ' + story.get('scene'));
 		}
 	}
+}
+
+
+function renderStoriesToBeRehearsed(record) {
+	var html = "<div><span class='pairdiv2'><figure><img class=pair2 src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure> \
+				<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure>{4}</span></div>";
+	return String.format(html, record.get('person'), record.get('person'), record.get('scene').toLowerCase(), record.get('scene'), record.get('lastRehearsed').toString());
 }
 
 function rehearsalSatisfied() {
@@ -272,19 +280,13 @@ function rehearsalSatisfied() {
 function needRehearsal(originalDate, currentDate, record) {
 	//first step calculate the elapsedTime from starting position in millsecs
 	var elapsedMills = currentDate.getTime() - originalDate.getTime();
-	console.log(originalDate.toString() + '|||' + currentDate.toString());
-	console.log('elapsedMills is ' + elapsedMills.toString());
 	//second get the intervalNum and calcualte total
 	var nextTimeInterval = calculateTotalInterval(record.get('intervalNum')+1);
 	var prevTimeInterval = calculateTotalInterval(record.get('intervalNum'));
-	console.log('intervalNum is ' + record.get('intervalNum').toString());
-	console.log('nextTimeInterval is ' + nextTimeInterval.toString());
-	console.log('prevTimeInterval is ' + prevTimeInterval.toString());
 
 	var elapsedSinceLastTime = elapsedMills - prevTimeInterval;
 	var rehearsalInterval = nextTimeInterval - prevTimeInterval;
-	console.log('elapsedSinceLastTime is ' + elapsedSinceLastTime.toString());
-	console.log('rehearsalInterval is ' + rehearsalInterval.toString());
+
 	if (elapsedSinceLastTime < rehearsalInterval * 0.75) {
 		return NO_NEED_TO_REHEARSE;
 	} else if (rehearsalInterval * 0.75 < elapsedSinceLastTime && elapsedSinceLastTime < rehearsalInterval * 0.99) {
