@@ -256,7 +256,7 @@ function checkEachStory() {
 		if (check == NEED_URGENT_REHEARSAL) {
 			var old = $('#urgentRehearsal').html()
 			$('#urgentRehearsal').html( old + renderStoriesToBeRehearsed(story));
-			console.log('urgent!' + story.get('person') + ' ' + story.get('scene'));)
+			console.log('urgent!' + story.get('person') + ' ' + story.get('scene'));
 		} else if (check == NEED_REHEARSAL_SOON) {
 			var old = $('#regularRehearsal').html(old + renderStoriesToBeRehearsed(story));
 			console.log('rehearse soon!' + story.get('person') + ' ' + story.get('scene'));
