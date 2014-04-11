@@ -25,6 +25,20 @@ var gameScore = 0;
 var progress = 0;
 var updateListBool = true;
 
+var startingInterval = 1000 * 60 * 60 * 24;
+var intervalSize = startingInterval * 2; 
+var tempStartingInterval = 1000 * 60;
+var tempIntervalSize = tempIntervalSize * 2;
+var msecPerMinute = 1000 * 60;
+var msecPerHour = msecPerMinute * 60;
+var msecPerDay = msecPerHour * 24;
+
+var NO_NEED_TO_REHEARSE = 0;
+var NEED_REHEARSAL_SOON = 1;
+var NEED_URGENT_REHEARSAL = 2; 
+
+
+
 //CONSTANT VALUES: ALL PAO LISTS
 var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
 				  "Ben_Affleck", "Beyonce", "Bill_Clinton", "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", "Hillary_Clinton", "Homer_Simpson",
@@ -229,19 +243,90 @@ function checkPassword2(web) {
  	}
  	$.mobile.changePage("#accounts");
 	return
+}
 
+function checkEachStory() {
+	var records = storyBankTable.query();
+	for (var i=0; i < records.length; i++ ) {
+		var story = records[i];
+		var originalDate = story.get('created');
+		var currentDate = new Date();
+		// if the story needs to be rehearsed then display it in home page
+		var check = needRehearsal(originalDate, currentDate);
+		if (check == NEED_URGENT_REHEARSAL) {
+			var old = $('#rehearsalReminder').html()
+			$('#rehearsalReminder').html( old + ' ' + record.get('person') + ' ' + record.get('scene'));
+			console.log(old + ' ' + record.get('person') + ' ' + record.get('scene'));
+		} else if (check == NEED_REHEARSAL_SOON) {
+			console.log('urgent!' + record.get('person') + ' ' + record.get('scene'));
+		} else {
+			//no need to rehearse
+			console.log('safe!' + record.get('person') + ' ' + record.get('scene'));
+		}
+	}
+}
+
+function rehearsalSatisfied() {
+}
+
+function needRehearsal(originalDate, currentDate) {
+	//first step calculate the elapsedTime from starting position in millsecs
+	var elapsedMills = currentDate.getMilliseconds() - originalDate.getMilliseconds();
+
+	//second get the intervalNum and calcualte total
+	var nextTimeInterval = calculateTotalInterval(record.get('intervalNum'));
+	var prevTimeInterval = calculateTotalInterval(record.get('intervalNum')-1);
+
+	var elapsedSinceLastTime = elapsedMills - prevTimeInterval;
+	var rehearsalInterval = nextTimeInterval - prevTimeInterval;
+
+	if (elapsedSinceLastTime < rehearsalInterval * 0.75) {
+		return NO_NEED_TO_REHEARSE;
+	} else if (rehearsalInterval * 0.75 < elapsedSinceLastTime && elapsedSinceLastTime < rehearsalInterval * 0.99) {
+		return NEED_REHEARSAL_SOON;
+	} else {
+		console.log('past interval time');
+		return NEED_URGENT_REHEARSAL;
+	}
+}
+
+function eachInterval(index) {
+	if (index == 0) {
+		return 1 * msecPerMinute;
+	} else if (index == 1) {
+		return 5 * msecPerMinute;
+	} else {
+		return Math(2, (index-2)) * 12 * msecPerMinute;
+	}
+}
+
+// function eachInterval(index) {
+// 	if (index == 0) {
+// 		return 4 * msecPerHour;
+// 	} else if (index == 1) {
+// 		return 20 * msecPerHour;
+// 	} else {
+// 		return Math.pow(2, (index-1)) * msecPerDay;
+// 	}
+// }
+
+//given the number of rehearsal, calculate the totalElapsedTime
+
+function calculateTotalInterval(num) {
+	var totalTime = 0;
+	for (var i=0; i < num; i++) {
+		totalTime += eachInterval(i);
+	}
+	return totalTime; 
+}
+
+function calculateTotalInterval(num) {
 
 }
 
 //given the last rehearsal time and the time now calculate 
 function calculateElapsedTime(oldDate, newDate) {
-	var day = newDate.getDate() - oldDate.getDate();
-	var month = newDate.getMonth() - oldDate.getMonth();
-	var year = newDate.getFullYear() - oldDate.getFullYear();
-	var time = newDate.getTime() - oldDate.getTime();
-	console.log('year ' + year.toString() + ' month ' + month.toString() + ' day ' + day.toString() + ' time ' + time.toString());
-	console.log(newDate.getFullYear().toString() + ' ' + newDate.getMonth().toString() + ' ' + newDate.getDate().toString() + ' ' + newDate.getTime().toString());
-
+	var elapsedMills = newDate.getMilliseconds() - oldDate.getMilliseconds();
 }
 
 
@@ -1020,7 +1105,10 @@ $( document ).ready(function(){
 			created: new Date(),
 			lastRehearsed: new Date(),
 			refCount: 0,
-			refList: []
+			refList: [],
+			intervalNum: 0,
+			rehearsalList: [],
+			interval: tempStartingInterval
 		});
 	}
 
