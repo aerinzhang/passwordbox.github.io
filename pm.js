@@ -765,6 +765,8 @@ function checkPasswordNew(web, index) {
 				if (record.get('person') == story[0] && record.get('scene') == story[1]) {
 					//update record time
 					record.set('lastRehearsed', new Date());
+					console.log('story last reherased....');
+					console.log(new Date());
 				}
 			}
 		}
