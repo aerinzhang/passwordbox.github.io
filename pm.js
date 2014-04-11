@@ -276,7 +276,7 @@ function needRehearsal(originalDate, currentDate, record) {
 	//second get the intervalNum and calcualte total
 	var nextTimeInterval = calculateTotalInterval(record.get('intervalNum'));
 	var prevTimeInterval = calculateTotalInterval(record.get('intervalNum')-1);
-	console.log('intervalNum is ' record.get('intervalNum').toString());
+	console.log('intervalNum is ' + record.get('intervalNum').toString());
 	console.log('nextTimeInterval is ' + nextTimeInterval.toString());
 	console.log('prevTimeInterval is ' + prevTimeInterval.toString());
 
