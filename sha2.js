@@ -44,7 +44,6 @@ var sceneList = [ 'airport', 'baseball_field', 'basketball_court', 'bakery',
 */
 
 Sha256.generate = function (input, num) {
-      console.log('hi from sha256 generator');
       var sha = Sha256.hash(input);
       var lengthOfString = sha.length;
       var persons = new Array(num);
@@ -52,7 +51,6 @@ Sha256.generate = function (input, num) {
       var finalList = new Array(num);
       var theIndex = 0;
       var itemCounter = 0;
-      console.log('hi from sha256 generator!');
 
       var newPersonList = existingPersonList.toArray();
       var newSceneList = existingSceneList.toArray();
@@ -63,7 +61,6 @@ Sha256.generate = function (input, num) {
       for (var i=0; i<num; i++) {
             itemCounter = 0;
             while (itemCounter < 4) {
-                  console.log('hellooooooo');
                   theIndex = (Math.round(Math.random() * scenes.length) + 
                               Sha256.fromCharacter(sha.charAt(4 * i)) + 
                               16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
@@ -88,7 +85,6 @@ Sha256.generate = function (input, num) {
                         var object = objectList[theIndex % objectList.length];
                   } else if (itemCounter == 3) {
                         var scene = sceneList[theIndex % sceneList.length];
-                        console.log('hellooooooo2');
 
                         while (newSceneList.indexOf(scene) != -1) {
                               theIndex = (Math.round(Math.random() * scenes.length) + 
@@ -107,7 +103,6 @@ Sha256.generate = function (input, num) {
                   }
                   itemCounter +=1;      
             }
-            console.log('hellooooooo');
 
             finalList[i] = [person, action, object, scene];
       }

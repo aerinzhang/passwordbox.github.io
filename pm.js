@@ -862,6 +862,8 @@ function renderEachAccountElements(time, web, list, index) {
 	//create html for each page
 	var html = "<div id='" + web + "Stories'>";
 	//var html = "<div id='" + web + "Stories'><ul = data-role='listview'>"
+	console.log('hi from renderEachAccountElements');
+	console.log(list.length);
 	for (var i=0; i < list.length; i ++) {
 		//var liold = '<li><a href="#"><img src="images/person/{0}.jpg" />{1}</a><li>'
 		if (i % 2 == 0) {
@@ -890,7 +892,6 @@ function renderAccountList(changePage) {
 
 		//if there are stories in the bank
 		if (stories.length > 0) {
-			console.log('hiiii');
 			console.log(updateListBool);
 			//console.log(changePage);
 			//create each page for each account
