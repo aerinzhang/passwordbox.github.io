@@ -252,7 +252,7 @@ function checkEachStory() {
 		var originalDate = story.get('created');
 		var currentDate = new Date();
 		// if the story needs to be rehearsed then display it in home page
-		var check = needRehearsal(originalDate, currentDate);
+		var check = needRehearsal(originalDate, currentDate, story);
 		if (check == NEED_URGENT_REHEARSAL) {
 			var old = $('#rehearsalReminder').html()
 			$('#rehearsalReminder').html( old + ' ' + story.get('person') + ' ' + story.get('scene'));
@@ -269,7 +269,7 @@ function checkEachStory() {
 function rehearsalSatisfied() {
 }
 
-function needRehearsal(originalDate, currentDate) {
+function needRehearsal(originalDate, currentDate, record) {
 	//first step calculate the elapsedTime from starting position in millsecs
 	var elapsedMills = currentDate.getMilliseconds() - originalDate.getMilliseconds();
 
