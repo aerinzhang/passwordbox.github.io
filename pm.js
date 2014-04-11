@@ -938,7 +938,9 @@ function renderAccountList(changePage) {
 						$('#list').trigger('create');
 					}
 					//$('#list').listview('refresh');
-					newPage.appendTo( $.mobile.pageContainer );
+					if (updateListBool) {
+						newPage.appendTo( $.mobile.pageContainer );
+					}
 
 				}
 				
