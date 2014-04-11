@@ -864,6 +864,12 @@ function checkPasswordNew(web, index) {
 					record.set('lastRehearsed', date);
 					console.log('story last reherased....');
 					console.log(date);
+					// if that interval not satisfied aka length of satisfactory less than that intervalNum
+					if (record.get('rehearsalList').length() <= record.get('intervalNum')) {
+						record.get('rehearsalList').push(true);
+						record.set('intervalNum', record.get('intervalNum')+1);
+					}
+
 				}
 			}
 		}
