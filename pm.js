@@ -1025,7 +1025,7 @@ function renderAccountList(changePage) {
 						$('#list').trigger('create');
 					}
 					//$('#list').listview('refresh');
-					if (updateListBool) {
+					if (updateListBool || (changePage && i==records.length-1)) {
 						newPage.appendTo( $.mobile.pageContainer );
 					}
 
