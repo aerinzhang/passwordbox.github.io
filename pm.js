@@ -270,8 +270,8 @@ function checkEachStory() {
 
 function renderStoriesToBeRehearsed(record) {
 	var html = "<span class='pairdiv2'><figure><img class=pair2 src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure> \
-				<figure><img class=pair2 src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure>{4}</span>";
-	return String.format(html, record.get('person'), record.get('person'), record.get('scene').toLowerCase(), record.get('scene'), record.get('lastRehearsed').toString());
+				<figure><img class=pair2 src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span>";
+	return String.format(html, record.get('person'), record.get('person'), record.get('scene').toLowerCase(), record.get('scene'));
 }
 
 function rehearsalSatisfied() {
