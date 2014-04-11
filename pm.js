@@ -924,7 +924,6 @@ function renderAccountList(changePage) {
 				
 
 				// popupPage.appendTo( $.mobile.pageContainer);
-				newPage.appendTo( $.mobile.pageContainer );
 
 				if (updateListBool || (changePage && i==records.length-1)) {
 					//if insert the first time
@@ -939,6 +938,8 @@ function renderAccountList(changePage) {
 						$('#list').trigger('create');
 					}
 					//$('#list').listview('refresh');
+					newPage.appendTo( $.mobile.pageContainer );
+
 				}
 				
 
