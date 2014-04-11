@@ -932,7 +932,6 @@ function renderAccountList(changePage) {
 					//$('#list').listview('refresh');
 					if (updateListBool) {
 						newPage.appendTo( $.mobile.pageContainer );
-						console.log('PAGE APPENDEDDDD!!!!!!!!!!');
 					}
 
 				}
