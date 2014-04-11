@@ -272,11 +272,14 @@ function rehearsalSatisfied() {
 function needRehearsal(originalDate, currentDate, record) {
 	//first step calculate the elapsedTime from starting position in millsecs
 	var elapsedMills = currentDate.getMilliseconds() - originalDate.getMilliseconds();
-
+	console.log('elapsedMills is ' + elapsedMills.toString());
 	//second get the intervalNum and calcualte total
 	var nextTimeInterval = calculateTotalInterval(record.get('intervalNum'));
 	var prevTimeInterval = calculateTotalInterval(record.get('intervalNum')-1);
 
+	console.log('nextTimeInterval is ' + nextTimeInterval.toString());
+	console.log('prevTimeInterval is ' + prevTimeInterval.toString());
+	
 	var elapsedSinceLastTime = elapsedMills - prevTimeInterval;
 	var rehearsalInterval = nextTimeInterval - prevTimeInterval;
 	console.log('elapsedSinceLastTime is ' + elapsedSinceLastTime.toString());
