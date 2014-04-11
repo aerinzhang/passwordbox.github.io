@@ -161,6 +161,7 @@ figcaption {
 .pairdiv2 {
 	border-style: solid;
 	padding-top: 104px;
+	font-size: 10px;
 }
 
 .pairdiv2>figure {
