@@ -22,7 +22,15 @@
 </head>
 <body> 
 <div data-role="page" data-title="first" id="first">
-	<div data-role="header"><h1>Home</h1></div>
+	<div data-role="header"><h1>Home</h1>
+		<div data-role='navbar'>
+			<ul>
+				<li><a href='#home'>Home</a></li>
+				<li><a href='#friends'>Accounts</a></li>
+				<li><a href='#game'>Game</a></li>
+			</ul>
+		</div>
+	</div>
 	<div data-role="content">
 		<h2>Welcome</h2>
 		<img src='reminder.png' id='clock'/>
@@ -41,13 +49,6 @@
 
 	</div>
 	<div data-role='footer' data-id='fool' data-position='fixed'>
-		<div data-role='navbar'>
-			<ul>
-				<li><a href='#home'>Home</a></li>
-				<li><a href='#friends'>Accounts</a></li>
-				<li><a href='#game'>Game</a></li>
-			</ul>
-		</div>
 	</div>
 	<!-- <div data-role="footer"><h4>Page One Footer</h4></div> -->
 </div>
