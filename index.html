@@ -76,27 +76,37 @@
 
 		<!-- BANK PAGE -->
 		<div data-role="page" data-title="bank" id="bank">
-			<div data-role="header"><h1>Story Bank</h1></div>
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu'>
+						<li><a class='logo' ref='#'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='bank-bank'>STORY BANK</a></li>
+						<li><a href='#accounts' id='bank-accounts'>ACCOUNTS</a></li>
+						<li><a href='#game' id='bank-game' >GAME</a></li>
+					</ul>
+				</div>
+			</div>
 			<div data-role="content">
 				<div data-role='content' id='banklist'>
 					<p>Please play the memory game to add stories to story bank</p>
 					<a data-role='button' href='#game'>Play</a> 
 				</div>
 			</div>
-			<div data-role='footer' data-id='fool' data-position='fixed'>
-				<div data-role='navbar'>
-					<ul>
-						<li><a href='#bank'>Story Bank</a></li>
-						<li><a href='#accounts'>Accounts</a></li>
-						<li><a href='#game'>Game</a></li>
-					</ul>
-				</div>
-			</div>
+			
 		</div>
 
 		<!-- ACCOUNT PAGE -->
 		<div data-role="page" data-title="accounts" id="accounts">
-			<div data-role="header"><h1>Accounts</h1></div>
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu'>
+						<li><a class='logo' ref='#'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='bank-bank'>STORY BANK</a></li>
+						<li><a href='#accounts' id='bank-accounts'>ACCOUNTS</a></li>
+						<li><a href='#game' id='bank-game' >GAME</a></li>
+					</ul>
+				</div>
+			</div>
 			<div data-role="content">
 				<div data-role='fieldcontain'>
 					<form action='#' id='accountsList'>
@@ -111,15 +121,6 @@
 					</form>
 				</div>
 				<ul id='list' data-role='listview' data-inset='true'></ul>
-			</div>
-			<div data-role='footer' data-id='fool' data-position='fixed'>
-				<div data-role='navbar'>
-					<ul>
-						<li><a href='#bank'>Story Bank</a></li>
-						<li><a href='#accounts'>Accounts</a></li>
-						<li><a href='#game'>Game</a></li>
-					</ul>
-				</div>
 			</div>
 		</div>
 		<!-- GAME PAGE-->

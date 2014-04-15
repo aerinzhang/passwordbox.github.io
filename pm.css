@@ -41,12 +41,7 @@
 	font-family: Lato;
 
 }
-.ui-content:not(#gamepage) {
-	background-color: #181818;
-	color: white;
-	padding-left: 20%;
-	padding-right: 20%
-}
+
 #clock {
 	height: 50%;
 }
@@ -89,11 +84,18 @@ figcaption {
 #gamestories {
 	padding-top: 100px;
 }
-.ui-page{
+div.ui-page{
 	text-align: center;
 	background-color: white;
+	min-height: 100%;
 }
-.ui-content {
+
+div.ui-content {
+	background-color: #181818;
+	color: white;
+	padding-left: 20%;
+	padding-right: 20%;
+	min-height: 100%;
 	font-size: 17pt;
 	opacity: 0.85;
 
@@ -101,7 +103,9 @@ figcaption {
 .ui-header .ui-title, .ui-footer .ui-title {
 	font-size: 24px;
 }
-
+body, html {
+	height: 100%;
+}
 .progress{
 	height:100px;
 }
