@@ -1138,8 +1138,8 @@ $( document ).ready(function(){
 			refList: [],
 			intervalNum: 0,
 			rehearsalList: [],
-			correctRehearsal: 0,
-			totalRehearsal: 0,
+			correctRehearsal: 1,
+			totalRehearsal: 1,
 			interval: tempStartingInterval
 		});
 	}
