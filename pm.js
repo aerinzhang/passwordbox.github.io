@@ -837,6 +837,22 @@ function showPopupWrong(web) {
 
 }
 
+function calculateScoreForStory(story) {
+	//get previous # of rehearsals
+	var c1 = 5;
+	var c2 = 0.00001;
+	var c3 = 10;
+	var nextTimeInterval = calculateTotalInterval(story.get('intervalNum')+1);
+	var originalDate = story.get('created');
+	var currentDate = new Date();
+	var part1 = c1 * (story.get('intervalNum') + 1);
+	var part2 = c2 * (nextTimeInterval - (currentDate.getTime() - originalDate.getTime());
+	var part3 = c3 * (story.get('correctRehearsal') / story.get('totalRehearsal'));
+	console.log(part1.toString() + ' ' + part2.toString() + ' ' + part3.toString());
+	return part1 + part2 + part3;
+
+}
+
 function checkPasswordNew(web, index) {
 	//update rehearsal time
 
@@ -864,8 +880,11 @@ function checkPasswordNew(web, index) {
 					//update record time
 					var date = new Date();
 					console.log('calculating old ' + record.get('lastRehearsed').toString()  + ' new ' + date.toString());
-					calculateElapsedTime(record.get('lastRehearsed'), date)
+					calculateElapsedTime(record.get('lastRehearsed'), date);
 					record.set('lastRehearsed', date);
+					record.set('totalRehearsal', record.get('totalRehearsal')+1);
+					//everything is 100% now?? cannot tell 
+					record.set('correctRehearsal', record.get('correctRehearsal')+1);
 					console.log('story last reherased....');
 					console.log(date);
 					// if that interval not satisfied aka length of satisfactory less than that intervalNum
@@ -1056,10 +1075,11 @@ function renderStoryBank() {
 			var listHTML = '<div id="bankStories"><ul data-role="listview" data-inset="true">'
 			for (var i =0; i < records.length; i++ ){
 				var record = records[i];
+				var score = calculateScoreForStory(record);
 				//var li = '<li><a href="#" ><img src="images/person/{0}.jpg"><p>{1}</p></a></li>'
 				var pair = "<div><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure> \
-						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span>{4}</div>";
-				var newli = String.format(pair, record.get('person'), record.get('person'), record.get('scene').toLowerCase(), record.get('scene'), record.get('lastRehearsed').toString());
+						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span>{4} Score : {5}</div>";
+				var newli = String.format(pair, record.get('person'), record.get('person'), record.get('scene').toLowerCase(), record.get('scene'), record.get('lastRehearsed').toString(), score.toString());
 	    		listHTML += newli;
 	    	}
 	    	listHTML += "</ul></div>";
@@ -1118,6 +1138,8 @@ $( document ).ready(function(){
 			refList: [],
 			intervalNum: 0,
 			rehearsalList: [],
+			correctRehearsal: 0,
+			totalRehearsal: 0,
 			interval: tempStartingInterval
 		});
 	}
