@@ -41,7 +41,7 @@
 	font-family: Lato;
 
 }
-.ui-content {
+.ui-content:not(#gamepage) {
 	background-color: #181818;
 	color: white;
 	padding-left: 20%;
