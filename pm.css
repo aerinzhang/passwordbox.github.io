@@ -38,8 +38,14 @@
     -webkit-tap-highlight-color: transparent;
 	/* prevent the user from highlighting any text */
 	/*font-family: 'Linden Hill', serif;*/
-	font-family: 'Chelsea Market', cursive;
+	font-family: Lato;
 
+}
+.ui-content {
+	background-color: black;
+	color: white;
+	padding-left: 20%;
+	padding-right: 20%
 }
 #clock {
 	height: 50%;
@@ -67,6 +73,9 @@
 	text-align: center;
 }
 
+p {
+	opacity: 0.9;
+}
 
 figure {
 	display: inline-block;
@@ -81,11 +90,13 @@ figcaption {
 	padding-top: 100px;
 }
 .ui-page{
-	background-image: url('lightpaperfibers.png');
 	text-align: center;
+	background-color: black;
 }
 .ui-content {
 	font-size: 17pt;
+	opacity: 0.9;
+
 }
 .ui-header .ui-title, .ui-footer .ui-title {
 	font-size: 24px;
@@ -166,4 +177,70 @@ figcaption {
 .pairdiv2>figure {
 	margin:0px;
 
+}
+
+.ui-navbar {
+	height: 95px;
+	background-color: white;
+}
+
+.ui-navbar li .ui-btn {
+	font-size: 25px;
+	text-align: center;
+	background-color: white;
+}
+
+
+.ui-header .ui-navbar .ui-btn {
+	background-color: white;
+	
+}
+.ui-header {
+	background-color: black;
+	
+}
+.ui-header .ui-navbar .ui-btn:not(.logo) {
+	padding-top: 10%;
+	opacity:0.8;
+	font-family: Lato;
+}
+/*
+.ui-header .ui-navbar .ui-btn:not(.logo):hover {
+	opacity: 0.6;
+	text-decoration: underline;
+}
+
+.ui-header .ui-navbar .ui-btn:not(.logo):hover {
+	opacity: 0.6;
+	text-decoration: underline;
+}
+
+*/
+.ui-navbar ul li:not(.logo):hover {
+	opacity: 0.6;
+}
+.ui-navbar li .ui-block-b:hover {
+	opacity: 0.7;
+}
+.ui-header .logo .ui-link .ui-btn {
+
+	padding-top: 0px;
+}
+.logo {
+	padding:0px 0px 0px 0px;
+	margin:0px 0px 0px 0px;
+}
+.logo img {
+	padding:0px 0px 0px 0px;
+	width:25%;
+	height: 25%;
+	margin:0px 0px 0px 0px;
+}
+
+#home .ui-content{
+	padding-top: 10%;
+}
+
+#loginButton {
+	font-family: Lato;
 }

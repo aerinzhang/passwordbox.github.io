@@ -20,6 +20,7 @@
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 		<link rel='stylesheet' href='pm.css'/>
+		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Linden+Hill' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Chelsea+Market' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
@@ -33,9 +34,11 @@
 			<div data-role="header">
 				<div data-role='navbar'>
 					<ul class='menu'>
-						<li><a href='#bank'>Story Bank</a></li>
-						<li><a href='#accounts'>Accounts</a></li>
-						<li><a href='#game'>Game</a></li>
+						<li><a class='logo' ref='#'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='home-bank' class='ui-disabled'>STORY BANK</a></li>
+						<li><a href='#accounts' id='home-accounts' class='ui-disabled'>ACCOUNTS</a></li>
+						<li><a href='#game' id='home-game' class='ui-disabled'>GAME</a></li>
+
 					</ul>
 				</div>
 			</div>
@@ -67,16 +70,6 @@
 				</div>
 				</div>
 
-			</div>
-			<div data-role='footer' data-id='fool' data-position='fixed'>
-				<div data-role='navbar'>
-					<ul>
-						<!-- make it disabled -->
-						<li><a href='#bank' id='home-bank' class='ui-disabled'>Story Bank</a></li>
-						<li><a href='#accounts' id='home-accounts' class='ui-disabled'>Accounts</a></li>
-						<li><a href='#game' id='home-game' class='ui-disabled'>Game</a></li>
-					</ul>
-				</div>
 			</div>
 		</div>
 		<!-- Hide UI until user has authenticated -->
@@ -194,7 +187,7 @@
 			<div data-role='header'><h1>Let us make some real randomness</h1></div>
 			<div data-role='content'>
 				<h2></h2>
-				<p>Please enter a few (at least 30) random characters </p>
+				<p>Please enter a few (at least 30) random characters to provide a seed for the pseudorandom generator.</p>
 				<p><textarea id='randomness' cols='100' rows='40'> </textarea></p>
 				<input id='submitRandom' type='submit' value='Generate Randomness & Start' onclick='startGame()'/>
 
