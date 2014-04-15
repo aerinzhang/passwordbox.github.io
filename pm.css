@@ -241,6 +241,6 @@ figcaption {
 	padding-top: 10%;
 }
 
-#loginButton {
+.ui-btn {
 	font-family: Lato;
 }
