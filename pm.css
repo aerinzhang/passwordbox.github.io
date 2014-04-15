@@ -88,6 +88,7 @@ div.ui-page{
 	text-align: center;
 	background-color: white;
 	min-height: 100%;
+	height: 100%;
 }
 
 div.ui-content {
@@ -96,8 +97,10 @@ div.ui-content {
 	padding-left: 20%;
 	padding-right: 20%;
 	min-height: 100%;
+	height: 100%;
 	font-size: 17pt;
 	opacity: 0.85;
+
 
 }
 .ui-header .ui-title, .ui-footer .ui-title {
@@ -252,4 +255,11 @@ body, html {
 #gamepage > div.ui-content, #gameForget > div.ui-content {
 	padding-left: 0;
 	padding-right: 0;
+}
+
+div#bank .ui-page{
+	min-height: 100%;
+	height:auto;
+	height: 100%;
+	background-color: #181818;
 }

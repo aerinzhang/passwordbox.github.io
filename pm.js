@@ -1311,6 +1311,8 @@ $( document ).ready(function(){
 	});
 
 	$('#newTask').focus();
+	$('#bank').css('min-height', window.innerHeight);
+	console.log('window height is .... ' + window.innerHeight.toString());
 
 });
 
