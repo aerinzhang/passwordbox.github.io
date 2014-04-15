@@ -245,7 +245,7 @@ figcaption {
 	font-family: Lato;
 }
 
-#gamepage > div.ui-content {
+#gamepage > div.ui-content, #gameForget > div.ui-content {
 	padding-left: 0;
 	padding-right: 0;
 }
