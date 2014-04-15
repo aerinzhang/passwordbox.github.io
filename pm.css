@@ -42,7 +42,7 @@
 
 }
 .ui-content {
-	background-color: black;
+	background-color: #181818;
 	color: white;
 	padding-left: 20%;
 	padding-right: 20%
@@ -91,11 +91,11 @@ figcaption {
 }
 .ui-page{
 	text-align: center;
-	background-color: black;
+	background-color: white;
 }
 .ui-content {
 	font-size: 17pt;
-	opacity: 0.9;
+	opacity: 0.85;
 
 }
 .ui-header .ui-title, .ui-footer .ui-title {
