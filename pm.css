@@ -267,3 +267,7 @@ div#bank .ui-page{
 .click{
 	background-color: #000000 !important;
 }
+
+.ui-navbar{
+	height:10%;
+}
