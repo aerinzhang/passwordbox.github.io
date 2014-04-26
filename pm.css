@@ -264,6 +264,6 @@ div#bank .ui-page{
 	background-color: #181818;
 }
 
-.click {
-	background-color: #ffffff;
+#bank-bank {
+	background-color: #000000 !important;
 }
