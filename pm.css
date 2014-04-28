@@ -302,3 +302,7 @@ div#bank .ui-page{
     -moz-transition: -moz-transform .2s ease-out;
     transition: transform .2s ease-out;
 }
+
+#bankStories p {
+	color:black;
+}
