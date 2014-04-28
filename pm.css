@@ -272,6 +272,13 @@ div#bank .ui-page{
 	height: 94px;
 }
 
-.menu .li, .menu{
+.menu .li, .menu, .menu .li a{
 	height:94px;
+}
+
+.menu {
+	position:relative;
+}
+.menu .li {
+	position:absolute;
 }
