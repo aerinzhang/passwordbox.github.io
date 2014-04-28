@@ -289,6 +289,7 @@ div#bank .ui-page{
 	display: inline-block;
     border: 5px solid white;
     background: white;
+    opacity:1;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
