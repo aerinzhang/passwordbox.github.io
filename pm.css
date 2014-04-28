@@ -278,3 +278,6 @@ div#bank .ui-page{
 .menu .ui-btn .click {
 
 }
+#dialog{
+	display: none;
+}

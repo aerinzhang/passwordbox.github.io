@@ -1091,6 +1091,8 @@ function renderStoryBank() {
 }
 
 $( document ).ready(function(){
+	$("#dialog").dialog({autoOpen : false, modal : true, show : "blind", hide : "blind"});
+
 	var emaiList = $('#accountsList');
 	var sbutton = $('#submit');
 	$('#accountsList').submit(submit);
@@ -1336,9 +1338,11 @@ $( document ).ready(function(){
 	$('#bank').css('min-height', window.innerHeight);
 	console.log('window height is .... ' + window.innerHeight.toString());
 
+
 });
 
 function displayInfo() {
+	$('#dialog').css('display', 'block');
 	$( "#dialog" ).dialog();
 }
 
