@@ -286,7 +286,8 @@ div#bank .ui-page{
 
 /* story bank list view */
 #bankStories li {
-	display: inline-block;
+	/*display: inline-block;*/
+	display:inline;
     border: 5px solid white;
     background: white;
     opacity:1;
