@@ -305,6 +305,20 @@ div#bank .ui-page{
     transition: transform .2s ease-out;
 }
 
+#bankStories li:active {
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    position: relative;
+    margin: auto;
+    z-index: 5;
+    vertical-align: middle;
+    text-align: center;
+    height: 60%;
+    /*-moz-box-shadow: 10px 10px 5px #666;
+    -webkit-box-shadow: 10px 10px 5px #666;
+    box-shadow: 10px 10px 5px #666;
+    */
+}
 #bankStories p {
 	color:black;
 }
