@@ -266,8 +266,15 @@ div#bank .ui-page{
 
 .click{
 	background-color: #181818 !important;
+	color: #ffffff !important;
+	opacity: .85 !important;
 }
 
 .menu .ui-btn:not(.logo){
 	height: 44px;
+	border: 0 0 0 0px;
+}
+
+.menu .ui-btn .click {
+
 }

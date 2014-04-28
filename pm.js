@@ -1338,6 +1338,9 @@ $( document ).ready(function(){
 
 });
 
+function displayInfo() {
+	$( "#dialog" ).dialog();
+}
 
 function getObjectComboBox(id) {
 	$('#' + id).kendoComboBox({
