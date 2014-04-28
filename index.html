@@ -34,7 +34,7 @@
 			<div data-role="header">
 				<div data-role='navbar'>
 					<ul class='menu'>
-						<li><a class='logo' onclick='displayInfo()'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a class='logo'  onclick='displayInfo()'><img src="box_logo.jpg" alt="logo"/></a></li>
 						<li><a href='#bank' id='home-bank' class='ui-disabled'>STORY BANK</a></li>
 						<li><a href='#accounts' id='home-accounts' class='ui-disabled'>ACCOUNTS</a></li>
 						<li><a href='#game' id='home-game' class='ui-disabled'>GAME</a></li>
@@ -193,8 +193,9 @@
 
 			</div>
 		</div>
-		<div id="dialog" data-rel='dialog' title="Basic dialog">
-  			<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+		<div id="dialog" title="Basic dialog">
+  			<p>This application is built for my undergraduate senior thesis research project at Carnegie Mellon University.</p>
+  			<button onclick='$("dialog").close()'>Close</button>
 		</div>
 	</body>
 </html>
