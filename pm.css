@@ -282,3 +282,23 @@ div#bank .ui-page{
 	width: 100%;
 	color:white;
 }
+
+
+/* story bank list view */
+#bankStories li {
+	display: inline-block;
+    border: 5px solid white;
+    background: white;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    -webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
+    -moz-box-shadow: 10px 10px 5px #666;
+    -webkit-box-shadow: 10px 10px 5px #666;
+    box-shadow: 10px 10px 5px #666;
+    vertical-align: middle;
+    -wekkit-transition: -webkit-transform .2s ease-out;
+    -moz-transition: -moz-transform .2s ease-out;
+    transition: transform .2s ease-out;
+}
