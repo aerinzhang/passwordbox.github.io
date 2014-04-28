@@ -268,6 +268,10 @@ div#bank .ui-page{
 	background-color: #000000 !important;
 }
 
-.menu .ui-btn:not(.logo) + .menu .li{
+.menu .ui-btn:not(.logo){
 	height: 94px;
-}g
+}
+
+.menu .li, .menu{
+	height:94px;
+}
