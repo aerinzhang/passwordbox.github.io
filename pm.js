@@ -1078,7 +1078,7 @@ function renderStoryBank() {
 				var score = calculateScoreForStory(record);
 				//var li = '<li><a href="#" ><img src="images/person/{0}.jpg"><p>{1}</p></a></li>'
 				var pair = "<li><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p>{1}</p></figcaption></figure> \
-						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span><p>{4}</p><p>Score : {5}</p></li>";
+						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><p>{3}</p></figcaption></figure></span><p>{4}</p><p>Score : {5}</p></li>";
 				var newli = String.format(pair, record.get('person'), record.get('person'), record.get('scene').toLowerCase(), record.get('scene'), record.get('lastRehearsed').toString(), score.toString());
 	    		listHTML += newli;
 	    	}
