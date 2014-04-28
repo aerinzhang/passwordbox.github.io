@@ -1342,9 +1342,15 @@ $( document ).ready(function(){
 });
 
 function displayInfo() {
-	alert('hi');
 	$('#dialog').css('display', 'block');
-	$( "#dialog" ).dialog();
+	$('#dialog').dialog({
+            resizable: false,
+            modal: true,
+            width: 400,
+            height: 450,
+            overlay: { backgroundColor: "#000", opacity: 0.5 },
+            buttons:{ "Close": function() { $(this).dialog("close"); } },
+            close: function(ev, ui) { $(this).remove(); },
 }
 
 function getObjectComboBox(id) {
