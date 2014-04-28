@@ -305,9 +305,9 @@ div#bank .ui-page{
     transition: transform .2s ease-out;
 }
 
-#bankStories li:active {
-    -webkit-transform: scale(2);
-    -moz-transform: scale(2);
+#bankStories li:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
     position: relative;
     margin: auto;
     z-index: 5;
