@@ -1092,7 +1092,7 @@ function renderStoryBank() {
 
 $( document ).ready(function(){
 	$("#dialog").dialog({autoOpen : false, modal : true, show : "blind", hide : "blind"});
-	$("#dialog-button").click(function() {
+	$("#dialog-button").click(function(e) {
 		alert('hi');
 		$("dialog").close();
 	});
