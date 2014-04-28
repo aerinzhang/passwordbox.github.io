@@ -91,7 +91,7 @@ div.ui-page{
 	height: 100%;
 }
 
-div.ui-content {
+div.ui-content:not(#accounts){
 	background-color: #181818;
 	color: white;
 	padding-left: 20%;
