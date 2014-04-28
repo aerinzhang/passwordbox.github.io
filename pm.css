@@ -91,7 +91,7 @@ div.ui-page{
 	height: 100%;
 }
 
-div.ui-content:not(#bank){
+div.ui-content:not(.non-half){
 	background-color: #181818;
 	color: white;
 	padding-left: 20%;
