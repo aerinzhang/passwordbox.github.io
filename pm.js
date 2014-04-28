@@ -1095,7 +1095,7 @@ $( document ).ready(function(){
 	$("#dialog-button").click(function() {
 		alert('hi');
 		$("dialog").close();
-	})
+	});
 	var emaiList = $('#accountsList');
 	var sbutton = $('#submit');
 	$('#accountsList').submit(submit);
