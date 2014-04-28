@@ -269,16 +269,6 @@ div#bank .ui-page{
 }
 
 .menu .ui-btn:not(.logo){
-	height: 94px;
+	height: 44px;
 }
 
-.menu .li, .menu, .menu .li a{
-	height:94px;
-}
-
-.menu {
-	position:relative;
-}
-.menu .li {
-	position:absolute;
-}
