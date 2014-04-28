@@ -1342,6 +1342,7 @@ $( document ).ready(function(){
 });
 
 function displayInfo() {
+	alert('hi');
 	$('#dialog').css('display', 'block');
 	$( "#dialog" ).dialog();
 }
