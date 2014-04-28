@@ -1092,7 +1092,10 @@ function renderStoryBank() {
 
 $( document ).ready(function(){
 	$("#dialog").dialog({autoOpen : false, modal : true, show : "blind", hide : "blind"});
-
+	$("#dialog-button").click(function() {
+		alert('hi');
+		$("dialog").close();
+	})
 	var emaiList = $('#accountsList');
 	var sbutton = $('#submit');
 	$('#accountsList').submit(submit);
