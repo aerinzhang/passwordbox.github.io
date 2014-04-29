@@ -102,8 +102,13 @@ div.ui-content{
 
 .non-half {
 	padding-top: 5%;
-	padding-left: 20%;
 }
+/*play memory game button in banklist */
+#banklist p {
+	padding-left: 20%;
+	padding-right: 20%;
+}
+
 div.ui-content:not(.non-half) {
 	padding-left: 20%;
 	padding-right: 20%;
