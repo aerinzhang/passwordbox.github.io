@@ -1372,7 +1372,7 @@ $( document ).ready(function(){
     			function (e) {
     				e.preventDefault();
     				var textList = $(this).find(".storyText");
-    				alert(textList[0]);
+    				alert(textList[0].innerHTML);
     				var person = textList[0].text();
     				var scene = textList[1].text();
     				alert(person);
