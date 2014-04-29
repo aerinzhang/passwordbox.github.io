@@ -97,10 +97,10 @@ div.ui-content{
 	min-height: 100%;
 	height: 100%;
 	font-size: 17pt;
-	opacity: 1;
+	opacity: 0.97;
 }
 
-div.ui-content:not(.non-half){
+div.ui-content:not(.non-half) {
 	padding-left: 20%;
 	padding-right: 20%;
 }
