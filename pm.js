@@ -246,7 +246,31 @@ function checkPassword2(web) {
  	$.mobile.changePage("#accounts");
 	return
 }
+function renderBoardFromList(list, flag) {
+	if (flag == NEED_URGENT_REHEARSAL) {
+		title = "Urgent Rehearsals"; 
+	} else if (flag == NEED_REHEARSAL_SOON) {
+		title = "Rehearsals";
+	} else {
+		//should never get here
+		alert('something is wrong!');
+		return;
+	}
+	var html = "<h3>" + title + "</h3><hr><div id='rehearsalBoard'><ul data-role='listview' data-inset="true">";
+	for (var i=0; i<list.length; i++)  {
+		var story = list[i];
+		var score = Math.round(calculateScoreForStory(story));
+		var date = extractDate(story.get('lastRehearsed'));
+		var pair = "<li><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dateText'>{4}</p></figcaption></figure> \
+					<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><p class='storyText'>{3}</p><p class='scoreText'>Score:{5}</p></figcaption></figure></span></li>";
+		var newli = String.format(pair, story.get('person'), story.get('person').replace('_', ' '), story.get('scene').toLowerCase(),
+					story.get('scene').replace('_', ' '), date, score.toString());
+	    html += newli;
+	}
+	html += '</ul></div>';
+	return html;
 
+}
 function renderRehearsalBoard() {
 	var html = "Welcome back!";
 	var buttonText = "";
@@ -255,30 +279,31 @@ function renderRehearsalBoard() {
 	var soonLen = rehearsalSoonList.length;
 
 	//no rehearsal due generate safe message
-	urgentLen = 0;
-	soonLen = 0;
+	urgentLen = 5;
+	soonLen = 5;
 	if ((urgentLen == 0) && (soonLen == 0)) {
-		html += "<p>All stories are rehearsed on time.</p><p>Great job! </p>\
-				 <p>Try do more rehearsals and increase your score.</p>";
+		html += "<p>All stories are rehearsed on time. Great job! </p>\
+				 <p>Try do more rehearsals to increase your score.</p>";
 		boardText = "<p>Great job! There are no rehearsals due.</p>\
 					 <p>Do extra rehearsals in story bank to increase your score!</p>\
 					 <p><a href='#bank' data-role='button'>Go!</a></p>";
 		$("#home-rehearsal").attr("href", "#bank");
 	} else if (urgentLen== 0) {
 		html += "<p>There are " + soonLen.toString() + " stories that need to be rehearsed soon. Do them now!</p>";
+		boardText = renderBoardFromList(rehearsalSoonList, NEED_REHEARSAL_SOON);
 	} else if (soonLen == 0) {
 		html += "<p>Oh no! There are " + urgentLen.toString() + " stories that need to be rehearsed NOW!</p>";
+		boardText = renderBoardFromList(urgentRehearsalList, NEED_URGENT_REHEARSAL);
 	} else {
 		html += "<p>We are really behind schedule! There are " + urgentLen.toString() + " urgent reherasals, and " 
 			   + soonLen.toString() + " stories to be rehearsed soon.</p>";
+		boardText = renderBoardFromList(urgentRehearsalList, NEED_URGENT_REHEARSAL);
+		boardText += renderBoardFromList(rehearsalSoonList, NEED_REHEARSAL_SOON);
 	}
 	//update home page
 	$("#home-words").html(html); 
 	$("#board-msg").html(boardText);
 	//update board page
-	
-
-
 }
 function checkEachStory() {
 	var records = storyBankTable.query();
