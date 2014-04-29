@@ -37,6 +37,8 @@ var NO_NEED_TO_REHEARSE = 0;
 var NEED_REHEARSAL_SOON = 1;
 var NEED_URGENT_REHEARSAL = 2; 
 
+var urgentRehearsalList = [];
+var rehearsalSoonList = [];
 
 
 //CONSTANT VALUES: ALL PAO LISTS
@@ -245,6 +247,27 @@ function checkPassword2(web) {
 	return
 }
 
+function renderRehearsalBoard() {
+	var html = "Welcome back!";
+	var buttonText = "";
+	var urgentLen = urgentRehearsalList.length;
+	var soonLen = rehearsalSoonList.length;
+	//no rehearsal due generate safe message
+	if ((urgentLen == 0) && (soonLen == 0)) {
+		html += "All stories are rehearsed on time. Great job! Try do more rehearsals and increase your score.";
+	} else if (urgentLen== 0) {
+		html += "There are " + soonLen.toString() + " stories that need to be rehearsed soon. Do them now!";
+	} else if (rehearsalSoonList.length == 0) {
+		html += "Oh no! There are " + soonLen.toString() + "stories that need to be rehearsed NOW!";
+	} else {
+		html += "We are really behind schedule! There are " + urgentLen.toString() + " urgent reherasals, and " 
+			   + soonLen.toString() + " stories to be rehearsed soon.";
+	}
+	//update home page
+	$("#home-words").html(html); 
+	//generate button
+
+}
 function checkEachStory() {
 	var records = storyBankTable.query();
 	for (var i=0; i < records.length; i++ ) {
@@ -256,9 +279,11 @@ function checkEachStory() {
 		if (check == NEED_URGENT_REHEARSAL) {
 			var old = $('#urgentRehearsal').html()
 			$('#urgentRehearsal').html( old + renderStoriesToBeRehearsed(story));
+			urgentRehearsalList.push(story);
 			console.log('urgent!' + story.get('person') + ' ' + story.get('scene'));
 		} else if (check == NEED_REHEARSAL_SOON) {
 			var old = $('#regularRehearsal').html(old + renderStoriesToBeRehearsed(story));
+			rehearsalSoonList.push(story);
 			console.log('rehearse soon!' + story.get('person') + ' ' + story.get('scene'));
 		} else {
 			//no need to rehearse
@@ -1299,6 +1324,7 @@ $( document ).ready(function(){
 			console.log('checking each story......');
     		checkEachStory();
     		console.log('finish');
+    		renderRehearsalBoard();
 			//updateListBool = false;
 		});
 	}

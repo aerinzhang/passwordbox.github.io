@@ -74,7 +74,21 @@
 		</div>
 		<!-- Hide UI until user has authenticated -->
 		<div data-role='page' data-title="board" id="board">
-
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu'>
+						<li><a class='logo' ref='#' class='click'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='board-bank'>STORY BANK</a></li>
+						<li><a href='#accounts' id='board-accounts'>ACCOUNTS</a></li>
+						<li><a href='#game' id='board-game' >GAME</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="content">
+				<div>Urgent Reherals</div>
+				<hr>
+				<div>Rehersals </div>
+			</div>
 		</div>
 		<!-- BANK PAGE -->
 		<div data-role="page" data-title="bank" id="bank">
@@ -135,7 +149,7 @@
 				</div>
 			</div>
 			<div data-role="content">
-				<div data-role='content' id='gamebeginning'>
+				<div data-role='content' id='gamebeginning' class='non-half'>
 					<p>How many stories can you memorize?</p>
 					<p id='game-text'> Instructions: You will see 10 person-action-object stories in this game. Spend 10 seconds visualizing each story in your head, and try to make it as vivid as possible by thinking of details. For example, if you see the story President Bush is flipping a leaf. When you are picturing it in your head, is the leaf big or small? Is he laughing or frowning? What color is the leaf? What kind of gestures is he making? </p>
 					<div class='buttondiv'>
