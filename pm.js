@@ -1067,6 +1067,16 @@ function renderAccountList(changePage) {
 
 }
 
+function extractDate(time) {
+	var year = time.getFullYear();
+	var date = time.getDate();
+	var hour = time.getHours();
+	var month = time.getMonth();
+	var months = ['Jan', 'Feb', 'Mar', 'Apr', "May", 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var hours = ['12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM',
+				 '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM'];
+	return String.format("{0} {1}, {2} {3}\'", hours[hour], months[month], date, year)
+}
 function renderStoryBank() {
 	$('#bank').bind("pageshow", function() {
 
@@ -1081,11 +1091,11 @@ function renderStoryBank() {
 						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><span class='storyText'>{3}</span></figcaption></figure></span><span class='storyText'>{4}</span><span class='storyText'>Score : {5}</span></li>";
 				var newli = String.format(pair, record.get('person'), record.get('person').replace('_', ' '), record.get('scene').toLowerCase(),
 					record.get('scene').replace('_', ' '), record.get('lastRehearsed').toString(), score.toString());
-*/
+*/				var date = extractDate(record.get('lastRehearsed'));
 				var pair = "<li><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dataText'>{4}</p></figcaption></figure> \
 						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><p class='storyText'>{3}</p><p>Score:{5}</p></figcaption></figure></span></li>";
 				var newli = String.format(pair, record.get('person'), record.get('person').replace('_', ' '), record.get('scene').toLowerCase(),
-					record.get('scene').replace('_', ' '), record.get('lastRehearsed').toString(), score.toString());
+					record.get('scene').replace('_', ' '), date, score.toString());
 	    		listHTML += newli;
 	    	}
 	    	listHTML += "</ul></div>";
