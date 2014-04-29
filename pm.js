@@ -290,7 +290,7 @@ function createPageForStory() {
 	$( "#gamepage" ).page( "destroy" ).page();
 	$('#game-password').focus();
 		var pageHTML = '';
-		var newPage = $("<div data-role='page' data-title='"+person+scene"' id="+person+scene+"Page><div data-role='header' data-position=fixed>\
+		var newPage = $("<div data-role='page' data-title='"+person+scene+"' id="+person+scene+"Page><div data-role='header' data-position=fixed>\
 								<a href=#board data-icon='back'>Back</a><h1>"+ Rehearsal + "</h1></div><div data-role='content' class=images>"+pageHtml+" </div></div>");
 		
 	}
