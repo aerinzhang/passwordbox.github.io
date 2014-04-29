@@ -104,9 +104,10 @@ div.ui-content{
 	padding-top: 5%;
 }
 /*play memory game button in banklist */
-#banklist-button {
-	padding-left: 20%;
-	padding-right: 20%;
+#banklist a {
+	width: 50%;
+	margin-left: 20%;
+	margin-right: 20%;
 }
 
 div.ui-content:not(.non-half) {
