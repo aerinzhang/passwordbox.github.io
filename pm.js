@@ -256,7 +256,7 @@ function renderBoardFromList(list, flag) {
 		alert('something is wrong!');
 		return;
 	}
-	var html = "<h3>" + title + "</h3><hr><div id='rehearsalBoard'><ul data-role='listview' data-inset="true">";
+	var html = "<h3>" + title + "</h3><hr><div id='rehearsalBoard'><ul data-role='listview' data-inset='true'>";
 	for (var i=0; i<list.length; i++)  {
 		var story = list[i];
 		var score = Math.round(calculateScoreForStory(story));
@@ -279,8 +279,6 @@ function renderRehearsalBoard() {
 	var soonLen = rehearsalSoonList.length;
 
 	//no rehearsal due generate safe message
-	urgentLen = 5;
-	soonLen = 5;
 	if ((urgentLen == 0) && (soonLen == 0)) {
 		html += "<p>All stories are rehearsed on time. Great job! </p>\
 				 <p>Try do more rehearsals to increase your score.</p>";
