@@ -1092,7 +1092,7 @@ function renderStoryBank() {
 				var newli = String.format(pair, record.get('person'), record.get('person').replace('_', ' '), record.get('scene').toLowerCase(),
 					record.get('scene').replace('_', ' '), record.get('lastRehearsed').toString(), score.toString());
 */				var date = extractDate(record.get('lastRehearsed'));
-				var pair = "<li><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dataText'>{4}</p></figcaption></figure> \
+				var pair = "<li><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dateText'>{4}</p></figcaption></figure> \
 						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><p class='scoreText'>{3}</p><p>Score:{5}</p></figcaption></figure></span></li>";
 				var newli = String.format(pair, record.get('person'), record.get('person').replace('_', ' '), record.get('scene').toLowerCase(),
 					record.get('scene').replace('_', ' '), date, score.toString());
