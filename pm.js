@@ -250,12 +250,19 @@ function checkPassword2(web) {
 function renderRehearsalBoard() {
 	var html = "Welcome back!";
 	var buttonText = "";
+	var boardText = "";
 	var urgentLen = urgentRehearsalList.length;
 	var soonLen = rehearsalSoonList.length;
 
 	//no rehearsal due generate safe message
+	urgentLen = 0;
+	soonLen = 0;
 	if ((urgentLen == 0) && (soonLen == 0)) {
 		html += "<p>All stories are rehearsed on time. Great job! Try do more rehearsals and increase your score.<p>";
+		boardText = "<p>Great job! There are no rehearsals due.</p>
+					 <p>Do extra rehearsals in story bank to increase your score!</p>
+					 <p><a href='#bank' data-role='button'>Go!</a></p>";
+		$("#home-rehearsal").attr("href", "#bank");
 	} else if (urgentLen== 0) {
 		html += "<p>There are " + soonLen.toString() + " stories that need to be rehearsed soon. Do them now!</p>";
 	} else if (soonLen == 0) {
@@ -266,7 +273,10 @@ function renderRehearsalBoard() {
 	}
 	//update home page
 	$("#home-words").html(html); 
-	//generate button
+	$("#board-msg").html(boardText);
+	//update board page
+	
+
 
 }
 function checkEachStory() {
