@@ -252,19 +252,17 @@ function renderRehearsalBoard() {
 	var buttonText = "";
 	var urgentLen = urgentRehearsalList.length;
 	var soonLen = rehearsalSoonList.length;
-	console.log("hiiii urgentlength is " + urgentRehearsalList.length.toString());
-	console.log("hiiii soonlength is " + rehearsalSoonList.length.toString());
 
 	//no rehearsal due generate safe message
 	if ((urgentLen == 0) && (soonLen == 0)) {
-		html += "All stories are rehearsed on time. Great job! Try do more rehearsals and increase your score.";
+		html += "<p>All stories are rehearsed on time. Great job! Try do more rehearsals and increase your score.<p>";
 	} else if (urgentLen== 0) {
-		html += "There are " + soonLen.toString() + " stories that need to be rehearsed soon. Do them now!";
-	} else if (rehearsalSoonList.length == 0) {
-		html += "Oh no! There are " + soonLen.toString() + "stories that need to be rehearsed NOW!";
+		html += "<p>There are " + soonLen.toString() + " stories that need to be rehearsed soon. Do them now!</p>";
+	} else if (soonLen == 0) {
+		html += "<p>Oh no! There are " + urgentLen.toString() + " stories that need to be rehearsed NOW!</p>";
 	} else {
-		html += "We are really behind schedule! There are " + urgentLen.toString() + " urgent reherasals, and " 
-			   + soonLen.toString() + " stories to be rehearsed soon.";
+		html += "<p>We are really behind schedule! There are " + urgentLen.toString() + " urgent reherasals, and " 
+			   + soonLen.toString() + " stories to be rehearsed soon.</p>";
 	}
 	//update home page
 	$("#home-words").html(html); 
