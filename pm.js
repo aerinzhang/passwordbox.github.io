@@ -271,20 +271,15 @@ function renderBoardFromList(list, flag) {
 	return html;
 }
 
-function createPageForStory() {
-	var stories = storyBankTable.query();
-	for (var i=0; i<stories.length; i++) {
-		var story = stories[i];
-		var person = story.get('person');
-		var scene = story.get('scene');
-		var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
-				<figure><img class=clue src=images/scene/{1}.jpg /><figcaption>{2}</figcaption></figure>\
-				<span data-role='fieldcontain'><form action='#'>\
-				<span><input name='password' autocorrect='off' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
-				<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
-				<br><br><div class=halfbuttonDiv><button type='submit' tabindex='3' class=right name='submit; value='submit' onclick='generateNextCheck()' >Check and Next</button>\
-				<a href='#' data-role='button' class=left tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
-		$('#gamestories').html(String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' ')));
+function createPageForStory(person, scene) {
+	var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
+			<figure><img class=clue src=images/scene/{1}.jpg /><figcaption>{2}</figcaption></figure>\
+			<span data-role='fieldcontain'><form action='#'>\
+			<span><input name='password' autocorrect='off' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
+			<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
+			<br><br><div class=halfbuttonDiv><button type='submit' tabindex='3' class=right name='submit; value='submit' onclick='generateNextCheck()' >Check and Next</button>\
+			<a href='#' data-role='button' class=left tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
+	$('#gamestories').html(String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' ')));
 	getVerbComboBox('game-password');
 	getObjectComboBox('game-password-b');
 	$( "#gamepage" ).page( "destroy" ).page();
@@ -1372,11 +1367,11 @@ $( document ).ready(function(){
     			function (e) {
     				e.preventDefault();
     				var textList = $(this).find(".storyText");
-    				alert(textList[0].innerHTML);
-    				var person = textList[0].text();
-    				var scene = textList[1].text();
+    				var person = textList[0].innerHTML;
+    				var scene = textList[1].innerHTML;
     				alert(person);
     				alert(scene);
+    				createPageForStory(person, scene);
     			});
 		});
 	}
