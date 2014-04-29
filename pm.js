@@ -275,13 +275,13 @@ function createPageForStory() {
 	var stories = storyBankTable.query();
 	for (var i=0; i<stories.length; i++) {
 		var story = stories[i];
-		var person = ;
-		var scene = ;;
+		var person = '';
+		var scene = '';
 		var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li>\
 							  <a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
 		var newPage = $("<div data-role='page' data-title='"+web+"' id="+web+"Page><div data-role='header' data-position=fixed>\
 								<a href=#accounts data-icon='back'>Back</a><h1>"+ web + "</h1></div><div data-role='content' class=images>"+pageHtml+" </div>"+footer+"</div>");
-		var page = ;
+		var page = '';
 	}
 
 }
