@@ -252,6 +252,9 @@ function renderRehearsalBoard() {
 	var buttonText = "";
 	var urgentLen = urgentRehearsalList.length;
 	var soonLen = rehearsalSoonList.length;
+	console.log("hiiii urgentlength is " + urgentRehearsalList.length.toString());
+	console.log("hiiii soonlength is " + rehearsalSoonList.length.toString());
+
 	//no rehearsal due generate safe message
 	if ((urgentLen == 0) && (soonLen == 0)) {
 		html += "All stories are rehearsed on time. Great job! Try do more rehearsals and increase your score.";
