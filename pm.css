@@ -100,6 +100,9 @@ div.ui-content{
 	opacity: 0.97;
 }
 
+.non-half {
+	padding-top: 5%;
+}
 div.ui-content:not(.non-half) {
 	padding-left: 20%;
 	padding-right: 20%;
