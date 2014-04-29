@@ -1371,8 +1371,11 @@ $( document ).ready(function(){
     		$('ul.rehearsalList li').on('click',
     			function (e) {
     				e.preventDefault();
-    				alert('hi');
-    				alert($(this).find(".storyText").text());
+    				var textList = $(this).find(".storyText");
+    				var person = textList[0].text();
+    				var scene = textList[1].text();
+    				alert(person);
+    				alert(scene);
     			});
 		});
 	}
