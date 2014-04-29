@@ -1211,13 +1211,6 @@ $( document ).ready(function(){
     $.getScript("sha2.js", function(){
     	console.log("SHA 256 loaded and executed.");
     });
-    //link li items to generatePage
-    $('ul.rehearsalList li').on('click',
-    	function (e) {
-    		e.preventDefault();
-    		alert('hi');
-    		alert($(this).find(".storyText").text());
-    	});
 
     //DROPBOX FUNCTIONS
 	window.insertStory = function insertStory(personName, sceneName) {
@@ -1374,6 +1367,13 @@ $( document ).ready(function(){
     		//create dynamic page for each account
     		//createPageForStory();
 			//updateListBool = false;
+			//link li items to generatePage
+    		$('ul.rehearsalList li').on('click',
+    			function (e) {
+    				e.preventDefault();
+    				alert('hi');
+    				alert($(this).find(".storyText").text());
+    			});
 		});
 	}
 	
