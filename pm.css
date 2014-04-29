@@ -323,3 +323,7 @@ div#bank .ui-page{
 .storyText {
 	color:black;
 }
+.dateText {
+	color:black;
+	font-size: 10em;
+}
