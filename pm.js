@@ -258,7 +258,8 @@ function renderRehearsalBoard() {
 	urgentLen = 0;
 	soonLen = 0;
 	if ((urgentLen == 0) && (soonLen == 0)) {
-		html += "<p>All stories are rehearsed on time. Great job! Try do more rehearsals and increase your score.<p>";
+		html += "<p>All stories are rehearsed on time.</p><p>Great job! </p>\
+				 <p>Try do more rehearsals and increase your score.</p>";
 		boardText = "<p>Great job! There are no rehearsals due.</p>\
 					 <p>Do extra rehearsals in story bank to increase your score!</p>\
 					 <p><a href='#bank' data-role='button'>Go!</a></p>";
