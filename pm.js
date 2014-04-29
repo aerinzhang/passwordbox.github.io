@@ -1085,7 +1085,7 @@ function renderStoryBank() {
 			var listHTML = '<div id="bankStories"><ul data-role="listview" data-inset="true">'
 			for (var i =0; i < records.length; i++ ){
 				var record = records[i];
-				var score = calculateScoreForStory(record);
+				var score = Math.round(calculateScoreForStory(record));
 				//var li = '<li><a href="#" ><img src="images/person/{0}.jpg"><p>{1}</p></a></li>'
 				/*var pair = "<li><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><span class='storyText'>{1}</span></figcaption></figure> \
 						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><span class='storyText'>{3}</span></figcaption></figure></span><span class='storyText'>{4}</span><span class='storyText'>Score : {5}</span></li>";
