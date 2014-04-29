@@ -275,13 +275,24 @@ function createPageForStory() {
 	var stories = storyBankTable.query();
 	for (var i=0; i<stories.length; i++) {
 		var story = stories[i];
-		var person = '';
-		var scene = '';
-		var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li>\
-							  <a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
-		var newPage = $("<div data-role='page' data-title='"+web+"' id="+web+"Page><div data-role='header' data-position=fixed>\
-								<a href=#accounts data-icon='back'>Back</a><h1>"+ web + "</h1></div><div data-role='content' class=images>"+pageHtml+" </div>"+footer+"</div>");
-		var page = '';
+		var person = story.get('person');
+		var scene = story.get('scene');
+		var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
+				<figure><img class=clue src=images/scene/{1}.jpg /><figcaption>{2}</figcaption></figure>\
+				<span data-role='fieldcontain'><form action='#'>\
+				<span><input name='password' autocorrect='off' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
+				<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
+				<br><br><div class=halfbuttonDiv><button type='submit' tabindex='3' class=right name='submit; value='submit' onclick='generateNextCheck()' >Check and Next</button>\
+				<a href='#' data-role='button' class=left tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
+		$('#gamestories').html(String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' ')));
+	getVerbComboBox('game-password');
+	getObjectComboBox('game-password-b');
+	$( "#gamepage" ).page( "destroy" ).page();
+	$('#game-password').focus();
+		var pageHTML = '';
+		var newPage = $("<div data-role='page' data-title='"+person+scene"' id="+person+scene+"Page><div data-role='header' data-position=fixed>\
+								<a href=#board data-icon='back'>Back</a><h1>"+ Rehearsal + "</h1></div><div data-role='content' class=images>"+pageHtml+" </div></div>");
+		
 	}
 
 }
@@ -1199,6 +1210,11 @@ $( document ).ready(function(){
     }});
     $.getScript("sha2.js", function(){
     	console.log("SHA 256 loaded and executed.");
+    });
+    //link li items to generatePage
+    $('#board li').click(function(e) 
+    { 
+     alert($(this).find(".storyText").text());
     });
 
     //DROPBOX FUNCTIONS
