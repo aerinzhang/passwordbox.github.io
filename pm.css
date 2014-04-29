@@ -295,7 +295,7 @@ div#bank .ui-page{
 
 
 /* story bank list view */
-#bankStories li, #rehearsalBoard li {
+#bankStories li, .rehearsalBoard li {
 	display: inline-block;
 	list-style-type: none;
     border: 5px solid white;
@@ -316,7 +316,7 @@ div#bank .ui-page{
     transition: transform .2s ease-out;
 }
 
-#bankStories li:hover, #rehearsalBoard li:hover {
+#bankStories li:hover, .rehearsalBoard li:hover {
     -webkit-transform: scale(1.2);
     -moz-transform: scale(1.2);
     position: relative;
