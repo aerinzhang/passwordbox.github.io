@@ -325,5 +325,9 @@ div#bank .ui-page{
 }
 .dateText {
 	color:black;
-	font-size: 11px;
+	font-size: 13px;
+}
+.scoreText {
+	color:black;
+	font-size: 13px;
 }
