@@ -269,6 +269,20 @@ function renderBoardFromList(list, flag) {
 	}
 	html += '</ul></div>';
 	return html;
+}
+
+function createPageForStory() {
+	var stories = storyBankTable.query();
+	for (var i=0; i<stories.length; i++) {
+		var story = stories[i];
+		var person = ;
+		var scene = ;;
+		var footer = "<div data-role=footer data-id=fool data-position=fixed><div data-role=navbar><ul><li>\
+							  <a href=#home>Home</a></li><li><a href=#accounts>Accounts</a></li><li><a href=#confirm>Setting</a></li>";
+		var newPage = $("<div data-role='page' data-title='"+web+"' id="+web+"Page><div data-role='header' data-position=fixed>\
+								<a href=#accounts data-icon='back'>Back</a><h1>"+ web + "</h1></div><div data-role='content' class=images>"+pageHtml+" </div>"+footer+"</div>");
+		var page = ;
+	}
 
 }
 function renderRehearsalBoard() {
@@ -1167,6 +1181,8 @@ function renderStoryBank() {
 }
 
 $( document ).ready(function(){
+	$.mobile.changePage('#board');
+	$.mobile.changePage('#home');
 	$("#dialog").dialog({autoOpen : false, modal : true, show : "blind", hide : "blind"});
 	$("#dialog-button").click(function(e) {
 		alert('hi');
@@ -1190,23 +1206,6 @@ $( document ).ready(function(){
     $.getScript("sha2.js", function(){
     	console.log("SHA 256 loaded and executed.");
     });
-
-    //show story bank
-    // $('#bank').bind("pageshow", function() {
-    // 	console.log(storyBank);
-    // 	if (storyBank.length != 0) {
-    // 		//generate story page
-    // 		var listHTML = '<div id="bankStories"><ul data-role="listview" data-inset="true">'
-    // 		for (var i =0; i < storyBank.length; i++ ){
-    // 			var li = '<li><a href="#" ><img src="images/person/{0}.jpg"><p>{1}</p></a></li>'
-    // 			var newli = String.format(li, storyBank[i][0], storyBank[i][0]);
-	   //  		listHTML += newli;
-	   //  	}
-	   //  	listHTML += "</ul></div>"
-	   // 	$('#banklist').html(listHTML);
-	   // 	$("#bankStories").listview().listview("refresh");
-    // 	}
-    // });
 
     //DROPBOX FUNCTIONS
 	window.insertStory = function insertStory(personName, sceneName) {
@@ -1360,6 +1359,8 @@ $( document ).ready(function(){
     		checkEachStory();
     		console.log('finish');
     		renderRehearsalBoard();
+    		//create dynamic page for each account
+    		//createPageForStory();
 			//updateListBool = false;
 		});
 	}
