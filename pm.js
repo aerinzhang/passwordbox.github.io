@@ -1212,7 +1212,7 @@ $( document ).ready(function(){
     	console.log("SHA 256 loaded and executed.");
     });
     //link li items to generatePage
-    $('.rehearsalList li').click(
+    $('ul.rehearsalList li').click(
     	function (e) {
     		e.preventDefault();
     		alert($(this).find(".storyText").text());
