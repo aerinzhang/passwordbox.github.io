@@ -256,7 +256,7 @@ function renderBoardFromList(list, flag) {
 		alert('something is wrong!');
 		return;
 	}
-	var html = "<h3>" + title + "</h3><hr><div class='rehearsalBoard'><ul data-role='listview' data-inset='true'>";
+	var html = "<h3>" + title + "</h3><hr><div class='rehearsalBoard'><ul data-role='listview' data-inset='true' class='rehearsalList'>";
 	for (var i=0; i<list.length; i++)  {
 		var story = list[i];
 		var score = Math.round(calculateScoreForStory(story));
@@ -1212,7 +1212,7 @@ $( document ).ready(function(){
     	console.log("SHA 256 loaded and executed.");
     });
     //link li items to generatePage
-    $('div.rehearsalBoard li').click(function(e) 
+    $('ul.rehearsalList li').click(function(e) 
     { 
     	alert($(this).find(".storyText").text());
     });
