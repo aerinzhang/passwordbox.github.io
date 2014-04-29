@@ -1214,7 +1214,7 @@ $( document ).ready(function(){
     //link li items to generatePage
     $('div.rehearsalBoard li').click(function(e) 
     { 
-     alert($(this).find(".storyText").text());
+    	alert($(this).find(".storyText").text());
     });
 
     //DROPBOX FUNCTIONS
