@@ -1353,6 +1353,7 @@ function limits(obj) {
 	var counter = $('#charCounter');
 	var uniqueCounter = $('#uniqueCharCounter');
 	var txt = obj.val();
+	alert(txt);
 	var length = txt.length;
 	var charSet = new Set([txt]);
 	var uniqueLength = charSet.length;
@@ -1389,7 +1390,6 @@ $( document ).ready(function(){
     //set up keyup for randomness text box
 
     $('#randomnessTextBox').keyup(function() {
-    	alert('hi!');
     	limits($(this));
 
     })
