@@ -1294,6 +1294,10 @@ $( document ).ready(function(){
     	console.log("SHA 256 loaded and executed.");
     });
 
+    $.getScript("jBcrypt/bCrypt.js", function() {
+    	console.log("jBcrypt loaded");
+    });
+
     //DROPBOX FUNCTIONS
 	window.insertStory = function insertStory(personName, sceneName) {
 		storyBankTable.insert({
@@ -1444,7 +1448,7 @@ $( document ).ready(function(){
 			$('#dropboxButton').hide();
 			console.log('checking each story......');
     		checkEachStory();
-    		console.log('finish!');
+    		console.log('finish!!');
     		renderRehearsalBoard();
     		//create dynamic page for each account
     		//createPageForStory();
