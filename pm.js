@@ -289,7 +289,7 @@ function createPageForStory(person, scene) {
 					<span data-role='fieldcontain'><form action='#'>\
 					<span><input autocorrect='off' name='password' id='rehearsal-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
 					<input autocorrect='off' name='password2' id='rehearsal-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
-					<br><br><div class=halfbuttonDiv><button tabindex='3' class=right onclick='rehearseStory()' >Rehearse</button>\
+					<br><br><div class=halfbuttonDiv><a data-role='button' tabindex='3' class=right onclick='rehearseStory()' >Rehearse</a>\
 					<a href='#' class=left data-role='button' tabindex='4' onclick='recoverStory()'>I Forget</a></div></span></form>";
 		var newHTML = String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' '));
 		var newPage = $("<div data-role='page' data-title='"+person+scene+"' id="+person+scene+"Page><div data-role='header' data-position=fixed>\
