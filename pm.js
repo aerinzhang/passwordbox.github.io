@@ -524,8 +524,7 @@ function generateBCryptHashes(gamelist) {
 	for (var i=0; i<gamelist.length; i++) {
 		var story = gamelist[i];
 		var string = gamelist[0]+gamelist[1]+gamelist[2]+gamelist[3];
-		string.replace('_', '').toLowerCase();
-		stringList.push(string);
+		stringList.push(string.replace('_', '').toLowerCase(););
 	}
 	console.log('stringList...');
 	console.log(stringList);
@@ -1016,7 +1015,7 @@ function calculateScoreForStory(story) {
 	var part1 = c1 * (story.get('intervalNum') + 1);
 	var part2 = c2 * (nextTimeInterval - (currentDate.getTime() - originalDate.getTime()));
 	var part3 = c3 * (story.get('correctRehearsal') / story.get('totalRehearsal'));
-	console.log(part1.toString() + ' ' + part2.toString() + ' ' + part3.toString());
+	//console.log(part1.toString() + ' ' + part2.toString() + ' ' + part3.toString());
 	return part1 + part2 + part3;
 
 }
