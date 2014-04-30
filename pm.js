@@ -277,18 +277,17 @@ function createPageForStory(person, scene) {
 	var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 				<figure><img class=clue src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure>\
 				<span data-role='fieldcontain'><form action='#'>\
-				<span><input autocorrect='off' name='password' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
-				<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
+				<span><input autocorrect='off' name='password' id='rehearsal-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
+				<input autocorrect='off' name='password2' id='rehearsal-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
 				<br><br><div class=halfbuttonDiv><button tabindex='3' class=right type='submit' name='submit; value='submit' onclick='generateNextSequence()' >Check and Next</button>\
 				<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
-	$('#gamestories').html(String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' ')));
-	getVerbComboBox('game-password');
-	getObjectComboBox('game-password-b');
-	$( "#gamepage" ).page( "destroy" ).page();
-	$('#game-password').focus();
-		var pageHTML = '';
-		var newPage = $("<div data-role='page' data-title='"+person+scene+"' id="+person+scene+"Page><div data-role='header' data-position=fixed>\
-								<a href=#board data-icon='back'>Back</a><h1>"+ Rehearsal + "</h1></div><div data-role='content' class=images>"+pageHtml+" </div></div>");
+	var newHTML = String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' ')));
+	getVerbComboBox('rehearsal-password');
+	getObjectComboBox('rehearsal-password-b');
+	var newPage = $("<div data-role='page' data-title='"+person+scene+"' id="+person+scene+"Page><div data-role='header' data-position=fixed>\
+					 <a href=#board data-icon='back'>Back</a><h1>"+ Rehearsal + "</h1></div><div data-role='content' class=images>"+newHTML+" </div></div>");
+	$( "#"+person+scene ).page( "destroy" ).page();
+	$('#rehearsal-password').focus();
 		
 
 }
