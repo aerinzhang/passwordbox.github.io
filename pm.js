@@ -272,7 +272,6 @@ function renderBoardFromList(list, flag) {
 }
 
 function createPageForStory(person, scene) {
-	alert('hi');
 	person = person.replace(' ', '_');
 	scene = scene.replace(' ', '_');
 	var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
@@ -288,10 +287,10 @@ function createPageForStory(person, scene) {
 	var newPage = $("<div data-role='page' data-title='"+person+scene+"' id="+person+scene+"Page><div data-role='header' data-position=fixed>\
 					 <a href=#board data-icon='back'>Back</a><h1>Rehearsal</h1></div><div data-role='content' class=images>"+newHTML+" </div></div>");
 	newPage.appendTo( $.mobile.pageContainer );
-	$( "#"+person+scene ).page( "destroy" ).page();
-	$.mobile.changePage('#'+person+scene);
+	var pageID = '#' + person + scene + 'Page';
+	$( pageID ).page( "destroy" ).page();
+	$.mobile.changePage(pageID);
 	$('#rehearsal-password').focus();
-	alert('bye')
 		
 
 }
