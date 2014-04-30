@@ -643,13 +643,18 @@ function generateNextCheck() {
 						<span data-role='fieldcontain'><form action='#'>\
 						<span class='boxWidget'><input autocorrect='off' name='password' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
 						<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
-						<br><br><div class=halfbuttonDiv><button tabindex='3' class=right type='submit' name='submit; value='submit' onclick='generateNextSequence()' >Check and Next</button>\
+						<br><br><div class=halfbuttonDiv><a data-role='button' tabindex='3' class=right type='submit' name='submit; value='submit' onclick='generateNextSequence()' >Check and Next</a>\
 						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form></span>";
 			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ') ));
 			checkIndex += 1;
 			getVerbComboBox('game-password');
 			getObjectComboBox('game-password-b')
 			$( "#gamepage" ).page( "destroy" ).page();
+			$("#gameCheckNextButton").keypress(function(e) {
+				if (e.keyCode == 13) {
+					generateNextSequence();
+				}
+			});
 			$('.boxWidget div').removeClass()
 			$('#game-password').focus();
 			//$.mobile.changePage("#gamepage");
@@ -730,7 +735,7 @@ function generateNextSequence() {
 						<span data-role='fieldcontain'><form action='#'>\
 						<span class='boxWidget'><input type='text' autocorrect='off' name='password' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
 						<input type='text' autocorrect='off' name='password2' id='game-password-b' value='' placeholder='doing what' tabindex='2'/></span>\
-						<br><br><div class=halfbuttonDiv><button type='submit' class=right name='submit' value='submit' onclick='generateNextSequence()' tabindex='3'>Check and Next</button>\
+						<br><br><div class=halfbuttonDiv><a data-role='button' type='submit' class=right name='submit' value='submit' onclick='generateNextSequence()' tabindex='3'>Check and Next</a>\
 						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form></span>";
 			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ')));
 			checkIndex +=1;
@@ -738,6 +743,11 @@ function generateNextSequence() {
 			getVerbComboBox('game-password');
 			getObjectComboBox('game-password-b');
 			$( "#gamepage" ).page( "destroy" ).page();
+			$("#gameCheckNextButton").keypress(function(e) {
+				if (e.keyCode == 13) {
+					generateNextSequence();
+				}
+			});
 			$('.boxWidget div').removeClass()
 			$('#game-password').focus();
 
