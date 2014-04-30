@@ -516,6 +516,23 @@ function startChecking() {
 
 }
 
+//calling bcrypt implementation to store all bcrypt hashes
+function generateBCryptHashes(gamelist) {
+	var k = 6;
+	var stringList = [];
+	//process gamelist
+	for (var i=0; i<gamelist.length; i++) {
+		var story = gamelist[i];
+		var string = gamelist[0]+gamelist[1]+gamelist[2]+gamelist[3];
+		string.replace('_', '').toLowerCase();
+		stringList.push(string);
+	}
+	var allCombinations = computeCombinations(stringList, k);
+	console.log(allCombinations);
+
+}
+
+
 
 //add all stories from the bank to dropBox and storyBank
 function addStories() {
@@ -525,7 +542,11 @@ function addStories() {
 		existingSceneList.push(gamelist[i][3]);
 		insertStory(gamelist[i][0], gamelist[i][3]);
 	}
+	//clear storage
 	allPossible = computeCombinations(storyBank, 4);
+	//after adding all stories to bank need to generate bcrypt hashes of all combinations of 6
+	generateBCryptHashes(gamelist);
+	gamelist = [];
 	$.mobile.changePage('#accounts');
 
 
@@ -889,6 +910,7 @@ function startGame() {
 
 	//gamelist = generateList();
 	console.log(gamelist);
+	generateBCryptHashes(gamelist);
 	generateNextSequence();
 
 }
