@@ -527,6 +527,8 @@ function generateBCryptHashes(gamelist) {
 		string.replace('_', '').toLowerCase();
 		stringList.push(string);
 	}
+	console.log('stringList...');
+	console.log(stringList);
 	var allCombinations = computeCombinations(stringList, k);
 	console.log(allCombinations);
 
