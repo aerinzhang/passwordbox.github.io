@@ -533,6 +533,7 @@ function progressFn() {
 
 //calling bcrypt implementation to store all bcrypt hashes
 function generateBCryptHashes(gamelist) {
+	alert('in function generateBCryptHashes');
 	var k = NUM_OF_SIZE_OF_COMBINATIONS;
 	var stringList = [];
 	var round = NUM_OF_ROUNDS; 
@@ -544,6 +545,7 @@ function generateBCryptHashes(gamelist) {
 	}
 	var allCombinations = computeCombinations(stringList, k);
 	for (var i=0; i<allCombinations.length; i++) {
+		console.log('i is ...' + i.toString());
 		var oneSet = allCombinations[i];
 		var longString = '';
 		for (var j=0; j<k; j++) {
@@ -552,13 +554,18 @@ function generateBCryptHashes(gamelist) {
 		var salt;
 		//generate salt using issac
 		try {
+			console.log('before gensalt');
 			bcrypt.gensalt(round);
+			console.log('after gensalt');
 		} catch (err) {
 			alert(err);
 			return;
 		}
 		try {
+			console.log('before hashpw');
 			bcrypt.hashpw(longString, salt, callbackFn, progressFn);
+			console.log('after hashpw');
+
 		} catch(err) {
 			alert(err);
 			return;
