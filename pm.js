@@ -276,6 +276,7 @@ function recoverStory() {
 
 function rehearseStory() {
 	alert('updateTime');
+	//clear page
 	$.mobile.changePage('#board');
 }
 
@@ -500,14 +501,15 @@ function startChecking() {
 	var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 				<figure><img class=clue src=images/scene/{1}.jpg /><figcaption>{2}</figcaption></figure>\
 				<span data-role='fieldcontain'><form action='#'>\
-				<span><input name='password' autocorrect='off' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
+				<span class='boxWidget'><input name='password' autocorrect='off' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
 				<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
 				<br><br><div class=halfbuttonDiv><button type='submit' tabindex='3' class=right name='submit; value='submit' onclick='generateNextCheck()' >Check and Next</button>\
-				<a href='#' data-role='button' class=left tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
+				<a href='#' data-role='button' class=left tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form></span>";
 	$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ')));
 	getVerbComboBox('game-password');
 	getObjectComboBox('game-password-b');
 	$( "#gamepage" ).page( "destroy" ).page();
+	$('.boxWidget div').removeClass()
 	$('#game-password').focus();
 
 
@@ -638,15 +640,16 @@ function generateNextCheck() {
 			var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 						<figure><img class=clue src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure>\
 						<span data-role='fieldcontain'><form action='#'>\
-						<span><input autocorrect='off' name='password' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
+						<span class='boxWidget'><input autocorrect='off' name='password' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
 						<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
 						<br><br><div class=halfbuttonDiv><button tabindex='3' class=right type='submit' name='submit; value='submit' onclick='generateNextSequence()' >Check and Next</button>\
-						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
+						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form></span>";
 			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ') ));
 			checkIndex += 1;
 			getVerbComboBox('game-password');
 			getObjectComboBox('game-password-b')
 			$( "#gamepage" ).page( "destroy" ).page();
+			$('.boxWidget div').removeClass()
 			$('#game-password').focus();
 			//$.mobile.changePage("#gamepage");
 		}	
@@ -724,16 +727,17 @@ function generateNextSequence() {
 			var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 						<figure><img class=clue src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure>\
 						<span data-role='fieldcontain'><form action='#'>\
-						<span><input type='text' autocorrect='off' name='password' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
+						<span class='boxWidget'><input type='text' autocorrect='off' name='password' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
 						<input type='text' autocorrect='off' name='password2' id='game-password-b' value='' placeholder='doing what' tabindex='2'/></span>\
 						<br><br><div class=halfbuttonDiv><button type='submit' class=right name='submit' value='submit' onclick='generateNextSequence()' tabindex='3'>Check and Next</button>\
-						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
+						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form></span>";
 			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ')));
 			checkIndex +=1;
 			gameScore = -1;
 			getVerbComboBox('game-password');
 			getObjectComboBox('game-password-b');
 			$( "#gamepage" ).page( "destroy" ).page();
+			$('.boxWidget div').removeClass()
 			$('#game-password').focus();
 
 		} else if ((checkIndex == 0) && (sequenceIndex == 0)){
@@ -742,15 +746,16 @@ function generateNextSequence() {
 			var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 						<figure><img class=clue src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure>\
 						<span data-role='fieldcontain'><form action='#'>\
-						<span><input type='text' autocorrect='off' name='password' id='game-password' value='' placeholder='doing what' autofocus='autofocus'tabindex='1'/>\
+						<span class='boxWidget'><input type='text' autocorrect='off' name='password' id='game-password' value='' placeholder='doing what' autofocus='autofocus'tabindex='1'/>\
 						<input type='text' autocorrect='off' name='password2' id='game-password-b' value='' placeholder='doing what'tabindex='2'/></span>\
 						<br><br><div class=halfbuttonDiv><button type='submit' class=right name='submit' value='submit' tabindex='3' onclick='generateNextSequence()' >Check and Next</button>\
-						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
+						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form></span>";
 			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ')));
 			checkIndex +=1;
 			getVerbComboBox('game-password');
-			getObjectComboBox('game-password-b')
+			getObjectComboBox('game-password-b');
 			$( "#gamepage" ).page( "destroy" ).page();
+			$('.boxWidget div').removeClass();
 			$("#game-password").focus();
 
 		}
