@@ -496,6 +496,7 @@ function generateList() {
 	return gamelist;
 }
 function startChecking() {
+	alert('change here');
 	var curPerson = gamepersonlist[storyIndex];
 	var curScene = gamelist[storyIndex][3];
 	var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
@@ -503,7 +504,7 @@ function startChecking() {
 				<span data-role='fieldcontain'><form action='#'>\
 				<span class='boxWidget'><input name='password' autocorrect='off' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
 				<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
-				<br><br><div class=halfbuttonDiv><button type='submit' tabindex='3' class=right name='submit; value='submit' onclick='generateNextCheck()' >Check and Next</button>\
+				<br><br><div class=halfbuttonDiv><a data-role='button' type='submit' tabindex='3' class=right name='submit; value='submit' onclick='generateNextCheck()' >Check and Next</a>\
 				<a href='#' data-role='button' class=left tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form></span>";
 	$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ')));
 	getVerbComboBox('game-password');
