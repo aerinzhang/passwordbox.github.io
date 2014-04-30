@@ -1293,10 +1293,6 @@ $( document ).ready(function(){
     $.getScript("sha2.js", function(){
     	console.log("SHA 256 loaded and executed.");
     });
-    alert('hiiiiii');
-    $.getScript("jBcrypt/bCrypt.js", function() {
-    	console.log("jBcrypt loaded");
-    });
 
     //DROPBOX FUNCTIONS
 	window.insertStory = function insertStory(personName, sceneName) {
