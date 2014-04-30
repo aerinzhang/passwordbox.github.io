@@ -276,7 +276,7 @@ function recoverStory() {
 
 function rehearseStory() {
 	alert('updateTime');
-	//$.mobile.changePage('#board');
+	$.mobile.changePage('#board');
 }
 
 function createPageForStory(person, scene) {
