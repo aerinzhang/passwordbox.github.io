@@ -1371,7 +1371,7 @@ function limits(obj) {
 		//enalbe button
 		alert('success!');
 		$('#submitRandom').prop('disabled', false);
-		//$('#generateRandomness').page( "destroy" ).page();
+		$('#generateRandomness').page( "destroy" ).page();
 		counter.html(length);
 		uniqueCounter.html(uniqueLength);
 	}
