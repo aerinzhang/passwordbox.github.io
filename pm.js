@@ -1363,7 +1363,7 @@ function limits(obj) {
 	var length = txt.length;
 	var uniqueLength = calculateUniqueChar(txt);
 	//if length not enough
-	if (length < limit || uniqueLength < uniqueLimit) {
+	if (length < limit && uniqueLength < uniqueLimit) {
 		//$(obj);
 		counter.html(length);
 		uniqueCounter.html(uniqueLength);
