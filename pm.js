@@ -270,6 +270,14 @@ function renderBoardFromList(list, flag) {
 	html += '</ul></div>';
 	return html;
 }
+function recoverStory() {
+	alert('recoverSTory');
+}
+
+function rehearseStory() {
+	alert('updateTime');
+	$.mobile.changePage('#board');
+}
 
 function createPageForStory(person, scene) {
 	person = person.replace(' ', '_');
@@ -279,8 +287,8 @@ function createPageForStory(person, scene) {
 				<span data-role='fieldcontain'><form action='#'>\
 				<span><input autocorrect='off' name='password' id='rehearsal-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
 				<input autocorrect='off' name='password2' id='rehearsal-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
-				<br><br><div class=halfbuttonDiv><button tabindex='3' class=right type='submit' name='submit; value='submit' onclick='generateNextSequence()' >Check and Next</button>\
-				<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
+				<br><br><div class=halfbuttonDiv><button tabindex='3' class=right type='submit' name='submit; value='submit' onclick='rehearseStory()' >Rehearse</button>\
+				<a href='#' class=left data-role='button' tabindex='4' onclick='recoverStory()'>I Forget</a></div></span></form>";
 	var newHTML = String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' '));
 	var newPage = $("<div data-role='page' data-title='"+person+scene+"' id="+person+scene+"Page><div data-role='header' data-position=fixed>\
 					 <a href=#board data-icon='back'>Back</a><h1>Rehearsal</h1></div><div data-role='content' class=images>"+newHTML+" </div></div>");
