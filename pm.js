@@ -272,6 +272,7 @@ function renderBoardFromList(list, flag) {
 }
 
 function createPageForStory(person, scene) {
+	alert('hi');
 	person = person.replace(' ', '_');
 	scene = scene.replace(' ', '_');
 	var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
@@ -290,6 +291,7 @@ function createPageForStory(person, scene) {
 	newPage.appendTo( $.mobile.pageContainer );
 	$.mobile.changePage('#'+person+scene);
 	$('#rehearsal-password').focus();
+	alert('bye');
 		
 
 }
@@ -1371,8 +1373,6 @@ $( document ).ready(function(){
     				var textList = $(this).find(".storyText");
     				var person = textList[0].innerHTML;
     				var scene = textList[1].innerHTML;
-    				alert(person);
-    				alert(scene);
     				createPageForStory(person, scene);
     			});
 		});
