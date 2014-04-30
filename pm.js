@@ -1293,12 +1293,7 @@ $( document ).ready(function(){
     $.getScript("sha2.js", function(){
     	console.log("SHA 256 loaded and executed.");
     });
-    $.getScript("jBcrypt/bCrypt.js", function(){
-    	console.log("bcrypt loaded and executed.");
-    });
-    alert('hi');
     var bcrypt = new bCrypt();
-    alert('done');
     //DROPBOX FUNCTIONS
 	window.insertStory = function insertStory(personName, sceneName) {
 		storyBankTable.insert({
