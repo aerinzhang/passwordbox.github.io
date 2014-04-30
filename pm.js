@@ -1360,16 +1360,16 @@ function limits(obj) {
 	var counter = $('#charCounter');
 	var uniqueCounter = $('#uniqueCharCounter');
 	var txt = obj.val();
-	alert(txt);
 	var length = txt.length;
 	var uniqueLength = calculateUniqueChar(txt);
 	//if length not enough
 	if (length < limit || uniqueLength < uniqueLimit) {
 		//$(obj);
 		counter.html(length);
-		uniqueCounter.html(uniqueLimit);
+		uniqueCounter.html(uniqueLength);
 	} else {
 		//enalbe button
+		$('#submitRandom').disabled = false;
 	}
 }
 $( document ).ready(function(){
