@@ -283,7 +283,7 @@ function createPageForStory(person, scene) {
 	person = person.replace(' ', '_');
 	scene = scene.replace(' ', '_');
 	var pageID = '#' + person + scene + 'Page';
-	alert($(pageID).length);
+	alert(!$(pageID).length);
 	if (!($(pageID).length)){
 		var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 					<figure><img class=clue src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure>\
