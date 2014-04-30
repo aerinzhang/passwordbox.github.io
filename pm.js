@@ -1389,6 +1389,7 @@ $( document ).ready(function(){
     //set up keyup for randomness text box
 
     $('#randomnessTextBox').keyup(function() {
+    	alert('hi!');
     	limits($(this));
 
     })
