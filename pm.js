@@ -742,7 +742,7 @@ function generateNextSequence() {
 			$('#game-password').focus();
 
 		} else if ((checkIndex == 0) && (sequenceIndex == 0)){
-			alert('change here...new');
+			alert('change here...new2');
 			var curPerson = gamepersonlist[0];
 			var curScene = gamelist[0][3];
 			var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
@@ -760,7 +760,7 @@ function generateNextSequence() {
 			//make enter for submit
 			$("#gameCheckNextButton").keypress(function(e) {
 				if (e.keyCode == 13) {
-					$(this).closest("form").submit();
+					generateNextSequence();
 				}
 			});
 			$('.boxWidget div').removeClass();
