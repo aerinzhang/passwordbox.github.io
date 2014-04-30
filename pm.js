@@ -44,6 +44,9 @@ var bcrypt;
 var NUM_OF_SIZE_OF_COMBINATIONS = 6;
 var NUM_OF_ROUNDS = 5;
 
+var CHAR_LIMIT = 30;
+var UNIQUE_CHAR_LIMIT = 20;
+
 
 //CONSTANT VALUES: ALL PAO LISTS
 var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
@@ -274,12 +277,45 @@ function renderBoardFromList(list, flag) {
 	html += '</ul></div>';
 	return html;
 }
-function recoverStory() {
-	alert('recoverSTory');
+function recoverStory(person, scene) {
+	//first ask for five stories input 
+	//assume have five of these for now in a list named knownStories
+	
+
+	//order problem? salt problem?
+
+	//try all possible stories
+	for (var i=0; i<actionList.length; i++) {
+		for (var j=0; j<objectList.length; j++) {
+			var longString = person + actionList[i] + objectList[j] + scene;
+			//generate hash what about salt?
+
+		}
+	}
 }
 
-function rehearseStory() {
-	alert('updateTime');
+function rehearseStory(person, scene) {
+	//udpate rehearsal time
+	var stories = storyBankTable.query();
+	for (var i=0; i<stories.length; i++) {
+		//check each story and update it
+		var story = stories[i];
+		if (record.get('person') == person && record.get('scene') == scene) {
+			//update story rehearse time
+			var date = new Date();
+			calculateElapsedTime(record.get('lastRehearsed'), date);
+			record.set('lastRehearsed', date);
+			record.set('totalRehearsal', record.get('totalRehearsal')+1);
+
+			//everything is 100% now?? cannot tell 
+			record.set('correctRehearsal', record.get('correctRehearsal')+1);
+			// if that interval not satisfied aka length of satisfactory less than that intervalNum
+			if (record.get('rehearsalList').length() <= record.get('intervalNum')) {
+				record.get('rehearsalList').push(true);
+				record.set('intervalNum', record.get('intervalNum')+1);
+			}
+		}
+	}
 	//clear page
 	$.mobile.changePage('#board');
 }
@@ -522,8 +558,8 @@ function callbackFn(hash) {
 	console.log('Done!!!!!!!ID:' + progressCounter.toString());
 	resultHashes.push(hash);
 	progressCounter += 1;
-
 }
+
 var resultHashes = [];
 var progressCounter = 0;
 
@@ -533,7 +569,6 @@ function progressFn() {
 
 //calling bcrypt implementation to store all bcrypt hashes
 function generateBCryptHashes(gamelist) {
-	alert('in function generateBCryptHashes');
 	var k = NUM_OF_SIZE_OF_COMBINATIONS;
 	var stringList = [];
 	var round = NUM_OF_ROUNDS; 
@@ -545,7 +580,6 @@ function generateBCryptHashes(gamelist) {
 	}
 	var allCombinations = computeCombinations(stringList, k);
 	for (var i=0; i<allCombinations.length; i++) {
-		console.log('i is ...' + i.toString());
 		var oneSet = allCombinations[i];
 		var longString = '';
 		for (var j=0; j<k; j++) {
@@ -554,17 +588,13 @@ function generateBCryptHashes(gamelist) {
 		var salt;
 		//generate salt using issac
 		try {
-			console.log('before gensalt');
 			salt = bcrypt.gensalt(round);
-			console.log('after gensalt');
 		} catch (err) {
 			alert(err);
 			return;
 		}
 		try {
-			console.log('before hashpw');
 			bcrypt.hashpw(longString, salt, callbackFn, progressFn);
-			console.log('after hashpw');
 
 		} catch(err) {
 			alert(err);
@@ -945,7 +975,7 @@ function startGame() {
 	//var myVar=window.setTimeout(function(){changeDisplay('<p>Ready?<p>')},1000);
 
 	//Step1: first generate the 10-story list
-	var temp = $('#randomness').val();
+	var temp = $('#randomnessTextBox').val();
 	gamelist = Sha256.generate(temp, 10);
 	gamepersonlist = stripPersonFromList(gamelist);
 
@@ -1313,7 +1343,28 @@ function renderStoryBank() {
 	});
 
 }
+function calculateUniqueChar(txt) {
 
+}
+//key up function 
+function limits(obj) {
+	var limit = CHAR_LIMIT;
+	var uniqueLimit = UNIQUE_CHAR_LIMIT;
+	var counter = $('#charCounter');
+	var uniqueCounter = $('#uniqueCharCounter');
+	var txt = obj.val();
+	var length = txt.length;
+	var charSet = new Set([txt]);
+	var uniqueLength = charSet.length;
+	//if length not enough
+	if (length < limit || uniqueLength < uniqueLimit) {
+		//$(obj);
+		counter.html(length);
+		uniqueCounter.html(uniqueLimit);
+	} else {
+		//enalbe button
+	}
+}
 $( document ).ready(function(){
 	$.mobile.changePage('#home');
 	var emaiList = $('#accountsList');
@@ -1335,6 +1386,12 @@ $( document ).ready(function(){
     	console.log("SHA 256 loaded and executed.");
     });
     bcrypt = new bCrypt();
+    //set up keyup for randomness text box
+
+    $('#randomnessTextBox').keyup(function() {
+    	limits($(this));
+
+    })
     //DROPBOX FUNCTIONS
 	window.insertStory = function insertStory(personName, sceneName) {
 		storyBankTable.insert({
