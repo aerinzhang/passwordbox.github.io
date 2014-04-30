@@ -273,13 +273,14 @@ function renderBoardFromList(list, flag) {
 
 function createPageForStory(person, scene) {
 	person = person.replace(' ', '_');
+	scene = scene.replace(' ', '_');
 	var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
-			<figure><img class=clue src=images/scene/{1}.jpg /><figcaption>{2}</figcaption></figure>\
-			<span data-role='fieldcontain'><form action='#'>\
-			<span><input name='password' autocorrect='off' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
-			<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
-			<br><br><div class=halfbuttonDiv><button type='submit' tabindex='3' class=right name='submit; value='submit' onclick='generateNextCheck()' >Check and Next</button>\
-			<a href='#' data-role='button' class=left tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
+				<figure><img class=clue src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure>\
+				<span data-role='fieldcontain'><form action='#'>\
+				<span><input autocorrect='off' name='password' id='game-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
+				<input autocorrect='off' name='password2' id='game-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
+				<br><br><div class=halfbuttonDiv><button tabindex='3' class=right type='submit' name='submit; value='submit' onclick='generateNextSequence()' >Check and Next</button>\
+				<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form>";
 	$('#gamestories').html(String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' ')));
 	getVerbComboBox('game-password');
 	getObjectComboBox('game-password-b');
