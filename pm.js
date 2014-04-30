@@ -1360,7 +1360,7 @@ function limits(obj) {
 	var counter = $('#charCounter');
 	var uniqueCounter = $('#uniqueCharCounter');
 	var txt = obj.val();
-	alert(txt);
+	alert(txt);g
 	var length = txt.length;
 	var uniqueLength = calculateUniqueChar(txt);
 	//if length not enough
@@ -1396,9 +1396,8 @@ $( document ).ready(function(){
     //set up keyup for randomness text box
 
     $('#randomnessTextBox').keyup(function() {
-g    	limits($(this));
-
-    })
+    	limits($(this));
+    });
     //DROPBOX FUNCTIONS
 	window.insertStory = function insertStory(personName, sceneName) {
 		storyBankTable.insert({
