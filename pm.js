@@ -293,7 +293,7 @@ function createPageForStory(person, scene) {
 					<br><br><div class=halfbuttonDiv><button tabindex='3' class=right type='submit' name='submit; value='submit' onclick='rehearseStory()' >Rehearse</button>\
 					<a href='#' class=left data-role='button' tabindex='4' onclick='recoverStory()'>I Forget</a></div></span></form>";
 		var newHTML = String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' '));
-		var newPage = $("<div data-role='page' data-title='"+person+scene+"' id="+pageID"><div data-role='header' data-position=fixed>\
+		var newPage = $("<div data-role='page' data-title='"+person+scene+"' id="+pageID+"><div data-role='header' data-position=fixed>\
 						 <a href=#board data-icon='back'>Back</a><h1>Rehearsal</h1></div><div data-role='content' class=images>"+newHTML+" </div></div>");
 		newPage.appendTo( $.mobile.pageContainer );
 		getVerbComboBox('rehearsal-password');
