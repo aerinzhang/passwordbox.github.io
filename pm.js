@@ -524,7 +524,7 @@ function generateBCryptHashes(gamelist) {
 	for (var i=0; i<gamelist.length; i++) {
 		var story = gamelist[i];
 		var string = gamelist[0]+gamelist[1]+gamelist[2]+gamelist[3];
-		stringList.push(string.replace('_', '').toLowerCase(););
+		stringList.push(string.replace('_', '').toLowerCase());
 	}
 	console.log('stringList...');
 	console.log(stringList);
