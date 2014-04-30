@@ -282,26 +282,28 @@ function rehearseStory() {
 function createPageForStory(person, scene) {
 	person = person.replace(' ', '_');
 	scene = scene.replace(' ', '_');
-	var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
-				<figure><img class=clue src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure>\
-				<span data-role='fieldcontain'><form action='#'>\
-				<span><input autocorrect='off' name='password' id='rehearsal-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
-				<input autocorrect='off' name='password2' id='rehearsal-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
-				<br><br><div class=halfbuttonDiv><button tabindex='3' class=right type='submit' name='submit; value='submit' onclick='rehearseStory()' >Rehearse</button>\
-				<a href='#' class=left data-role='button' tabindex='4' onclick='recoverStory()'>I Forget</a></div></span></form>";
-	var newHTML = String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' '));
-	var newPage = $("<div data-role='page' data-title='"+person+scene+"' id="+person+scene+"Page><div data-role='header' data-position=fixed>\
-					 <a href=#board data-icon='back'>Back</a><h1>Rehearsal</h1></div><div data-role='content' class=images>"+newHTML+" </div></div>");
-	newPage.appendTo( $.mobile.pageContainer );
-	getVerbComboBox('rehearsal-password');
-	getObjectComboBox('rehearsal-password-b');
 	var pageID = '#' + person + scene + 'Page';
-	$( pageID ).page().page( "destroy" ).page();
+
+	if (!($(pageID).length)){
+		var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
+					<figure><img class=clue src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure>\
+					<span data-role='fieldcontain'><form action='#'>\
+					<span><input autocorrect='off' name='password' id='rehearsal-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
+					<input autocorrect='off' name='password2' id='rehearsal-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
+					<br><br><div class=halfbuttonDiv><button tabindex='3' class=right type='submit' name='submit; value='submit' onclick='rehearseStory()' >Rehearse</button>\
+					<a href='#' class=left data-role='button' tabindex='4' onclick='recoverStory()'>I Forget</a></div></span></form>";
+		var newHTML = String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' '));
+		var newPage = $("<div data-role='page' data-title='"+person+scene+"' id="+pageID"><div data-role='header' data-position=fixed>\
+						 <a href=#board data-icon='back'>Back</a><h1>Rehearsal</h1></div><div data-role='content' class=images>"+newHTML+" </div></div>");
+		newPage.appendTo( $.mobile.pageContainer );
+		getVerbComboBox('rehearsal-password');
+		getObjectComboBox('rehearsal-password-b');
+		$( pageID ).page().page( "destroy" ).page();
+	}
 	$.mobile.changePage(pageID);
 	$('#rehearsal-password').focus();
-		
-
 }
+
 function renderRehearsalBoard() {
 	var html = "Welcome back!";
 	var buttonText = "";
