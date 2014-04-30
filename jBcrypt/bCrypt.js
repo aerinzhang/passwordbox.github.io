@@ -1,24 +1,3 @@
-$.getScript('MochiKit/MochiKit.js', function() {
-	console.log('MochiKit loaded');
-}
-$.getScript("Clipperz/Base.js", function() {
-	console.log("Clipperz/Base.js");
-});
-$.getScript("Clipperz/ByteArray.js", function() {
-	console.log('Clipperz/ByteArray.js');
-}
-$.getScript("Clipperz/Crypto/BigInt.js", function() {
-	console.log("Clipperz/Crypto/BigInt.js");
-});
-$.getScript("Clipperz/Crypto/SHA.js", function() {
-	console.log("Clipperz/Crypto/SHA.js");
-});
-$.getScript("Clipperz/Crypto/AES.js", function() {
-	console.log('Clipperz/Crypto/AES.js');
-}
-$.getScript("Clipperz/Crypto/PRNG.js", function() {
-	console.log("Clipperz/Crypto/PRNG.js");
-});
 function bCrypt() {
 	this.GENSALT_DEFAULT_LOG2_ROUNDS = 10;
 	this.BCRYPT_SALT_LEN = 16;
