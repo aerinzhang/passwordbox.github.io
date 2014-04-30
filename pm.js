@@ -555,7 +555,7 @@ function generateBCryptHashes(gamelist) {
 		//generate salt using issac
 		try {
 			console.log('before gensalt');
-			bcrypt.gensalt(round);
+			salt = bcrypt.gensalt(round);
 			console.log('after gensalt');
 		} catch (err) {
 			alert(err);
