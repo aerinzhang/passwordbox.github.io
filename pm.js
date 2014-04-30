@@ -951,6 +951,7 @@ function startGame() {
 
 	//gamelist = generateList();
 	console.log(gamelist);
+	console.log('that is gamelist');
 	generateBCryptHashes(gamelist);
 	generateNextSequence();
 
