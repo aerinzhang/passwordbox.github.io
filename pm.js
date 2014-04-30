@@ -303,6 +303,8 @@ function changeRehearsalPage(person, scene) {
 				<figure><img class=clue src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure>";
 	var newHTML = String.format(html, person, person.replace('_', ' '), scene.toLowerCase(), scene.replace('_', ' '));
 	$('#personSceneDiv').html(newHTML);
+	//update box css 
+	$('.boxWidget div').removeClass();
 	$.mobile.changePage(pageID);
 	$('#rehearsal-password').focus();
 }
