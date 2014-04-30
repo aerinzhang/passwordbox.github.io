@@ -287,7 +287,7 @@ function changeRehearsalPage(person, scene) {
 	if (!($(pageID).length)) {
 		var newPage = $("<div data-role='page' data-title='rehearsalPage' id='rehearsalPage'><div data-role='header' data-position=fixed>\
 						<a href=#board data-icon='back'>Back</a><h1>Rehearsal</h1></div><div data-role='content' class=images><span id='personSceneDiv'>\
-						</span><span data-role='fieldcontain'><form action='#'><span><input autocorrect='off' name='password'\
+						</span><span data-role='fieldcontain'><form action='#'><span class='boxWidget'><input autocorrect='off' name='password'\
 						 id='rehearsal-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
 						<input autocorrect='off' name='password2' id='rehearsal-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
 						<br><br><div class=halfbuttonDiv><a data-role='button' tabindex='3' class=right onclick='rehearseStory()' >Rehearse</a>\
