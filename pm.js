@@ -1370,8 +1370,9 @@ function limits(obj) {
 	} else {
 		//enalbe button
 		alert('success!');
-		$('#submitRandom').prop('disabled', false);
-		$('#generateRandomness').page( "destroy" ).page();
+		//$('#submitRandom').prop('disabled', false);
+		//$('#generateRandomness').page( "destroy" ).page();
+		document.getElementById('submitRandom').disabled = false;
 		counter.html(length);
 		uniqueCounter.html(uniqueLength);
 	}
