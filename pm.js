@@ -742,7 +742,7 @@ function generateNextSequence() {
 			$('#game-password').focus();
 
 		} else if ((checkIndex == 0) && (sequenceIndex == 0)){
-			alert('change here...');
+			alert('change here...new');
 			var curPerson = gamepersonlist[0];
 			var curScene = gamelist[0][3];
 			var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
@@ -750,13 +750,19 @@ function generateNextSequence() {
 						<span data-role='fieldcontain'><form action='#'>\
 						<span class='boxWidget'><input type='text' autocorrect='off' name='password' id='game-password' value='' placeholder='doing what' autofocus='autofocus'tabindex='1'/>\
 						<input type='text' autocorrect='off' name='password2' id='game-password-b' value='' placeholder='doing what'tabindex='2'/></span>\
-						<br><br><div class=halfbuttonDiv><a data-role='button' type='submit' class=right name='submit' value='submit' tabindex='3' onclick='generateNextSequence()' >Check and Next</a>\
+						<br><br><div class=halfbuttonDiv><a data-role='button' id='gameCheckNextButton' type='submit' class=right name='submit' value='submit' tabindex='3' onclick='generateNextSequence()' >Check and Next</a>\
 						<a href='#' class=left data-role='button' tabindex='4' onclick='forgetStory()'>I Forget</a></div></span></form></span>";
 			$('#gamestories').html(String.format(html, curPerson, curPerson.split('_').join(' '), curScene.toLowerCase(), curScene.replace('_', ' ')));
 			checkIndex +=1;
 			getVerbComboBox('game-password');
 			getObjectComboBox('game-password-b');
 			$( "#gamepage" ).page( "destroy" ).page();
+			//make enter for submit
+			$("#gameCheckNextButton").keypress(function(e) {
+				if (e.keyCode == 13) {
+					$(this).closest("form").submit();
+				}
+			});
 			$('.boxWidget div').removeClass();
 			$("#game-password").focus();
 
