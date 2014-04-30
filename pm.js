@@ -288,7 +288,7 @@ function createPageForStory(person, scene) {
 					 <a href=#board data-icon='back'>Back</a><h1>Rehearsal</h1></div><div data-role='content' class=images>"+newHTML+" </div></div>");
 	newPage.appendTo( $.mobile.pageContainer );
 	var pageID = '#' + person + scene + 'Page';
-	$( pageID ).page( "destroy" ).page();
+	$( pageID ).page();//,page( "destroy" ).page();
 	$.mobile.changePage(pageID);
 	$('#rehearsal-password').focus();
 		
