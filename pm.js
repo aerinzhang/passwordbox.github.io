@@ -1369,6 +1369,7 @@ function limits(obj) {
 		uniqueCounter.html(uniqueLength);
 	} else {
 		//enalbe button
+		alert('success!');
 		$('#submitRandom').removeAttr('disabled');
 		counter.html(length);
 		uniqueCounter.html(uniqueLength);
