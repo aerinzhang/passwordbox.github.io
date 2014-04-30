@@ -1360,7 +1360,7 @@ function limits(obj) {
 	var counter = $('#charCounter');
 	var uniqueCounter = $('#uniqueCharCounter');
 	var txt = obj.val();
-	alert(txt);g
+	alert(txt);
 	var length = txt.length;
 	var uniqueLength = calculateUniqueChar(txt);
 	//if length not enough
