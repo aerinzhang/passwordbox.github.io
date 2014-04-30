@@ -1344,7 +1344,14 @@ function renderStoryBank() {
 
 }
 function calculateUniqueChar(txt) {
-
+	var uniqueCharList = [];
+	for (var i=0; i<txt.length; i++) {
+		var aChar = txt.charAt(i);
+		if (uniqueCharList.indexOf(aChar) == -1) {
+			uniqueCharList.push(aChar);
+		}
+	}
+	return uniqueCharList.length;
 }
 //key up function 
 function limits(obj) {
@@ -1355,8 +1362,7 @@ function limits(obj) {
 	var txt = obj.val();
 	alert(txt);
 	var length = txt.length;
-	var charSet = new Set([txt]);
-	var uniqueLength = charSet.length;
+	var uniqueLength = calculateUniqueChar(txt);
 	//if length not enough
 	if (length < limit || uniqueLength < uniqueLimit) {
 		//$(obj);
@@ -1390,7 +1396,7 @@ $( document ).ready(function(){
     //set up keyup for randomness text box
 
     $('#randomnessTextBox').keyup(function() {
-    	limits($(this));
+g    	limits($(this));
 
     })
     //DROPBOX FUNCTIONS
