@@ -1369,7 +1369,9 @@ function limits(obj) {
 		uniqueCounter.html(uniqueLength);
 	} else {
 		//enalbe button
-		$('#submitRandom').disabled = false;
+		$('#submitRandom').attr('disabled', false);
+		counter.html(length);
+		uniqueCounter.html(uniqueLength);
 	}
 }
 $( document ).ready(function(){
