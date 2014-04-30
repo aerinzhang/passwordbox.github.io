@@ -40,6 +40,10 @@ var NEED_URGENT_REHEARSAL = 2;
 var urgentRehearsalList = [];
 var rehearsalSoonList = [];
 
+var bcrypt;
+var NUM_OF_SIZE_OF_COMBINATIONS = 6;
+var NUM_OF_ROUNDS = 5;
+
 
 //CONSTANT VALUES: ALL PAO LISTS
 var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
@@ -512,25 +516,54 @@ function startChecking() {
 	$( "#gamepage" ).page( "destroy" ).page();
 	$('.boxWidget div').removeClass()
 	$('#game-password').focus();
+}
 
+function callbackFn(hash) {
+	console.log('Done!!!!!!!ID:' + progressCounter.toString());
+	resultHashes.push(hash);
+	progressCounter += 1;
+
+}
+var resultHashes = [];
+var progressCounter = 0;
+
+function progressFn() {
 
 }
 
 //calling bcrypt implementation to store all bcrypt hashes
 function generateBCryptHashes(gamelist) {
-	var k = 6;
+	var k = NUM_OF_SIZE_OF_COMBINATIONS;
 	var stringList = [];
+	var round = NUM_OF_ROUNDS; 
 	//process gamelist
 	for (var i=0; i<gamelist.length; i++) {
 		var story = gamelist[i];
 		var string = story[0]+story[1]+story[2]+story[3];
 		stringList.push(string.replace('_', '').toLowerCase());
 	}
-	console.log('stringList...');
-	console.log(stringList);
 	var allCombinations = computeCombinations(stringList, k);
-	console.log(allCombinations);
-
+	for (var i=0; i<allCombinations.length; i++) {
+		var oneSet = allCombinations[i];
+		var longString = '';
+		for (var j=0; j<k; j++) {
+			longString+=oneSet[j];
+		}
+		var salt;
+		//generate salt using issac
+		try {
+			bcrypt.gensalf(round);
+		} catch (err) {
+			alert(err);
+			return;
+		}
+		try {
+			bcrypt.hashpw(longString, salt, callbackFn, progressFn);
+		} catch(err) {
+			alert(err);
+			return;
+		}
+	}
 }
 
 
@@ -1293,7 +1326,7 @@ $( document ).ready(function(){
     $.getScript("sha2.js", function(){
     	console.log("SHA 256 loaded and executed.");
     });
-    var bcrypt = new bCrypt();
+    bcrypt = new bCrypt();
     //DROPBOX FUNCTIONS
 	window.insertStory = function insertStory(personName, sceneName) {
 		storyBankTable.insert({
