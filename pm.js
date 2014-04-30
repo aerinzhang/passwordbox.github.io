@@ -285,13 +285,13 @@ function changeRehearsalPage(person, scene) {
 	var pageID = '#rehearsalPage';
 	//intialize page
 	if (!($(pageID).length)) {
-		var pageHTML = $("<div data-role='page' data-title='rehearsalPage' id=rehearsalPage><div data-role='header' data-position=fixed>\
+		var pageHTML = $("<div data-role='page' data-title='rehearsalPage' id='rehearsalPage'><div data-role='header' data-position=fixed>\
 						<a href=#board data-icon='back'>Back</a><h1>Rehearsal</h1></div><div data-role='content' class=images><span id='personSceneDiv'>\
 						</span><span data-role='fieldcontain'><form action='#'><span><input autocorrect='off' name='password'\
 						 id='rehearsal-password' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
 						<input autocorrect='off' name='password2' id='rehearsal-password-b' value='' tabindex='2' placeholder='doing what'/></span>\
 						<br><br><div class=halfbuttonDiv><a data-role='button' tabindex='3' class=right onclick='rehearseStory()' >Rehearse</a>\
-						<a href='#' class=left data-role='button' tabindex='4' onclick='recoverStory()'>I Forget</a></div></span></form></span>
+						<a href='#' class=left data-role='button' tabindex='4' onclick='recoverStory()'>I Forget</a></div></span></form></span>\
 						</div></div>");
 		newPage.appendTo( $.mobile.pageContainer );
 		getVerbComboBox('rehearsal-password');
