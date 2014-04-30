@@ -1444,7 +1444,7 @@ $( document ).ready(function(){
 			$('#dropboxButton').hide();
 			console.log('checking each story......');
     		checkEachStory();
-    		console.log('finish');
+    		console.log('finish!');
     		renderRehearsalBoard();
     		//create dynamic page for each account
     		//createPageForStory();
