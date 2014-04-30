@@ -635,7 +635,7 @@ function generateNextCheck() {
 		} else {
 			$('#gamestories').find('#game-password').val('');
 			//$('#game-password').focus();
-
+			alert('hahahaha');
 			var curPerson = gamepersonlist[checkIndex];
 			var curScene = gamelist[checkIndex][3];
 			var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
