@@ -272,6 +272,7 @@ function renderBoardFromList(list, flag) {
 }
 
 function createPageForStory(person, scene) {
+	person = person.replace(' ', '_');
 	var html = "<figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 			<figure><img class=clue src=images/scene/{1}.jpg /><figcaption>{2}</figcaption></figure>\
 			<span data-role='fieldcontain'><form action='#'>\
@@ -288,6 +289,7 @@ function createPageForStory(person, scene) {
 		var newPage = $("<div data-role='page' data-title='"+person+scene+"' id="+person+scene+"Page><div data-role='header' data-position=fixed>\
 								<a href=#board data-icon='back'>Back</a><h1>"+ Rehearsal + "</h1></div><div data-role='content' class=images>"+pageHtml+" </div></div>");
 		
+
 }
 function renderRehearsalBoard() {
 	var html = "Welcome back!";
