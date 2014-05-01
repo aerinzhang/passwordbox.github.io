@@ -345,6 +345,11 @@ div#bank .ui-page{
 
 /* set randomness text box css */
 #textCounter {
-	font-size: 10px;
+	font-size: 11.5px;
 	text-align: right;
+}
+
+#charCounter, #uniqueCharCounter {
+	color: purple;
+	font-family: 'ABeeZee', sans-serif;
 }
