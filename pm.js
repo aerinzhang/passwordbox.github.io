@@ -263,7 +263,7 @@ function renderBoardFromList(list, flag) {
 		alert('something is wrong!');
 		return;
 	}
-	var html = "<h3>" + title + "</h3><hr><div id='rehearsalBoard'><ul data-role='listview' data-inset='true' id='rehearsalList'>";
+	var html = "<h3>" + title + "</h3><hr><div class='rehearsalBoard'><ul data-role='listview' data-inset='true' class='rehearsalList'>";
 	for (var i=0; i<list.length; i++)  {
 		var story = list[i];
 		var score = Math.round(calculateScoreForStory(story));
