@@ -721,7 +721,7 @@ function generateNextCheck() {
 		p = Math.round(p*100);
 		$('#progress-val').html( ' ' + p.toString() + '%');
 		gameScore += 1;
-		if (checkIndex == 1) {
+		if (checkIndex == 10) {
 		$('#gamestories').html('<p>Final Score: ' + gameScore.toString() + "/10 </p><p><a data-role='button' href='#' onclick='addSomeStories()'> Add Some</a></p><p><a data-role='button' href='#' onclick='addStories()'> Add All</a></p><p><a data-role='button' href='#' onclick='startGame()'> Try Again</a></p>");
 
 		} else {
