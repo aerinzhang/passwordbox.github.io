@@ -344,6 +344,7 @@ div#bank .ui-page{
 }
 
 /* set randomness text box css */
-#randomnessTextBox {
-	
+#textCounter {
+	font-size: 10px;
+	text-align: right;
 }
