@@ -361,4 +361,8 @@ div#bank .ui-page{
 	color: gray;
 }
 
-#
+/* place holder css */
+::-webkit-input-placeholder { font-family: Lato; }
+::-moz-placeholder { font-family: Lato; } /* firefox 19+ */
+:-ms-input-placeholder { font-family: Lato; } /* ie */
+input:-moz-placeholder { font-family: Lato; }
