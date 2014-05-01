@@ -1377,7 +1377,7 @@ function limits(obj) {
 	}
 }
 $( document ).ready(function(){
-	$.mobile.load('#board');
+	$('#board').load();
 	var emaiList = $('#accountsList');
 	var sbutton = $('#submit');
 	$('#accountsList').submit(submit);
