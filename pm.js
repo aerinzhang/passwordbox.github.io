@@ -405,7 +405,7 @@ function renderRehearsalBoard() {
 	//update home page
 	$("#home-words").html(html); 
 	$("#board-msg").html(boardText);
-	$('#rehearsalBoard li').removeClass();
+	//$('#rehearsalBoard li').removeClass();
 	$('#rehearsalList').removeClass();
 	//update board page
 }
