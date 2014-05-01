@@ -268,7 +268,7 @@ function renderBoardFromList(list, flag) {
 		var story = list[i];
 		var score = Math.round(calculateScoreForStory(story));
 		var date = extractDate(story.get('lastRehearsed'));
-		var pair = "<li><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dateText'>{4}</p></figcaption></figure> \
+		var pair = "<li class='boarditems'><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dateText'>{4}</p></figcaption></figure> \
 					<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><p class='storyText'>{3}</p><p class='scoreText'>Score:{5}</p></figcaption></figure></span></li>";
 		var newli = String.format(pair, story.get('person'), story.get('person').replace('_', ' '), story.get('scene').toLowerCase(),
 					story.get('scene').replace('_', ' '), date, score.toString());
@@ -405,6 +405,7 @@ function renderRehearsalBoard() {
 	//update home page
 	$("#home-words").html(html); 
 	$("#board-msg").html(boardText);
+	$('.boarditems').removeClass();
 	//update board page
 }
 function checkEachStory() {
@@ -721,7 +722,7 @@ function generateNextCheck() {
 		p = Math.round(p*100);
 		$('#progress-val').html( ' ' + p.toString() + '%');
 		gameScore += 1;
-		if (checkIndex == 10) {
+		if (checkIndex == 10g) {
 		$('#gamestories').html('<p>Final Score: ' + gameScore.toString() + "/10 </p><p><a data-role='button' href='#' onclick='addSomeStories()'> Add Some</a></p><p><a data-role='button' href='#' onclick='addStories()'> Add All</a></p><p><a data-role='button' href='#' onclick='startGame()'> Try Again</a></p>");
 
 		} else {
