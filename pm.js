@@ -1377,7 +1377,7 @@ function limits(obj) {
 	}
 }
 $( document ).ready(function(){
-	$.mobile.changePage('#home');
+	$.mobile.load('#board');
 	var emaiList = $('#accountsList');
 	var sbutton = $('#submit');
 	$('#accountsList').submit(submit);
@@ -1552,7 +1552,7 @@ $( document ).ready(function(){
 			$('#dropboxButton').hide();
 			console.log('checking each story......');
     		checkEachStory();
-    		console.log('finish!!!!');
+    		console.log('finish!');
     		renderRehearsalBoard();
     		//create dynamic page for each account
     		//createPageForStory();
