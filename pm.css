@@ -351,7 +351,7 @@ div#bank .ui-page{
 }
 
 #charCounter, #uniqueCharCounter {
-	color: purple;
+	color: green;
 	font-size: 16px;
 	font-family: 'ABeeZee', sans-serif;
 }

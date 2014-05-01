@@ -1497,7 +1497,7 @@ $( document ).ready(function(){
 			alert('Authentication error: ' + error);
 		}
 	});
-
+	client.reset();
 	if (client.isAuthenticated()) {
 		// Client is authenticated. Display UI.
 		$('#loginButton').hide();
