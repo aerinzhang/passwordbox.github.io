@@ -1501,6 +1501,7 @@ $( document ).ready(function(){
 		// Client is authenticated. Display UI.
 		$('#loginButton').hide();
 		$('#main').show();
+		$('#home-navbar li').removeClass('ui-disabled');
 		$('#home-game').removeClass("ui-disabled");
 		$('#home-bank').removeClass("ui-disabled");
 		$('#home-accounts').removeClass("ui-disabled");
