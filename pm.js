@@ -1368,6 +1368,7 @@ function limits(obj) {
 		uniqueCounter.html(uniqueLength);
 	} else {
 		//enalbe button
+		//TO DO fix button 
 		document.getElementById('submitRandom').disabled = false;
 		counter.html(length);
 		uniqueCounter.html(uniqueLength);
