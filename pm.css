@@ -79,7 +79,8 @@ figure {
 figcaption {
 	text-align: center;
 	font-size: 18pt;
-	font-family: 'Linden Hill', serif;
+	font-family: Lato;
+	/*'Linden Hill', serif; */
 }
 #gamestories {
 	padding-top: 100px;

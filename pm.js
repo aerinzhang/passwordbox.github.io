@@ -1241,7 +1241,7 @@ function renderEachAccountElements(time, web, list, index) {
 		html += li;
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
-			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + index + ")' > Type in your Password</a>"
+			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + web + "\", " + index + ")' > Rehearse Account</a>"
 	return html;
 }
 
