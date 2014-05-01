@@ -405,7 +405,8 @@ function renderRehearsalBoard() {
 	//update home page
 	$("#home-words").html(html); 
 	$("#board-msg").html(boardText);
-	$('.boarditems').removeClass();
+	$('.rehearsalBoard li').removeClass();
+	$('.rehearsalBoard ul').removeClass();
 	//update board page
 }
 function checkEachStory() {
