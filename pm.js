@@ -1364,14 +1364,10 @@ function limits(obj) {
 	var uniqueLength = calculateUniqueChar(txt);
 	//if length not enough
 	if (!(length >= limit && uniqueLength >= uniqueLimit)) {
-		//$(obj);
 		counter.html(length);
 		uniqueCounter.html(uniqueLength);
 	} else {
 		//enalbe button
-		alert('success!');
-		//$('#submitRandom').prop('disabled', false);
-		//$('#generateRandomness').page( "destroy" ).page();
 		document.getElementById('submitRandom').disabled = false;
 		counter.html(length);
 		uniqueCounter.html(uniqueLength);
