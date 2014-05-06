@@ -1153,7 +1153,8 @@ function submit(e){
 	if (((e.keyCode === 13) || (e.keyCode == undefined)) && ($("#entry:focus"))) {
 		e.preventDefault();
 		//if pass validation of data
-		var useMyOwn = document.getElementById('checkbox-2').checked;
+		var useMyOwn = false;
+		//var useMyOwn = document.getElementById('checkbox-2').checked;
 		var keyid = 'button' + accountIndex;
 		var value = $('#account-name').val();
 		$('#account-name').val('');

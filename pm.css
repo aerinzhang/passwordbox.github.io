@@ -357,9 +357,6 @@ div#bank .ui-page{
 }
 /* when not logged in button should not be functioniny */
 
-.ui-disabled.ui-link.ui-btn {
-	color: gray;
-}
 
 /* place holder css */
 ::-webkit-input-placeholder { font-family: Lato; }
