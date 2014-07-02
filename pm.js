@@ -989,9 +989,7 @@ function startGame() {
 	//var myVar=window.setTimeout(function(){changeDisplay('<p>Ready?<p>')},1000);
 
 	//Step1: first generate the 10-story list
-	console.log(existingPersonList.length);
-	return;
-	if (existingPersonList.length > (totalStories-numStories)) {
+	if (existingPersonList.length() > (totalStories-numStories)) {
 		//do not have 10 new ppl to put in the list
 		alert("Not Enough to Generate 10 new stories");
 
