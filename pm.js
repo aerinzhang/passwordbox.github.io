@@ -1537,6 +1537,8 @@ $( document ).ready(function(){
 			storyBank = stripStoryFromRecords();
 			//compute all possible combinations of four stories
 			allPossible = computeCombinations(storyBank, 4);
+			console.log('printing allPossible...');
+			console.log(storyBank);
 			console.log(allPossible);
 			//from generalTable load variables
 			programRecord = generalTable.query();
@@ -1861,25 +1863,6 @@ function computeHash(){
 	var allResult = regularComputerCombinations(storyBank, 6);
 }
 //bank and rehearse schedule
-
-function computerOverlap(first, second) {
-	var overlapCount = 0
-	for (var i=0; i<first.length; i++) {
-		for (var j=0; j<second.length; j++) {
-			if (first[i] == second[j]) overlapCount += 1;
-		}
-	}
-	return overlapCount;
-}
-
-function checkOverlappingElements(allPerms, newElement) {
-	if (OVERLAP == THREE_OVERLAP) return true;
-	for (var i = 0; i < allPerms.length ; i++) {
-		var first = allPerms[i];
-		if (computeOverlap(first, newElement) > OVERLAP) return false;
-	}
-	return true;
-}
 function regularComputerCombinations(bank, k) {
 	if (bank.length < k) {
 		return [[]]
@@ -1906,6 +1889,25 @@ function regularComputerCombinations(bank, k) {
 	}
 
 }
+function computerOverlap(first, second) {
+	var overlapCount = 0
+	for (var i=0; i<first.length; i++) {
+		for (var j=0; j<second.length; j++) {
+			if (first[i] == second[j]) overlapCount += 1;
+		}
+	}
+	return overlapCount;
+}
+
+function checkOverlappingElements(allPerms, newElement) {
+	if (OVERLAP == THREE_OVERLAP) return true;
+	for (var i = 0; i < allPerms.length ; i++) {
+		var first = allPerms[i];
+		if (computeOverlap(first, newElement) > OVERLAP) return false;
+	}
+	return true;
+}
+
 //default is at most three permutations 
 function computeCombinations(bank, k) {
 	if (bank.length < k) {
@@ -1933,7 +1935,9 @@ function computeCombinations(bank, k) {
 			}
 		}
 		for (var j =0; j < result2.length; j ++) {
-			allperm.push(result2[j]);
+			if (!checkOverlappingElements(allperm, result2[j])) {
+				allperm.push(result2[j]);
+			}
 		}
 		return allperm;
 
