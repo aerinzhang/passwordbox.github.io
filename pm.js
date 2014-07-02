@@ -1872,13 +1872,11 @@ function computerOverlap(first, second) {
 	return overlapCount;
 }
 
-function checkOverlappingElements(all, new) {
+function checkOverlappingElements(allPerms, newElement) {
 	if (OVERLAP == THREE_OVERLAP) return true;
-	for (var i = 0; i < all.length ; i++) {
-		var first = all[i];
-		for (var j=i; j < all.length; j++) {
-			var second = all[j];
-				if (computeOverlap(first, second) > OVERLAP) return false;
+	for (var i = 0; i < allPerms.length ; i++) {
+		var first = allPerms[i];
+		if (computeOverlap(first, newElement) > OVERLAP) return false;
 		}
 	}
 	return true;
