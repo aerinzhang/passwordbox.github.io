@@ -1933,12 +1933,12 @@ function computeCombinations(bank, k) {
 
 			//check if there is any overlap
 			var element = [bank[0]].concat(result1[i]);
-			if (!checkOverlappingElements(allperm, element)) {
+			if (checkOverlappingElements(allperm, element)) {
 				allperm.push(element);
 			}
 		}
 		for (var j =0; j < result2.length; j ++) {
-			if (!checkOverlappingElements(allperm, result2[j])) {
+			if (checkOverlappingElements(allperm, result2[j])) {
 				allperm.push(result2[j]);
 			}
 		}
