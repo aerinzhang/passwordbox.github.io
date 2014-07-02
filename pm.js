@@ -48,6 +48,15 @@ var CHAR_LIMIT = 30;
 var UNIQUE_CHAR_LIMIT = 20;
 
 
+var REGULAR_MODE = 0;
+var HIGH_SECURITY = 1;
+
+var NO_OVERLAP = 0;
+var ONE_OVERLAP = 1;
+var TWO_OVERLAP = 2;
+var THREE_OVERLAP = 3;
+var OVERLAP = 2;
+
 //CONSTANT VALUES: ALL PAO LISTS
 var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
 				  "Ben_Affleck", "Beyonce", "Bill_Clinton", "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", "Hillary_Clinton", "Homer_Simpson",
@@ -580,7 +589,7 @@ function generateBCryptHashes(gamelist) {
 		var string = story[0]+story[1]+story[2]+story[3];
 		stringList.push(string.replace('_', '').toLowerCase());
 	}
-	var allCombinations = computeCombinations(stringList, k);
+	var allCombinations = regularComputerCombinations(stringList, k);
 	for (var i=0; i<allCombinations.length; i++) {
 		var oneSet = allCombinations[i];
 		var longString = '';
@@ -619,6 +628,7 @@ function addStories() {
 	allPossible = computeCombinations(storyBank, 4);
 	//after adding all stories to bank need to generate bcrypt hashes of all combinations of 6
 	generateBCryptHashes(gamelist);
+	console.log(resultHashes)
 	gamelist = [];
 	$.mobile.changePage('#accounts');
 
@@ -967,6 +977,8 @@ function stripPersonFromList(glist) {
 
 //start the memory game
 function startGame() {
+	totalStories = 23;
+	numStories = 10;
 	storyIndex = 0;
 	checkIndex = 0;
 	sequenceIndex = 0;
@@ -977,16 +989,21 @@ function startGame() {
 	//var myVar=window.setTimeout(function(){changeDisplay('<p>Ready?<p>')},1000);
 
 	//Step1: first generate the 10-story list
-	var temp = $('#randomnessTextBox').val();
-	gamelist = Sha256.generate(temp, 10);
-	gamepersonlist = stripPersonFromList(gamelist);
+	if (existingPersonList.length > (totalStories-numStories)) {
+		//do not have 10 new ppl to put in the list
+		alert("Not Enough to Generate 10 new stories");
 
-	//gamelist = generateList();
-	console.log(gamelist);
-	console.log('that is gamelist');
-	generateBCryptHashes(gamelist);
-	generateNextSequence();
+	} else{
+		var temp = $('#randomnessTextBox').val();
+		gamelist = Sha256.generate(temp, 10);
+		gamepersonlist = stripPersonFromList(gamelist);
 
+		//gamelist = generateList();
+		console.log(gamelist);
+		console.log('that is gamelist');
+		//generateBCryptHashes(gamelist);
+		generateNextSequence();
+	}
 }
 
 function changePerson(person, web) {
@@ -1520,6 +1537,7 @@ $( document ).ready(function(){
 			storyBank = stripStoryFromRecords();
 			//compute all possible combinations of four stories
 			allPossible = computeCombinations(storyBank, 4);
+			console.log(allPossible);
 			//from generalTable load variables
 			programRecord = generalTable.query();
 			if (programRecord.length == 0) {
@@ -1840,10 +1858,58 @@ function vibrate() {
 function computeHash(){
 	var k = 6;
 	//all permutations of length 6; compute the hash and story them
-	var allResult = computeCombinations(storyBank, 6);
+	var allResult = regularComputerCombinations(storyBank, 6);
 }
 //bank and rehearse schedule
 
+function computerOverlap(first, second) {
+	var overlapCount = 0
+	for (var i=0; i<first.length; i++) {
+		for (var j=0; j<second.length; j++){
+			if (first[i] == second[j]) overlapCount += 1;
+		}
+	}
+	return overlapCount;
+}
+
+function checkOverlappingElements(all, new) {
+	if (OVERLAP == THREE_OVERLAP) return true;
+	for (var i = 0; i < all.length ; i++) {
+		var first = all[i];
+		for (var j=i; j < all.length; j++) {
+			var second = all[j];
+				if (computeOverlap(first, second) > OVERLAP) return false;
+		}
+	}
+	return true;
+}
+function regularComputerCombinations(bank, k) {
+	if (bank.length < k) {
+		return [[]]
+	} else if (bank.length == k) {
+		return [bank]
+	} else if (k == 1) {
+		var newB = [];
+		for (var i=0; i < bank.length; i++) {
+			newB.push([bank[i]]);
+		}
+		return newB;
+
+	} else {
+		var allperm = []
+		var result1 = regularComputerCombinations(bank.slice(1), k-1);
+		var result2 = regularComputerCombinations(bank.slice(1), k);
+		for (var i = 0; i < result1.length ; i++) {   
+			allperm.push([bank[0]].concat(result1[i]));
+		}
+		for (var j =0; j < result2.length; j ++) {
+			allperm.push(result2[j]);
+		}
+		return allperm;
+	}
+
+}
+//default is at most three permutations 
 function computeCombinations(bank, k) {
 	if (bank.length < k) {
 		return [[]]
@@ -1862,7 +1928,12 @@ function computeCombinations(bank, k) {
 		var result2 = computeCombinations(bank.slice(1), k);
 		for (var i = 0; i < result1.length ; i++) {   
 			//sconsole.log([bank[0]]+ result1[i]);
-			allperm.push([bank[0]].concat(result1[i]));
+
+			//check if there is any overlap
+			var element = [bank[0]].concat(result1[i]);
+			if (!checkOverlappingElements(allperm, element)) {
+				allperm.push(element);
+			}
 		}
 		for (var j =0; j < result2.length; j ++) {
 			allperm.push(result2[j]);
