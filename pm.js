@@ -1888,7 +1888,7 @@ function regularComputerCombinations(bank, k) {
 	}
 
 }
-function computerOverlap(first, second) {
+function computeOverlap(first, second) {
 	var overlapCount = 0
 	for (var i=0; i<first.length; i++) {
 		for (var j=0; j<second.length; j++) {
