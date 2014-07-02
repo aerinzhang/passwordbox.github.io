@@ -1895,10 +1895,6 @@ function computeOverlap(first, second) {
 			if (first[i] == second[j]) overlapCount += 1;
 		}
 	}
-	console.log('printing computerOverlap');
-	console.log(first);
-	console.log(second);
-	console.log(overlapCount);
 	return overlapCount;
 }
 
