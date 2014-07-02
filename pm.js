@@ -1922,8 +1922,8 @@ function computeCombinations(bank, k) {
 
 	} else {
 		var allperm = []
-		var result1 = regularComputerCombinations(bank.slice(1), k-1);
-		var result2 = regularComputerCombinations(bank.slice(1), k);
+		var result1 = computeCombinations(bank.slice(1), k-1);
+		var result2 = computeCombinations(bank.slice(1), k);
 		for (var i = 0; i < result1.length ; i++) {   
 			//sconsole.log([bank[0]]+ result1[i]);
 
