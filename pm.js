@@ -1865,7 +1865,7 @@ function computeHash(){
 function computerOverlap(first, second) {
 	var overlapCount = 0
 	for (var i=0; i<first.length; i++) {
-		for (var j=0; j<second.length; j++){
+		for (var j=0; j<second.length; j++) {
 			if (first[i] == second[j]) overlapCount += 1;
 		}
 	}
@@ -1877,7 +1877,6 @@ function checkOverlappingElements(allPerms, newElement) {
 	for (var i = 0; i < allPerms.length ; i++) {
 		var first = allPerms[i];
 		if (computeOverlap(first, newElement) > OVERLAP) return false;
-		}
 	}
 	return true;
 }
