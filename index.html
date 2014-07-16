@@ -50,6 +50,7 @@
 			</div>
 			<div data-role="content">
 				<img src='reminder.png' id='clock'/>
+				<a href="#mode43" data-role='button' onclick='populate43Bank()'>43-Story Mode</a>
 				<div id="home-words">
 				<p>This is an app that generates random strong passwords, and helps you to remember them.</p>
 				</div>	
@@ -207,6 +208,28 @@
 				<button id='submitRandom' type='submit' value='submit' name='submit' disabled='true' tabindex="2" onclick='startGame()'>Generate Randomness & Start the Game</button>
 			</div>
 		</div>
+
+		<!-- TEMP: 43-Story-Mode PAGE -->
+		<div data-role="page" data-title="mode43" id="mode43">
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu'>
+						<li><a class='logo' href='#board'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='bank-bank'>STORY BANK</a></li>
+						<li><a href='#accounts' id='bank-accounts'>ACCOUNTS</a></li>
+						<li><a href='#game' id='bank-game' >GAME</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role='content'>
+				<p>Please enter at least 30 random characters (at least 20 unique characters) to provide a seed for the pseudorandom generator.</p>
+				<p><textarea id='randomnessTextBoxStoryMode' cols='100' rows='80' tabindex="1"> </textarea></p>
+				<p id='textCounterStoryMode'><span id='charCounterStoryMode'>0</span> characters and <span id='uniqueCharCounterStoryMode'>0</span> unique characters</p>
+				<button id='submitRandomStoryMode' type='submit' value='submit' name='submit' disabled='true' tabindex="2" onclick='generate43Stories()'>Generate Randomness & Initialize the Story Bank</button>
+			</div>
+		</div>
+
+
 		<div id="dialog" title="Basic dialog">
   			<p>This application is built for my undergraduate senior thesis research project at Carnegie Mellon University.</p>
   			<a data-role='button' id='dialog-close'>Close</a>

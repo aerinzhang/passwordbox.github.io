@@ -58,9 +58,21 @@ var THREE_OVERLAP = 3;
 var OVERLAP = 2;
 
 //CONSTANT VALUES: ALL PAO LISTS
-var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama','Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama', "Bart_Simpson", 
-				  "Ben_Affleck", "Beyonce", "Bill_Clinton", "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", "Hillary_Clinton", "Homer_Simpson",
-			      "Indiana_Jones", "Marilyn_Monroe", "Superman", "Steve_Jobs", "Michael_Jordan"];
+var personList = ['Adolf_Hitler',"Angelina_Jolie",'Barack_Obama',"Bart_Simpson", 
+				  "Beethoven", "Ben_Affleck", "Benjamin_Franklin", "Beyonce",
+				  "Bill_Clinton",'Bill_Gates', "Brad_Pitt","Darth_Vader","David_Beckham", 'Einstein',"Frodo", "Gandalf", "Gandhi",
+				  "George_W_Bush", "Harry_Potter",
+				  "Hillary_Clinton", "Homer_Simpson","Indiana_Jones", "Jimmy_Fallon", "John_Lennon",
+				  "Justin_Timberlake", "Kim_Jong_Un", "Kobe_Bryant",
+				   "Lebron_James", "Leonardo_DiCaprio",
+				   "Madonna", "Marilyn_Monroe", "Mark_Zuckerberg", "Martin_Luther_King_Jr",
+				   "Michael_Jackson","Michael_Jordan", "Michael_Phelps", 'Michelle_Obama', 'Morgan_Freeman','Mozart',
+				   "Neil_Armstrong", "Nelson_Mandela", 
+				   "Oprah_Winfrey",
+				   "Pope_Francis",
+				   "Sir_Issac_Newton", "Stephen_Hawking", "Steve_Jobs", "Superman",
+				   "Thomas_Edison", "Tiger_Woods", "Vladimir_Putin"]; //50
+
 
 var actionList = ['balancing', 'bending', 'biting', 'bouncing', 'building', 'burning' , 'chasing', 'clapping', 'climbing' ,'cooking', 'digging',
 				  'drinking', 'enlarging', 'exploding', 'feeding', 'fighting', 'flipping', 'hanging', 'hiding', 'hugging', 'juggling', 'kissing',
@@ -70,12 +82,34 @@ var actionList = ['balancing', 'bending', 'biting', 'bouncing', 'building', 'bur
 var objectList = ['dome','hammer','heel','hen','igloo','leaf', 'lock', 'moose', 'seal', 'smore', 'snowflake','suit','daisy','dice','safe','toilet',
 				  'moon', 'map','lollipop','peach', 'bus'];
 
-var sceneList = ['airport', 'baseball_field', 'basketball_court', 'bakery', 'bridge', 'Capitol_Building', 'castle', 'court', 'Eiffel_Tower', 
-				  'fancy_house', 'fitness_center', 'forest', 'garden', 'glacier', 'Grand_Canyon', 'Great_Wall', 'hanging_bridge', 'island', 'lake',
-				  'library', 'lighthouse', 'mountain', 'Niagara_Falls', 'ocean', 'pool_bar', 'pyramids', 'restaurant', 'swimming_pool', 'Taj_Mahal',
-				  'tropical_beach'];
+var sceneList = ['airport', 'baseball_field', 'basketball_court', 'bakery', 
+				 'Big_Ben','bridge', 'Capitol_Building', 'castle', 'cliff', 'clouds',
+				 'court', 'Eiffel_Tower', 'factory',
+				 'fancy_house', 'farm', 'fitness_center', 'forest', 'garden', 'garage',
+				 'Great_Sphynx', 'glacier', 'Grand_Canyon', 'Great_Wall', 'hanging_bridge', 
+				 'hotel_room','island', 'lake',
+				 'library', 'lighthouse', 'mountain', 'Niagara_Falls', 'ocean', 'office','pool_bar', 'pyramids', 'restaurant', 'Statue_of_Liberty', 
+				 'swimming_pool', 'Taj_Mahal',
+				 'Tower_of_Pisa', 'tropical_beach', 'wharf','windmills', 'zoo']; //42
 
 
+
+//function that generate 43 stories for use
+function generate43Stories() {
+	var usedPersonList = [];
+	var usedSceneList = [];
+	var finalPersonList = [];
+	var finalSceneList = [];
+	
+	var NUMBER_OF_STORIES = 43;
+	var temp = $('#randomnessTextBoxStoryMode').val();
+	//should use sha256 but needs to be modified.  currently uses random 
+	//var storyBankList = Sha256.generate(temp, 43);
+
+	personList[Math.floor(Math.random() * personList.length)];
+
+
+}
 
 //functions
 
@@ -1374,11 +1408,11 @@ function calculateUniqueChar(txt) {
 	return uniqueCharList.length;
 }
 //key up function 
-function limits(obj) {
+function limits(obj, suffix) {
 	var limit = CHAR_LIMIT;
 	var uniqueLimit = UNIQUE_CHAR_LIMIT;
-	var counter = $('#charCounter');
-	var uniqueCounter = $('#uniqueCharCounter');
+	var counter = $('#charCounter'.concat(suffix));
+	var uniqueCounter = $('#uniqueCharCounter'.concat(suffix));
 	var txt = obj.val();
 	var length = txt.length;
 	var uniqueLength = calculateUniqueChar(txt);
@@ -1389,7 +1423,7 @@ function limits(obj) {
 	} else {
 		//enalbe button
 		//TO DO fix button 
-		document.getElementById('submitRandom').disabled = false;
+		document.getElementById('submitRandom'.concat(suffix)).disabled = false;
 		counter.html(length);
 		uniqueCounter.html(uniqueLength);
 	}
@@ -1418,8 +1452,12 @@ $( document ).ready(function(){
     //set up keyup for randomness text box
 
     $('#randomnessTextBox').keyup(function() {
-    	limits($(this));
+    	limits($(this), '');
     });
+    $('#randomnessTextBoxStoryMode').keyup(function() {
+    	limits($(this), 'StoryMode');
+    });
+
     //DROPBOX FUNCTIONS
 	window.insertStory = function insertStory(personName, sceneName) {
 		storyBankTable.insert({
