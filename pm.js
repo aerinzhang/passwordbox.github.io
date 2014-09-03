@@ -58,20 +58,28 @@ var THREE_OVERLAP = 3;
 var OVERLAP = 2;
 
 //CONSTANT VALUES: ALL PAO LISTS
-var personList = ['Adolf_Hitler',"Angelina_Jolie",'Barack_Obama',"Bart_Simpson", 
-				  "Beethoven", "Ben_Affleck", "Benjamin_Franklin", "Beyonce",
-				  "Bill_Clinton",'Bill_Gates', "Brad_Pitt","Darth_Vader","David_Beckham", 'Einstein',"Frodo", "Gandalf", "Gandhi",
-				  "George_W_Bush", "Harry_Potter",
-				  "Hillary_Clinton", "Homer_Simpson","Indiana_Jones", "Jimmy_Fallon", "John_Lennon",
+var personList = ['Adolf_Hitler',"Angelina_Jolie", 'Alfred_Hitchcock', 'Audrey_Hepburn', 'Barack_Obama',"Bart_Simpson", 
+				  "Beethoven", "Ben_Affleck", "Benjamin_Franklin", "Beyonce", //10
+				  "Bill_Clinton",'Bill_Gates', "Brad_Pitt", "Bruce_Lee",
+				  "Charlie_Chaplin", "Christopher_Columbus", "Darth_Vader","David_Beckham", 'Einstein', "Elvis_Presley",//10
+				  'Frankenstein',"Frodo", "Gandalf", "Gandhi",
+				  "George_W_Bush", 'George_Washington', "Harry_Potter",
+				  "Hillary_Clinton", "Homer_Simpson", "Indiana_Jones", 
+				  "Jennifer_Lopez", "Jimmy_Fallon", //12
+				  "John_Lennon", "Johnny_Depp",
 				  "Justin_Timberlake", "Kim_Jong_Un", "Kobe_Bryant",
-				   "Lebron_James", "Leonardo_DiCaprio",
-				   "Madonna", "Marilyn_Monroe", "Mark_Zuckerberg", "Martin_Luther_King_Jr",
-				   "Michael_Jackson","Michael_Jordan", "Michael_Phelps", 'Michelle_Obama', 'Morgan_Freeman','Mozart',
+				   "Lebron_James", "Leonardo_da_Vinci", "Leonardo_DiCaprio",
+				   "Madonna", "Marilyn_Monroe", //10
+				   "Mark_Twain",
+				   "Mark_Zuckerberg", "Martin_Luther_King_Jr",
+				   "Michael_Jackson","Michael_Jordan", "Michael_Phelps", 'Michelle_Obama', 
+				   'Mickey_Mouse', "Mona_Lisa", 'Morgan_Freeman','Mozart', //11
 				   "Neil_Armstrong", "Nelson_Mandela", 
 				   "Oprah_Winfrey",
-				   "Pope_Francis",
-				   "Sir_Issac_Newton", "Stephen_Hawking", "Steve_Jobs", "Superman",
-				   "Thomas_Edison", "Tiger_Woods", "Vladimir_Putin"]; //50
+				   "Pope_Francis", "Princess_Diana", 'Ronald_Reagan', "Sherlock_Holmes",
+				   "Sir_Issac_Newton", "Stephen_Hawking", "Steve_Jobs", //10
+				   "Superman",
+				   "Thomas_Edison", "Tiger_Woods", "Vincent_Van_Gogh", "Vladimir_Putin", "William_Shakespeare"]; //69
 
 
 var actionList = ['balancing', 'bending', 'biting', 'bouncing', 'building', 'burning' , 'chasing', 'clapping', 'climbing' ,'cooking', 'digging',
@@ -95,18 +103,18 @@ var sceneList = ['airport', 'baseball_field', 'basketball_court', 'bakery',
 
 
 //function that generate 43 stories for use
-function generate43Stories() {
+function populate43Bank() {
 	var usedPersonList = [];
 	var usedSceneList = [];
 	var finalPersonList = [];
 	var finalSceneList = [];
-	
+
 	var NUMBER_OF_STORIES = 43;
 	var temp = $('#randomnessTextBoxStoryMode').val();
 	//should use sha256 but needs to be modified.  currently uses random 
 	//var storyBankList = Sha256.generate(temp, 43);
 
-	personList[Math.floor(Math.random() * personList.length)];
+	//personList[Math.floor(Math.random() * personList.length)];
 
 
 }
