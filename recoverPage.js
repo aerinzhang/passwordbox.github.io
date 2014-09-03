@@ -111,7 +111,7 @@ recoveryMechanism.gatherUserInput = function (index){
 }
 recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 	var k = 6;
-	var allComb = recoveryMechanism.regularComputeCombinations(grouplist, k);
+	var allComb = recoveryMechanism.regularComputeCombinations(groupFullList, k);
 	var hashList = [];
 	for (var i=0; i<allComb.length; i++) {
 		var oneString = groupFullList[i][1].concat(groupFullList[i][2]);
