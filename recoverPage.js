@@ -114,15 +114,14 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 	var allComb = recoveryMechanism.regularComputeCombinations(grouplist, k);
 	var hashList = [];
 	for (var i=0; i<allComb.length; i++) {
-		var oneString = ;
+		var oneString = groupFullList[i][1].concat(groupFullList[i][2]);
 		//compute hash for one combination
 		var oneHash = recoveryMechanism.generateBCryptHash(oneString);
 		hashList.push(oneHash);
-
-
-
 	}
+	return hashList;
 }
+
 //bank and rehearse schedule
 recoveryMechanism.regularComputeCombinations = function(bank, k) {
 	if (bank.length < k) {

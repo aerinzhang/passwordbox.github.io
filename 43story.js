@@ -35,6 +35,8 @@ storyMode43.generateStoryGroup = function(index) {
 			//$("#bank").page('destroy').page();  
 			console.log('play Game!');
 			var group = records.slice(startFrom, curLimit+1)
+			//storeHashesforThisGroup
+			recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
 			memoryGame.startGame(group);
 			//playtheGame
 
