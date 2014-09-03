@@ -114,7 +114,7 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 	var allComb = recoveryMechanism.regularComputeCombinations(groupFullList, k);
 	var hashList = [];
 	for (var i=0; i<allComb.length; i++) {
-		var oneString = groupFullList[i][1].concat(groupFullList[i][2]);
+		var oneString = allComb[i][1].concat(allComb[i][2]);
 		//compute hash for one combination
 		var oneHash = recoveryMechanism.generateBCryptHash(oneString);
 		hashList.push(oneHash);
