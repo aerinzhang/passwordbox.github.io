@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Password Manager</title>
+		<!-- src dropbox jquery kendo-->
+		<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>-->
+
+		<script src="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+		<script src="https://www.dropbox.com/static/api/dropbox-datastores-1.0-latest.js"></script>
+		<script type="text/javascript" src='kendo.all.min.js'></script>
+		<!--<script src="tutorial.js"></script>-->
+		<script type="text/javascript" src='sha2.js'></script>
+		
+		<!-- bCrypt -->
+		<script src="jBcrypt/isaac.js" type="text/javascript"></script>
+		<script src="jBcrypt/bCrypt.js" type="text/javascript"></script>
+
+		<script src='pm.js'></script>
+		<!-- style sheets kendo jquery own -->
+		<link rel='stylesheet' href='kendo.common.min.css'/>
+		<link rel='stylesheet' href='kendo.rtl.min.css'/>
+		<link rel='stylesheet' href='kendo.default.min.css'/>
+		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+		<link rel='stylesheet' href='pm.css'/>
+		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css' />
+		<link href='https://fonts.googleapis.com/css?family=Linden+Hill' rel='stylesheet' type='text/css' />
+		<link href='https://fonts.googleapis.com/css?family=Chelsea+Market' rel='stylesheet' type='text/css' />
+		<link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css' />
+		<link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet' type='text/css'>
+		<!-- phone gap stuff meta?-->
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0 minimum-scale=1.0 user-scalable=0"/> 
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</head>
+	<body>
+		<div data-role="page" data-title="home" id="home">
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu' id='home-navbar'>
+						<li><a class='logo'  href='#board'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='home-bank' >STORY BANK</a></li>
+						<li><a href='#accounts' id='home-accounts' >ACCOUNTS</a></li>
+						<li><a href='#game' id='home-game'>GAME</a></li>
+
+					</ul>
+				</div>
+			</div>
+			<div data-role="content">
+				<div id="AmazonStories">
+					<ul = data-role='listview'>
+						<div class=twoPairs>
+							<span class='pairdiv overlayContainer'>
+								<figure><img class=pair src="images/person/Adolf_Hitler.jpg" /><figcaption>Adolf Hitler</figcaption></figure>
+								<figure><img class="pair" src="images/scene/airport.jpg" /><img src="images/takeAction.png" class=action><figcaption>airport</figcaption></figure>
+							</span>
+							&nbsp&nbsp
+							<span class='pairdiv overlayContainer'><figure><img class=pair src="images/person/Brad_Pitt.jpg" /><figcaption>Brad Pitt</figcaption></figure>
+					 		<figure><img class=pair src="images/scene/bakery.jpg" /><img src="images/takeObject.png" class=action><figcaption>bakery</figcaption></figure>
+					 		</span>
+					 	</div>
+					 	<div class=twoPairs>
+					 		<span class='pairdiv overlayContainer'>
+								<figure><img class=pair src="images/person/Angelina_Jolie.jpg" /><figcaption>Angelina Jolie</figcaption></figure>
+								<figure><img class=pair src="images/scene/castle.jpg" /><img src="images/takeAction.png" class=action><figcaption>castle</figcaption></figure>
+							</span>
+							&nbsp&nbsp
+							<span class='pairdiv overlayContainer'><figure><img class=pair src="images/person/Bruce_Lee.jpg" /><figcaption>Bruce Lee</figcaption></figure>
+					 		<figure><img class=pair src="images/scene/cliff.jpg" /><img src="images/takeObject.png" class=action><figcaption>cliff</figcaption></figure>
+					 		</span>
+					 	</div>
+					 </ul>
+				</div>
+				<br>
+				<input type='text' autocorrect='off' name='password' id='"+web+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>
+				<a href='#' data-role='button' data-rel='popup' onclick='checkPasswordNew()' > Rehearse Account</a>
+			</div>
+		</div>
+	</body>
+</html>

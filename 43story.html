@@ -4,11 +4,13 @@
 		<title>Password Manager</title>
 		<!-- src dropbox jquery kendo-->
 		<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
 		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>-->
 
 		<script src="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 		<script src="https://www.dropbox.com/static/api/dropbox-datastores-1.0-latest.js"></script>
 		<script type="text/javascript" src='kendo.all.min.js'></script>
+
 		<!--<script src="tutorial.js"></script>-->
 		<!<script type="text/javascript" src='sha2.js'></script>
 		
@@ -20,7 +22,8 @@
 		<script src='appConstants.js'></script>
 		<script src="memoryGame.js"></script>
 		<script src='recoverPage.js'></script>
-		<script src='43story.js'></script>
+		<script src='storyMode.js'></script>
+
 		<!-- style sheets kendo jquery own -->
 		<link rel='stylesheet' href='kendo.common.min.css'/>
 		<link rel='stylesheet' href='kendo.rtl.min.css'/>
@@ -40,6 +43,38 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 	</head>
 	<body>
+		<!-- # of Accounts & Security-Usability Scale Page -->
+		<div data-role='page' data-title='userSelect' id='userSelect'>
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu'>
+						<li><a class='logo' href='#board'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='bank-bank'>STORY BANK</a></li>
+						<li><a href='#accounts' id='bank-accounts'>ACCOUNTS</a></li>
+						<li><a href='#game' id='bank-game' >GAME</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role='content'>
+
+				<p>How many passwords do you have?</p>
+				<select id='numAccountOption'>
+					<option value="14">0-14</option>
+					<option value="30">15-30</option>
+					<option value="45">31-45</option>
+					<option value="80">46-80</option>
+					<option value="81">>80</option>
+				</select>
+				<div id='sliderDiv'>
+					<span>
+						<!--<label for="slider">Usability:</label>-->
+						<span>Usability<input type="range" name="slider" id="slider" value="50" min="0" max="100" step="50"/>Security</span>
+					</span>
+				</div>
+			<button id='pickModeButton' type='submit' value='submit' name='submit' tabindex="2" onclick='storyMode.gatherInfo()'>Start</button>
+
+			</div>
+		</div>
 		<!-- 43-Story-Mode Randomness -->
 		<div data-role="page" data-title="mode43" id="mode43">
 			<div data-role="header">
@@ -56,7 +91,7 @@
 				<p>Please enter at least 30 random characters (at least 20 unique characters) to provide a seed for the pseudorandom generator.</p>
 				<p><textarea id='randomnessTextBoxStoryMode' cols='100' rows='80' tabindex="1"> </textarea></p>
 				<p id='textCounterStoryMode'><span id='charCounterStoryMode'>0</span> characters and <span id='uniqueCharCounterStoryMode'>0</span> unique characters</p>
-				<button id='submitRandomStoryMode' type='submit' value='submit' name='submit' disabled='true' tabindex="2" onclick='storyMode43.populateBank()'>Generate Randomness & Initialize the Story Bank</button>
+				<button id='submitRandomStoryMode' type='submit' value='submit' name='submit' disabled='true' tabindex="2" onclick='storyMode.populateBank()'>Generate Randomness & Initialize the Story Bank</button>
 			</div>
 		</div>
 		<!-- BANK PAGE -->

@@ -1,8 +1,8 @@
-//This module is for the 43 story mode
-var storyMode43 = storyMode43 || {};
+//This module is for the High-Medium-Low story mode
+var storyMode = storyMode || {};
 
-storyMode43.CHAR_LIMIT = 30;
-storyMode43.UNIQUE_CHAR_LIMIT = 20;
+storyMode.CHAR_LIMIT = 30;
+storyMode.UNIQUE_CHAR_LIMIT = 20;
 
 
 //TEMP!
@@ -16,9 +16,29 @@ String.format = function() {
 	return s;
 }
 
-storyMode43.generateStoryGroup = function(index) {
-	//hard-coded groups for 43 stories 9-8-8-8-9
-	var limitsList = [8, 16, 25, 33, 42];
+storyMode.calculateListLength = function(totalLength) {
+	return Math.ceil(totalLength/10);
+}
+storyMode.generateStoryGroup = function(index) {
+	//create variable limitList
+	var limitsList = [];
+	var length = storyMode.limitListLength;
+	for (var i=0; i<length; i++) {
+		if (i != length-1) {
+			//push 10 for all except last one
+			limitsList.push(10);
+		} else {
+			//last element in the list
+			//if mod 10 == 0
+			if (length * 10 == storyMode.NUMBER_OF_STORIES) {
+				limitsList.push(10);
+			} else {
+				limitsList.push(storyMode.NUMBER_OF_STORIES - (length-1) * 10);
+			}
+		}
+	}
+	//var limitsList = [8, 16, 25, 33, 42];
+	console.log(limitsList);
 	for ( var i=0; i<limitsList.length; i++ ) {
 		var curLimit = limitsList[i];
 		if (index <= curLimit) {
@@ -29,7 +49,8 @@ storyMode43.generateStoryGroup = function(index) {
 			} else {
 				var startFrom = limitsList[i-1]+1;
 			}
-			for (var j=startFrom; j<=curLimit; j++) {
+			for (var j=startFrom; j<curLimit; j++) {
+				console.log(j);
 				records[j][2] = true;
 			}
 			//$("#bank").page('destroy').page();  
@@ -45,8 +66,10 @@ storyMode43.generateStoryGroup = function(index) {
 	}
 }
 
-storyMode43.recoverStory = function (index) {
+storyMode.recoverStory = function (index) {
 	console.log(index);
+	//create variable limits
+
 	var limitsList = [8, 16, 25, 33, 42];
 	var startIndex = 0;
 	for ( var i=0; i<limitsList.length; i++) {
@@ -91,7 +114,7 @@ function renderStoryBank() {
 				console.log(used);
 				if (used) {
 					var className = "initializedStory";
-					var button = "<p style='margin:0px; margin-top:2%'><button onclick='storyMode43.recoverStory(" + i + ")' \
+					var button = "<p style='margin:0px; margin-top:2%'><button onclick='storyMode.recoverStory(" + i + ")' \
 								 style='text-align:center;font-family=Lato;'>Recover This Story</button></p>";
 					var pair = "<li class='"  + className + "'><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dateText'>{4}</p></figcaption></figure> \
 						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><p class='storyText'>{3}</p><p class='scoreText'>Score:{5}</p></figcaption></figure></span>"
@@ -100,7 +123,7 @@ function renderStoryBank() {
 								scene.replace('_', ' '), date, score.toString());
 				} else {
 					var className = "unInitializedStory";
-					var button = "<p style='margin:0px; margin-top:2%'><button onclick='storyMode43.generateStoryGroup(" + i + ")' \
+					var button = "<p style='margin:0px; margin-top:2%'><button onclick='storyMode.generateStoryGroup(" + i + ")' \
 								 style='text-align:center;font-family=Lato;'>Add This Story</button></p>";
 					var pair = "<li class='"  + className + "'><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dateText'></p></figcaption></figure> \
 						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><p class='storyText'>{3}</p><p class='scoreText'></p></figcaption></figure></span>" + button + "</li>";
@@ -121,7 +144,7 @@ function renderStoryBank() {
 
 }
 
-storyMode43.populateBank = function(){
+storyMode.populateBank = function(){
 	var copyPeopleList = appConstants.peopleList.slice(0);
 	var copyScenesList = appConstants.scenesList.slice(0);
 	var usedPersonList = [];
@@ -130,8 +153,8 @@ storyMode43.populateBank = function(){
 	var finalSceneList = [];
 	var finalRecords = [];
 
-	var NUMBER_OF_STORIES = storyMode43.NUMBER_OF_STORIES;
-	//var NUMBER_OF_STORIES = 43;
+	var NUMBER_OF_STORIES = storyMode.NUMBER_OF_STORIES;
+
 	var temp = $('#randomnessTextBoxStoryMode').val();
 	//should use sha256 but needs to be modified.  currently uses random 
 	//var storyBankList = Sha256.generate(temp, 43);
@@ -155,11 +178,11 @@ storyMode43.populateBank = function(){
 	//display the storyBank 
 	renderStoryBank();
 	$.mobile.changePage('#bank');
-
+	console.log(records);
 }
 
 //helper for key up
-storyMode43.calculateUniqueChar = function (txt) {
+storyMode.calculateUniqueChar = function (txt) {
 	var uniqueCharList = [];
 	for (var i=0; i<txt.length; i++) {
 		var aChar = txt.charAt(i);
@@ -172,62 +195,63 @@ storyMode43.calculateUniqueChar = function (txt) {
 
 
 //function to gather security levelInfo
-storyMode43.gatherInfo = function() {
+storyMode.gatherInfo = function() {
 	var securityNum = $('#slider').val();
 	var numberOfAccounts = $('#numAccountOption').val();
 
 	if (securityNum == 50) {
-		storyMode43.securityLevel = 'Medium';
+		storyMode.securityLevel = 'Medium';
 		if (numberOfAccounts == 14) {
-			storyMode43.NUMBER_OF_STORIES = 9;
+			storyMode.NUMBER_OF_STORIES = 9;
 		} else if (numberOfAccounts == 30) {
-			storyMode43.NUMBER_OF_STORIES = 11;
+			storyMode.NUMBER_OF_STORIES = 11;
 		} else if (numberOfAccounts == 45) {
-			storyMode43.NUMBER_OF_STORIES = 12;
+			storyMode.NUMBER_OF_STORIES = 12;
 		} else if (numberOfAccounts == 80) {
-			storyMode43.NUMBER_OF_STORIES = 14;
+			storyMode.NUMBER_OF_STORIES = 14;
 		} else { //assume no more than 100?
-			storyMode43.NUMBER_OF_STORIES = 15;
+			storyMode.NUMBER_OF_STORIES = 15;
 		}
 	} else if (securityNum == 0) {
-		storyMode43.securityLevel = 'Low';
+		storyMode.securityLevel = 'Low';
 		if (numberOfAccounts == 14) {
-			storyMode43.NUMBER_OF_STORIES = 4;
+			storyMode.NUMBER_OF_STORIES = 4;
 		} else if (numberOfAccounts == 30) {
-			storyMode43.NUMBER_OF_STORIES = 6;
+			storyMode.NUMBER_OF_STORIES = 6;
 		} else if (numberOfAccounts == 45) {
-			storyMode43.NUMBER_OF_STORIES = 7;
+			storyMode.NUMBER_OF_STORIES = 7;
 		} else if (numberOfAccounts == 80) {
-			storyMode43.NUMBER_OF_STORIES = 8;
+			storyMode.NUMBER_OF_STORIES = 8;
 		} else { //assume no more than 100?
-			storyMode43.NUMBER_OF_STORIES = 9;
+			storyMode.NUMBER_OF_STORIES = 9;
 		}
 	} else {
-		storyMode43.securityLevel = 'High';
+		storyMode.securityLevel = 'High';
 		if (numberOfAccounts == 14) {
-			storyMode43.NUMBER_OF_STORIES = 23;
+			storyMode.NUMBER_OF_STORIES = 23;
 		} else if (numberOfAccounts == 30) {
-			storyMode43.NUMBER_OF_STORIES = 29;
+			storyMode.NUMBER_OF_STORIES = 29;
 		} else if (numberOfAccounts == 45) {
-			storyMode43.NUMBER_OF_STORIES = 34;
+			storyMode.NUMBER_OF_STORIES = 34;
 		} else if (numberOfAccounts == 80) {
-			storyMode43.NUMBER_OF_STORIES = 44;
+			storyMode.NUMBER_OF_STORIES = 44;
 		} else { //assume no more than 100?
-			storyMode43.NUMBER_OF_STORIES = 50;
+			storyMode.NUMBER_OF_STORIES = 50;
 		}
 	}
 	$.mobile.changePage('#mode43');
-
+	storyMode.limitListLength = storyMode.calculateListLength(storyMode.NUMBER_OF_STORIES);
 }
+
 //key up function 
-storyMode43.limits = function (obj, suffix) {
-	var limit = storyMode43.CHAR_LIMIT;
-	var uniqueLimit = storyMode43.UNIQUE_CHAR_LIMIT;
+storyMode.limits = function (obj, suffix) {
+	var limit = storyMode.CHAR_LIMIT;
+	var uniqueLimit = storyMode.UNIQUE_CHAR_LIMIT;
 	var counter = $('#charCounter'.concat(suffix));
 	var uniqueCounter = $('#uniqueCharCounter'.concat(suffix));
 	var txt = obj.val();
 	var length = txt.length;
-	var uniqueLength = storyMode43.calculateUniqueChar(txt);
+	var uniqueLength = storyMode.calculateUniqueChar(txt);
 	//if length not enough
 	if (!(length >= limit && uniqueLength >= uniqueLimit)) {
 		counter.html(length);
@@ -243,6 +267,6 @@ storyMode43.limits = function (obj, suffix) {
 
 $(document).ready(function(){
 	$('#randomnessTextBoxStoryMode').keyup(function() {
-		storyMode43.limits($(this), 'StoryMode');
+		storyMode.limits($(this), 'StoryMode');
     });
 });

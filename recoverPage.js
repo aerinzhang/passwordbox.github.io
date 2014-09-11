@@ -110,14 +110,16 @@ recoveryMechanism.gatherUserInput = function (index){
 
 }
 recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
-	var k = 6;
-	var allComb = recoveryMechanism.regularComputeCombinations(groupFullList, k);
 	var hashList = [];
-	for (var i=0; i<allComb.length; i++) {
-		var oneString = allComb[i][1].concat(allComb[i][2]);
-		//compute hash for one combination
-		var oneHash = recoveryMechanism.generateBCryptHash(oneString);
-		hashList.push(oneHash);
+	if (groupFullList.length >= 6) {
+		var k = 6;
+		var allComb = recoveryMechanism.regularComputeCombinations(groupFullList, k);
+		for (var i=0; i<allComb.length; i++) {
+			var oneString = allComb[i][1].concat(allComb[i][2]);
+			//compute hash for one combination
+			var oneHash = recoveryMechanism.generateBCryptHash(oneString);
+			hashList.push(oneHash);
+		}
 	}
 	return hashList;
 }
