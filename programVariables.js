@@ -43,8 +43,8 @@ programVariables.initialize = function (){
  		accountPage.updateAccountList();
 
  		//Ensure future changes update the list 
- 		programVariables.datastore.recordsChanged.addListener(updateStoryBankList);
-		programVariables.datastore.recordsChanged.addListener(updateAccountList);	
+ 		programVariables.datastore.recordsChanged.addListener(storyMode.updateStoryBankList);
+		programVariables.datastore.recordsChanged.addListener(accountPage.updateAccountList);	
 		alert('the end of initialization');
 		//UI Change after logging in REFER TO pm.js
 	});
