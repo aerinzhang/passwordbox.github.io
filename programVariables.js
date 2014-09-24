@@ -20,6 +20,9 @@ programVariables.initialize = function (){
 		programVariables.accountTable = datastore.getTable('accounts');
 		programVariables.generalTable = datastore.getTable('general');
 
+		programVariables.stories = programVariables.storyBankTable.query();
+		programVariables.accounts = programVariables.accountTable.query();
+
 		programVariables.storyBank = programVariables.stripStoryFromRecords();
 		programVariables.programRecord = programVariables.generalTable.query();
 		if (programVariables.programRecord.length == 0) {
