@@ -46,7 +46,7 @@ programVariables.initialize = function (){
  		programVariables.datastore.recordsChanged.addListener(storyMode.updateStoryBankList);
 		programVariables.datastore.recordsChanged.addListener(accountPage.updateAccountList);	
 		alert('the end of initialization');
-		console.log(programVariables.accountTable.query()[0].get('accountName'));
+		console.log(programVariables.accountTable.query()[0].get('account'));
 		//UI Change after logging in REFER TO pm.js
 	});
 }
