@@ -47,9 +47,9 @@ programVariables.initialize = function (){
 		programVariables.datastore.recordsChanged.addListener(updateAccountList);	
 		alert('the end of initialization');
 		//UI Change after logging in REFER TO pm.js
-
-
+	});
 }
+
 programVariables.insertAccount = function (accountName, storyList, index) {
 	return true;
 	
