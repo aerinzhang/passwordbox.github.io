@@ -81,7 +81,6 @@ accountPage.renderAccountList = function(changePageBool) {
 
 		//if there are stories in the bank 
 		//NEW CONDITION NEEDED!!!!!! STORIES NEEDED ALREADY UNLOCKED
-
 		if (stories.length >= 0) {
 			//create each page for each account
 			for (var i=0; i < accounts.length; i++) {

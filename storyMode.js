@@ -39,6 +39,7 @@ storyMode.generateStoryGroup = function(index) {
 	}
 	//var limitsList = [8, 16, 25, 33, 42];
 	console.log(limitsList);
+	console.log('index passed in is.....' + index.toString());
 	for ( var i=0; i<limitsList.length; i++ ) {
 		var curLimit = limitsList[i];
 		if (index <= curLimit) {

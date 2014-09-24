@@ -8,7 +8,7 @@ programVariables.storyBank;
 programVariables.accounts;
 programVariables.stories;
 programVariables.accountIndex;
-
+programVariables.securitySetting;
 
 programVariables.initialize = function (){
 	programVariables.client.getDatastoreManager().openDefaultDatastore(function (error, datastore) {
@@ -72,7 +72,7 @@ programVariables.insertProgramRecord = function (generalTable) {
 		existingAccountIndex : 0,
 		existingAccounts : [],
 		existingSceneList : [],
-		existingPersonList : [] 
+		existingPersonList : []
 	});
 }
 
