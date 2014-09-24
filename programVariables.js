@@ -4,10 +4,10 @@ programVariables.DROPBOX_APP_KEY = '8qw6cevpayp0vyd';
 programVariables.client = new Dropbox.Client({key: programVariables.DROPBOX_APP_KEY});
 programVariables.datastore = null;
 
-programVariables.storyBank = [];
-programVariables.accounts = [];
-programVariables.stories = [];
-programVariables.accountIndex = 0;
+programVariables.storyBank;
+programVariables.accounts;
+programVariables.stories;
+programVariables.accountIndex;
 
 
 programVariables.initialize = function (){
@@ -45,8 +45,7 @@ programVariables.initialize = function (){
  		//Ensure future changes update the list 
  		programVariables.datastore.recordsChanged.addListener(storyMode.updateStoryBankList);
 		programVariables.datastore.recordsChanged.addListener(accountPage.updateAccountList);	
-		alert('the end of initialization');
-		console.log(programVariables.accountTable.query()[0].get('account'));
+		alert('accountLoaded Successfully');
 		//UI Change after logging in REFER TO pm.js
 	});
 }
