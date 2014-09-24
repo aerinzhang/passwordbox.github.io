@@ -269,4 +269,12 @@ $(document).ready(function(){
 	$('#randomnessTextBoxStoryMode').keyup(function() {
 		storyMode.limits($(this), 'StoryMode');
     });
+	$('#accountsList').submit(accountPage.submit);
+	alert('hi before authenticate');
+	programVariables.client.authenticate();
+	alert('hi after authenticate');
+	
+	if (programVariables.client.isAuthenticated()){
+		alert('hi');
+	}
 });

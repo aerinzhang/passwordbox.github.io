@@ -82,7 +82,7 @@ figcaption {
 	font-family: 'Linden Hill', serif;
 }
 #gamestories {
-	padding-top: 100px;
+	padding-top: 50px;
 }
 div.ui-page{
 	text-align: center;
@@ -263,7 +263,7 @@ body, html {
 	font-family: Lato;
 }
 
-#gamepage > div.ui-content, #gameForget > div.ui-content {
+#gamepage > div.ui-content, #forgetPage > div.ui-content {
 	padding-left: 0;
 	padding-right: 0;
 }

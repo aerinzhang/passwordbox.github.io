@@ -285,7 +285,43 @@ memoryGame.generateNextCheck = function () {
 	}
 }
 
-memoryGame.forgetStory = function () {}
+
+//return to Game page from 
+memoryGame.backtoGame = function() {
+	$.mobile.changePage('#gamepage');
+	
+	setTimeout(memoryGame.doNothing, 1000);
+	$('#game-password').focus();
+}
+
+memoryGame.doNothing = function() {
+}
+
+//dynamically generate and change to the forget story page
+memoryGame.forgetStory = function() {
+	var html="<div class=clueDiv><figure><img class=clue src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
+			 is <figure><img class=clue src=images/action/{2}1.jpg /><figcaption>{3}</figcaption></figure>\
+			 {8}<figure><img class=clue src=images/object/{4}1.jpg /><figcaption>{5}</figcaption></figure>\
+			 in/on<figure><img class=clue src=images/scene/{6}.jpg /><figcaption>the {7}</figcaption></figure></div>";
+	if (memoryGame.checkIndex == 0) {
+		var currentStory = memoryGame.fullGameList[memoryGame.sequenceIndex];
+	} else {
+		var currentStory = memoryGame.fullGameList[memoryGame.checkIndex-1];
+	}
+	if (currentStory[OBJECT_INDEX] == 'igloo') {
+		var article = 'an';
+	} else {
+		var article = 'a'
+	}
+	$('#hintSpace').html(String.format(html, currentStory[PERSON_INDEX], currentStory[PERSON_INDEX].split('_').join(' '), 
+											 currentStory[ACTION_INDEX], currentStory[ACTION_INDEX], 
+											 currentStory[OBJECT_INDEX], currentStory[OBJECT_INDEX], 
+											 currentStory[SCENE_INDEX].toLowerCase(), currentStory[SCENE_INDEX], article));
+	$.mobile.changePage("#forgetPage");
+}
+
+
+
 
 function getObjectComboBox(id) {
 	$('#' + id).kendoComboBox({
