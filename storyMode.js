@@ -87,7 +87,7 @@ storyMode.recoverStory = function (index) {
 }
 
 //might be for rendering Module
-function renderStoryBank() {
+storyMode.renderStoryBank = function() {
 	$('#bank').bind("pageshow", function() {
 
 		//var records = storyBankTable.query();
@@ -144,6 +144,20 @@ function renderStoryBank() {
 
 }
 
+
+storyMode.updateStoryBankList = function() {
+	$('#bankStories').empty();
+	var records = programVariables.storyBankTable.query();
+
+	//should sort by ref counts (CURRENTLY COMMENTED OUT)
+	// records.sort(function (storyA, storyB) {
+	// 	if (storyA.get('refCount') < storyB.get('refCount')) return -1;
+	// 	if (storyA.get('refCount') > storyB.get('refCount')) return 1;
+	// 	return 0;
+	// });
+	storyMode.renderStoryBank();
+}
+
 storyMode.populateBank = function(){
 	var copyPeopleList = appConstants.peopleList.slice(0);
 	var copyScenesList = appConstants.scenesList.slice(0);
@@ -176,7 +190,7 @@ storyMode.populateBank = function(){
 	}
 	//records = finalRecords;
 	//display the storyBank 
-	renderStoryBank();
+	storyMode.renderStoryBank();
 	$.mobile.changePage('#bank');
 	console.log(records);
 }
@@ -270,11 +284,11 @@ $(document).ready(function(){
 		storyMode.limits($(this), 'StoryMode');
     });
 	$('#accountsList').submit(accountPage.submit);
-	alert('hi before authenticate');
+
+	//add link to dropbox page
 	programVariables.client.authenticate();
-	alert('hi after authenticate');
-	
+
 	if (programVariables.client.isAuthenticated()){
-		alert('hi');
+		programVariables.initialize();
 	}
 });

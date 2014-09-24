@@ -160,4 +160,18 @@ accountPage.renderEachAccountElements = function(time, accountName, list, index)
 	return html;
 }
 
+accountPage.updateAccountList = function() {
+	var records = programVariables.accountTable.query();
+
+	//should sord by last rehearsal date (CURRENTLY COMMENTED OUT)
+
+	// records.sort(function (accountA, accountB) {
+	// 	if (accountA.get('lastRehearsal') < accountB.get('lastRehearsal')) return -1;
+	// 	if (accountA.get('lastRehearsal') > accountB.get('lastRehearsal')) return 1;
+	// 	return 0;
+	// });
+
+	//changePage? Update?
+	accountPage.renderAccountList(false);
+}
 
