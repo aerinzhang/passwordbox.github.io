@@ -6,8 +6,8 @@ accountPage.accountIndex = 0;
 accountPage.updateListBool = true;
 accountPage.existingAccountIndex = 0;
 
-PERSON_INDEX = 0;
-SCENE_INDEX = 1;
+accountPage.PERSON_INDEX = 0;
+accountPage.SCENE_INDEX = 1;
 
 accountPage.isWebsite = function(web) {
 	//check empty/ same account entered
@@ -156,8 +156,8 @@ accountPage.renderEachAccountElements = function(time, accountName, list, index)
 			var liold = "       &nbsp&nbsp<span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 					 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span></div>";
 			}
-		var li = String.format(liold, list[i][PERSON_INDEX], list[i][PERSON_INDEX].split('_').join(' '),
-									  list[i][SCENE_INDEX].toLowerCase(), list[i][SCENE_INDEX].split('_').join(' '));
+		var li = String.format(liold, list[i][accountPage.PERSON_INDEX], list[i][accountPage.PERSON_INDEX].split('_').join(' '),
+									  list[i][accountPage.SCENE_INDEX].toLowerCase(), list[i][accountPage.SCENE_INDEX].split('_').join(' '));
 		html += li;
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+accountName+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
