@@ -88,7 +88,7 @@ recoveryMechanism.gatherUserInput = function (index){
 		if (i > index) inputSecondhalf += userInput;
 	}
 	//if there are less than five stories cannot perform the recovery
-	//QUESTION: what five should we use?????
+	//QUESTION: what five should we use????? CURRENTLY FIRST 5 STORIES LATER  
 	if (count < 5) {
 		alert('cannot recover missing story without five known stories');
 		return;

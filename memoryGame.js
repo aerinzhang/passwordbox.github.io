@@ -83,7 +83,7 @@ memoryGame.displayCheckPage = function(person, scene) {
 						tabindex='3'>Check and Next</a>\
 						<a href='#' class=left data-role='button' tabindex='4' onclick='memoryGame.forgetStory()'>I Forget</a>\
 						</div></span></form></span>";
-		$('#gamestories').html(String.format(html, person, person.split('_').join(' '), scene.toLowerCase(), scene.replace('_', ' ')));
+		$('#gamestories').html(String.format(html, person, person.split('_').join(' '), scene.toLowerCase(), person.split('_').join(' ')));
 		
 		//should be in VIEW MODULE LATER!! 
 		getVerbComboBox('game-password');
@@ -222,7 +222,7 @@ memoryGame.generateNextStory = function () {
 	var article = (story[OBJECT_INDEX] == 'igloo' ? 'an' : 'a');
 	$('#gamestories').html(String.format(html, story[PERSON_INDEX], story[PERSON_INDEX].split('_').join(' '),
 											   story[ACTION_INDEX], story[ACTION_INDEX], story[OBJECT_INDEX], story[OBJECT_INDEX], 
-											   story[3].toLowerCase(), story[3].replace('_' ,' '), article));
+											   story[SCENE_INDEX].toLowerCase(), story[SCENE_INDEX].split('_').join(' '), article));
 	memoryGame.storyIndex += 1;
 	//$.mobile.changePage("#gamepage");
 }

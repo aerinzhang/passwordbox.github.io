@@ -121,16 +121,16 @@ storyMode.renderStoryBank = function() {
 					var pair = "<li class='"  + className + "'><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dateText'>{4}</p></figcaption></figure> \
 						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><p class='storyText'>{3}</p><p class='scoreText'>Score:{5}</p></figcaption></figure></span>"
 						 	+ button + "</li>";
-					var newli = String.format(pair, person, person.replace('_', ' '), scene.toLowerCase(),
-								scene.replace('_', ' '), date, score.toString());
+					var newli = String.format(pair, person, person.split('_').join(' '), scene.toLowerCase(),
+								scene.split('_').join(' '), date, score.toString());
 				} else {
 					var className = "unInitializedStory";
 					var button = "<p style='margin:0px; margin-top:2%'><button onclick='storyMode.generateStoryGroup(" + i + ")' \
 								 style='text-align:center;font-family=Lato;'>Add This Story</button></p>";
 					var pair = "<li class='"  + className + "'><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dateText'></p></figcaption></figure> \
 						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><p class='storyText'>{3}</p><p class='scoreText'></p></figcaption></figure></span>" + button + "</li>";
-					var newli = String.format(pair, person, person.replace('_', ' '), scene.toLowerCase(),
-								scene.replace('_', ' '));
+					var newli = String.format(pair, person, person.split('_').join(' '), scene.toLowerCase(),
+								scene.split('_').join(' '));
 				}
 				//var perosn = record.get('person');
 				//var scene = record.get('scene') ;

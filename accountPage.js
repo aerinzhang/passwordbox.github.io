@@ -6,6 +6,9 @@ accountPage.accountIndex = 0;
 accountPage.updateListBool = true;
 accountPage.existingAccountIndex = 0;
 
+PERSON_INDEX = 0;
+SCENE_INDEX = 1;
+
 accountPage.isWebsite = function(web) {
 	//check empty/ same account entered
 	return true;
@@ -129,7 +132,7 @@ accountPage.renderAccountList = function(changePageBool) {
 			}
 			//update the account page
 		} else {
-			//alert('play the game!');
+			//alert('play the game to unlock more stories!');
 		}
 		if (changePageBool) {
 			accountPage.accountIndex += 1;
@@ -153,7 +156,8 @@ accountPage.renderEachAccountElements = function(time, accountName, list, index)
 			var liold = "       &nbsp&nbsp<span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
 					 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span></div>";
 			}
-		var li = String.format(liold, list[i][0], list[i][0].replace('_', ' '), list[i][1].toLowerCase(), list[i][1].replace('_',' '));
+		var li = String.format(liold, list[i][PERSON_INDEX], list[i][PERSON_INDEX].split('_').join(' '),
+									  list[i][SCENE_INDEX].toLowerCase(), list[i][SCENE_INDEX].split('_').join(' '));
 		html += li;
 	}
 	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+accountName+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
