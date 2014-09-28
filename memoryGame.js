@@ -18,7 +18,7 @@ memoryGame.generateFullGameList = function(partialGameList) {
 	var result = [];
 	for (var i=0; i<memoryGame.gameLength; i++) {
 		var person = partialGameList[i][PERSON_INDEX];
-		var scene = partialGameList[i][1];
+		var scene = partialGameList[i][SCENE_INDEX];
 		var action = actionList[i];
 		var object = objectList[i];
 		result.push([person, action, object, scene]);
@@ -83,7 +83,7 @@ memoryGame.displayCheckPage = function(person, scene) {
 						tabindex='3'>Check and Next</a>\
 						<a href='#' class=left data-role='button' tabindex='4' onclick='memoryGame.forgetStory()'>I Forget</a>\
 						</div></span></form></span>";
-		$('#gamestories').html(String.format(html, person, person.split('_').join(' '), scene.toLowerCase(), person.split('_').join(' ')));
+		$('#gamestories').html(String.format(html, person, person.split('_').join(' '), scene.toLowerCase(), scene.split('_').join(' ')));
 		
 		//should be in VIEW MODULE LATER!! 
 		getVerbComboBox('game-password');
@@ -316,7 +316,7 @@ memoryGame.forgetStory = function() {
 	$('#hintSpace').html(String.format(html, currentStory[PERSON_INDEX], currentStory[PERSON_INDEX].split('_').join(' '), 
 											 currentStory[ACTION_INDEX], currentStory[ACTION_INDEX], 
 											 currentStory[OBJECT_INDEX], currentStory[OBJECT_INDEX], 
-											 currentStory[SCENE_INDEX].toLowerCase(), currentStory[SCENE_INDEX], article));
+											 currentStory[SCENE_INDEX].toLowerCase(), currentStory[SCENE_INDEX].split('_').join(' '), article));
 	$.mobile.changePage("#forgetPage");
 }
 
