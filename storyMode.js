@@ -26,7 +26,7 @@ storyMode.selectBankStory = function(index) {
 	console.log("bankStory index selected is" + index.toString());
 	var limitsList = storyMode.groupList;
 	var curLimit = 0;
-	//var records = programVariables.storyBankTable.query();
+	var records = programVariables.storyBankTable.query();
 
 	for ( var i=0; i<limitsList.length; i++ ) {
 		curLimit += limitsList[i];
@@ -35,18 +35,16 @@ storyMode.selectBankStory = function(index) {
 			var startFrom = curLimit - limitsList[i];
 			console.log(curLimit.toString());
 			for (var j=startFrom; j<curLimit; j++) {
-				records[j][2] = true;
-				//records[j].set('used', true);
+				records[j].set('used', true);
 			}
 			//$("#bank").page('destroy').page();
 			console.log(limitsList);  
 			console.log('play Game!');
 			console.log('starting from ' + startFrom.toString() + ' end exclusive ' + curLimit.toString());
-			//var group = programVariables.getGroupFromRecordIndices(startFrom, curLimit);
-			var group = records.slice(startFrom, curLimit)
+			var group = programVariables.getGroupFromRecordIndices(startFrom, curLimit);
 			console.log(group);
 			//storeHashesforThisGroup
-			recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
+			//recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
 			memoryGame.startGame(group);
 			//playtheGame
 
