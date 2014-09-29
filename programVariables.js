@@ -80,6 +80,7 @@ programVariables.getGroupFromRecordIndices = function(start, end) {
 		var record = records[i];
 		group.push([record.get('person'), record.get('scene'), record.get('used')]);
 	}
+	alert(group);
 	return group;
 }
 
