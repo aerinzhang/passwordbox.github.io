@@ -81,7 +81,7 @@ programVariables.insertRecord = function (level) {
 }
 
 programVariables.insertStory = function (personName, sceneName, usedBool, groupNum) {
-	programVariables.storyTable.insert({
+	programVariables.storyBankTable.insert({
 		person: personName,
 		scene: sceneName,
 		used: usedBool,
