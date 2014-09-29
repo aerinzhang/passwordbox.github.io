@@ -73,6 +73,16 @@ programVariables.initialize = function (){
 	});
 }
 
+programVariables.getGroupFromRecordIndices = function(start, end) {
+	var records = programVariables.storyBankTable.query();
+	var group = [];
+	for (var i = start; i < end; i++ ){
+		var record = records[i];
+		group.push([record.get('person'), record.get('scene'), record.get('used')]);
+	}
+	return group;
+}
+
 programVariables.insertRecord = function (level) {
 	programVariables.storyModeGeneralTable.insert({
 		securityLevel: level,
@@ -126,9 +136,6 @@ programVariables.updateStoryRefCount = function (accountName, accountNestedList)
  	// fill later
 }
 
-programVariables.set = function (propertyKey, value) {
-	//eval("programVariables." + propertyKey + " = " + value + ';';
-}
 
 programVariables.stripStoryFromRecords = function() {
 	var records = programVariables.storyBankTable.query();
