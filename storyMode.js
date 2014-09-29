@@ -29,7 +29,6 @@ storyMode.selectBankStory = function(index) {
 	var records = programVariables.storyBankTable.query();
 	alert('length of story bank is ' + records.length.toString());
 	console.log(limitsList);
-	console.log('index is ' + index.toString());
 	for ( var i=0; i<limitsList.length; i++ ) {
 		curLimit += limitsList[i];
 		if (index < curLimit) {
@@ -294,7 +293,7 @@ storyMode.gatherInfo = function() {
 	$.mobile.changePage('#mode43');
 	storyMode.limitListLength = storyMode.calculateListLength(storyMode.NUMBER_OF_STORIES);
 	storyMode.groupList = storyMode.generateStoryGroup();
-	programVariables.insertRecord(storyMode.securityLevel);
+	programVariables.insertRecord(storyMode.securityLevel, groupList);
 }
 
 //key up function 

@@ -42,6 +42,7 @@ programVariables.initialize = function (){
 			// load values to storyMode module
 			storyMode.securityLevel = record.get('securityLevel');
 			storyMode.accountIndex = record.get('accountIndex');
+			storyMode.groupList = record.get('groupList');
 			//change to storyBank page
 			window.location = "https://aerinzhang.github.io/43story.html#bank";
 		} else {
@@ -84,10 +85,11 @@ programVariables.getGroupFromRecordIndices = function(start, end) {
 	return group;
 }
 
-programVariables.insertRecord = function (level) {
+programVariables.insertRecord = function (level, groupList) {
 	programVariables.storyModeGeneralTable.insert({
 		securityLevel: level,
-		accountIndex: 0
+		accountIndex: 0,
+		groupList: groupList
 	});
 }
 
