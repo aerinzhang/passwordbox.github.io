@@ -98,7 +98,7 @@ storyMode.renderStoryBank = function() {
 	console.log('renderStoryBankCalled');
 	$('#bank').bind("pageshow", function() {
 
-		//var records = storyBankTable.query();
+		var records = programVariables.storyBankTable.query();
 		if (records.length > 0) {
 			var listHTML = '<div id="bankStories"><ul data-role="listview" data-inset="true">'
 			for (var i =0; i < records.length; i++ ){
@@ -166,6 +166,29 @@ storyMode.updateStoryBankList = function() {
 	storyMode.renderStoryBank();
 }
 
+
+storyMode.generateStoryGroup = function() {
+	var limitsList = [];
+	var length = storyMode.calculateListLength(storyMode.NUMBER_OF_STORIES);
+
+	for (var i=0; i<length; i++) {
+		if (i != length-1) {
+			//push 10 for all except last one
+			limitsList.push(10);
+		} else {
+			//last element in the list
+			//if mod 10 == 0
+			if (length * 10 == storyMode.NUMBER_OF_STORIES) {
+				limitsList.push(10);
+			} else {
+				limitsList.push(storyMode.NUMBER_OF_STORIES - (length-1) * 10);
+			}
+		}
+	}
+
+	return limitsList;
+}
+
 storyMode.populateBank = function(){
 	var copyPeopleList = appConstants.peopleList.slice(0);
 	var copyScenesList = appConstants.scenesList.slice(0);
@@ -177,6 +200,7 @@ storyMode.populateBank = function(){
 
 	var NUMBER_OF_STORIES = storyMode.NUMBER_OF_STORIES;
 
+	var groupList = storyMode.groupList;
 	var temp = $('#randomnessTextBoxStoryMode').val();
 	//should use sha256 but needs to be modified.  currently uses random 
 	//var storyBankList = Sha256.generate(temp, 43);
@@ -193,6 +217,8 @@ storyMode.populateBank = function(){
 		finalSceneList.push(scene);
 		finalRecords.push(tuple);
 		records.push(tuple);
+		//another way to calculate group number?
+		programVariables.insertStory(person, scene, used, Math.floor(i/10));
 		copyPeopleList.splice(personIndex, 1);
 		copyScenesList.splice(sceneIndex, 1);
 	}

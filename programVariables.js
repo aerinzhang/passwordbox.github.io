@@ -31,29 +31,37 @@ programVariables.initialize = function (){
 		programVariables.programRecord = programVariables.generalTable.query();
 
 
-		if (programVariables.generalRecord.length == 0) {
+		if (programVariables.generalRecord.length === 0) {
 			//if security Level has not been set go to that page and store information generated 
-			//change to usability-security scale
+			//change to usability-security scale page
 			window.location = "https://aerinzhang.github.io/43story.html#userSelect";
-			//programVariables.insertRecord(programVariables.storyModeGeneralTable);
-		}
-		if (programVariables.programRecord.length == 0) {
-			//initialize values
-			programVariables.insertProgramRecord(programVariables.generalTable);
-		} else if (programVariables.programRecord.length == 1) {
-			programVariables.programRecord = programVariables.programRecord[0];
-			var tempRecord = programVariables.programRecord;
-			//load stored values
-			programVariables.accountIndex = tempRecord.get('accountIndex');
-			programVariables.existingAccountIndex = tempRecord.get('existingAccountIndex');
-			programVariables.existingAccounts = tempRecord.get('existingAccounts');
-			programVariables.existingPersonList = tempRecord.get('existingPersonList');
-			programVariables.existingSceneList = tempRecord.get('existingSceneList');
+			
+		} else if (programVariables.generalRecord.length === 1) {
+			programVariables.generalRecord = programVariables.generalRecord[0];
+			var record = programVariables.generalRecord;
+			// load values to storyMode module
+			storyMode.securityLevel = record.get('securityLevel');
+			storyMode.accountIndex = record.get('accountIndex');
+			//change to storyBank page
+			window.location = "https://aerinzhang.github.io/43story.html#bank";
 		} else {
 			//should never get here since generalTable should only have one entry
 			alert('something is wrong please contact our developer');
 		}
+		// if (programVariables.programRecord.length == 0) {
+		// 	//initialize values
+		// 	programVariables.insertProgramRecord(programVariables.generalTable);
+		// } else if (programVariables.programRecord.length == 1) {
+		// 	programVariables.programRecord = programVariables.programRecord[0];
+		// 	var tempRecord = programVariables.programRecord;
+		// 	//load stored values
+		// 	programVariables.accountIndex = tempRecord.get('accountIndex');
+		// 	programVariables.existingAccountIndex = tempRecord.get('existingAccountIndex');
+		// 	programVariables.existingAccounts = tempRecord.get('existingAccounts');
+		// 	programVariables.existingPersonList = tempRecord.get('existingPersonList');
+		// 	programVariables.existingSceneList = tempRecord.get('existingSceneList');
  		// Populate Initial Bank & Account List
+
  		storyMode.updateStoryBankList();
  		accountPage.updateAccountList();
 
