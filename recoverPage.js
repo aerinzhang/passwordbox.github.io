@@ -22,9 +22,9 @@ recoveryMechanism.generateRecoveryInputPageForGroup = function (listStories){
 		var scene = tuple[1];		
 		var listElement = "<li class='boarditems'><span class='pairdiv'><figure>\
 							<img class=pair src='images/person/" + person + ".jpg' />\
-							<figcaption><p class='storyText'>" + person.replace('_', ' ') + "</p>\
-							</figcaption></figure><figure><img class=pair src='images/scene/" + scene + ".jpg' /><figcaption>\
-							<p class='storyText'>" + scene.replace('_', ' ') + "</p></figcaption></figure></span>\
+							<figcaption><p class='storyText'>" + person.split('_').join(' ') + "</p>\
+							</figcaption></figure><figure><img class=pair src='images/scene/" + scene.toLowerCase() + ".jpg' /><figcaption>\
+							<p class='storyText'>" + scene.split('_').join(' ') + "</p></figcaption></figure></span>\
 							<span data-role='fieldcontain'><form action='#'>\
 							<span class='boxWidget'><input type='text' autocorrect='off' name='password'\
 							id='game-password" + i + "' value='' placeholder='doing what' autofocus='autofocus' tabindex='1'/>\

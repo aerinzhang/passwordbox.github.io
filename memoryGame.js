@@ -15,6 +15,7 @@ objectList = ['hammer', 'moose', 'snowflake', 'lock', 'igloo', 'leaf', 'dice', '
 memoryGame.generateFullGameList = function(partialGameList) {
 	//partialGameList contains gamePplList and gameScenesList
 	//TEMP: for now generate randomly
+	console.log(partialGameList);
 	var result = [];
 	for (var i=0; i<memoryGame.gameLength; i++) {
 		var person = partialGameList[i][PERSON_INDEX];
