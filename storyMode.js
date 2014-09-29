@@ -60,7 +60,6 @@ storyMode.generateStoryGroup = function(index) {
 			var group = records.slice(startFrom, curLimit+1)
 			//storeHashesforThisGroup
 			recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
-			console.log(group);
 			memoryGame.startGame(group);
 			//playtheGame
 
