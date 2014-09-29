@@ -35,7 +35,7 @@ programVariables.initialize = function (){
 			//if security Level has not been set go to that page and store information generated 
 			//change to usability-security scale page
 			window.location = "https://aerinzhang.github.io/43story.html#userSelect";
-			
+
 		} else if (programVariables.generalRecord.length === 1) {
 			programVariables.generalRecord = programVariables.generalRecord[0];
 			var record = programVariables.generalRecord;
@@ -81,7 +81,7 @@ programVariables.insertRecord = function (level) {
 }
 
 programVariables.insertStory = function (personName, sceneName, usedBool, groupNum) {
-	storyTable.insert({
+	programVariables.storyTable.insert({
 		person: personName,
 		scene: sceneName,
 		used: usedBool,
