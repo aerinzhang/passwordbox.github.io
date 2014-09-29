@@ -25,13 +25,14 @@ storyMode.calculateListLength = function(totalLength) {
 storyMode.selectBankStory = function(index) {
 	console.log("bankStory index selected is" + index.toString());
 	var limitsList = storyMode.groupList;
+	console.log(limitsList);
 	console.log(limitsList.length);
 	var curLimit = 0;
 	for ( var i=0; i<limitsList.length; i++ ) {
 		curLimit += limitsList[i];
 		if (index < curLimit) {
 			//falls in the group sets all stories in the same group to be true
-			if (i == 0) {
+			if (i === 0) {
 				//first group
 				var startFrom = 0;
 			} else {
@@ -73,6 +74,8 @@ storyMode.generateStoryGroup = function() {
 			}
 		}
 	}
+	console.log("returning result from generateStoryGroup");
+	console.log(limitsList);
 	return limitsList;
 }
 
