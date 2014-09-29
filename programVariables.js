@@ -60,7 +60,7 @@ programVariables.initialize = function (){
  		//Ensure future changes update the list 
  		programVariables.datastore.recordsChanged.addListener(storyMode.updateStoryBankList);
 		programVariables.datastore.recordsChanged.addListener(accountPage.updateAccountList);	
-		alert('accountLoaded Successfully');
+		console.log('accountLoaded Successfully');
 		//UI Change after logging in REFER TO pm.js
 	});
 }

@@ -179,7 +179,7 @@ function deleteAllStories() {
 	var records = storyModeTable.query();
 	for (var i = 0; i < records.length; i++) {
 		var record = records[i];
-		table.get(record.getId()).deleteRecord();
+		storyModeTable.get(record.getId()).deleteRecord();
 	}
 }
 
