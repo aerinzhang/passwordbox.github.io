@@ -38,7 +38,7 @@ storyMode.selectBankStory = function(index) {
 			} else {
 				var startFrom = limitsList[i-1];
 			}
-			for (var j=startFrom; j<curLimit-1; j++) {
+			for (var j=startFrom; j<curLimit; j++) {
 				records[j][2] = true;
 			}
 			//$("#bank").page('destroy').page();
