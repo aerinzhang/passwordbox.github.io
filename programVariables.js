@@ -33,7 +33,7 @@ programVariables.initialize = function (){
 
 		if (programVariables.generalRecord.length == 0) {
 			//initialize values
-			programVariables.insertRecord(programVariables.generalRecord);
+			programVariables.insertRecord(programVariables.storyModeGeneralTable);
 		}
 		if (programVariables.programRecord.length == 0) {
 			//initialize values
