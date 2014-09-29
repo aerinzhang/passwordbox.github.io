@@ -67,11 +67,11 @@ programVariables.insertRecord = function (table) {
 	table.insert({
 		securityLevel: 'high',
 		accountIndex: 0,
-	})
+	});
 }
 
 programVariables.insertStory = function (personName, sceneName, usedBool, groupNum) {
-	storyTable.insertStory({
+	storyTable.insert({
 		person: personName,
 		scene: sceneName,
 		used: usedBool,
