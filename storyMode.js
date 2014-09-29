@@ -58,7 +58,7 @@ storyMode.selectBankStory = function(index) {
 }
 storyMode.generateStoryGroup = function() {
 	var limitsList = [];
-	var length = calculateListLength(storyMode.NUMBER_OF_STORIES);
+	var length = storyMode.calculateListLength(storyMode.NUMBER_OF_STORIES);
 
 	for (var i=0; i<length; i++) {
 		if (i != length-1) {
