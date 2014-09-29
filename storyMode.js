@@ -4,6 +4,8 @@ var storyMode = storyMode || {};
 storyMode.CHAR_LIMIT = 30;
 storyMode.UNIQUE_CHAR_LIMIT = 20;
 
+//load from programVariables later
+storyMode.groupList = [];
 
 //TEMP!
 var records = [];
@@ -19,10 +21,42 @@ String.format = function() {
 storyMode.calculateListLength = function(totalLength) {
 	return Math.ceil(totalLength/10);
 }
-storyMode.generateStoryGroup = function(index) {
-	//create variable limitList
+
+storyMode.selectStoryBankStory = function(index) {
+	var limitsList = storyMode.groupList;
+	var curLimit = 0;
+	for ( var i=0; i<limitsList.length; i++ ) {
+		curLimit += limitsList[i];
+		if (index < curLimit) {
+			//falls in the group sets all stories in the same group to be true
+			if (i == 0) {
+				//first group
+				var startFrom = 0;
+			} else {
+				var startFrom = limitsList[i-1];
+			}
+			for (var j=startFrom; j<curLimit-1; j++) {
+				records[j][2] = true;
+			}
+			//$("#bank").page('destroy').page();
+			console.log(limitsList);  
+			console.log('play Game!');
+			var group = records.slice(startFrom, curLimit)
+			console.log(group);
+			//storeHashesforThisGroup
+			recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
+			memoryGame.startGame(group);
+			//playtheGame
+
+			return;
+		}
+	}
+
+}
+storyMode.generateStoryGroup = function() {
 	var limitsList = [];
-	var length = storyMode.limitListLength;
+	var length = storyMode.limitsListLength;
+
 	for (var i=0; i<length; i++) {
 		if (i != length-1) {
 			//push 10 for all except last one
@@ -37,35 +71,7 @@ storyMode.generateStoryGroup = function(index) {
 			}
 		}
 	}
-	//var limitsList = [8, 16, 25, 33, 42];
-	console.log(limitsList);
-	console.log('index passed in is.....' + index.toString());
-	var curLimit = 0;
-	for ( var i=0; i<limitsList.length; i++ ) {
-		curLimit += limitsList[i];
-		if (index <= curLimit) {
-			//falls in the group sets all stories in the same group to be true
-			if (i == 0) {
-				//first group
-				var startFrom = 0;
-			} else {
-				var startFrom = limitsList[i-1]+1;
-			}
-			for (var j=startFrom; j<curLimit; j++) {
-				records[j][2] = true;
-			}
-			//$("#bank").page('destroy').page();
-			console.log(limitsList);  
-			console.log('play Game!');
-			var group = records.slice(startFrom, curLimit+1)
-			//storeHashesforThisGroup
-			recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
-			memoryGame.startGame(group);
-			//playtheGame
-
-			return;
-		}
-	}
+	return limitsList;
 }
 
 storyMode.recoverStory = function (index) {
@@ -125,7 +131,7 @@ storyMode.renderStoryBank = function() {
 								scene.split('_').join(' '), date, score.toString());
 				} else {
 					var className = "unInitializedStory";
-					var button = "<p style='margin:0px; margin-top:2%'><button onclick='storyMode.generateStoryGroup(" + i + ")' \
+					var button = "<p style='margin:0px; margin-top:2%'><button onclick='storyMode.selectStoryBankStory(" + i + ")' \
 								 style='text-align:center;font-family=Lato;'>Add This Story</button></p>";
 					var pair = "<li class='"  + className + "'><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dateText'></p></figcaption></figure> \
 						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><p class='storyText'>{3}</p><p class='scoreText'></p></figcaption></figure></span>" + button + "</li>";
@@ -257,6 +263,7 @@ storyMode.gatherInfo = function() {
 	}
 	$.mobile.changePage('#mode43');
 	storyMode.limitListLength = storyMode.calculateListLength(storyMode.NUMBER_OF_STORIES);
+	storyMode.groupList = storyMode.generateStoryGroup();
 }
 
 //key up function 

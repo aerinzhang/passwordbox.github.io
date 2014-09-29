@@ -10,6 +10,8 @@ programVariables.stories;
 programVariables.accountIndex;
 programVariables.securitySetting;
 
+var tempStartingInterval = 1000 * 60;
+
 programVariables.initialize = function (){
 	programVariables.client.getDatastoreManager().openDefaultDatastore(function (error, datastore) {
 		if (error) {
@@ -19,12 +21,20 @@ programVariables.initialize = function (){
 		programVariables.storyBankTable = datastore.getTable('stories');
 		programVariables.accountTable = datastore.getTable('accounts');
 		programVariables.generalTable = datastore.getTable('general');
+		programVariables.storyModeGeneralTable = datastore.getTable('storyModeGeneral');
 
+		programVariables.generalRecord = programVariables.storyModeGeneralTable.query();
 		programVariables.stories = programVariables.storyBankTable.query();
 		programVariables.accounts = programVariables.accountTable.query();
 
 		programVariables.storyBank = programVariables.stripStoryFromRecords();
 		programVariables.programRecord = programVariables.generalTable.query();
+
+
+		if (programVariables.generalRecord.length == 0) {
+			//initialize values
+			programVariables.insertRecord(programVariables.generalRecord);
+		}
 		if (programVariables.programRecord.length == 0) {
 			//initialize values
 			programVariables.insertProgramRecord(programVariables.generalTable);
@@ -50,6 +60,32 @@ programVariables.initialize = function (){
 		programVariables.datastore.recordsChanged.addListener(accountPage.updateAccountList);	
 		alert('accountLoaded Successfully');
 		//UI Change after logging in REFER TO pm.js
+	});
+}
+
+programVariables.insertRecord = function (table) {
+	table.insert({
+		securityLevel: 'high',
+		accountIndex: 0,
+	})
+}
+
+programVariables.insertStory = function (personName, sceneName, usedBool, groupNum) {
+	storyTable.insertStory({
+		person: personName,
+		scene: sceneName,
+		used: usedBool,
+		created: new Date(),
+		initialized: new Date(),
+		lastRehearsed: new Date(),
+		groupNumber: groupNum,
+		refCount: 0,
+		refList: [],
+		intervalNum: 0,
+		rehearsalList: [],
+		correctRehearsal: 1,
+		totalRehearsal: 1,
+		interval: tempStartingInterval
 	});
 }
 
