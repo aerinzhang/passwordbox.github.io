@@ -52,10 +52,10 @@ storyMode.generateStoryGroup = function(index) {
 				var startFrom = limitsList[i-1]+1;
 			}
 			for (var j=startFrom; j<curLimit; j++) {
-				console.log(j);
 				records[j][2] = true;
 			}
-			//$("#bank").page('destroy').page();  
+			//$("#bank").page('destroy').page();
+			console.log(limitsList);  
 			console.log('play Game!');
 			var group = records.slice(startFrom, curLimit+1)
 			//storeHashesforThisGroup
