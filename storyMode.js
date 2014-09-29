@@ -116,9 +116,9 @@ storyMode.renderStoryBank = function() {
 					record.get('scene').replace('_', ' '), record.get('lastRehearsed').toString(), score.toString());*/			
 				//var date = extractDate(record.get('lastRehearsed'));
 				var date = 'Date Created';
-				var person = record[0];
-				var scene = record[1];
-				var used = record[2];
+				var person = record.get('person');
+				var scene = record.get('scene');
+				var used = record.get('used');
 				console.log(used);
 				if (used) {
 					var className = "initializedStory";
