@@ -19,7 +19,7 @@ memoryGame.generateFullGameList = function(partialGameList) {
 	var result = [];
 	for (var i=0; i<memoryGame.gameLength; i++) {
 		var person = partialGameList[i][PERSON_INDEX];
-		var scene = partialGameList[i][SCENE_INDEX];
+		var scene = partialGameList[i][1];
 		var action = actionList[i];
 		var object = objectList[i];
 		result.push([person, action, object, scene]);
