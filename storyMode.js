@@ -27,7 +27,7 @@ storyMode.selectBankStory = function(index) {
 	var limitsList = storyMode.groupList;
 	var curLimit = 0;
 	var records = programVariables.storyBankTable.query();
-
+	alert('length of story bank is ' + records.length.toString());
 	for ( var i=0; i<limitsList.length; i++ ) {
 		curLimit += limitsList[i];
 		if (index < curLimit) {
