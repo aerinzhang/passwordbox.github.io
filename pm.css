@@ -446,3 +446,7 @@ img.action {
 span.pairdiv.overlayContainer {
 	position:relative;
 }
+
+#recover div.ui-content {
+	padding-top: 0px;
+}
