@@ -31,6 +31,7 @@ storyMode.selectBankStory = function(index) {
 		if (index < curLimit) {
 			//falls in the group sets all stories in the same group to be true
 			var startFrom = curLimit - limitsList[i];
+			console.log(curLimit.toString());
 			for (var j=startFrom; j<curLimit; j++) {
 				records[j][2] = true;
 			}
