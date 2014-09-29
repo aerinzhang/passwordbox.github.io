@@ -22,8 +22,10 @@ storyMode.calculateListLength = function(totalLength) {
 	return Math.ceil(totalLength/10);
 }
 
-storyMode.selectStoryBankStory = function(index) {
+storyMode.selectBankStory = function(index) {
+	console.log("bankStory index selected is" + index.toString());
 	var limitsList = storyMode.groupList;
+	console.log(limitsList.length);
 	var curLimit = 0;
 	for ( var i=0; i<limitsList.length; i++ ) {
 		curLimit += limitsList[i];
@@ -131,7 +133,7 @@ storyMode.renderStoryBank = function() {
 								scene.split('_').join(' '), date, score.toString());
 				} else {
 					var className = "unInitializedStory";
-					var button = "<p style='margin:0px; margin-top:2%'><button onclick='storyMode.selectStoryBankStory(" + i + ")' \
+					var button = "<p style='margin:0px; margin-top:2%'><button onclick='storyMode.selectBankStory(" + i + ")' \
 								 style='text-align:center;font-family=Lato;'>Add This Story</button></p>";
 					var pair = "<li class='"  + className + "'><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption><p class='storyText'>{1}</p><p class='dateText'></p></figcaption></figure> \
 						 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption><p class='storyText'>{3}</p><p class='scoreText'></p></figcaption></figure></span>" + button + "</li>";
