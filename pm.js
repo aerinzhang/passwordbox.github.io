@@ -11,6 +11,7 @@ var accountTable;
 var allPossible;
 var storyBank;
 var generalTable;
+var storyModeTable;
 var existingAccountIndex;
 var accountIndex;
 //existing combinations 
@@ -173,6 +174,12 @@ function deleteAllStories() {
 	for (var i = 0; i < records.length; i++) {
 		var record = records[i];
 		generalTable.get(record.getId()).deleteRecord();
+	}
+
+	var records = storyModeTable.query();
+	for (var i = 0; i < records.length; i++) {
+		var record = records[i];
+		table.get(record.getId()).deleteRecord();
 	}
 }
 
@@ -1575,9 +1582,11 @@ $( document ).ready(function(){
 			if (error) {
 				alert('Error opening default datastore: ' + error);
 			}
+			storyModeTable = datastore.getTable('storyModeGeneral');
 			storyBankTable = datastore.getTable('stories');
 			accountTable = datastore.getTable('accounts');
 			generalTable = datastore.getTable('general');
+
 
 			//extract storyBank from DropBox records
 			storyBank = stripStoryFromRecords();

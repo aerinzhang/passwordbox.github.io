@@ -264,6 +264,7 @@ storyMode.gatherInfo = function() {
 	$.mobile.changePage('#mode43');
 	storyMode.limitListLength = storyMode.calculateListLength(storyMode.NUMBER_OF_STORIES);
 	storyMode.groupList = storyMode.generateStoryGroup();
+	programVariables.insertRecord(storyMode.securityLevel);
 }
 
 //key up function 

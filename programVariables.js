@@ -32,8 +32,10 @@ programVariables.initialize = function (){
 
 
 		if (programVariables.generalRecord.length == 0) {
-			//initialize values
-			programVariables.insertRecord(programVariables.storyModeGeneralTable);
+			//if security Level has not been set go to that page and store information generated 
+			//change to usability-security scale
+			window.location = "https://aerinzhang.github.io/43story.html#userSelect";
+			//programVariables.insertRecord(programVariables.storyModeGeneralTable);
 		}
 		if (programVariables.programRecord.length == 0) {
 			//initialize values
@@ -63,9 +65,9 @@ programVariables.initialize = function (){
 	});
 }
 
-programVariables.insertRecord = function (table) {
-	table.insert({
-		securityLevel: 'high',
+programVariables.insertRecord = function (level) {
+	programVariables.storyModeGeneralTable.insert({
+		securityLevel: level,
 		accountIndex: 0
 	});
 }
