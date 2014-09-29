@@ -66,7 +66,7 @@ programVariables.initialize = function (){
 programVariables.insertRecord = function (table) {
 	table.insert({
 		securityLevel: 'high',
-		accountIndex: 0,
+		accountIndex: 0
 	});
 }
 
