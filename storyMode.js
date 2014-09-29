@@ -25,8 +25,6 @@ storyMode.calculateListLength = function(totalLength) {
 storyMode.selectBankStory = function(index) {
 	console.log("bankStory index selected is" + index.toString());
 	var limitsList = storyMode.groupList;
-	console.log(limitsList);
-	console.log(limitsList.length);
 	var curLimit = 0;
 	for ( var i=0; i<limitsList.length; i++ ) {
 		curLimit += limitsList[i];
@@ -44,6 +42,7 @@ storyMode.selectBankStory = function(index) {
 			//$("#bank").page('destroy').page();
 			console.log(limitsList);  
 			console.log('play Game!');
+			console.log('starting from ' + startFrom.toString() + ' end exclusive ' + curLimit.toString());
 			var group = records.slice(startFrom, curLimit)
 			console.log(group);
 			//storeHashesforThisGroup
@@ -100,6 +99,7 @@ storyMode.recoverStory = function (index) {
 
 //might be for rendering Module
 storyMode.renderStoryBank = function() {
+	console.log('renderStoryBankCalled');
 	$('#bank').bind("pageshow", function() {
 
 		//var records = storyBankTable.query();

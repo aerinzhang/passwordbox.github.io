@@ -106,7 +106,7 @@ memoryGame.generateNextSequence = function () {
 			var article = (story[OBJECT_INDEX] == 'igloo') ? 'an' : 'a';
 			$('#gamestories').html(String.format(html, story[PERSON_INDEX], story[PERSON_INDEX].split('_').join(' '),
 												 story[ACTION_INDEX], story[ACTION_INDEX], story[OBJECT_INDEX], story[OBJECT_INDEX],
-												 story[SCENE_INDEX].toLowerCase(), story[SCENE_INDEX], article));
+												 story[SCENE_INDEX].toLowerCase(), story[SCENE_INDEX].split('_').join(' '), article));
 			$.mobile.changePage("#gamepage");
 			memoryGame.storyIndex += 1;
 		} else {
