@@ -27,15 +27,11 @@ storyMode.selectBankStory = function(index) {
 	var limitsList = storyMode.groupList;
 	var curLimit = 0;
 	var records = programVariables.storyBankTable.query();
-	console.log('logging limitsList......');
-	console.log(limitsList);
-	console.log(limitsList.length());
-	console.log('using get....');
-	for ( var i=0; i<limitsList.length(); i++ ) {
-		curLimit += limitsList.get(i);
+	for ( var i=0; i<limitsList.length; i++ ) {
+		curLimit += limitsList[i];
 		if (index < curLimit) {
 			//falls in the group sets all stories in the same group to be true
-			var startFrom = curLimit - limitsList.get(i);
+			var startFrom = curLimit - limitsList[i];
 			console.log(curLimit.toString());
 			for (var j=startFrom; j<curLimit; j++) {
 				records[j].set('used', true);
@@ -49,6 +45,7 @@ storyMode.selectBankStory = function(index) {
 			console.log(group);
 			//storeHashesforThisGroup
 			storyMode.groupHashesList[i] = recoveryMechanism.computeHashesOfGroup(group);
+			programVariables.generalRecord.set('groupHashesList', storyMode.groupHashesList);
 			//recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
 			console.log(storyMode.groupHashesList);
 			memoryGame.startGame(group);

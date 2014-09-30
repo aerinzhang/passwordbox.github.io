@@ -42,7 +42,7 @@ programVariables.initialize = function (){
 			// load values to storyMode module
 			storyMode.securityLevel = record.get('securityLevel');
 			storyMode.accountIndex = record.get('accountIndex');
-			storyMode.groupList = record.get('groupList');
+			storyMode.groupList = record.get('groupList').toArray();
 			storyMode.groupHashesList = record.get('groupHashesList').toArray();
 			//change to storyBank page
 			window.location = "https://aerinzhang.github.io/43story.html#bank";
