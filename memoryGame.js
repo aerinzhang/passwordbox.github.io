@@ -12,7 +12,7 @@ SCENE_INDEX = 3;
 actionList = ['tickling', 'fighting', 'rubbing', 'biting', 'hugging', 'enlarging', 'tying', 'repairing', 'hiding'];
 objectList = ['hammer', 'moose', 'snowflake', 'lock', 'igloo', 'leaf', 'dice', 'moon', 'heel'];
 
-memoryGame.generateFullGameList = function(partialGameList) {
+memoryGame.generateFullGameList = function(partialGameList, groupIndex) {
 	//partialGameList contains gamePplList and gameScenesList
 	//TEMP: for now generate randomly
 	console.log(partialGameList);
@@ -24,11 +24,18 @@ memoryGame.generateFullGameList = function(partialGameList) {
 		var object = objectList[i];
 		result.push([person, action, object, scene]);
 	}
+
+	//after generating full game list compute and 
+	//store hashes for this group
+	storyMode.groupHashesList[i] = recoveryMechanism.computeHashesOfGroup(result);
+	var programRecord = programVariables.storyModeGeneralTable.query()[0];
+	programRecord.get('groupHashesList').set(groupIndex, 
+		storyMode.flattenGroupHashList(storyMode.groupHashesList[groupIndex]));
 	return result;
 }
 
 //prepare the fullGameList and start next sequence
-memoryGame.startGame = function(gameList) {
+memoryGame.startGame = function(gameList, groupIndex) {
 	memoryGame.storyIndex = 0;
 	memoryGame.checkIndex = 0;
 	memoryGame.gameScore = 0;
@@ -46,7 +53,7 @@ memoryGame.startGame = function(gameList) {
 		//if gameList is given then use the given person/scene lists but generate actions/objects lists
 		//memoryGame.gamePeopleList = gameList[0]; //0th people list ; 1st scenes list
 		//generate action/object list
-		gamelist = memoryGame.generateFullGameList(gameList);
+		gamelist = memoryGame.generateFullGameList(gameList, groupIndex);
 		memoryGame.fullGameList = gamelist;
 		memoryGame.storyMode43 = true;
 

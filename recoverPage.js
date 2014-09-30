@@ -121,6 +121,8 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 			hashList.push(oneHash);
 		}
 	}
+	console.log('logging hashes of group.....');
+	console.log(hashList);
 	return hashList;
 }
 

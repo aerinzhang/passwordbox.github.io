@@ -27,7 +27,6 @@ storyMode.selectBankStory = function(index) {
 	var limitsList = storyMode.groupList;
 	var curLimit = 0;
 	var records = programVariables.storyBankTable.query();
-	var programRecord = programVariables.storyModeGeneralTable.query()[0];
 
 	for ( var i=0; i<limitsList.length; i++ ) {
 		curLimit += limitsList[i];
@@ -41,19 +40,9 @@ storyMode.selectBankStory = function(index) {
 			//$("#bank").page('destroy').page();
 			console.log(limitsList);  
 			console.log('play Game!');
-			console.log('starting from ' + startFrom.toString() + ' end exclusive ' + curLimit.toString());
 			var group = programVariables.getGroupFromRecordIndices(startFrom, curLimit);
-			console.log('group is!!!!!!!');
-			console.log(group);
-			//storeHashesforThisGroup
-			storyMode.groupHashesList[i] = recoveryMechanism.computeHashesOfGroup(group);
-			programRecord.get('groupHashesList').set(i, 
-				storyMode.flattenGroupHashList(storyMode.groupHashesList));
-			//recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
-			console.log(storyMode.groupHashesList);
-			memoryGame.startGame(group);
+			memoryGame.startGame(group, i);
 			//playtheGame
-
 			return;
 		}
 	}
