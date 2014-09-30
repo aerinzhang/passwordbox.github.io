@@ -470,6 +470,8 @@ bCrypt.prototype.crypt_raw = function(password, salt, log_rounds, callback, prog
  *      is complete.
  */
 bCrypt.prototype.hashpw = function(password, salt, callback, progress) {
+	console.log('3333333333');
+
 	var real_salt;
 	var passwordb = [];
 	var saltb = [];
@@ -523,8 +525,6 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress) {
 	        result = rs.join('');
 	}, progress);
 	//made hashpw return the hashed result
-	console.log(result);
-	return result;
 };
 
 bCrypt.prototype.gensalt = function(rounds) {

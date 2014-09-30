@@ -66,13 +66,14 @@ recoveryMechanism.generateBCryptHash = function (inputString) {
 		return;
 	}
 	try {
-		hash = recoveryMechanism.bcrypt.hashpw(inputString, salt, recoveryMechanism.callbackFn, recoveryMechanism.progressFn);
+		recoveryMechanism.bcrypt.hashpw(inputString, salt, recoveryMechanism.callbackFn, recoveryMechanism.progressFn);
 
 	} catch(err) {
 		alert(err);
 		return;
 	}
-	return hash;
+	console.log('4444444444');
+
 }
 //recoveryMechanism.
 //this function 
@@ -114,6 +115,7 @@ recoveryMechanism.gatherUserInput = function (index){
 
 }
 recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
+	console.log('1111111111');
 	var hashList = [];
 	var hash;
 	if (groupFullList.length >= 6) {
@@ -127,12 +129,17 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 				oneString = oneString + oneSet[j][1] + oneSet[j][2];
 			}
 			//compute hash for one set of six stories
+			console.log('2222222222 ' + i.toString());
 			hash = recoveryMechanism.generateBCryptHash(oneString);
 			hashList.push(hash);
+			console.log('5555555555 ' + i.toString());
+
 		}
 	}
 	console.log('logging hashes of group.....');
 	console.log(hashList);
+	console.log('6666666666');
+
 	return hashList;
 }
 
