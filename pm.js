@@ -1587,28 +1587,28 @@ $( document ).ready(function(){
 			accountTable = datastore.getTable('accounts');
 			generalTable = datastore.getTable('general');
 
-
+//////for compiling
 			//extract storyBank from DropBox records
-			storyBank = stripStoryFromRecords();
+			//////storyBank = stripStoryFromRecords();
 			//compute all possible combinations of four stories
-			allPossible = computeCombinations(storyBank, 4);
+			//////allPossible = computeCombinations(storyBank, 4);
 			console.log('printing allPossible...');
-			console.log(allPossible);
+			//////console.log(allPossible);
 			//from generalTable load variables
-			programRecord = generalTable.query();
-			if (programRecord.length == 0) {
+			//////programRecord = generalTable.query();
+			//////if (programRecord.length == 0) {
 				//initialize values
-				insertProgramRecord(generalTable);
+				//////insertProgramRecord(generalTable);
 
 
-			} else if (programRecord.length == 1) {
-				programRecord = programRecord[0];
-				//load stored values
-				accountIndex = programRecord.get('accountIndex');
-				existingAccountIndex = programRecord.get('existingAccountIndex');
-				existingAccounts = programRecord.get('existingAccounts');//.toArray();
-				existingPersonList = programRecord.get('existingPersonList');//.toArray();
-				existingSceneList = programRecord.get('existingSceneList');//.toArray();
+			//6 } else if (programRecord.length == 1) {
+			// 	programRecord = programRecord[0];
+			// 	//load stored values
+			// 	accountIndex = programRecord.get('accountIndex');
+			// 	existingAccountIndex = programRecord.get('existingAccountIndex');
+			// 	existingAccounts = programRecord.get('existingAccounts');//.toArray();
+			// 	existingPersonList = programRecord.get('existingPersonList');//.toArray();
+			//6END 	existingSceneList = programRecord.get('existingSceneList');//.toArray();
 
 			} else {
 				//error should never get here
@@ -1616,32 +1616,32 @@ $( document ).ready(function(){
 
 			// Populate the initial task list.
 			//updateList();
-			updateStoryBankList();
-			updateAccountList();
+			//////updateStoryBankList();
+			//////updateAccountList();
 
 			// Ensure that future changes update the list.
 			//datastore.recordsChanged.addListener(updateList);
-			datastore.recordsChanged.addListener(updateStoryBankList);
-			datastore.recordsChanged.addListener(updateAccountList);
+			//////datastore.recordsChanged.addListener(updateStoryBankList);
+			//////datastore.recordsChanged.addListener(updateAccountList);
 			$('#home-words').html('Welcome Back!');
 			$('#dropboxButton').hide();
 			console.log('checking each story......');
-    		checkEachStory();
+    		//////checkEachStory();
     		console.log('finish!');
-    		renderRehearsalBoard();
+    		//////renderRehearsalBoard();
     		//create dynamic page for each account
     		//createPageForStory();
 			//updateListBool = false;
 			//link li items to generatePage
-    		$('ul.rehearsalList li').on('click',
-    			function (e) {
-    				e.preventDefault();
-    				var textList = $(this).find(".storyText");
-    				var person = textList[0].innerHTML;
-    				var scene = textList[1].innerHTML;
-    				changeRehearsalPage(person, scene);
+    		//////$('ul.rehearsalList li').on('click',
+    		//////	function (e) {
+    		//////		e.preventDefault();
+    		//////		var textList = $(this).find(".storyText");
+    		//////		var person = textList[0].innerHTML;
+    		//////		var scene = textList[1].innerHTML;
+    		//////		changeRehearsalPage(person, scene);
     				//createPageForStory(person, scene);
-    			});
+    		//////	});
 		});
 	}
 	
