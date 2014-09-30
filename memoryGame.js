@@ -9,8 +9,8 @@ SCENE_INDEX = 3;
 
 
 //TEMP LIST! 
-actionList = ['tickling', 'fighting', 'rubbing', 'biting', 'hugging', 'enlarging', 'tying', 'repairing', 'hiding'];
-objectList = ['hammer', 'moose', 'snowflake', 'lock', 'igloo', 'leaf', 'dice', 'moon', 'heel'];
+actionList = ['tickling', 'fighting', 'rubbing', 'biting', 'hugging', 'enlarging', 'tying', 'repairing', 'hiding' , 'signing'];
+objectList = ['hammer', 'moose', 'snowflake', 'lock', 'igloo', 'leaf', 'dice', 'moon', 'heel', 'boot'];
 
 memoryGame.generateFullGameList = function(partialGameList, groupIndex) {
 	//partialGameList contains gamePplList and gameScenesList
