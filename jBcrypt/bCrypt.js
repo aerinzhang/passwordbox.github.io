@@ -521,7 +521,6 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress) {
 	        callback(rs.join(''));
 	}, progress);
 	//made hashpw return the hashed result
-	return rs.join('');
 };
 
 bCrypt.prototype.gensalt = function(rounds) {

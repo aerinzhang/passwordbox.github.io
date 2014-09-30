@@ -64,12 +64,11 @@ recoveryMechanism.generateBCryptHash = function (inputString) {
 		return;
 	}
 	try {
-		var hash = recoveryMechanism.bcrypt.hashpw(inputString, salt, recoveryMechanism.callbackFn, recoveryMechanism.progressFn);
+		recoveryMechanism.bcrypt.hashpw(inputString, salt, recoveryMechanism.callbackFn, recoveryMechanism.progressFn);
 	} catch(err) {
 		alert(err);
 		return;
 	}
-	return hash;
 }
 //recoveryMechanism.
 //this function 
@@ -123,9 +122,8 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 				oneString = oneString + oneSet[j][1] + oneSet[j][2];
 			}
 			//compute hash for one set of six stories
-			var oneHash = recoveryMechanism.generateBCryptHash(oneString);
-			console.log(oneHash);
-			hashList.push(oneHash);
+			recoveryMechanism.generateBCryptHash(oneString);
+			hashList.push(recoveryMechanism.result);
 		}
 	}
 	console.log('logging hashes of group.....');
