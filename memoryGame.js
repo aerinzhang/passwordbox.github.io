@@ -268,10 +268,10 @@ memoryGame.generateNextCheck = function () {
 			
 			//score hashes for this group into generalRecord
 			var programRecord = programVariables.storyModeGeneralTable.query()[0];
-			storyMode.groupHashesList[currentGroupIndex] = recoveryMechanism.hashResults;
+			storyMode.groupHashesList[memoryGame.currentGroupIndex] = recoveryMechanism.hashResults;
 			programRecord.get('groupHashesList').set(memoryGame.currentGroupIndex, 
 				storyMode.flattenGroupHashList(recoveryMechanism.hashResults));
-			
+
 			//clear fullGameList
 			memoryGame.fullGameList = [];
 
