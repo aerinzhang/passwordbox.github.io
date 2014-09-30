@@ -45,7 +45,8 @@ storyMode.selectBankStory = function(index) {
 			console.log(group);
 			//storeHashesforThisGroup
 			storyMode.groupHashesList[i] = recoveryMechanism.computeHashesOfGroup(group);
-			programVariables.generalRecord.set('groupHashesList', storyMode.groupHashesList);
+			programVariables.generalRecord.get('groupHashesList').set(i, 
+				storyMode.flattenGroupHashList(storyMode.groupHashesList));
 			//recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
 			console.log(storyMode.groupHashesList);
 			memoryGame.startGame(group);
@@ -54,8 +55,19 @@ storyMode.selectBankStory = function(index) {
 			return;
 		}
 	}
-
 }
+
+storyMode.flattenGroupHashList = function (listOfHashes) {
+	var result = '';
+	var divider = '&&&&&&';
+	var element;
+	for (var i=0; i<listOfHashes.length; i++) {
+		element = listOfHashes[i];
+		result = result + divider + element;
+	}
+	return result;
+}
+
 storyMode.generateStoryGroup = function() {
 	var limitsList = [];
 	var length = storyMode.calculateListLength(storyMode.NUMBER_OF_STORIES);
@@ -311,7 +323,6 @@ storyMode.createGroupHashesList = function() {
 }
 
 
-storyMode.flattenGroupList 
 //key up function 
 storyMode.limits = function (obj, suffix) {
 	var limit = storyMode.CHAR_LIMIT;
