@@ -521,9 +521,9 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress) {
 	        rs.push(obj.encode_base64(hashed, obj.bf_crypt_ciphertext.length * 4 - 1));
 	        callback(rs.join(''));
 	        result = rs.join('');
-	        console.log(result);
 	}, progress);
 	//made hashpw return the hashed result
+	console.log(result);
 	return result;
 };
 

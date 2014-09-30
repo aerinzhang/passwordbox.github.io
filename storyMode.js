@@ -39,7 +39,7 @@ storyMode.selectBankStory = function(index) {
 			}
 			//$("#bank").page('destroy').page();
 			console.log(limitsList);  
-			console.log('play Game!');
+			console.log('play Game!!');
 			var group = programVariables.getGroupFromRecordIndices(startFrom, curLimit);
 			memoryGame.startGame(group, i);
 			//playtheGame
