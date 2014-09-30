@@ -7,7 +7,7 @@ var recoveryMechanism = recoveryMechanism ||{};
 
 //for 43 story only 
 recoveryMechanism.fiveGroupHashes = [null, null, null, null, null];
-recoveryMechanism.result = [];
+recoveryMechanism.hashResults = [];
 
 var temp = [['Bill_Clinton', 'court'],['Darth_Vader', 'restaurant'],['Frodo', 'baseball_field'],
 						['Adolf_Hitler', 'pool_bar'],['Marilyn_Monroe', 'fancy_house'], ['Bart_Simpson', 'mountain']];
@@ -50,9 +50,7 @@ recoveryMechanism.progressFn = function(){
 }
 
 recoveryMechanism.callbackFn = function(hash) {
-	console.log('3333333333 0.5');
-	recoveryMechanism.result.push(hash);
-	//console.log(hash);
+	recoveryMechanism.hashResults.push(hash);
 }
 
 recoveryMechanism.generateBCryptHash = function (inputString) {
@@ -73,7 +71,6 @@ recoveryMechanism.generateBCryptHash = function (inputString) {
 		alert(err);
 		return;
 	}
-	console.log('4444444444');
 
 }
 //recoveryMechanism.
@@ -129,17 +126,11 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 				oneString = oneString + oneSet[j][1] + oneSet[j][2];
 			}
 			//compute hash for one set of six stories
-			console.log('2222222222 ' + i.toString());
-			hash = recoveryMechanism.generateBCryptHash(oneString);
-			hashList.push(hash);
-			console.log('5555555555 ' + i.toString());
+			recoveryMechanism.generateBCryptHash(oneString);
 
 		}
 	}
-	console.log('logging hashes of group.....');
-	console.log(hashList);
-
-	return hashList;
+	return;
 }
 
 //bank and rehearse schedule

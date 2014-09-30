@@ -12,7 +12,8 @@ SCENE_INDEX = 3;
 actionList = ['tickling', 'fighting', 'rubbing', 'biting', 'hugging', 'enlarging', 'tying', 'repairing', 'hiding' , 'signing'];
 objectList = ['hammer', 'moose', 'snowflake', 'lock', 'igloo', 'leaf', 'dice', 'moon', 'heel', 'boot'];
 
-memoryGame.generateFullGameList = function(partialGameList, groupIndex) {
+memoryGame.currentGroupIndex;
+memoryGame.generateFullGameList = function(partialGameList) {
 	//partialGameList contains gamePplList and gameScenesList
 	//TEMP: for now generate randomly
 	console.log(partialGameList);
@@ -24,13 +25,8 @@ memoryGame.generateFullGameList = function(partialGameList, groupIndex) {
 		var object = objectList[i];
 		result.push([person, action, object, scene]);
 	}
-
-	//after generating full game list compute and 
-	//store hashes for this group
-	storyMode.groupHashesList[i] = recoveryMechanism.computeHashesOfGroup(result);
-	var programRecord = programVariables.storyModeGeneralTable.query()[0];
-	programRecord.get('groupHashesList').set(groupIndex, 
-		storyMode.flattenGroupHashList(storyMode.groupHashesList[groupIndex]));
+	//call this function to compute hashes however due to callback cannot store them now
+	recoveryMechanism.computeHashesOfGroup(result);
 	return result;
 }
 
@@ -41,6 +37,7 @@ memoryGame.startGame = function(gameList, groupIndex) {
 	memoryGame.gameScore = 0;
 	memoryGame.sequenceIndex = 0;
 	memoryGame.progress = 0;
+	memoryGame.currentGroupIndex;
 
 	//either the specified length or default 10
 	memoryGame.numStories = gameList.length || 10;
@@ -53,7 +50,7 @@ memoryGame.startGame = function(gameList, groupIndex) {
 		//if gameList is given then use the given person/scene lists but generate actions/objects lists
 		//memoryGame.gamePeopleList = gameList[0]; //0th people list ; 1st scenes list
 		//generate action/object list
-		gamelist = memoryGame.generateFullGameList(gameList, groupIndex);
+		gamelist = memoryGame.generateFullGameList(gameList);
 		memoryGame.fullGameList = gamelist;
 		memoryGame.storyMode43 = true;
 
@@ -268,6 +265,16 @@ memoryGame.generateNextCheck = function () {
 			}
 			$('#gamestories').html("<p>Final Score: " + memoryGame.gameScore.toString() + "/"
 													  + memoryGame.numStories.toString() + " </p>" + buttons);
+			
+			//score hashes for this group into generalRecord
+			var programRecord = programVariables.storyModeGeneralTable.query()[0];
+			storyMode.groupHashesList[currentGroupIndex] = recoveryMechanism.hashResults;
+			programRecord.get('groupHashesList').set(memoryGame.currentGroupIndex, 
+				storyMode.flattenGroupHashList(recoveryMechanism.hashResults));
+			
+			//clear fullGameList
+			memoryGame.fullGameList = [];
+
 		} else {
 			$('#gamestories').find('#game-password').val('');
 			var curPerson = memoryGame.fullGameList[memoryGame.checkIndex][PERSON_INDEX];
