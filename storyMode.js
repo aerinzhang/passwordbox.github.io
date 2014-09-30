@@ -27,6 +27,8 @@ storyMode.selectBankStory = function(index) {
 	var limitsList = storyMode.groupList;
 	var curLimit = 0;
 	var records = programVariables.storyBankTable.query();
+	var programRecord = programVariables.storyModeGeneralTable.query()[0];
+
 	for ( var i=0; i<limitsList.length; i++ ) {
 		curLimit += limitsList[i];
 		if (index < curLimit) {
@@ -45,7 +47,7 @@ storyMode.selectBankStory = function(index) {
 			console.log(group);
 			//storeHashesforThisGroup
 			storyMode.groupHashesList[i] = recoveryMechanism.computeHashesOfGroup(group);
-			programVariables.generalRecord.get('groupHashesList').set(i, 
+			programRecord.get('groupHashesList').set(i, 
 				storyMode.flattenGroupHashList(storyMode.groupHashesList));
 			//recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
 			console.log(storyMode.groupHashesList);
@@ -65,6 +67,7 @@ storyMode.flattenGroupHashList = function (listOfHashes) {
 		element = listOfHashes[i];
 		result = result + divider + element;
 	}
+	console.log(result);
 	return result;
 }
 
