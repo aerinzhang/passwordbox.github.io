@@ -114,11 +114,14 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 	if (groupFullList.length >= 6) {
 		var k = 6;
 		var allComb = recoveryMechanism.regularComputeCombinations(groupFullList, k);
-		console.log('logging all Comb');
-		console.log(allComb);
 		for (var i=0; i<allComb.length; i++) {
-			var oneString = allComb[i][1].concat(allComb[i][2]);
-			//compute hash for one combination
+			//one set of six
+			var oneSet = allComn[i];
+			var oneString = '';
+			for (var j=0; j<oneSet.length; j++) {
+				oneString = oneString + oneSet[j][1] + oneSet[j][2];
+			}
+			//compute hash for one set of six stories
 			var oneHash = recoveryMechanism.generateBCryptHash(oneString);
 			hashList.push(oneHash);
 		}
