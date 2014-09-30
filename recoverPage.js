@@ -116,7 +116,7 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 		var allComb = recoveryMechanism.regularComputeCombinations(groupFullList, k);
 		for (var i=0; i<allComb.length; i++) {
 			//one set of six
-			var oneSet = allComn[i];
+			var oneSet = allComb[i];
 			var oneString = '';
 			for (var j=0; j<oneSet.length; j++) {
 				oneString = oneString + oneSet[j][1] + oneSet[j][2];
