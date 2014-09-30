@@ -1610,9 +1610,9 @@ $( document ).ready(function(){
 			// 	existingPersonList = programRecord.get('existingPersonList');//.toArray();
 			//6END 	existingSceneList = programRecord.get('existingSceneList');//.toArray();
 
-			} else {
+			//////} else {
 				//error should never get here
-			}			
+			//////}			
 
 			// Populate the initial task list.
 			//updateList();
