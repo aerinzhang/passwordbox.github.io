@@ -58,6 +58,7 @@ recoveryMechanism.callbackFn = function(hash) {
 recoveryMechanism.generateBCryptHash = function (inputString) {
 	var round = appConstants.NUM_OF_ROUNDS;
 	var salt;
+	var hash;
 	//generate salt using issac
 	try {
 		salt = recoveryMechanism.bcrypt.gensalt(round);
@@ -66,12 +67,13 @@ recoveryMechanism.generateBCryptHash = function (inputString) {
 		return;
 	}
 	try {
-		recoveryMechanism.bcrypt.hashpw(inputString, salt, recoveryMechanism.callbackFn, recoveryMechanism.progressFn);
+		hash = recoveryMechanism.bcrypt.hashpw(inputString, salt, recoveryMechanism.callbackFn, recoveryMechanism.progressFn);
 
 	} catch(err) {
 		alert(err);
 		return;
 	}
+	return hash;
 }
 //recoveryMechanism.
 //this function 
@@ -114,6 +116,7 @@ recoveryMechanism.gatherUserInput = function (index){
 }
 recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 	var hashList = [];
+	var hash;
 	if (groupFullList.length >= 6) {
 		var k = 6;
 		var allComb = recoveryMechanism.regularComputeCombinations(groupFullList, k);
@@ -125,12 +128,13 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 				oneString = oneString + oneSet[j][1] + oneSet[j][2];
 			}
 			//compute hash for one set of six stories
-			recoveryMechanism.generateBCryptHash(oneString);
+			hash = recoveryMechanism.generateBCryptHash(oneString);
+			hashList.push(hash);
 		}
 	}
 	console.log('logging hashes of group.....');
-	console.log(recoveryMechanism.result);
-	return recoveryMechanism.result;
+	console.log(hashList);
+	return hashList;
 }
 
 //bank and rehearse schedule

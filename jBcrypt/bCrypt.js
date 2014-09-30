@@ -477,7 +477,8 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress) {
 	var minor = String.fromCharCode(0);
 	var rounds = 0;
 	var off = 0;
-
+	//my own
+	var result;
 	if (!progress){
 	        var progress = function() {};
 	}
@@ -519,8 +520,10 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress) {
 	        rs.push(obj.encode_base64(saltb, saltb.length));
 	        rs.push(obj.encode_base64(hashed, obj.bf_crypt_ciphertext.length * 4 - 1));
 	        callback(rs.join(''));
+	        result = rs.join('');
 	}, progress);
 	//made hashpw return the hashed result
+	return result;
 };
 
 bCrypt.prototype.gensalt = function(rounds) {
