@@ -306,7 +306,7 @@ storyMode.createGroupHashesList = function() {
 	var length = storyMode.groupList.length;
 	var result = [];
 	for (var i=0; i<length; i++) {
-		result.push(null);
+		result.push('');
 	}
 	return result;
 }
