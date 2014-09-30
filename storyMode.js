@@ -298,7 +298,7 @@ storyMode.gatherInfo = function() {
 	storyMode.limitListLength = storyMode.calculateListLength(storyMode.NUMBER_OF_STORIES);
 	storyMode.groupList = storyMode.generateStoryGroup();
 	programVariables.insertRecord(storyMode.securityLevel, storyMode.groupList, 
-								  createGroupHashesList());
+								  storyMode.createGroupHashesList());
 }
 
 storyMode.createGroupHashesList = function() {
