@@ -43,9 +43,10 @@ storyMode.selectBankStory = function(index) {
 			console.log('play Game!');
 			console.log('starting from ' + startFrom.toString() + ' end exclusive ' + curLimit.toString());
 			var group = programVariables.getGroupFromRecordIndices(startFrom, curLimit);
+			console.log('group is!!!!!!!');
 			console.log(group);
 			//storeHashesforThisGroup
-			//recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
+			recoveryMechanism.fiveGroupHashes[i] = recoveryMechanism.computeHashesOfGroup(group);
 			memoryGame.startGame(group);
 			//playtheGame
 
