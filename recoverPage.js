@@ -50,7 +50,7 @@ recoveryMechanism.progressFn = function(){
 
 recoveryMechanism.callbackFn = function(hash) {
 	recoveryMechanism.result = hash;
-	console.log(hash);
+	//console.log(hash);
 }
 
 recoveryMechanism.generateBCryptHash = function (inputString) {
@@ -121,8 +121,10 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 			for (var j=0; j<oneSet.length; j++) {
 				oneString = oneString + oneSet[j][1] + oneSet[j][2];
 			}
+			console.log(oneString);
 			//compute hash for one set of six stories
 			recoveryMechanism.generateBCryptHash(oneString);
+			alert(recoveryMechanism.result);
 			hashList.push(recoveryMechanism.result);
 		}
 	}
