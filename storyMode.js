@@ -293,7 +293,7 @@ storyMode.gatherInfo = function() {
 	$.mobile.changePage('#mode43');
 	storyMode.limitListLength = storyMode.calculateListLength(storyMode.NUMBER_OF_STORIES);
 	storyMode.groupList = storyMode.generateStoryGroup();
-	programVariables.insertRecord(storyMode.securityLevel, groupList);
+	programVariables.insertRecord(storyMode.securityLevel, storyMode.groupList);
 }
 
 //key up function 
