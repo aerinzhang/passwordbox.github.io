@@ -51,7 +51,6 @@ recoveryMechanism.progressFn = function(){
 
 recoveryMechanism.callbackFn = function(hash) {
 	recoveryMechanism.result.push(hash);
-	console.log(recoveryMechanism.result);
 	//console.log(hash);
 }
 
