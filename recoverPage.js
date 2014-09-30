@@ -50,6 +50,7 @@ recoveryMechanism.progressFn = function(){
 }
 
 recoveryMechanism.callbackFn = function(hash) {
+	console.log('3333333333 0.5')
 	recoveryMechanism.result.push(hash);
 	//console.log(hash);
 }
@@ -115,7 +116,6 @@ recoveryMechanism.gatherUserInput = function (index){
 
 }
 recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
-	console.log('1111111111');
 	var hashList = [];
 	var hash;
 	if (groupFullList.length >= 6) {
@@ -138,7 +138,6 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 	}
 	console.log('logging hashes of group.....');
 	console.log(hashList);
-	console.log('6666666666');
 
 	return hashList;
 }
