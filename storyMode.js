@@ -29,12 +29,12 @@ storyMode.selectBankStory = function(index) {
 	var records = programVariables.storyBankTable.query();
 
 	console.log(limitsList.length());
-	console.log('using get..');
+	console.log('using get....');
 	for ( var i=0; i<limitsList.length(); i++ ) {
 		curLimit += limitsList.get(i);
 		if (index < curLimit) {
 			//falls in the group sets all stories in the same group to be true
-			var startFrom = curLimit - limitsList[i];
+			var startFrom = curLimit - limitsList.get(i);
 			console.log(curLimit.toString());
 			for (var j=startFrom; j<curLimit; j++) {
 				records.get(j).set('used', true);
