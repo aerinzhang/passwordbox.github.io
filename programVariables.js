@@ -43,6 +43,7 @@ programVariables.initialize = function (){
 			storyMode.securityLevel = record.get('securityLevel');
 			storyMode.accountIndex = record.get('accountIndex');
 			storyMode.groupList = record.get('groupList');
+			storyMode.groupHashesList = record.get('groupHashesList').toArray();
 			//change to storyBank page
 			window.location = "https://aerinzhang.github.io/43story.html#bank";
 		} else {
@@ -81,15 +82,15 @@ programVariables.getGroupFromRecordIndices = function(start, end) {
 		var record = records[i];
 		group.push([record.get('person'), record.get('scene'), record.get('used')]);
 	}
-	alert(group);
 	return group;
 }
 
-programVariables.insertRecord = function (level, groupList) {
+programVariables.insertRecord = function (level, groupList, groupHashFlattened) {
 	programVariables.storyModeGeneralTable.insert({
 		securityLevel: level,
 		accountIndex: 0,
-		groupList: groupList
+		groupList: groupList,
+		groupHashesList: groupHashFlattened
 	});
 }
 
