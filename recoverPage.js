@@ -124,6 +124,7 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 			//compute hash for one set of six stories
 			var oneHash = recoveryMechanism.generateBCryptHash(oneString);
 			hashList.push(oneHash);
+			console.log(oneHash);
 		}
 	}
 	console.log('logging hashes of group.....');
