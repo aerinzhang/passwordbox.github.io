@@ -29,7 +29,7 @@ storyMode.selectBankStory = function(index) {
 	var records = programVariables.storyBankTable.query();
 	alert('length of story bank is ' + records.length.toString());
 	console.log(limitsList);
-	for ( var i=0; i<limitsList.length; i++ ) {
+	for ( var i=0; i<limitsList.length(); i++ ) {
 		curLimit += limitsList[i];
 		if (index < curLimit) {
 			//falls in the group sets all stories in the same group to be true
