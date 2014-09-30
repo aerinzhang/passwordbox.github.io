@@ -306,6 +306,7 @@ storyMode.createGroupHashesList = function() {
 	for (var i=0; i<length; i++) {
 		result.push('');
 	}
+	storyMode.groupHashesList = result;
 	return result;
 }
 
