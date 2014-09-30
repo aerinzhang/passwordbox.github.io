@@ -37,7 +37,7 @@ storyMode.selectBankStory = function(index) {
 			var startFrom = curLimit - limitsList.get(i);
 			console.log(curLimit.toString());
 			for (var j=startFrom; j<curLimit; j++) {
-				records.get(j).set('used', true);
+				records[j].set('used', true);
 			}
 			//$("#bank").page('destroy').page();
 			console.log(limitsList);  
