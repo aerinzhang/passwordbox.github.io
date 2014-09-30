@@ -27,16 +27,17 @@ storyMode.selectBankStory = function(index) {
 	var limitsList = storyMode.groupList;
 	var curLimit = 0;
 	var records = programVariables.storyBankTable.query();
-	
+
 	console.log(limitsList.length());
+	console.log('using get..');
 	for ( var i=0; i<limitsList.length(); i++ ) {
-		curLimit += limitsList[i];
+		curLimit += limitsList.get(i);
 		if (index < curLimit) {
 			//falls in the group sets all stories in the same group to be true
 			var startFrom = curLimit - limitsList[i];
 			console.log(curLimit.toString());
 			for (var j=startFrom; j<curLimit; j++) {
-				records[j].set('used', true);
+				records.get(j).set('used', true);
 			}
 			//$("#bank").page('destroy').page();
 			console.log(limitsList);  
