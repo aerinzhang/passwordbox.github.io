@@ -114,6 +114,8 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 	if (groupFullList.length >= 6) {
 		var k = 6;
 		var allComb = recoveryMechanism.regularComputeCombinations(groupFullList, k);
+		console.log('logging all Comb');
+		console.log(allComb);
 		for (var i=0; i<allComb.length; i++) {
 			var oneString = allComb[i][1].concat(allComb[i][2]);
 			//compute hash for one combination
@@ -130,9 +132,9 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 recoveryMechanism.regularComputeCombinations = function(bank, k) {
 	if (bank.length < k) {
 		return [[]]
-	} else if (bank.length == k) {
+	} else if (bank.length === k) {
 		return [bank]
-	} else if (k == 1) {
+	} else if (k === 1) {
 		var newB = [];
 		for (var i=0; i < bank.length; i++) {
 			newB.push([bank[i]]);
@@ -143,8 +145,10 @@ recoveryMechanism.regularComputeCombinations = function(bank, k) {
 		var allperm = []
 		var result1 = recoveryMechanism.regularComputeCombinations(bank.slice(1), k-1);
 		var result2 = recoveryMechanism.regularComputeCombinations(bank.slice(1), k);
-		for (var i = 0; i < result1.length ; i++) {   
-			allperm.push([bank[0]].concat(result1[i]));
+		for (var i = 0; i < result1.length ; i++) {
+			var temp = [bank[0]];
+			temp.push.apply(temp, result1[i]);
+			allperm.push(temp);
 		}
 		for (var j =0; j < result2.length; j ++) {
 			allperm.push(result2[j]);
