@@ -15,15 +15,15 @@ accountPage.isWebsite = function(web) {
 }
 
 accountPage.calculateCuePairsFromIndices = function(cueList) {
-	var pair;
+	var record;
 	var person;
 	var scene;
-	var stories = storyMode.storyBank;
+	var stories = programVariables.storyBankTable.query();
 	var result = [];
 	for (var i=0; i<cueList.length; i++) {
-		pair = stories[cueList[i]-1];
-		person = pair[0];
-		scene = pair[1];
+		record = stories[cueList[i]-1];
+		person = record.get('person');
+		scene = record.get('scene');
 		result.push(person + '|||' + scene);
 	}
 	return result;
