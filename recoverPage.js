@@ -95,15 +95,11 @@ recoveryMechanism.gatherUserInput = function (index){
 	//the index parameter is the position of the missing story in this given group
 
 	//get the length of the list
-	console.log(recoveryMechanism.groupIndex);
-	var storyList = storyMode.groupList[recoveryMechanism.groupIndex];
-	console.log('logging storyList');
-	console.log(storyList);
-
+	var length = storyMode.groupList[recoveryMechanism.groupIndex];
 	var count = 0;
 	var inputFirstHalf = '';
 	var inputSecondhalf = '';
-	for (var i=0; i<storyList.length; i++) {
+	for (var i=0; i<length; i++) {
 		var id = '#game-password'+ i.toString();
 		var userInput = $(id).val();
 		console.log('logging userInput for index ' + i.toString());
