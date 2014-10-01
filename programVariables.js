@@ -126,7 +126,7 @@ programVariables.insertStory = function (personName, sceneName, usedBool, groupN
 
 programVariables.insertAccount = function (accountName, storyList, index) {	
 	//do nothing currently should do the following
-	accountTable.insert({
+	programVariables.accountTable.insert({
 		account:accountName,
 		created: new Date(),
 		lastRehearsal: new Date(),
