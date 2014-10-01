@@ -372,6 +372,7 @@ storyMode.limits = function (obj, suffix) {
 }
 
 $(document).ready(function(){
+	console.log('new!!');
 	$('#randomnessTextBoxStoryMode').keyup(function() {
 		storyMode.limits($(this), 'StoryMode');
     });

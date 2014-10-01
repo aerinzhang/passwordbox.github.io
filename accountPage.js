@@ -14,6 +14,20 @@ accountPage.isWebsite = function(web) {
 	return true;
 }
 
+accountPage.calculateCuePairsFromIndices = function(cueList) {
+	var pair;
+	var person;
+	var scene;
+	var stories = storyMode.storyBank;
+	var result = [];
+	for (var i=0; i<cueList.length; i++) {
+		pair = stories[cueList[i]-1];
+		person = pair[0];
+		scene = pair[1];
+		result.push(person + '|||' + scene);
+	}
+	return result;
+}
 
 
 accountPage.submit = function(e) {
@@ -45,9 +59,10 @@ accountPage.submit = function(e) {
 			var cueList = eval(functionName);
 
 
-
 			//Put in Dropbox! Need Another Module!!!! FIX LATER
-			programVariables.insertAccount(account, cueList, accountPage.accountIndex);
+			//calculate cue (person-scene pairs from the story list)
+			var storyList = accountPage.calculateCuePairsFromIndices(cueList);
+			programVariables.insertAccount(account, storyList, accountPage.accountIndex);
 			accountPage.accountIndex += 1;
 			programVariables.generalRecord[0].set("accountIndex", accountPage.accountIndex);
 			//?accountStoryList, existingAccountIndex);
@@ -79,7 +94,7 @@ accountPage.renderAccountList = function(changePageBool) {
 		//where to put those ?
 
 		var accounts = programVariables.accountTable.query();
-		var stories = programVariables.stories;
+		var stories = programVariables.storyBankTable.query();
 		var accountIndex = programVariables.accountIndex;
 
 		//if there are stories in the bank 
