@@ -12,7 +12,7 @@ SCENE_INDEX = 3;
 actionList = ['tickling', 'fighting', 'rubbing', 'biting', 'hugging', 'enlarging', 'tying', 'repairing', 'hiding' , 'signing'];
 objectList = ['hammer', 'moose', 'snowflake', 'lock', 'igloo', 'leaf', 'dice', 'moon', 'heel', 'boot'];
 
-gmemoryGame.generateFullGameList = function(partialGameList) {
+memoryGame.generateFullGameList = function(partialGameList) {
 	//partialGameList contains gamePplList and gameScenesList
 	//TEMP: for now generate randomly
 	var result = [];

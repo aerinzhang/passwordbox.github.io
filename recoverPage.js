@@ -122,7 +122,6 @@ recoveryMechanism.gatherUserInput = function (index){
 			recoveryMechanism.generateBCryptHash(string,
 				// no way to short cut since it is a callback fn
 				recoveryMechanism.callbackFnForRecovery, password);
-			}
 		}
 	}
 
