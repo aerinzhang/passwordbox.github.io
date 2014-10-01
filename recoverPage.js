@@ -110,6 +110,9 @@ recoveryMechanism.gatherUserInput = function (){
 		if (i < index) inputFirstHalf += userInput;
 		if (i > index) inputSecondhalf += userInput;
 	}
+	console.log('result string is....');
+	console.log(inputFirstHalf + inputSecondhalf);
+
 	//if there are less than five stories cannot perform the recovery
 	//QUESTION: what five should we use????? CURRENTLY FIRST 5 STORIES LATER  
 	if (count < 5) {
@@ -123,6 +126,7 @@ recoveryMechanism.gatherUserInput = function (){
 			var object = appConstants.objectsList[j];
 			var string = inputFirstHalf + action + object + inputSecondhalf;
 			var password = action + object;
+			console.log(string);
 			recoveryMechanism.generateBCryptHash(string,
 				// no way to short cut since it is a callback fn
 				recoveryMechanism.callbackFnForRecovery, password);
