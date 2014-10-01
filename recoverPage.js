@@ -61,6 +61,7 @@ recoveryMechanism.callbackFnForGeneratingGroupHashes = function(hash) {
 }
 
 recoveryMechanism.callbackFnForRecovery = function(hash, pwGuess) {
+	console.log(hash);
 	if (recoveryMechanism.compareHashToExistongOnes(hash)) {
 		//found the result: store the action & object
 		recoveryMechanism.recoveryResult = pwGuess;
@@ -102,16 +103,10 @@ recoveryMechanism.gatherUserInput = function (index){
 	for (var i=0; i<length; i++) {
 		var id = '#game-password'+ i.toString();
 		var userInput = $(id).val();
-		console.log('logging userInput for index ' + i.toString());
-		console.log(userInput);
 		if ((userInput != '') && (index!=i)) count ++;
 		if (i < index) inputFirstHalf += userInput;
 		if (i > index) inputSecondhalf += userInput;
 	}
-	console.log('logging firsthalf');
-	console.log(inputFirstHalf);
-	console.log('logging second half');
-	console.log(inputSecondhalf);
 	//if there are less than five stories cannot perform the recovery
 	//QUESTION: what five should we use????? CURRENTLY FIRST 5 STORIES LATER  
 	if (count < 5) {
