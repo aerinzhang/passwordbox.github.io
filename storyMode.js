@@ -125,7 +125,7 @@ storyMode.recoverStory = function (index) {
 		if (index < curLimit) {
 			var startIndex = curLimit - limitsList[i];
 			var group = storyMode.storyBank.slice(startIndex, curLimit);
-			recoveryMechanism.generateRecoveryInputPageForGroup(group, i);
+			recoveryMechanism.generateRecoveryInputPageForGroup(group, i, index);
 			console.log('the index of the group that story ' + index.toString() + ' belongs to is ' + i.toString());
 			console.log('group is...');
 			console.log(group);

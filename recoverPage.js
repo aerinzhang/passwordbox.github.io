@@ -13,9 +13,10 @@ var temp = [['Bill_Clinton', 'court'],['Darth_Vader', 'restaurant'],['Frodo', 'b
 						['Adolf_Hitler', 'pool_bar'],['Marilyn_Monroe', 'fancy_house'], ['Bart_Simpson', 'mountain']];
 //This function dynamically generate the recovery input page to gather
 //stories that user do remember
-recoveryMechanism.generateRecoveryInputPageForGroup = function (listStories, groupIndex){
+recoveryMechanism.generateRecoveryInputPageForGroup = function (listStories, groupIndex, storyIndex){
 	//first retrive all stories with given index and put them in a list
 	//listStories = temp;
+	recoveryMechanism.missingStoryIndex = storyIndex;
 	recoveryMechanism.groupIndex = groupIndex;
 	recoveryMechanism.recoveryResult = null;
 
