@@ -64,7 +64,7 @@ accountPage.submit = function(e) {
 			var storyList = accountPage.calculateCuePairsFromIndices(cueList);
 			programVariables.insertAccount(account, storyList, accountPage.accountIndex);
 			accountPage.accountIndex += 1;
-			programVariables.generalRecord[0].set("accountIndex", accountPage.accountIndex);
+			programVariables.generalRecord.set("accountIndex", accountPage.accountIndex);
 			//?accountStoryList, existingAccountIndex);
 			programVariables.updateStoryRefCount(account, cueList);
 			
