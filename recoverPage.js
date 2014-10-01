@@ -93,10 +93,11 @@ recoveryMechanism.generateBCryptHash = function (inputString, callbackFunction, 
 }
 //recoveryMechanism.
 //this function 
-recoveryMechanism.gatherUserInput = function (index){
+recoveryMechanism.gatherUserInput = function (){
 	//the index parameter is the position of the missing story in this given group
 
 	//get the length of the list
+	var index = recoveryMechanism.missingStoryIndex;
 	var length = storyMode.groupList[recoveryMechanism.groupIndex];
 	var count = 0;
 	var inputFirstHalf = '';
