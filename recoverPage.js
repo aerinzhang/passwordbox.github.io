@@ -95,7 +95,11 @@ recoveryMechanism.gatherUserInput = function (index){
 	//the index parameter is the position of the missing story in this given group
 
 	//get the length of the list
+	console.log(recoveryMechanism.groupIndex);
 	var storyList = storyMode.groupList[recoveryMechanism.groupIndex];
+	console.log('logging storyList');
+	console.log(storyList);
+
 	var count = 0;
 	var inputFirstHalf = '';
 	var inputSecondhalf = '';
