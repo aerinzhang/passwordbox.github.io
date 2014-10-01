@@ -128,7 +128,6 @@ recoveryMechanism.gatherUserInput = function (){
 			var object = appConstants.objectsList[j];
 			var string = inputFirstHalf + action + object + inputSecondhalf;
 			var password = action + object;
-			console.log(string);
 			recoveryMechanism.generateBCryptHash(string,
 				// no way to short cut since it is a callback fn
 				recoveryMechanism.callbackFnForRecovery, password);
