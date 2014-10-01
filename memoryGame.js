@@ -12,7 +12,6 @@ SCENE_INDEX = 3;
 actionList = ['tickling', 'fighting', 'rubbing', 'biting', 'hugging', 'enlarging', 'tying', 'repairing', 'hiding' , 'signing'];
 objectList = ['hammer', 'moose', 'snowflake', 'lock', 'igloo', 'leaf', 'dice', 'moon', 'heel', 'boot'];
 
-memoryGame.currentGroupIndex;
 memoryGame.generateFullGameList = function(partialGameList) {
 	//partialGameList contains gamePplList and gameScenesList
 	//TEMP: for now generate randomly
@@ -37,7 +36,7 @@ memoryGame.startGame = function(gameList, groupIndex) {
 	memoryGame.gameScore = 0;
 	memoryGame.sequenceIndex = 0;
 	memoryGame.progress = 0;
-	memoryGame.currentGroupIndex;
+	memoryGame.currentGroupIndex = groupIndex;
 
 	//either the specified length or default 10
 	memoryGame.numStories = gameList.length || 10;
