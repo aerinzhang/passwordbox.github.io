@@ -67,6 +67,7 @@ recoveryMechanism.callbackFnForRecovery = function(hash, pwGuess) {
 		//found the result: store the action & object
 		recoveryMechanism.recoveryResult = pwGuess;
 		console.log('found! ' + pwGuess);
+		alert('found!!!');
 	}
 
 }
