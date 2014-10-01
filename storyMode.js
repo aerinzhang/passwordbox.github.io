@@ -49,13 +49,16 @@ storyMode.selectBankStory = function(index) {
 }
 
 storyMode.flattenGroupHashList = function (listOfHashes) {
-	var result = '';
+	var result;
 	var divider = '&&&&&&';
 	var element;
-	for (var i=0; i<listOfHashes.length; i++) {
-		element = listOfHashes[i];
-		result = result + divider + element;
-	}
+	if (listOfHashes.length !== 0) {
+		result = listOfHashes[0];
+		for (var i=1; i<listOfHashes.length; i++) {
+			element = listOfHashes[i];
+			result = result + divider + element;
+		}
+	} 
 	console.log(result);
 	return result;
 }

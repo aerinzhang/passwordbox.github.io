@@ -269,6 +269,8 @@ memoryGame.generateNextCheck = function () {
 			//score hashes for this group into generalRecord
 			var programRecord = programVariables.storyModeGeneralTable.query()[0];
 			storyMode.groupHashesList[memoryGame.currentGroupIndex] = recoveryMechanism.hashResults;
+			console.log(memoryGame.currentGroupIndex);
+			console.log(typeof memoryGame.currentGroupIndex);
 			programRecord.get('groupHashesList').set(memoryGame.currentGroupIndex, 
 				storyMode.flattenGroupHashList(recoveryMechanism.hashResults));
 
