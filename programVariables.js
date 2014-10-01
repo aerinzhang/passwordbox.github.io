@@ -27,7 +27,7 @@ programVariables.initialize = function (){
 		programVariables.stories = programVariables.storyBankTable.query();
 		programVariables.accounts = programVariables.accountTable.query();
 
-		programVariables.storyBank = programVariables.stripStoryFromRecords();
+		//programVariables.storyBank = programVariables.stripStoryFromRecords();
 		programVariables.programRecord = programVariables.generalTable.query();
 
 
@@ -49,6 +49,17 @@ programVariables.initialize = function (){
 		} else {
 			//should never get here since generalTable should only have one entry
 			alert('something is wrong please contact our developer');
+		}
+
+		if (programVariables.stories.length === 0) {
+			programVariables.storyBank = [];
+		} else {
+			var tempBank = [];
+			for (var i=0; i<programVariables.stories.length; i++) {
+				var story = programVariables.stories[i];
+				tempBank.push([story.get('person'), story.get('scene')]);
+			}
+			programVariables.storyBank = tempBank;
 		}
 		// if (programVariables.programRecord.length == 0) {
 		// 	//initialize values
