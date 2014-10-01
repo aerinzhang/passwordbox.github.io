@@ -106,6 +106,10 @@ recoveryMechanism.gatherUserInput = function (index){
 		if (i < index) inputFirstHalf += userInput;
 		if (i > index) inputSecondhalf += userInput;
 	}
+	console.log('logging firsthalf');
+	console.log(inputFirstHalf);
+	console.log('logging second half');
+	console.log(inputSecondhalf);
 	//if there are less than five stories cannot perform the recovery
 	//QUESTION: what five should we use????? CURRENTLY FIRST 5 STORIES LATER  
 	if (count < 5) {
