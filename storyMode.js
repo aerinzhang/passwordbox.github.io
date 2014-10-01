@@ -117,13 +117,18 @@ storyMode.selectBankStory = function(index) {
 storyMode.recoverStory = function (index) {
 	var limitsList = storyMode.groupList;
 	var curLimit = 0;
-
+	console.log('recovering story with index ' + index.toString());
+	console.log('limitsList is ...');
+	console.log(limitsList);
 	for ( var i=0; i<limitsList.length; i++) {
 		curLimit += limitsList[i];
 		if (index < curLimit) {
 			var startIndex = curLimit - limitsList[i];
 			var group = records.slice(startIndex, curLimit);
 			recoveryMechanism.generateRecoveryInputPageForGroup(group, i);
+			console.log('the index of the group that story ' + index.toString() + ' belongs to is ' + i.toString());
+			console.log('group is...');
+			console.log(group);
 			$.mobile.changePage('#recover');
 			return;
 		}
