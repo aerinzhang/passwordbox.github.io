@@ -52,14 +52,14 @@ programVariables.initialize = function (){
 		}
 
 		if (programVariables.stories.length === 0) {
-			programVariables.storyBank = [];
+			storyMode.storyBank = [];
 		} else {
 			var tempBank = [];
 			for (var i=0; i<programVariables.stories.length; i++) {
 				var story = programVariables.stories[i];
 				tempBank.push([story.get('person'), story.get('scene')]);
 			}
-			programVariables.storyBank = tempBank;
+			storyMode.storyBank = tempBank;
 		}
 		// if (programVariables.programRecord.length == 0) {
 		// 	//initialize values
