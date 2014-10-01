@@ -48,6 +48,7 @@ storyMode.selectBankStory = function(index) {
 }
 
 storyMode.makeHashStringIntoList = function(string) {
+	console.log(string.split('&&&&&&'));
 	return string.split('&&&&&&');
 }
 
