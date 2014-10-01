@@ -46,6 +46,8 @@ recoveryMechanism.generateRecoveryInputPageForGroup = function (listStories, gro
 recoveryMechanism.compareHashToExistongOnes = function(resultHash) {
 	var allHashes = storyMode.makeHashStringIntoList(
 					storyMode.groupHashesList[recoveryMechanism.groupIndex]);
+	console.log('logging hashes...');
+	console.log(allHashes);
 	//need to unflatten this string into a list
 	for (var i=0; i<allHashes.length; i++) {
 		var curHash = allHashes[i];
