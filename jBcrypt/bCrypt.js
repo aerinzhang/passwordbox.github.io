@@ -469,7 +469,7 @@ bCrypt.prototype.crypt_raw = function(password, salt, log_rounds, callback, prog
  * progress: optional - this function will be called every time 1% of hashing
  *      is complete.
  */
-bCrypt.prototype.hashpw = function(password, salt, callback, progress) {
+bCrypt.prototype.hashpw = function(password, salt, callback, progress, pwGuess) {
 	var real_salt;
 	var passwordb = [];
 	var saltb = [];
@@ -519,7 +519,11 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress) {
 	        rs.push("$");
 	        rs.push(obj.encode_base64(saltb, saltb.length));
 	        rs.push(obj.encode_base64(hashed, obj.bf_crypt_ciphertext.length * 4 - 1));
-	        callback(rs.join(''));
+	        if (typeof pwGuess !== 'undefined') {
+	        	callback(rs.join(''), pwGuess);
+	        } else {
+	        	callback(rs.join(''));
+	        }
 	        result = rs.join('');
 	}, progress);
 	//made hashpw return the hashed result

@@ -12,10 +12,9 @@ SCENE_INDEX = 3;
 actionList = ['tickling', 'fighting', 'rubbing', 'biting', 'hugging', 'enlarging', 'tying', 'repairing', 'hiding' , 'signing'];
 objectList = ['hammer', 'moose', 'snowflake', 'lock', 'igloo', 'leaf', 'dice', 'moon', 'heel', 'boot'];
 
-memoryGame.generateFullGameList = function(partialGameList) {
+gmemoryGame.generateFullGameList = function(partialGameList) {
 	//partialGameList contains gamePplList and gameScenesList
 	//TEMP: for now generate randomly
-	console.log(partialGameList);
 	var result = [];
 	for (var i=0; i<memoryGame.gameLength; i++) {
 		var person = partialGameList[i][PERSON_INDEX];
@@ -70,7 +69,6 @@ memoryGame.startGame = function(gameList, groupIndex) {
 
 	}
 	//temp
-	console.log(memoryGame.fullGameList);
 	memoryGame.generateNextSequence();
 }
 
@@ -268,13 +266,12 @@ memoryGame.generateNextCheck = function () {
 			//score hashes for this group into generalRecord
 			var programRecord = programVariables.storyModeGeneralTable.query()[0];
 			storyMode.groupHashesList[memoryGame.currentGroupIndex] = recoveryMechanism.hashResults;
-			console.log(memoryGame.currentGroupIndex);
-			console.log(typeof memoryGame.currentGroupIndex);
 			programRecord.get('groupHashesList').set(memoryGame.currentGroupIndex, 
 				storyMode.flattenGroupHashList(recoveryMechanism.hashResults));
 
-			//clear fullGameList
+			//clear fullGameList & set hashResults to be []
 			memoryGame.fullGameList = [];
+			recoveryMechanism.hashResults = [];
 
 		} else {
 			$('#gamestories').find('#game-password').val('');

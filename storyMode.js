@@ -5,7 +5,6 @@ storyMode.CHAR_LIMIT = 30;
 storyMode.UNIQUE_CHAR_LIMIT = 20;
 
 //load from programVariables later
-storyMode.groupList = [];
 
 //TEMP!
 var records = [];
@@ -48,19 +47,23 @@ storyMode.selectBankStory = function(index) {
 	}
 }
 
+storyMode.makeHashStringIntoList = function(string) {
+	return string.split('&&&&&&');
+}
+
 storyMode.flattenGroupHashList = function (listOfHashes) {
-	var result;
-	var divider = '&&&&&&';
-	var element;
-	if (listOfHashes.length !== 0) {
-		result = listOfHashes[0];
-		for (var i=1; i<listOfHashes.length; i++) {
-			element = listOfHashes[i];
-			result = result + divider + element;
-		}
-	} 
-	console.log(result);
-	return result;
+	return listOfHashes.join('&&&&&&');
+	// var result;
+	// var divider = '&&&&&&';
+	// var element;
+	// if (listOfHashes.length !== 0) {
+	// 	result = listOfHashes[0];
+	// 	for (var i=1; i<listOfHashes.length; i++) {
+	// 		element = listOfHashes[i];
+	// 		result = result + divider + element;
+	// 	}
+	// } 
+	// return result;
 }
 
 storyMode.generateStoryGroup = function() {
@@ -85,22 +88,44 @@ storyMode.generateStoryGroup = function() {
 	return limitsList;
 }
 
-storyMode.recoverStory = function (index) {
-	console.log(index);
-	//create variable limits
 
-	var limitsList = [8, 16, 25, 33, 42];
-	var startIndex = 0;
+storyMode.selectBankStory = function(index) {
+	console.log("bankStory index selected is" + index.toString());
+	var limitsList = storyMode.groupList;
+	var curLimit = 0;
+	var records = programVariables.storyBankTable.query();
+
+	for ( var i=0; i<limitsList.length; i++ ) {
+		curLimit += limitsList[i];
+		if (index < curLimit) {
+			//falls in the group sets all stories in the same group to be true
+			var startFrom = curLimit - limitsList[i];
+			console.log(curLimit.toString());
+			for (var j=startFrom; j<curLimit; j++) {
+				records[j].set('used', true);
+			}
+			//$("#bank").page('destroy').page();
+			console.log(limitsList);  
+			console.log('play Game!!!');
+			var group = programVariables.getGroupFromRecordIndices(startFrom, curLimit);
+			memoryGame.startGame(group, i);
+			//playtheGame
+			return;
+		}
+	}
+}
+storyMode.recoverStory = function (index) {
+	var limitsList = storyMode.groupList;
+	var curLimit = 0;
+
 	for ( var i=0; i<limitsList.length; i++) {
-		if (index <= limitsList[i]) {
-			var group = records.slice(startIndex, limitsList[i]+1);
-			console.log(group);
-			recoveryMechanism.generateRecoveryInputPageForGroup(group);
+		curLimit += limitsList[i];
+		if (index < curLimit) {
+			var startIndex = curLimit - limitsList[i];
+			var group = records.slice(startIndex, curLimit);
+			recoveryMechanism.generateRecoveryInputPageForGroup(group, i);
 			$.mobile.changePage('#recover');
 			return;
-		} else {
-			//not there yetl
-			startIndex = limitsList[i];
 		}
 	}
 }

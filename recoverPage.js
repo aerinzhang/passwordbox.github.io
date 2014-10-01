@@ -13,9 +13,12 @@ var temp = [['Bill_Clinton', 'court'],['Darth_Vader', 'restaurant'],['Frodo', 'b
 						['Adolf_Hitler', 'pool_bar'],['Marilyn_Monroe', 'fancy_house'], ['Bart_Simpson', 'mountain']];
 //This function dynamically generate the recovery input page to gather
 //stories that user do remember
-recoveryMechanism.generateRecoveryInputPageForGroup = function (listStories){
+recoveryMechanism.generateRecoveryInputPageForGroup = function (listStories, groupIndex){
 	//first retrive all stories with given index and put them in a list
 	//listStories = temp;
+	recoveryMechanism.groupIndex = groupIndex;
+	recoveryMechanism.recoveryResult = null;
+
 	var head = '<ul data-role="listview" data-inset="true">';
 	for (var i=0; i<listStories.length; i++){
 		var tuple = listStories[i];
@@ -37,8 +40,12 @@ recoveryMechanism.generateRecoveryInputPageForGroup = function (listStories){
 	return;
 }
 
-//this function returns 1 if resulthash already exists / meaning correct one found
+
+//this function returns true if resulthash already exists / meaning correct one found
 recoveryMechanism.compareHashToExistongOnes = function(resultHash) {
+	var allHashes = storyMode.makeHashStringIntoList(
+					storyMode.groupHashesList[recoveryMechanism.groupIndex]);
+	//need to unflatten this string into a list
 	for (var i=0; i<allHashes.length; i++) {
 		var curHash = allHashes[i];
 		if (curHash == resultHash) return true;
@@ -49,11 +56,20 @@ recoveryMechanism.compareHashToExistongOnes = function(resultHash) {
 recoveryMechanism.progressFn = function(){
 }
 
-recoveryMechanism.callbackFn = function(hash) {
+recoveryMechanism.callbackFnForGeneratingGroupHashes = function(hash) {
 	recoveryMechanism.hashResults.push(hash);
 }
 
-recoveryMechanism.generateBCryptHash = function (inputString) {
+recoveryMechanism.callbackFnForRecovery = function(hash, pwGuess) {
+	if (recoveryMechanism.compareHashToExistongOnes(hash)) {
+		//found the result: store the action & object
+		recoveryMechanism.recoveryResult = pwGuess;
+		console.log('found! ' + pwGuess);
+	}
+
+}
+
+recoveryMechanism.generateBCryptHash = function (inputString, callbackFunction, passwordGuess) {
 	var round = appConstants.NUM_OF_ROUNDS;
 	var salt;
 	var hash;
@@ -65,7 +81,7 @@ recoveryMechanism.generateBCryptHash = function (inputString) {
 		return;
 	}
 	try {
-		recoveryMechanism.bcrypt.hashpw(inputString, salt, recoveryMechanism.callbackFn, recoveryMechanism.progressFn);
+		recoveryMechanism.bcrypt.hashpw(inputString, salt, callbackFunction, recoveryMechanism.progressFn, passwordGuess);
 
 	} catch(err) {
 		alert(err);
@@ -102,11 +118,10 @@ recoveryMechanism.gatherUserInput = function (index){
 			var action = appConstants.actionsList[i];
 			var object = appConstants.objectsList[j];
 			var string = inputFirstHalf + action + object + inputSecondhalf;
-			recoveryMechanism.generateBCryptHash(string);
-			
-			//check if this hash exists 
-			if (compareHashToExistongOnes(recoveryMechanism.result)) {
-				console.log('hash found');
+			var password = action + object;
+			recoveryMechanism.generateBCryptHash(string,
+				// no way to short cut since it is a callback fn
+				recoveryMechanism.callbackFnForRecovery, password);
 			}
 		}
 	}
@@ -126,7 +141,8 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 				oneString = oneString + oneSet[j][1] + oneSet[j][2];
 			}
 			//compute hash for one set of six stories
-			recoveryMechanism.generateBCryptHash(oneString);
+			recoveryMechanism.generateBCryptHash(oneString, 
+				recoveryMechanism.callbackFnForGeneratingGroupHashes);
 
 		}
 	}
