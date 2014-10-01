@@ -48,19 +48,21 @@ accountPage.submit = function(e) {
 
 			//Put in Dropbox! Need Another Module!!!! FIX LATER
 			programVariables.insertAccount(account, cueList, accountPage.accountIndex);
+			accountPage.accountIndex += 1;
+			programVariables.generalRecord[0].set("accountIndex", accountPage.accountIndex);
 			//?accountStoryList, existingAccountIndex);
 			programVariables.updateStoryRefCount(account, cueList);
 			
 
 			//add one to existingAccountIndex
 			//existingAccountIndex+=1;
-			programVariables.set('existingAccountIndex', accountPage.existingAccountIndex) ;	
+			//programVariables.set('existingAccountIndex', accountPage.existingAccountIndex) ;	
 
 			//existingAccounts.push(accountInfo);	
 
 
 			//should be true false temprorily
-			accountPage.renderAccountList(false);
+			accountPage.renderAccountList(true);
 
 			//currentPageID = value;? USEFUL OR NOT
 		}
@@ -73,12 +75,10 @@ accountPage.submit = function(e) {
 
 //Account View Functions
 accountPage.renderAccountList = function(changePageBool) {
-
-		//var records = accountTable.query();
 		//var stories = storyBankTable.query();
 		//where to put those ?
 
-		var accounts = programVariables.accounts;
+		var accounts = programVariables.accountTable.query();
 		var stories = programVariables.stories;
 		var accountIndex = programVariables.accountIndex;
 
@@ -91,7 +91,7 @@ accountPage.renderAccountList = function(changePageBool) {
 				var temp = account.get('storyList');
 				var list = programVariables.parseStringToNestedArrays(account.get('storyList'));
 				var accountName = account.get('account');
-				var accountIndexForChecking = account.get('existingAccountIndex');
+				var accountIndexForChecking = account.get('accountIndex');
 				var time = '0PM';
 				//var time = record.get('lastRehearsal').toString();
 				var pageHtml = accountPage.renderEachAccountElements(time, accountName, 
