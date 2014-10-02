@@ -558,6 +558,7 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress, pwGuess) 
 	        rs.push("$");
 	        rs.push(obj.encode_base64(saltb, saltb.length));
 	        console.log('In bCrypt crypt_raw callback... ' + rs.join());
+	        console.log('In bCrypt crypt_raw callback hashed is...' + hashed);
 	        rs.push(obj.encode_base64(hashed, obj.bf_crypt_ciphertext.length * 4 - 1));
 	        console.log('In bCrypt crypt_raw callback222222... ' + rs.join());
 
