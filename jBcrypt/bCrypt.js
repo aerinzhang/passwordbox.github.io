@@ -543,6 +543,7 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress, pwGuess) 
     }
     console.log('In bCrypt hashpw... logging passwordb' + passwordb.join(''));
     saltb = this.decode_base64(real_salt, this.BCRYPT_SALT_LEN);
+    console.log('In bCrypt logging saltb... ' + saltb);
     //end of midification
 	var obj = this;
 	this.crypt_raw(passwordb, saltb, rounds, function(hashed) {
@@ -556,6 +557,7 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress, pwGuess) 
         	rs.push(rounds.toString());
 	        rs.push("$");
 	        rs.push(obj.encode_base64(saltb, saltb.length));
+	        console.log('In bCrypt crypt_raw callback... ' + rs.join());
 	        rs.push(obj.encode_base64(hashed, obj.bf_crypt_ciphertext.length * 4 - 1));
 	        if (typeof pwGuess !== 'undefined') {
 	        	callback(rs.join(''), pwGuess);
