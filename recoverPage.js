@@ -189,6 +189,7 @@ recoveryMechanism.regularComputeCombinations = function(bank, k) {
 	}
 }
 var id;
+recoveryMechanism.bcrypt = new bCrypt();
 
 function enable(){
 	if(recoveryMechanism.bcrypt.ready()){
@@ -196,7 +197,6 @@ function enable(){
 	}
 }
 $( document ).ready(function(){
-	recoveryMechanism.bcrypt = new bCrypt();
 	id = setInterval(enable,250);
 	//recoveryMechanism.generateRecoveryInputPageForGroup(1);
 })
