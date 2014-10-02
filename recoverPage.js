@@ -58,9 +58,10 @@ recoveryMechanism.compareHashToExistongOnes = function(resultHash) {
 
 recoveryMechanism.progressFn = function(){
 }
-
+recoveryCallBackCounter = 0;
 recoveryMechanism.callbackFnForGeneratingGroupHashes = function(hash) {
 	recoveryMechanism.hashResults.push(hash);
+	recoveryCallBackCounter += 1;
 }
 
 recoveryMechanism.callbackFnForRecovery = function(hash, pwGuess) {
@@ -77,7 +78,6 @@ recoveryMechanism.callbackFnForRecovery = function(hash, pwGuess) {
 recoveryMechanism.generateBCryptHash = function (inputString, callbackFunction, passwordGuess) {
 	var round = appConstants.NUM_OF_ROUNDS;
 	var salt;
-	var hash;
 	//generate salt using issac
 	try {
 		salt = recoveryMechanism.bcrypt.gensalt(round);
@@ -87,6 +87,7 @@ recoveryMechanism.generateBCryptHash = function (inputString, callbackFunction, 
 		return;
 	}
 	try {
+		console.log('inputstring being hashes is ... ' + inputString);
 		recoveryMechanism.bcrypt.hashpw(inputString, salt, callbackFunction, recoveryMechanism.progressFn, passwordGuess);
 
 	} catch(err) {
