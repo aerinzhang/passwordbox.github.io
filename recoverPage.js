@@ -90,7 +90,7 @@ recoveryMechanism.generateBCryptHash = function (inputString, callbackFunction, 
 	try {
 		console.log('inputstring being hashes is ... ' + inputString);
 		recoveryMechanism.bcrypt.hashpw(inputString, salt, callbackFunction, recoveryMechanism.progressFn, passwordGuess);
-
+		setTimeout('', 500);
 	} catch(err) {
 		alert(err);
 		return;
