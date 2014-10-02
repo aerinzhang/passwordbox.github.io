@@ -419,7 +419,7 @@ bCrypt.prototype.crypt_raw = function(password, salt, log_rounds, callback, prog
 	var cdata = this.bf_crypt_ciphertext.slice();
 	var clen = cdata.length;
 	var one_percent;
-
+	console.log('In crypt_raw the password is ' + password);
 	if (log_rounds < 4 || log_rounds > 31)
 		throw "Bad number of rounds";
 	if (salt.length != this.BCRYPT_SALT_LEN)
