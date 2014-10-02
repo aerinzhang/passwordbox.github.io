@@ -188,6 +188,7 @@ recoveryMechanism.regularComputeCombinations = function(bank, k) {
 		return allperm;
 	}
 }
+var id;
 
 function enable(){
 	if(recoveryMechanism.bcrypt.ready()){
