@@ -193,10 +193,10 @@ recoveryMechanism.bcrypt = new bCrypt();
 
 function enable(){
 	if(recoveryMechanism.bcrypt.ready()){
-		clearInterval(id);
+		window.clearInterval(id);
 	}
 }
 $( document ).ready(function(){
-	id = setInterval(enable,250);
+	id = window.setInterval(enable,250);
 	//recoveryMechanism.generateRecoveryInputPageForGroup(1);
 })
