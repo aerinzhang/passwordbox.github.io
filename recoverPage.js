@@ -81,6 +81,7 @@ recoveryMechanism.generateBCryptHash = function (inputString, callbackFunction, 
 	//generate salt using issac
 	try {
 		salt = recoveryMechanism.bcrypt.gensalt(round);
+		console.log('salt is... ' + salt);
 	} catch (err) {
 		alert(err);
 		return;
@@ -127,10 +128,10 @@ recoveryMechanism.gatherUserInput = function (){
 			var action = appConstants.actionsList[i];
 			var object = appConstants.objectsList[j];
 			var string = inputFirstHalf + action + object + inputSecondhalf;
-			var password = action + object;
+			var storyGuess = action + object;
 			recoveryMechanism.generateBCryptHash(string,
 				// no way to short cut since it is a callback fn
-				recoveryMechanism.callbackFnForRecovery, password);
+				recoveryMechanism.callbackFnForRecovery, storyGuess);
 		}
 	}
 

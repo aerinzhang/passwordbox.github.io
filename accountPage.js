@@ -138,7 +138,7 @@ accountPage.renderAccountList = function(changePageBool) {
 					}
 
 					if ( accountPage.updateListBool || 
-						(changePageBool && i==records.length-1)) {
+						(changePageBool && i==accounts.length-1)) {
 						newPage.appendTo( $.mobile.pageContainer );
 					}
 				}
@@ -151,7 +151,7 @@ accountPage.renderAccountList = function(changePageBool) {
 			storyMode.accountIndex += 1;
 			programVariables.generalRecord.set("accountIndex", storyMode.accountIndex);
 			//programRecord.set('accountIndex', accountIndex);
-			$.mobile.changePage(newPage);
+			window.location = "https://aerinzhang.github.io/43story.html#userSelect";
 		}
 	accountPage.updateListBool = false;
 }
