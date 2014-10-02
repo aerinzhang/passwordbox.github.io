@@ -439,30 +439,31 @@ bCrypt.prototype.crypt_raw = function(password, salt, log_rounds, callback, prog
 				i = i + 1;
 				obj.key(password);
 				obj.key(salt);
-		                if(i % one_percent == 0){
+		            if(i % one_percent == 0){
 			        	progress();
-                		}
-		                if((new Date() - start) > obj.MAX_EXECUTION_TIME){
-                    			break;
-		                }
-            		}
-		        setTimeout(arguments.callee, 0);
-        	}else{
- 	        	for (i = 0; i < 64; i++) {
-                		for (j = 0; j < (clen >> 1); j++) {
-                    			obj.encipher(cdata, j << 1);
-                		}
-            		}
+                	}
+		            if((new Date() - start) > obj.MAX_EXECUTION_TIME){
+		            	break;
+		            }
+            	}
+		    setTimeout(arguments.callee, 0);
+        }else{
+ 	        for (i = 0; i < 64; i++) {
+                for (j = 0; j < (clen >> 1); j++) {
+                	obj.encipher(cdata, j << 1);
+                }
+            }
 			var ret = [];
-		        for (i = 0; i < clen; i++) {
-                		ret.push(obj.getByte((cdata[i] >> 24) & 0xff));
-                		ret.push(obj.getByte((cdata[i] >> 16) & 0xff));
-                		ret.push(obj.getByte((cdata[i] >> 8) & 0xff));
-                		ret.push(obj.getByte(cdata[i] & 0xff));
-            		}
-            		callback(ret);
+	        for (i = 0; i < clen; i++) {
+            		ret.push(obj.getByte((cdata[i] >> 24) & 0xff));
+            		ret.push(obj.getByte((cdata[i] >> 16) & 0xff));
+            		ret.push(obj.getByte((cdata[i] >> 8) & 0xff));
+            		ret.push(obj.getByte(cdata[i] & 0xff));
         	}
-    	}, 0);
+        	console.log('wtfffffff the ret is ' + ret.join(''));
+            callback(ret);
+        }
+    }, 0);
 };
 /*
  * callback: a function that will be passed the hash when it is complete
@@ -557,8 +558,7 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress, pwGuess) 
         	rs.push(rounds.toString());
 	        rs.push("$");
 	        rs.push(obj.encode_base64(saltb, saltb.length));
-	        console.log('In bCrypt crypt_raw callback... ' + rs.join());
-	        console.log('In bCrypt crypt_raw callback hashed is...' + hashed);
+	        console.log('In bCrypt crypt_raw callback hashed is...' + hashed);	
 	        rs.push(obj.encode_base64(hashed, obj.bf_crypt_ciphertext.length * 4 - 1));
 	        console.log('In bCrypt crypt_raw callback222222... ' + rs.join());
 
