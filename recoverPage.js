@@ -59,8 +59,9 @@ recoveryMechanism.compareHashToExistongOnes = function(resultHash) {
 recoveryMechanism.progressFn = function(){
 }
 recoveryCallBackCounter = 0;
-recoveryMechanism.callbackFnForGeneratingGroupHashes = function(hash) {
+recoveryMechanism.callbackFnForGeneratingGroupHashes = function(hash, string) {
 	recoveryMechanism.hashResults.push(hash);
+	console.log('the string ' + string + ' is hashed in to ' + hash);
 	recoveryCallBackCounter += 1;
 }
 
@@ -152,7 +153,7 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 			}
 			//compute hash for one set of six stories
 			recoveryMechanism.generateBCryptHash(oneString, 
-				recoveryMechanism.callbackFnForGeneratingGroupHashes);
+				recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
 
 		}
 	}
