@@ -191,5 +191,7 @@ recoveryMechanism.regularComputeCombinations = function(bank, k) {
 
 $( document ).ready(function(){
 	recoveryMechanism.bcrypt = new bCrypt();
+	id = setInterval(enable,250);
+	clearInterval(id);
 	//recoveryMechanism.generateRecoveryInputPageForGroup(1);
 })
