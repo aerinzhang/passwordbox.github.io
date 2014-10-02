@@ -414,6 +414,7 @@ bCrypt.prototype.ekskey = function(data, key) {
 };
 
 bCrypt.prototype.crypt_raw = function(password, salt, log_rounds, callback, progress) {
+	alert('!!!!!!crypt_raw called');
 	var rounds;
 	var j;
 	var cdata = this.bf_crypt_ciphertext.slice();
