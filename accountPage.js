@@ -151,7 +151,7 @@ accountPage.renderAccountList = function(changePageBool) {
 			storyMode.accountIndex += 1;
 			programVariables.generalRecord.set("accountIndex", storyMode.accountIndex);
 			//programRecord.set('accountIndex', accountIndex);
-			window.location = "https://aerinzhang.github.io/43story.html#userSelect";
+			$.mobile.changePage(newPage);
 		}
 	accountPage.updateListBool = false;
 }
