@@ -76,13 +76,18 @@ recoveryMechanism.callbackFnForRecovery = function(hash, pwGuess) {
 
 }
 
-recoveryMechanism.generateBCryptHash = function (inputString, callbackFunction, passwordGuess) {
+recoveryMechanism.generateBCryptHash = function (inputString, callbackFunction, passwordGuess, saltString) {
 	var round = appConstants.NUM_OF_ROUNDS;
 	var salt;
 	//generate salt using issac
 	try {
-		salt = recoveryMechanism.bcrypt.gensalt(round);
+		if (saltString == undefined) {
+			salt = recoveryMechanism.bcrypt.gensalt(round);
+		} else {
+			salt = saltString;
+		}
 		console.log('salt is... ' + salt);
+
 	} catch (err) {
 		alert(err);
 		return;
