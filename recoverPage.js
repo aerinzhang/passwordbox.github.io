@@ -156,6 +156,7 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 			for (var j=0; j<oneSet.length; j++) {
 				oneString = oneString + oneSet[j][1] + oneSet[j][2];
 			}
+			console.log('!!!!!!' + ontString);
 			//compute hash for one set of six stories
 			recoveryMechanism.generateBCryptHash(oneString, 
 				recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
