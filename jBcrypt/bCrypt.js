@@ -414,7 +414,6 @@ bCrypt.prototype.ekskey = function(data, key) {
 };
 
 bCrypt.prototype.crypt_raw = function(password, salt, log_rounds, callback, progress) {
-	alert('!!!!!!crypt_raw called');
 	var rounds;
 	var j;
 	var cdata = this.bf_crypt_ciphertext.slice();
@@ -464,7 +463,7 @@ bCrypt.prototype.crypt_raw = function(password, salt, log_rounds, callback, prog
         	console.log('wtfffffff the ret is ' + ret.join(''));
             callback(ret);
         }
-    }, 0);
+    }, 500);
 };
 /*
  * callback: a function that will be passed the hash when it is complete
