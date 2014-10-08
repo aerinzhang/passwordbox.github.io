@@ -148,51 +148,30 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 		var k = 6;
 		var allComb = recoveryMechanism.regularComputeCombinations(groupFullList, k);
 		var len = allComb.length/3;
-		// for (var i=0; i<allComb.length; i++) {
-		// 	//one set of six
-		// 	var oneSet = allComb[i];
-		// 	var oneString = '';
-		// 	for (var j=0; j<oneSet.length; j++) {
-		// 		oneString = oneString + oneSet[j][1] + oneSet[j][2];
-		// 	}
-		// 	console.log('!!!!!!' + oneString);
-		// 	//setTimeout(
-		// 	//	function() {
-		// 	//		recoveryMechanism.generateBCryptHash(oneString, 
-		// 	//	recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString);
-		// 	//	}, 100);
-		// 	//alert('timing out...');
-		// 	//compute hash for one set of six stories
-		// 	recoveryMechanism.generateBCryptHash(oneString, 
-		// 		recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
+		for (var i=0; i<allComb.length; i++) {
+			//one set of six
+			var oneSet = allComb[i];
+			var oneString = '';
+			for (var j=0; j<oneSet.length; j++) {
+				oneString = oneString + oneSet[j][1] + oneSet[j][2];
+			}
+			console.log('!!!!!!' + oneString);
+			//setTimeout(
+			//	function() {
+			//		recoveryMechanism.generateBCryptHash(oneString, 
+			//	recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString);
+			//	}, 100);
+			//alert('timing out...');
+			//compute hash for one set of six stories
+			recoveryMechanism.generateBCryptHash(oneString, 
+				recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
 
-		// }
-		for (var i=0; i<len; i++) {
-			var s = allComb[i];
-			var o = '';
-			for (var j=0; j<s.length; j++) {
-				o = o + s[j][1] + s[j][2];
-			}
-			recoveryMechanism.generateBCryptHash(o, 
-		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, o );
-		}
-		for (var i=len; i<2*len; i++) {
-			var s = allComb[i];
-			var o = '';
-			for (var j=0; j<s.length; j++) {
-				o = o + s[j][1] + s[j][2];
-			}
-			recoveryMechanism.generateBCryptHash(o, 
-		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, o );
-		}
-		for (var i=2*len; i<3*len; i++) {
-			var s = allComb[i];
-			var o = '';
-			for (var j=0; j<s.length; j++) {
-				o = o + s[j][1] + s[j][2];
-			}
-			recoveryMechanism.generateBCryptHash(o, 
-		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, o );
+			var millis = 300;
+			var date = new Date();
+  			var curDate = null;
+  			do { curDate = new Date(); }
+  			while(curDate-date < millis);
+
 		}
 	}
 	return;
