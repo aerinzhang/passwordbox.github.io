@@ -42,7 +42,7 @@ var memoryGame = (function () {
 		}
 		//call this function to compute hashes 
 		//however due to callback cannot store them now
-		//?????recoveryMechanism.computeHashesOfGroup(result);
+		recoveryMechanism.computeHashesOfGroup(result);
 		return result;
 	}
 
@@ -146,7 +146,11 @@ var memoryGame = (function () {
 						" </p>" + buttons);
 
 				//STORE HASHES INTO GENERAL RECORD
-
+				//score hashes for this group into generalRecord
+				var programRecord = programVariables.storyModeGeneralTable.query()[0];
+				storyMode.groupHashesList[memoryGame.currentGroupIndex] = recoveryMechanism.hashResults;
+				programRecord.get('groupHashesList').set(memoryGame.currentGroupIndex, 
+						storyMode.flattenGroupHashList(recoveryMechanism.hashResults));
 				//CLEAR DATA
 				fullGameList = [];
 				//?hashes result clear
