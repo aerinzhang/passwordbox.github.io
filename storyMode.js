@@ -21,32 +21,6 @@ storyMode.calculateListLength = function(totalLength) {
 	return Math.ceil(totalLength/10);
 }
 
-storyMode.selectBankStory = function(index) {
-	console.log("bankStory index selected is" + index.toString());
-	var limitsList = storyMode.groupList;
-	var curLimit = 0;
-	var records = programVariables.storyBankTable.query();
-
-	for ( var i=0; i<limitsList.length; i++ ) {
-		curLimit += limitsList[i];
-		if (index < curLimit) {
-			//falls in the group sets all stories in the same group to be true
-			var startFrom = curLimit - limitsList[i];
-			console.log(curLimit.toString());
-			for (var j=startFrom; j<curLimit; j++) {
-				records[j].set('used', true);
-			}
-			//$("#bank").page('destroy').page();
-			console.log(limitsList);  
-			console.log('play Game!!!');
-			var group = programVariables.getGroupFromRecordIndices(startFrom, curLimit);
-			memoryGame.startGame(group, i);
-			//playtheGame
-			return;
-		}
-	}
-}
-
 storyMode.makeHashStringIntoList = function(string) {
 	console.log(string.split('&&&&&&'));
 	return string.split('&&&&&&');
@@ -109,7 +83,7 @@ storyMode.selectBankStory = function(index) {
 			console.log(limitsList);  
 			console.log('play Game!!!');
 			var group = programVariables.getGroupFromRecordIndices(startFrom, curLimit);
-			memoryGame.startGame(group, i);
+			memoryGame.startGameNow(group, i);
 			//playtheGame
 			return;
 		}
