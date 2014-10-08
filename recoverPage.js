@@ -165,13 +165,6 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 			//compute hash for one set of six stories
 			recoveryMechanism.generateBCryptHash(oneString, 
 				recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
-
-			var millis = 300;
-			var date = new Date();
-  			var curDate = null;
-  			do { curDate = new Date(); }
-  			while(curDate-date < millis);
-
 		}
 	}
 	return;
