@@ -171,28 +171,28 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 			var s = allComb[i];
 			var o = '';
 			for (var j=0; j<s.length; j++) {
-				oneString = oneString + oneSet[j][1] + oneSet[j][2];
+				o = o + s[j][1] + s[j][2];
 			}
-			recoveryMechanism.generateBCryptHash(oneString, 
-		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
+			recoveryMechanism.generateBCryptHash(o, 
+		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, o );
 		}
 		for (var i=len; i<2*len; i++) {
 			var s = allComb[i];
 			var o = '';
 			for (var j=0; j<s.length; j++) {
-				oneString = oneString + oneSet[j][1] + oneSet[j][2];
+				o = o + s[j][1] + s[j][2];
 			}
-			recoveryMechanism.generateBCryptHash(oneString, 
-		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
+			recoveryMechanism.generateBCryptHash(o, 
+		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, o );
 		}
 		for (var i=2*len; i<3*len; i++) {
 			var s = allComb[i];
 			var o = '';
 			for (var j=0; j<s.length; j++) {
-				oneString = oneString + oneSet[j][1] + oneSet[j][2];
+				o = o + s[j][1] + s[j][2];
 			}
-			recoveryMechanism.generateBCryptHash(oneString, 
-		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
+			recoveryMechanism.generateBCryptHash(o, 
+		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, o );
 		}
 	}
 	return;
