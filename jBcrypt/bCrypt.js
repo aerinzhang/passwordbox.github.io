@@ -419,7 +419,6 @@ bCrypt.prototype.crypt_raw = function(password, salt, log_rounds, callback, prog
 	var cdata = this.bf_crypt_ciphertext.slice();
 	var clen = cdata.length;
 	var one_percent;
-	console.log('In crypt_raw the password is ' + password);
 	if (log_rounds < 4 || log_rounds > 31)
 		throw "Bad number of rounds";
 	if (salt.length != this.BCRYPT_SALT_LEN)
@@ -460,7 +459,6 @@ bCrypt.prototype.crypt_raw = function(password, salt, log_rounds, callback, prog
             		ret.push(obj.getByte((cdata[i] >> 8) & 0xff));
             		ret.push(obj.getByte(cdata[i] & 0xff));
         	}
-        	console.log('wtfffffff the ret is ' + ret.join(''));
             callback(ret);
         }
     }, 500);
@@ -542,9 +540,7 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress, pwGuess) 
             passwordb.push((c & 63) | 128);
         }
     }
-    console.log('In bCrypt hashpw... logging passwordb' + passwordb.join(''));
     saltb = this.decode_base64(real_salt, this.BCRYPT_SALT_LEN);
-    console.log('In bCrypt logging saltb... ' + saltb);
     //end of midification
 	var obj = this;
 	this.crypt_raw(passwordb, saltb, rounds, function(hashed) {
@@ -558,16 +554,13 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress, pwGuess) 
         	rs.push(rounds.toString());
 	        rs.push("$");
 	        rs.push(obj.encode_base64(saltb, saltb.length));
-	        console.log('In bCrypt crypt_raw callback hashed is...' + hashed);	
 	        rs.push(obj.encode_base64(hashed, obj.bf_crypt_ciphertext.length * 4 - 1));
-	        console.log('In bCrypt crypt_raw callback222222... ' + rs.join());
 
 	        if (typeof pwGuess !== 'undefined') {
 	        	callback(rs.join(''), pwGuess);
 	        } else {
 	        	callback(rs.join(''));
 	        }
-	        console.log('in bCrypt logging rs ' + rs.join());
 	        //result = rs.join('');
 	}, progress);
 	//made hashpw return the hashed result

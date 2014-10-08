@@ -86,16 +86,14 @@ recoveryMechanism.generateBCryptHash = function (inputString, callbackFunction, 
 		} else {
 			salt = saltString;
 		}
-		console.log('salt is... ' + salt);
 
 	} catch (err) {
 		alert(err);
 		return;
 	}
 	try {
-		console.log('inputstring being hashes is ... ' + inputString);
 		recoveryMechanism.bcrypt.hashpw(inputString, salt, callbackFunction, recoveryMechanism.progressFn, passwordGuess);
-		setTimeout('', 1000);
+		//setTimeout('', 1000);
 	} catch(err) {
 		alert(err);
 		return;
@@ -149,24 +147,52 @@ recoveryMechanism.computeHashesOfGroup = function(groupFullList) {
 	if (groupFullList.length >= 6) {
 		var k = 6;
 		var allComb = recoveryMechanism.regularComputeCombinations(groupFullList, k);
-		for (var i=0; i<allComb.length; i++) {
-			//one set of six
-			var oneSet = allComb[i];
-			var oneString = '';
-			for (var j=0; j<oneSet.length; j++) {
+		var len = allComb.length/3;
+		// for (var i=0; i<allComb.length; i++) {
+		// 	//one set of six
+		// 	var oneSet = allComb[i];
+		// 	var oneString = '';
+		// 	for (var j=0; j<oneSet.length; j++) {
+		// 		oneString = oneString + oneSet[j][1] + oneSet[j][2];
+		// 	}
+		// 	console.log('!!!!!!' + oneString);
+		// 	//setTimeout(
+		// 	//	function() {
+		// 	//		recoveryMechanism.generateBCryptHash(oneString, 
+		// 	//	recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString);
+		// 	//	}, 100);
+		// 	//alert('timing out...');
+		// 	//compute hash for one set of six stories
+		// 	recoveryMechanism.generateBCryptHash(oneString, 
+		// 		recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
+
+		// }
+		for (var i=0; i<len; i++) {
+			var s = allComb[i];
+			var o = '';
+			for (var j=0; j<s.length; j++) {
 				oneString = oneString + oneSet[j][1] + oneSet[j][2];
 			}
-			console.log('!!!!!!' + oneString);
-			setTimeout(
-				function() {
-					recoveryMechanism.generateBCryptHash(oneString, 
-				recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString);
-				}, 100);
-			//alert('timing out...');
-			//compute hash for one set of six stories
-			//recoveryMechanism.generateBCryptHash(oneString, 
-			//	recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
-
+			recoveryMechanism.generateBCryptHash(oneString, 
+		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
+		}
+		for (var i=len; i<2*len; i++) {
+			var s = allComb[i];
+			var o = '';
+			for (var j=0; j<s.length; j++) {
+				oneString = oneString + oneSet[j][1] + oneSet[j][2];
+			}
+			recoveryMechanism.generateBCryptHash(oneString, 
+		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
+		}
+		for (var i=2*len; i<3*len; i++) {
+			var s = allComb[i];
+			var o = '';
+			for (var j=0; j<s.length; j++) {
+				oneString = oneString + oneSet[j][1] + oneSet[j][2];
+			}
+			recoveryMechanism.generateBCryptHash(oneString, 
+		 		recoveryMechanism.callbackFnForGeneratingGroupHashes, oneString );
 		}
 	}
 	return;
