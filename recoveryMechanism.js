@@ -23,14 +23,15 @@ var recoveryMechanism = (function() {
 			return bank.map( function (e) {return [e];} );
 		} else {
 			var result = [];
-			var first = [bank[0]];
 			var withFirst = computeCombinationsOfSizeK(bank.slice(1), k-1);
 			var withOutFirst = computeCombinationsOfSizeK(bank.slice(1), k);
-			result = withFirst.map( 
-					function (l) {
-						return first.push.apply(first, l);
-					});
-			withOutFirst.map(function (e) {result.push(e);});
+
+			for (var i=0; i<withFirst.length; i++) {
+				var first = [bank[0]];
+				first.push.apply(first, withFirst[i]);
+				result.push(first);
+			}
+			withOutFirst.map( function (e) {result.push(e);} );
 			return result;
 		}
 	}
