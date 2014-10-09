@@ -158,7 +158,7 @@ var recoveryMechanism = (function() {
 			for (var j=0; j<appConstants.objectsList.length; j++) {
 				storyGuess = appConstants.actionsList[i] + 
 						appConstants.objectsList[j];
-				groupGuess = inputFirstHalf + storyGuess + inputSecondhalf;
+				groupGuess = inputFirstHalf + storyGuess + inputSecondHalf;
 
 				//no way to short-circuit since bCrypt uses a callback fn
 				generateBCryptHash(groupGuess,
