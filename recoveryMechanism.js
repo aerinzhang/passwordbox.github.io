@@ -45,14 +45,14 @@ var recoveryMechanism = (function() {
 		return (allHashes.indexOf(hashResult) >= 0);
 	}
 
-	function callBackFnForGroupHashes (hash, string) {
+	function callbackFnForGroupHashes (hash, string) {
 		hashResults.push(hash);
 
 		//for DEBUGGING NOW
 		console.log('the string ' + string + ' is hashed in to ' + hash);
 	}
 
-	function callBackFnForRecovery (hash, pwGuess) {
+	function callbackFnForRecovery (hash, pwGuess) {
 		if (compareHashToExistingOnes(hash)) {
 			//if result found, store the action & object
 			recoveryResult = pwGuess;
@@ -118,7 +118,7 @@ var recoveryMechanism = (function() {
 						})).join('');
 
 				//compute hash for one set of six stories
-				generateBCryptHash(groupStr, callBackFnForGroupHashes, 
+				generateBCryptHash(groupStr, callbackFnForGroupHashes, 
 						groupStr, salt);
 
 			}
