@@ -143,7 +143,7 @@ var recoveryMechanism = (function() {
 			userInput = $(inputId).val();
 			if ( (userInput != '') && (missingStoryIndex!=i) ) inputCount++;
 			if (i < missingStoryIndex) inputFirstHalf += userInput;
-			if (i > missingStoryIndex) inputSecondhalf += userInput;
+			if (i > missingStoryIndex) inputSecondHalf += userInput;
 		}
 
 		//less than minimum count cannot perform recovery
