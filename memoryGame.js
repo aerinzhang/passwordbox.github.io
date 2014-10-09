@@ -42,7 +42,7 @@ var memoryGame = (function () {
 		}
 		//call this function to compute hashes 
 		//however due to callback cannot store them now
-		recoveryMechanism.computeHashesForGroup(result);
+		recoveryMechanism.computeHashesForGroup(result, currentGroupIndex);
 		return result;
 	}
 

@@ -87,7 +87,7 @@ var recoveryMechanism = (function() {
 		}
 	}
 
-	function computeHashesOfGroup (groupFullList) {
+	function computeHashesOfGroup (groupFullList, gpIndex) {
 		var salt;
 		var groupStr;
 		var round = NUM_OF_ROUNDS;
@@ -104,7 +104,7 @@ var recoveryMechanism = (function() {
 		//????????
 		//should store salt!
 		alert(storyMode.groupSaltList);
-		storyMode.groupSaltList[groupIndex] = salt;
+		storyMode.groupSaltList[gpIndex] = salt;
 		alert(storyMode.groupSaltList);
 		//update record
 		var programRecord = programVariables.storyModeGeneralTable.query()[0];
