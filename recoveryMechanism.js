@@ -111,7 +111,7 @@ var recoveryMechanism = (function() {
 			var k = MINIMUM_STORY_COUNT + 1;
 			var allCombinations = computeCombinationsOfSizeK(groupFullList, k);
 			for (var i=0; i<allCombinations.length; i++) {
-				groupStr = ((allCombinations[i])).map( 
+				groupStr = ((allCombinations[i]).map( 
 						function (l) {
 							return l[ACTION_INDEX_PRI] + l[OBJECT_INDEX_PRI];
 						})).join('');
