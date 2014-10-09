@@ -308,7 +308,7 @@ storyMode.gatherInfo = function() {
 	storyMode.limitListLength = storyMode.calculateListLength(storyMode.NUMBER_OF_STORIES);
 	storyMode.groupList = storyMode.generateStoryGroup();
 	programVariables.insertRecord(storyMode.securityLevel, storyMode.groupList, 
-								  storyMode.createGroupHashesLis(), storyMode.createSaltList());
+								  storyMode.createGroupHashesList(), storyMode.createSaltList());
 }
 
 
