@@ -313,7 +313,7 @@ storyMode.gatherInfo = function() {
 
 
 storyMode.createSaltList = function() {
-	var result = storyMode.groupList.map(function (e) {return null});
+	var result = storyMode.groupList.map(function (e) {return ''});
 	storyMode.groupSaltList = result;
 	return result;
 }
