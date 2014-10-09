@@ -214,7 +214,7 @@ storyMode.populateBank = function(){
 	var finalPersonList = [];
 	var finalSceneList = [];
 	var finalRecords = [];
-
+	var storyBank = [];
 	var NUMBER_OF_STORIES = storyMode.NUMBER_OF_STORIES;
 
 	var groupList = storyMode.groupList;
@@ -234,6 +234,7 @@ storyMode.populateBank = function(){
 		finalSceneList.push(scene);
 		finalRecords.push(tuple);
 		records.push(tuple);
+		storyBank.push([person, scene]);
 		//another way to calculate group number?
 		programVariables.insertStory(person, scene, used, Math.floor(i/10));
 		copyPeopleList.splice(personIndex, 1);
@@ -241,6 +242,7 @@ storyMode.populateBank = function(){
 	}
 	//records = finalRecords;
 	//display the storyBank 
+	storyMode.storyBank = storyBank;
 	storyMode.renderStoryBank();
 	$.mobile.changePage('#bank');
 	console.log(records);
