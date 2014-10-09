@@ -105,6 +105,7 @@ var recoveryMechanism = (function() {
 		//should store salt!
 		alert(storyMode.groupSaltList);
 		storyMode.groupSaltList[groupIndex] = salt;
+		alert(storyMode.groupSaltList);
 		//update record
 		var programRecord = programVariables.storyModeGeneralTable.query()[0];
 		programRecord.set('groupSaltList', storyMode.groupSaltList);
