@@ -30,7 +30,7 @@ var recoveryMechanism = (function() {
 					function (l) {
 						return first.push.apply(first, l);
 					});
-			result = withOutFirst.map (function (e) {return []}; );
+			withOutFirst.map(function (e) {result.push(e);});
 			return result;
 		}
 	}
