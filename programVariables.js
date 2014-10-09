@@ -44,6 +44,7 @@ programVariables.initialize = function (){
 			storyMode.accountIndex = record.get('accountIndex');
 			storyMode.groupList = record.get('groupList').toArray();
 			storyMode.groupHashesList = record.get('groupHashesList').toArray();
+			storyMode.groupSaltList = record.get('groupSaltList').toArray();
 			//change to storyBank page
 			window.location = "https://aerinzhang.github.io/43story.html#bank";
 		} else {
