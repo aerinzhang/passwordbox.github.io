@@ -35,7 +35,7 @@ var recoveryMechanism = (function() {
 		}
 	}
 
-	function compareHashToExistingOnes = function (hashResult) {
+	function compareHashToExistingOnes (hashResult) {
 		//grab stored hashes from dropBox for given group
 		var allHashes = storyMode.makeHashStringIntoList(
 					storyMode.groupHashesList[groupIndex]);
@@ -44,14 +44,14 @@ var recoveryMechanism = (function() {
 		return (allHashes.indexOf(hashResult) >= 0);
 	}
 
-	function callBackFnForGroupHashes = function (hash, string) {
+	function callBackFnForGroupHashes (hash, string) {
 		hashResults.push(hash);
 
 		//for DEBUGGING NOW
 		console.log('the string ' + string + ' is hashed in to ' + hash);
 	}
 
-	function callBackFnForRecovery = function (hash, pwGuess) {
+	function callBackFnForRecovery (hash, pwGuess) {
 		if (compareHashToExistingOnes(hash)) {
 			//if result found, store the action & object
 			recoveryResult = pwGuess;
@@ -59,7 +59,7 @@ var recoveryMechanism = (function() {
 		}
 	}
 
-	function generateBCryptHash = function (inStr, callbkFn, pwGuess, saltStr) {
+	function generateBCryptHash (inStr, callbkFn, pwGuess, saltStr) {
 		var salt;
 		var round = NUM_OF_ROUNDS;
 		var localBCrypt = new bCrypt();
@@ -85,7 +85,7 @@ var recoveryMechanism = (function() {
 		}
 	}
 
-	function computeHashesOfGroup = function (groupFullList) {
+	function computeHashesOfGroup (groupFullList) {
 		var salt;
 		var groupStr;
 		var round = NUM_OF_ROUNDS;
@@ -125,7 +125,7 @@ var recoveryMechanism = (function() {
 		return;
 	}
 
-	function gatherUserInput = function () {
+	function gatherUserInput () {
 		//index is the position of the missing story in group
 		var inputId;
 		var userInput;
