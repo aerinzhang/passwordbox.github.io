@@ -14,7 +14,7 @@ var recoveryMechanism = (function() {
 	var missingStoryIndex;
 
 	//recursively compute (bank.size choose k)
-	function computeCombinationsOfSizeK = function (bank, k) {
+	function computeCombinationsOfSizeK (bank, k) {
 		if (bank.length < k) {
 			return [[]];
 		} else if (bank.length === k) {
