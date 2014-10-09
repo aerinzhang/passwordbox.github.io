@@ -57,6 +57,7 @@ var recoveryMechanism = (function() {
 			//if result found, store the action & object
 			recoveryResult = pwGuess;
 			alert('found!');
+			console.log('found');
 		}
 	}
 
