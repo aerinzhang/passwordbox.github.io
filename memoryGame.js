@@ -135,7 +135,7 @@ var memoryGame = (function () {
 		if (checkStoryRight(inputAct, inputObj, action, object)) {
 
 			//last check?
-			if (checkIndex == numStories) {
+			if (checkIndex == 1){//numStories) {
 				var buttons = "\
 						<p><button onclick='sameGameStart()'>\
 						Play Again</button></p>\
@@ -148,8 +148,8 @@ var memoryGame = (function () {
 				//STORE HASHES INTO GENERAL RECORD
 				//score hashes for this group into generalRecord
 				var programRecord = programVariables.storyModeGeneralTable.query()[0];
-				storyMode.groupHashesList[memoryGame.currentGroupIndex] = recoveryMechanism.getHashResults();
-				programRecord.get('groupHashesList').set(memoryGame.currentGroupIndex, 
+				storyMode.groupHashesList[currentGroupIndex] = recoveryMechanism.getHashResults();
+				programRecord.get('groupHashesList').set(currentGroupIndex, 
 						storyMode.flattenGroupHashList(recoveryMechanism.getHashResults()));
 				//CLEAR DATA
 				fullGameList = [];
