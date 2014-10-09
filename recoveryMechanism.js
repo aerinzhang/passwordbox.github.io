@@ -104,7 +104,7 @@ var recoveryMechanism = (function() {
 		storyMode.groupSaltList[groupIndex] = salt;
 		//update record
 		var programRecord = programVariables.storyModeGeneralTable.query()[0];
-		programRecord.set('groupSaltList') = storyMode.groupSaltList;
+		programRecord.set('groupSaltList', storyMode.groupSaltList);
 
 		//if could use recovery mechanism;
 		if (groupFullList.length > MINIMUM_STORY_COUNT) {
