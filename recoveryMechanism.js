@@ -8,8 +8,8 @@ var recoveryMechanism = (function() {
 	var MINIMUM_STORY_COUNT = 5;
 	var NUM_OF_ROUNDS = 5;
 
-	var hashResults;
-	var recoveryResult;
+	var hashResults = [];
+	var recoveryResult = null;
 	var groupIndex;
 	var missingStoryIndex;
 
