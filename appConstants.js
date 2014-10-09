@@ -1,7 +1,6 @@
 var appConstants = appConstants || {};
 
 
-appConstants.NUM_OF_ROUNDS = 5;
 appConstants.peopleList = [ "Adolf_Hitler", "Alfred_Hitchcock", "Angelina_Jolie", "Audrey_Hepburn", "Barack_Obama",
 							"Bart_Simpson", "Beethoven", "Ben_Affleck", "Benjamin_Franklin", "Beyonce", 
 							"Bill_Clinton", "Bill_Gates", "Brad_Pitt", "Bruce_Lee", "Charlie_Chaplin",

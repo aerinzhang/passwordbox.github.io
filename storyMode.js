@@ -100,7 +100,7 @@ storyMode.recoverStory = function (index) {
 		if (index < curLimit) {
 			var startIndex = curLimit - limitsList[i];
 			var group = storyMode.storyBank.slice(startIndex, curLimit);
-			recoveryMechanism.generateRecoveryInputPageForGroup(group, i, index);
+			recoveryMechanism.generateRecoveryPage(group, i, index);
 			console.log('the index of the group that story ' + index.toString() + ' belongs to is ' + i.toString());
 			console.log('group is...');
 			console.log(group);
@@ -308,7 +308,14 @@ storyMode.gatherInfo = function() {
 	storyMode.limitListLength = storyMode.calculateListLength(storyMode.NUMBER_OF_STORIES);
 	storyMode.groupList = storyMode.generateStoryGroup();
 	programVariables.insertRecord(storyMode.securityLevel, storyMode.groupList, 
-								  storyMode.createGroupHashesList());
+								  storyMode.createGroupHashesLis(), storyMode.createSaltList());
+}
+
+
+storyMode.createSaltList = function() {
+	var result = storyMode.groupList.map(function (e) {return null});
+	storyMode.groupSaltList = result;
+	return result;
 }
 
 storyMode.createGroupHashesList = function() {

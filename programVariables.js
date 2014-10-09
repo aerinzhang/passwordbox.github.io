@@ -96,12 +96,13 @@ programVariables.getGroupFromRecordIndices = function(start, end) {
 	return group;
 }
 
-programVariables.insertRecord = function (level, groupList, groupHashFlattened) {
+programVariables.insertRecord = function (level, groupList, groupHashFlattened, groupSaltList) {
 	programVariables.storyModeGeneralTable.insert({
 		securityLevel: level,
 		accountIndex: 0,
 		groupList: groupList,
-		groupHashesList: groupHashFlattened
+		groupHashesList: groupHashFlattened,
+		groupSaltList: groupSaltList
 	});
 }
 

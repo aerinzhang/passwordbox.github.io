@@ -29,6 +29,21 @@ accountPage.calculateCuePairsFromIndices = function(cueList) {
 }
 
 
+accountPage.updateStoryRefCount = function (webName, accountList) {
+	// var record;
+	// var person;
+	// var scene;
+	// var records = programVariables.storyBankTable.query();
+	// for (var i=0; i<records.length; i++) {
+	// 	record = records[i];
+	// 	for (var j=0; j<accountList.length; j++) {
+	// 		person = record[j][0];
+	// 		scene = record[j][1];
+	// 		if (record.get('scene') == scene)
+	// 	}
+	// }
+}
+
 accountPage.submit = function(e) {
 
 	if (((e.keyCode === 13) || (e.keyCode == undefined)) && ($("#entry:focus"))) {
@@ -64,7 +79,7 @@ accountPage.submit = function(e) {
 			programVariables.insertAccount(account, storyList, storyMode.accountIndex);
 			//?storyMode.accountIndex += 1;
 			//?accountStoryList, existingAccountIndex);
-			programVariables.updateStoryRefCount(account, cueList);
+			accountPage.updateStoryRefCount(account, cueList);
 			
 
 			//add one to existingAccountIndex
