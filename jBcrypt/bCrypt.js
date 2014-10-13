@@ -555,11 +555,7 @@ bCrypt.prototype.hashpw = function(password, salt, callback, progress, pwGuess) 
 	        rs.push("$");
 	        rs.push(obj.encode_base64(saltb, saltb.length));
 	        rs.push(obj.encode_base64(hashed, obj.bf_crypt_ciphertext.length * 4 - 1));
-
-	        if (typeof pwGuess !== 'undefined') {
-	        	callback(rs.join(''), pwGuess);
-	        } else {
-	        	callback(rs.join(''));
+	        callback(rs.join(''), pwGuess); //pwGuess for recoveryFn; storyIndicesString for generatingGroupHashes
 	        }
 	        //result = rs.join('');
 	}, progress);

@@ -12,6 +12,7 @@ var recoveryMechanism = (function() {
 	var recoveryResult = null;
 	var groupIndex;
 	var missingStoryIndex;
+	var inputIndicesList;
 
 	//recursively compute (bank.size choose k)
 	function computeCombinationsOfSizeK (bank, k) {
@@ -40,24 +41,50 @@ var recoveryMechanism = (function() {
 		//grab stored hashes from dropBox for given group
 		var allHashes = storyMode.makeHashStringIntoList(
 					storyMode.groupHashesList[groupIndex]);
-
+		var hash = hashResult.split('$$$$$$')[0];
 		//true if hashResult is found in allHashes; false otherwise
-		return (allHashes.indexOf(hashResult) >= 0);
+		return (allHashes.indexOf(hash) >= 0);
 	}
-
-	function callbackFnForGroupHashes (hash, string) {
-		hashResults.push(hash);
-
+	function convertIndicesStringToArray (indicesString) {
+		var result = [];
+		for (var i=0; i<indicesString.length; i++) {
+			var intString = indicesString.charAt(i);
+			if (intString == 'a') {
+				result.push(10);
+			} else if (intString == 'b') {
+				result.push(11);
+			} else {
+				result.push(parseInt(intString));
+			}
+		}
+		return result;
+	}
+	function callbackFnForGroupHashes (hash, groupIndicesString) {
+		hashResults.push(hash + '$$$$$$' + groupIndicesString);
+		//string and hash seperated by '$$$$$$'
 		//for DEBUGGING NOW
-		console.log('the string ' + string + ' is hashed in to ' + hash);
+		//console.log('the string ' + string + ' is hashed in to ' + hash);
 	}
 
 	function callbackFnForRecovery (hash, pwGuess) {
+		var index;
 		if (compareHashToExistingOnes(hash)) {
 			//if result found, store the action & object
-			recoveryResult = pwGuess;
-			alert('found!');
-			console.log('found');
+			
+			//parse group list 
+			groupIndicesListString = hash.split('$$$$$$')[1];
+			var groupIndicesList = 
+					convertIndicesStringToArray(groupIndicesString);
+			for (var i=0; i<groupIndicesList.length; i++) {
+				index = groupIndicesList[i];
+				if ( (inputIndicesList.indexOf(index) < 0) && 
+					(missingStoryIndex == index) ) {
+					recoveryResult = pwGuess;
+					alert('found!');
+					console.log('found');
+					//generate recovery result page
+				}
+			}
 		}
 	}
 
@@ -87,9 +114,28 @@ var recoveryMechanism = (function() {
 		}
 	}
 
+	function createIntStringArrayForGroup (length) {
+		//this function creates a list of indices in strings given length
+		//length <= 12
+		var result = [];
+		for (var i=0; i<length; i++) {
+			if ( i < 10) {
+				result.push(i.toString());
+			} else if (i == 10) { //#11th story
+				result.push('a');
+			} else if (i == 11) { //#12th story
+				result.push('b');
+			} else{
+				console.log('Something is wrong!');
+			}
+			return result;
+		}
+	}
+
 	function computeHashesOfGroup (groupFullList, gpIndex) {
 		var salt;
 		var groupStr;
+		var setIndicesString;
 		var round = NUM_OF_ROUNDS;
 		var localBCrypt = new bCrypt();
 
@@ -114,15 +160,17 @@ var recoveryMechanism = (function() {
 		if (groupFullList.length > MINIMUM_STORY_COUNT) {
 			var k = MINIMUM_STORY_COUNT + 1;
 			var allCombinations = computeCombinationsOfSizeK(groupFullList, k);
+			var indexArray = createIntStringArrayForGroup(groupFullList.length);
+			var indicesCombinations = computeCombinationsOfSizeK(indexArray, k);
 			for (var i=0; i<allCombinations.length; i++) {
 				groupStr = ((allCombinations[i]).map( 
 						function (l) {
 							return l[ACTION_INDEX_PRI] + l[OBJECT_INDEX_PRI];
 						})).join('');
-
+				setIndicesString = indicesCombinations[i].join('');
 				//compute hash for one set of six stories
 				generateBCryptHash(groupStr, callbackFnForGroupHashes, 
-						groupStr, salt);
+						setIndicesString, salt);
 
 			}
 		}
@@ -140,11 +188,15 @@ var recoveryMechanism = (function() {
 		var inputSecondHalf = '';
 		var length = storyMode.groupList[groupIndex];
 		var groupSalt = storyMode.groupSaltList[groupIndex];
+		inputIndicesList = [];
 
 		for (var i=0; i<length; i++) {
 			inputId = '#game-password'+ i.toString();
 			userInput = $(inputId).val();
-			if ( (userInput != '') && (missingStoryIndex!=i) ) inputCount++;
+			if ( (userInput != '') && (missingStoryIndex!=i) ) {
+				inputIndicesList.push(i);
+				inputCount++;
+			}
 			if (i < missingStoryIndex) inputFirstHalf += userInput;
 			if (i > missingStoryIndex) inputSecondHalf += userInput;
 		}
@@ -165,7 +217,7 @@ var recoveryMechanism = (function() {
 
 				//no way to short-circuit since bCrypt uses a callback fn
 				generateBCryptHash(groupGuess,
-					callbackFnForRecovery, groupGuess, groupSalt);
+					callbackFnForRecovery, storyGuess, groupSalt);
 			}
 		}
 
