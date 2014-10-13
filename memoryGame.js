@@ -148,9 +148,9 @@ var memoryGame = (function () {
 				//STORE HASHES INTO GENERAL RECORD
 				//score hashes for this group into generalRecord
 				var programRecord = programVariables.storyModeGeneralTable.query()[0];
-				storyMode.groupHashesList[currentGroupIndex] = recoveryMechanism.getHashResults();
-				programRecord.get('groupHashesList').set(currentGroupIndex, 
-						storyMode.flattenGroupHashList(recoveryMechanism.getHashResults()));
+				var flattened = storyMode.flattenGroupHashList(recoveryMechanism.getHashResults());
+				storyMode.groupHashesList[currentGroupIndex] = flattened;
+				programRecord.get('groupHashesList').set(currentGroupIndex, flattened);
 				//CLEAR DATA
 				fullGameList = [];
 				//?hashes result clear
