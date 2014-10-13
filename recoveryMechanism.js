@@ -38,12 +38,25 @@ var recoveryMechanism = (function() {
 	}
 
 	function compareHashToExistingOnes (hashResult) {
-		//grab stored hashes from dropBox for given group
-		var allHashes = storyMode.makeHashStringIntoList(
-					storyMode.groupHashesList[groupIndex]);
-		var hash = hashResult.split('$$$$$$')[0];
 		//true if hashResult is found in allHashes; false otherwise
-		return (allHashes.indexOf(hash) >= 0);
+		var temp;
+		var group;
+		var hashPlusGroup;
+		var storedHash;
+		//grab stored hashes from dropBox for given group
+		var storedHashes = storyMode.makeHashStringIntoList(
+				storyMode.groupHashesList[groupIndex]);
+
+		for (var i=0; i<length; i++) {
+			hashPlusGroup = storedHashes[i];
+			temp = hashPlusGroup.split('$$$$$$');
+			storedHash = temp[0];
+			group = temp[1];
+			if (hashResult === storedHash) {
+				return [true, group];
+			}
+		}
+		return [false, null];
 	}
 	function convertIndicesStringToArray (indicesString) {
 		var result = [];
@@ -68,13 +81,13 @@ var recoveryMechanism = (function() {
 
 	function callbackFnForRecovery (hash, pwGuess) {
 		var index;
-		if (compareHashToExistingOnes(hash)) {
+		var boolGroupList = compareHashToExistingOnes(hash);
+		if (boolGroupList[0]) {
 			//if result found, store the action & object
 			
-			//parse group list 
-			groupIndicesListString = hash.split('$$$$$$')[1];
+			//parse group list and turn into an int list
 			var groupIndicesList = 
-					convertIndicesStringToArray(groupIndicesString);
+					convertIndicesStringToArray(boolGroupList[1]);
 			for (var i=0; i<groupIndicesList.length; i++) {
 				index = groupIndicesList[i];
 				if ( (inputIndicesList.indexOf(index) < 0) && 
