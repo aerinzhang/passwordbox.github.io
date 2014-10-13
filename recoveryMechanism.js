@@ -128,8 +128,8 @@ var recoveryMechanism = (function() {
 			} else{
 				console.log('Something is wrong!');
 			}
-			return result;
 		}
+		return result;
 	}
 
 	function computeHashesOfGroup (groupFullList, gpIndex) {
