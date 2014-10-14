@@ -94,6 +94,7 @@ var recoveryMechanism = (function() {
 					(missingStoryIndex == index) ) {
 					recoveryResult = pwGuess;
 					alert('found!');
+					console.log(pwGuess);
 					console.log('found');
 					//generate recovery result page
 				}
