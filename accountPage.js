@@ -9,7 +9,7 @@ var accountPage = (function() {
 		return true;
 	}
 
-	function submit (e) {
+	function submitFunction (e) {
 		if ( ((e.keyCode === 13) || (e.keyCode == undefined)) 
 				&& ($("#entry:focus")) ) {
 			e.preventDefault();
@@ -65,14 +65,28 @@ var accountPage = (function() {
 
 	}
 
-	function updateAccountList () {
+	function updateAccountListWrapper () {
 		var recprds = programVariables.accountTable.query();
 		//by rehearsal date?
 		renderAccountList(false);
+		return;
 	}
+
 	function updateStoryRefCount (webName, accountList) {
 		//refer to page
 	}
+
+	//CONTROLLER
+	module.submit = function (e) {
+		submitFunction(e);
+		return;
+	}
+
+	module.updateAccountList = function () {
+		updateAccountListWrapper();
+		return;
+	}
+
 	//VIEW
 	function renderEachAccountElements (time, accountName, list, index) {
 		//check duplicates?
@@ -187,4 +201,5 @@ var accountPage = (function() {
 		}
 		updateListBool = false;
 	}
-})
+	return module;
+}());
