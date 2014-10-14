@@ -169,7 +169,7 @@ var accountPage = (function() {
 					var eString = 'list'+ accountIndex;
 					var buttonID = '#' + keyID;
 					var listID = '#' + eString;
-					$("#list").append( "
+					$("#list").append( "\
 							<li id=" + accountName + "><a href=#" + accountName 
 							+ "Page id=" + keyID + " data-wrapperels=\
 							'span' data-inline='true' data-icon='delete'\
