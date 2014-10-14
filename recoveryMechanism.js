@@ -223,10 +223,10 @@ var recoveryMechanism = (function() {
 		}
 
 		//loop through all possible actions and objects combined with known ones
-		for (var i=0; i<appConstants.actionsList.length; i++) {
-			for (var j=0; j<appConstants.objectsList.length; j++) {
-				storyGuess = appConstants.actionsList[i] + 
-						appConstants.objectsList[j];
+		for (var i=0; i<appConstants.getActionsList().length; i++) {
+			for (var j=0; j<appConstants.getObjectsList().length; j++) {
+				storyGuess = appConstants.getActionsList[i] + 
+						appConstants.getObjectsList[j];
 				groupGuess = inputFirstHalf + storyGuess + inputSecondHalf;
 
 				//no way to short-circuit since bCrypt uses a callback fn

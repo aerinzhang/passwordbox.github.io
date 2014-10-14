@@ -66,7 +66,7 @@ var accountPage = (function() {
 	}
 
 	function updateAccountListWrapper () {
-		var recprds = programVariables.accountTable.query();
+		var records = programVariables.accountTable.query();
 		//by rehearsal date?
 		renderAccountList(false);
 		return;
