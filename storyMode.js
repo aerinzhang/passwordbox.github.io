@@ -22,23 +22,11 @@ storyMode.calculateListLength = function(totalLength) {
 }
 
 storyMode.makeHashStringIntoList = function(string) {
-	console.log(string.split('&&&&&&'));
 	return string.split('&&&&&&');
 }
 
 storyMode.flattenGroupHashList = function (listOfHashes) {
 	return listOfHashes.join('&&&&&&');
-	// var result;
-	// var divider = '&&&&&&';
-	// var element;
-	// if (listOfHashes.length !== 0) {
-	// 	result = listOfHashes[0];
-	// 	for (var i=1; i<listOfHashes.length; i++) {
-	// 		element = listOfHashes[i];
-	// 		result = result + divider + element;
-	// 	}
-	// } 
-	// return result;
 }
 
 storyMode.generateStoryGroup = function() {
