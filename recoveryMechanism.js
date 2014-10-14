@@ -47,7 +47,7 @@ var recoveryMechanism = (function() {
 		var storedHashes = storyMode.makeHashStringIntoList(
 				storyMode.groupHashesList[groupIndex]);
 
-		for (var i=0; i<length; i++) {
+		for (var i=0; i<storedHashes.length; i++) {
 			hashPlusGroup = storedHashes[i];
 			temp = hashPlusGroup.split('$$$$$$');
 			storedHash = temp[0];
