@@ -1,138 +1,153 @@
-//this module is for Putting Accounts
-var accountPage = accountPage || {};
+var accountPage = (function() {
+	var module = {};
+	var PERSON_INDEX = 0;
+	var SCENE_INDEX = 1;
+	var updateListBool = true;
 
-//TEMP: load accountIndex = ?
-accountPage.updateListBool = true;
-accountPage.existingAccountIndex = 0;
-
-accountPage.PERSON_INDEX = 0;
-accountPage.SCENE_INDEX = 1;
-
-accountPage.isWebsite = function(web) {
-	//check empty/ same account entered
-	return true;
-}
-
-accountPage.calculateCuePairsFromIndices = function(cueList) {
-	var record;
-	var person;
-	var scene;
-	var stories = programVariables.storyBankTable.query();
-	var result = [];
-	for (var i=0; i<cueList.length; i++) {
-		record = stories[cueList[i]-1];
-		person = record.get('person');
-		scene = record.get('scene');
-		result.push(person + '|||' + scene);
+	function isWebsite (web) {
+	//check empty/same account entered
+		return true;
 	}
-	return result;
-}
 
+	function submit (e) {
+		if ( ((e.keyCode === 13) || (e.keyCode == undefined)) 
+				&& ($("#entry:focus")) ) {
+			e.preventDefault();
 
-accountPage.updateStoryRefCount = function (webName, accountList) {
-	// var record;
-	// var person;
-	// var scene;
-	// var records = programVariables.storyBankTable.query();
-	// for (var i=0; i<records.length; i++) {
-	// 	record = records[i];
-	// 	for (var j=0; j<accountList.length; j++) {
-	// 		person = record[j][0];
-	// 		scene = record[j][1];
-	// 		if (record.get('scene') == scene)
-	// 	}
-	// }
-}
+			var accountID = 'button' + storyMode.accountIndex;
+			var account = $('#accountName').val();
+			$('#accountName').val('');
 
-accountPage.submit = function(e) {
+			//if pass validation of website input
+			if ( isWebsite(account) ) {
+				var eString = 'list'+ storyMode.accountIndex;
+				var buttonID = '#' + accountID;
+				var listID = '#' + eString;
 
-	if (((e.keyCode === 13) || (e.keyCode == undefined)) && ($("#entry:focus"))) {
-		e.preventDefault();
+				$('.images').css('text-align','center');
 
-		//use my own photo? currently disabled
-		var useMyOwn = false;
-		//var useMyOwn = document.getElementById('checkbox-2').checked;
+				//generate next story of four & make sure the 4?6?8-story combination is unique
+				var level = "setFamily." + 
+						storyMode.securityLevel.toLowerCase();
+				var args = "(" + storyMode.accountIndex + ")";
+				var functionName = level.concat(("SecurityIthAccount" + args));
+				var cueList = eval(functionName);
 
-		var accountID = 'button' + storyMode.accountIndex;
-		var account = $('#accountName').val();
-		$('#accountName').val('');
+				//Put in Dropbox! Need Another Module!!!! FIX LATER
+				//calculate cue (person-scene pairs from the story list)
+				var storyList = calculateCuePairsFromIndices(cueList);
+				programVariables.insertAccount(
+						account, storyList, storyMode.accountIndex);
 
-		//if pass validation of data
-		if (accountPage.isWebsite(account)) {
-			var eString = 'list'+ storyMode.accountIndex;
-			var buttonID = '#' + accountID;
-			var listID = '#' + eString;
+				//?storyMode.accountIndex += 1;
+				updateStoryRefCount(account, cueList);
+				renderAccountList(true);
+			}
+		} else {
+			alert('Warning: Account entered is not valid');
+		}
+		return false
+	}
 
-			//what is this?
-			$('.images').css('text-align','center');
+	function calculateCuePairsFromIndices (cueList) {	
+		var record;
+		var person;
+		var scene;
+		var stories = programVariables.storyBankTable.query();
+		var result = [];
+		for (var i=0; i<cueList.length; i++) {
+			record = stories[cueList[i]-1];
+			person = record.get('person');
+			scene = record.get('scene');
+			result.push(person + '|||' + scene);
+		}
+		return result;
 
-			//generate next story of four & make sure the 4?6?8-story combination is unique
-			var level = "setFamily." + storyMode.securityLevel.toLowerCase();
-			var args = "(" + storyMode.accountIndex + ")";
-			var functionName = level.concat(("SecurityIthAccount" + args));
-			var cueList = eval(functionName);
+	}
 
+	function updateAccountList () {
+		var recprds = programVariables.accountTable.query();
+		//by rehearsal date?
+		renderAccountList(false);
+	}
+	function updateStoryRefCount (webName, accountList) {
+		//refer to page
+	}
+	//VIEW
+	function renderEachAccountElements (time, accountName, list, index) {
+		//check duplicates?
 
-			//Put in Dropbox! Need Another Module!!!! FIX LATER
-			//calculate cue (person-scene pairs from the story list)
-			var storyList = accountPage.calculateCuePairsFromIndices(cueList);
-			programVariables.insertAccount(account, storyList, storyMode.accountIndex);
-			//?storyMode.accountIndex += 1;
-			//?accountStoryList, existingAccountIndex);
-			accountPage.updateStoryRefCount(account, cueList);
-			
-
-			//add one to existingAccountIndex
-			//existingAccountIndex+=1;
-			//programVariables.set('existingAccountIndex', accountPage.existingAccountIndex) ;	
-
-			//existingAccounts.push(accountInfo);	
-
-
-			//should be true false temprorily
-			accountPage.renderAccountList(true);
-
-			//currentPageID = value;? USEFUL OR NOT
+		//create html for each page
+		var html = "<div id='" + accountName + "Stories'>";
+		for (var i=0; i < list.length; i ++) {
+			if (i % 2 == 0) {
+				var liold = "\
+						<div class=twoPairs><span class='pairdiv'>\
+						<figure><img class=pair src=images/person/{0}.jpg />\
+						<figcaption>{1}</figcaption></figure><figure>\
+						<img class=pair src=images/scene/{2}.jpg />\
+						<figcaption>{3}</figcaption></figure></span>";
+			} else {
+				var liold = "\
+						&nbsp&nbsp<span class='pairdiv'><figure>\
+						<img class=pair src=images/person/{0}.jpg />\
+						<figcaption>{1}</figcaption></figure><figure>\
+						<img class=pair src=images/scene/{2}.jpg /><figcaption>\
+						{3}</figcaption></figure></span></div>";
+			}
+			var li = String.format(liold, list[i][PERSON_INDEX], 
+					list[i][PERSON_INDEX].split('_').join(' '),
+					list[i][SCENE_INDEX].toLowerCase(), 
+					list[i][SCENE_INDEX].split('_').join(' '));
+		
+			html += li;
 		}
 
-	} else {
-		alert('Warning: Account entered is not valid');
+		html += "</div><br><input type='text' autocorrect='off' name='password'\
+				 id='"+accountName+"-password' value='' placeholder='Type in \
+				 your password' autofocus='autofocus'/>\<a href=# \
+				 data-role='button' data-rel='popup' \
+				 onclick='checkPasswordNew(\""  + accountName + "\", " + 
+				 index + ")' > Rehearse Account</a>";
+
+		return html;
 	}
-	return false;
-}
 
-//Account View Functions
-accountPage.renderAccountList = function(changePageBool) {
-		//var stories = storyBankTable.query();
-		//where to put those ?
+	function parseStringToNestedArrays (stringOfArray) {
+		var result = [];
+		for (var i=0; i < stringOfArray.length(); i++) {
+			var li = stringOfArray.get(i).split('|||'); 
+			result.push(li);
+		}
+		return result;
+	}
 
+	function renderAccountList (changePageBool) {
 		var accounts = programVariables.accountTable.query();
-		var stories = programVariables.storyBankTable.query();
 		var accountIndex = programVariables.accountIndex;
+		var stories = storyMode.storyBank;
 
-		//if there are stories in the bank 
-		//NEW CONDITION NEEDED!!!!!! STORIES NEEDED ALREADY UNLOCKED
 		if (stories.length >= 0) {
-			//create each page for each account
 			for (var i=0; i < accounts.length; i++) {
 				var account = accounts[i];
 				var temp = account.get('storyList');
-				var list = programVariables.parseStringToNestedArrays(account.get('storyList'));
+				var list = parseStringToNestedArrays(account.get('storyList'));
 				var accountName = account.get('account');
 				var accountIndexForChecking = account.get('accountIndex');
 				var time = '0PM';
 				//var time = record.get('lastRehearsal').toString();
-				var pageHtml = accountPage.renderEachAccountElements(time, accountName, 
-												list, accountIndexForChecking);
+				var pageHtml = renderEachAccountElements(time, accountName, 
+						list, accountIndexForChecking);
 
-				var newPage = $("<div data-role='page' data-title='" + accountName + 
-								"' id=" + accountName + "Page><div data-role='header'\
-								data-position=fixed><a href=#accounts \
-								data-icon='back'>Back</a><h1>"+ accountName + 
-								"</h1></div><div data-role='content' \
-								class=images>"+ pageHtml + " </div></div>");
+				var newPage = $("\
+						<div data-role='page' data-title='" + accountName + 
+						"' id=" + accountName + "Page><div data-role='header'\
+						data-position=fixed><a href=#accounts \
+						data-icon='back'>Back</a><h1>"+ accountName + 
+						"</h1></div><div data-role='content' \
+						class=images>"+ pageHtml + " </div></div>");
 				
-				if ( accountPage.updateListBool || 
+				if ( updateListBool || 
 					(changePageBool && i==accounts.length-1) ) {
 
 					//if insert the first time
@@ -140,11 +155,12 @@ accountPage.renderAccountList = function(changePageBool) {
 					var eString = 'list'+ accountIndex;
 					var buttonID = '#' + keyID;
 					var listID = '#' + eString;
-					$("#list").append( "<li id=" + accountName + "><a href=#" + accountName + 
-									   "Page id=" + keyID + " data-wrapperels=\
-									   'span' data-inline='true' data-icon=\
-									   'delete' data-iconpos='right' data-theme\
-									   ='a'>" + accountName + "</a></li>");
+					$("#list").append( "
+							<li id=" + accountName + "><a href=#" + accountName 
+							+ "Page id=" + keyID + " data-wrapperels=\
+							'span' data-inline='true' data-icon='delete'\
+							 data-iconpos='right' data-theme='a'>" 
+							+ accountName + "</a></li>");
 
 					if ($('#list').hasClass('ui-listview')) {
 						$('#list').listview('refresh');
@@ -152,7 +168,7 @@ accountPage.renderAccountList = function(changePageBool) {
 						$('#list').trigger('create');
 					}
 
-					if ( accountPage.updateListBool || 
+					if (updateListBool || 
 						(changePageBool && i==accounts.length-1)) {
 						newPage.appendTo( $.mobile.pageContainer );
 					}
@@ -164,48 +180,11 @@ accountPage.renderAccountList = function(changePageBool) {
 		}
 		if (changePageBool) {
 			storyMode.accountIndex += 1;
-			programVariables.generalRecord.set("accountIndex", storyMode.accountIndex);
+			programVariables.generalRecord.set("accountIndex", 
+					storyMode.accountIndex);
 			//programRecord.set('accountIndex', accountIndex);
 			$.mobile.changePage(newPage);
 		}
-	accountPage.updateListBool = false;
-}
-
-accountPage.renderEachAccountElements = function(time, accountName, list, index) {
-	//check duplicates?
-
-	//create html for each page
-	var html = "<div id='" + accountName + "Stories'>";
-	for (var i=0; i < list.length; i ++) {
-		if (i % 2 == 0) {
-			var liold = "<div class=twoPairs><span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
-					 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span>";
-		}
-		else {
-			var liold = "       &nbsp&nbsp<span class='pairdiv'><figure><img class=pair src=images/person/{0}.jpg /><figcaption>{1}</figcaption></figure>\
-					 	<figure><img class=pair src=images/scene/{2}.jpg /><figcaption>{3}</figcaption></figure></span></div>";
-			}
-		var li = String.format(liold, list[i][accountPage.PERSON_INDEX], list[i][accountPage.PERSON_INDEX].split('_').join(' '),
-									  list[i][accountPage.SCENE_INDEX].toLowerCase(), list[i][accountPage.SCENE_INDEX].split('_').join(' '));
-		html += li;
+		updateListBool = false;
 	}
-	html += "</div><br><input type='text' autocorrect='off' name='password' id='"+accountName+"-password' value='' placeholder='Type in your password' autofocus='autofocus'/>\
-			<a href=# data-role='button' data-rel='popup' onclick='checkPasswordNew(\""  + accountName + "\", " + index + ")' > Rehearse Account</a>"
-	return html;
-}
-
-accountPage.updateAccountList = function() {
-	var records = programVariables.accountTable.query();
-
-	//should sord by last rehearsal date (CURRENTLY COMMENTED OUT)
-
-	// records.sort(function (accountA, accountB) {
-	// 	if (accountA.get('lastRehearsal') < accountB.get('lastRehearsal')) return -1;
-	// 	if (accountA.get('lastRehearsal') > accountB.get('lastRehearsal')) return 1;
-	// 	return 0;
-	// });
-
-	//changePage? Update?
-	accountPage.renderAccountList(false);
-}
-
+})
