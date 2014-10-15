@@ -38,7 +38,7 @@ var storyMode = ( function () {
 		var uniqueCharList = [];
 		for (var i=0; i<txt.length; i++) {
 			chr = txt.charAt(i);
-			if (uniqueCharList.indexOf(chr) == =1) {
+			if (uniqueCharList.indexOf(chr) === -1) {
 				uniqueCharList.push(chr);
 			}
 		}
