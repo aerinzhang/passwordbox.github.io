@@ -33,7 +33,7 @@ var storyMode = ( function () {
 	}
 
 	//calculate number of Unique chars for key-up
-	function calculateUniqueChar = function (txt) {
+	function calculateUniqueChar (txt) {
 		var chr;
 		var uniqueCharList = [];
 		for (var i=0; i<txt.length; i++) {
