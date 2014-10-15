@@ -1,6 +1,6 @@
 //This module is for the High-Medium-Low story mode
 var storyMode = ( function () {
-	var module;
+	var module = {};
 	//Constants
 	var CHAR_LIMIT = 30;
 	var UNIQUE_CHAR_LIMIT = 20;
