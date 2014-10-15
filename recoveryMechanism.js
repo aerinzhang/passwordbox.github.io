@@ -81,7 +81,7 @@ var recoveryMechanism = (function() {
 	}
 
 	function callbackFnForRecovery (hash, pwGuess) {
-		var index;
+		var index, temp, action, object;
 		var boolGroupList = compareHashToExistingOnes(hash);
 		if (boolGroupList[0]) {
 			//if result found, store the action & object
@@ -98,7 +98,10 @@ var recoveryMechanism = (function() {
 					console.log(pwGuess);
 					console.log('found');
 					//generate recovery result page
-					createRecoveryResultPage();
+					temp = pwGuess.split('ing');
+					action = temp[0] + 'ing';
+					object = temp[1];
+					createRecoveryResultPage(action, object);
 				}
 			}
 		}
