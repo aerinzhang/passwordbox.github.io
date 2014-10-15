@@ -98,6 +98,7 @@ var recoveryMechanism = (function() {
 					console.log(pwGuess);
 					console.log('found');
 					//generate recovery result page
+					createRecoveryResultPage();
 				}
 			}
 		}
@@ -288,6 +289,33 @@ var recoveryMechanism = (function() {
 		return;
 	}
 
+	function createRecoveryResultPage(action, object) {
+		var story = storyMode.getStoryBank()[missingStoryIndex];
+		var person = story[PERSON_INDEX_PUB]; 
+		var scene = story[SCENE_INDEX_PUB];
+		var html = "\
+				<div class=clueDiv><figure><img class=clue \
+				src=images/person/{0}.jpg /><figcaption>{1}</figcaption>\
+				</figure>is <figure><img class=clue src=images/action/{2}1.jpg \
+				/><figcaption>{3}</figcaption></figure>{8}<figure>\
+				<img class=clue src=images/object/{4}1.jpg /><figcaption>{5}\
+				</figcaption></figure>in/on<figure>\
+				<img class=clue src=images/scene/{6}.jpg />\
+				<figcaption>the {7}</figcaption></figure></div>";
+
+		var article = (object == 'igloo' ? 'an' : 'a');
+
+		$('#recoveryPageDiv').html(
+				String.format( html, person, person.split('_').join(' '), 
+						action, action, object, object, 
+						scene.toLowerCase(), scene.split('_').join(' '), 
+						article));
+
+		//later instead JQuery?
+		$.mobile.changePage("#recover");
+
+	}
+	
 return module;
 
 })();
