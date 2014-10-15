@@ -183,6 +183,7 @@ var storyMode = ( function () {
 		renderStoryBank();
 		$.mobile.changePage('#bank');
 	}
+
 	function getherInfo () {
 		var securityNum = $('#slider').val();
 		var numberOfAccounts = $('#numAccountOption').val();
@@ -231,8 +232,8 @@ var storyMode = ( function () {
 		groupList = generateStoryGroup();
 		programVariables.insertRecord(securityLevel, groupList,
 				createGroupHashesList(), createSaltList() );
-
 	}
+
 	//CONTROLLER 
 	module.getGroupHashesList = function () {
 		return groupHashesList;
@@ -287,7 +288,7 @@ var storyMode = ( function () {
 		updateStoryBankList();
 	}
 
-	module.emptyStoryBank = function (i) {
+	module.emptyStoryBank = function () {
 		storyBank = [];
 	}
 
@@ -392,7 +393,7 @@ var storyMode = ( function () {
 	return module;
 }());
 
-$$(document).ready( function() {
+$(document).ready( function() {
 	$('#randomnessTextBoxStoryMode').keyup( function() {
 		limits($(this), 'StoryMode');
 	});
