@@ -228,8 +228,8 @@ var storyMode = ( function () {
 		$.mobile.changePage('#mode43');
 		limitListLength = calculateListLength(storyNumber);
 		groupList = generateStoryGroup();
-		programVariables.insertRecord(securityLevel, groupList, 
-				)
+		programVariables.insertRecord(securityLevel, groupList,
+				createGroupHashesList(), createSaltList() );
 
 	}
 	//CONTROLLER 
