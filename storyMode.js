@@ -49,7 +49,7 @@ var storyMode = ( function () {
 	function limits (obj, suffix) {
 		var limit = CHAR_LIMIT;
 		var counter = $("#charCounter".concat(suffix));
-		var uniqueCounter = $("#uniqueCharCounter".concat(suffix)):
+		var uniqueCounter = $("#uniqueCharCounter".concat(suffix));
 		var txt = obj.val();
 		var length = txt.length;
 		var uniqueLength = calculateUniqueChar(txt);
