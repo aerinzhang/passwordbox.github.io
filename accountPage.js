@@ -14,22 +14,23 @@ var accountPage = (function() {
 				&& ($("#entry:focus")) ) {
 			e.preventDefault();
 
-			var accountID = 'button' + storyMode.accountIndex;
+			var accountID = 'button' + storyMode.getAccountIndex();
 			var account = $('#accountName').val();
 			$('#accountName').val('');
 
 			//if pass validation of website input
 			if ( isWebsite(account) ) {
-				var eString = 'list'+ storyMode.accountIndex;
+				var eString = 'list'+ storyMode.getAccountIndex();
 				var buttonID = '#' + accountID;
 				var listID = '#' + eString;
 
 				$('.images').css('text-align','center');
 
-				//generate next story of four & make sure the 4?6?8-story combination is unique
+				//generate next story of four 
+				//make sure the 4?6?8-story combination is unique
 				var level = "setFamily." + 
-						storyMode.securityLevel.toLowerCase();
-				var args = "(" + storyMode.accountIndex + ")";
+						storyMode.getSecurityLevel().toLowerCase();
+				var args = "(" + storyMode.getAccountIndex() + ")";
 				var functionName = level.concat(("SecurityIthAccount" + args));
 				var cueList = eval(functionName);
 
@@ -37,7 +38,7 @@ var accountPage = (function() {
 				//calculate cue (person-scene pairs from the story list)
 				var storyList = calculateCuePairsFromIndices(cueList);
 				programVariables.insertAccount(
-						account, storyList, storyMode.accountIndex);
+						account, storyList, storyMode.getAccountIndex() );
 
 				//?storyMode.accountIndex += 1;
 				updateStoryRefCount(account, cueList);
@@ -139,7 +140,7 @@ var accountPage = (function() {
 	function renderAccountList (changePageBool) {
 		var accounts = programVariables.accountTable.query();
 		var accountIndex = programVariables.accountIndex;
-		var stories = storyMode.storyBank;
+		var stories = storyMode.getStoryBank();
 
 		if (stories.length >= 0) {
 			for (var i=0; i < accounts.length; i++) {
@@ -193,9 +194,9 @@ var accountPage = (function() {
 			//alert('play the game to unlock more stories!');
 		}
 		if (changePageBool) {
-			storyMode.accountIndex += 1;
+			storyMode.incrementAccountIndex();
 			programVariables.generalRecord.set("accountIndex", 
-					storyMode.accountIndex);
+					storyMode.getAccountIndex());
 			//programRecord.set('accountIndex', accountIndex);
 			$.mobile.changePage(newPage);
 		}

@@ -29,6 +29,11 @@ var memoryGame = (function () {
 		return s;
 	}
 
+
+	function flattenGroupHashList (listOfHashes) {
+		return listOfHashes.join('&&&&&&');
+	}
+
 	function generateFullGameList (partialGameList) {
 		//partialGameList contains gamePplList and gameScenesList
 		//TEMP: for now generate randomly
@@ -147,10 +152,13 @@ var memoryGame = (function () {
 
 				//STORE HASHES INTO GENERAL RECORD
 				//score hashes for this group into generalRecord
-				var programRecord = programVariables.storyModeGeneralTable.query()[0];
-				var flattened = storyMode.flattenGroupHashList(recoveryMechanism.getHashResults());
-				storyMode.groupHashesList[currentGroupIndex] = flattened;
-				programRecord.get('groupHashesList').set(currentGroupIndex, flattened);
+				var programRecord = 
+						programVariables.storyModeGeneralTable.query()[0];
+				var flattened = flattenGroupHashList(
+						recoveryMechanism.getHashResults());
+				storyMode.getGroupHashesList()[currentGroupIndex] = flattened;
+				programRecord.get('groupHashesList').set(currentGroupIndex, 
+						flattened);
 				//CLEAR DATA
 				fullGameList = [];
 				//?hashes result clear

@@ -14,6 +14,10 @@ var recoveryMechanism = (function() {
 	var missingStoryIndex;
 	var inputIndicesList;
 
+	function makeHashStringIntoList (string) {
+		return string.split('&&&&&&');
+	}
+
 	//recursively compute (bank.size choose k)
 	function computeCombinationsOfSizeK (bank, k) {
 		if (bank.length < k) {
@@ -39,13 +43,10 @@ var recoveryMechanism = (function() {
 
 	function compareHashToExistingOnes (hashResult) {
 		//true if hashResult is found in allHashes; false otherwise
-		var temp;
-		var group;
-		var hashPlusGroup;
-		var storedHash;
+		var temp, group, hashPlusGroup, storedHash;
 		//grab stored hashes from dropBox for given group
-		var storedHashes = storyMode.makeHashStringIntoList(
-				storyMode.groupHashesList[groupIndex]);
+		var storedHashes = makeHashStringIntoList(
+				storyMode.getGroupHashesList()[groupIndex]);
 
 		for (var i=0; i<storedHashes.length; i++) {
 			hashPlusGroup = storedHashes[i];
@@ -147,9 +148,7 @@ var recoveryMechanism = (function() {
 	}
 
 	function computeHashesOfGroup (groupFullList, gpIndex) {
-		var salt;
-		var groupStr;
-		var setIndicesString;
+		var salt, groupStr, setIndicesString;
 		var round = NUM_OF_ROUNDS;
 		var localBCrypt = new bCrypt();
 
@@ -162,13 +161,10 @@ var recoveryMechanism = (function() {
 		}
 
 		//????????
-		//should store salt!
-		alert(storyMode.groupSaltList);
-		storyMode.groupSaltList[gpIndex] = salt;
-		alert(storyMode.groupSaltList);
+		storyMode.getGroupSaltList()[gpIndex] = salt;
 		//update record
 		var programRecord = programVariables.storyModeGeneralTable.query()[0];
-		programRecord.set('groupSaltList', storyMode.groupSaltList);
+		programRecord.set('groupSaltList', storyMode.getGroupSaltList());
 
 		//if could use recovery mechanism;
 		if (groupFullList.length > MINIMUM_STORY_COUNT) {
@@ -193,15 +189,12 @@ var recoveryMechanism = (function() {
 
 	function gatherUserInput () {
 		//index is the position of the missing story in group
-		var inputId;
-		var userInput;
-		var stroyGuess;
-		var groupGuess;
+		var inputId, userInput, stroyGuess, groupGuess;
 		var inputCount = 0;
 		var inputFirstHalf = '';
 		var inputSecondHalf = '';
-		var length = storyMode.groupList[groupIndex];
-		var groupSalt = storyMode.groupSaltList[groupIndex];
+		var length = storyMode.getGroupList()[groupIndex];
+		var groupSalt = storyMode.getGroupSaltList()[groupIndex];
 		inputIndicesList = [];
 
 		for (var i=0; i<length; i++) {
@@ -260,9 +253,7 @@ var recoveryMechanism = (function() {
 
 	//generate the recovery page used to gather user input
 	function displayRecoveryInputPage (storyList, gpIndex, storyIndex) {
-		var person;
-		var scene;
-		var story;
+		var person, scene, story;
 		groupIndex = gpIndex;
 		missingStoryIndex = storyIndex;
 

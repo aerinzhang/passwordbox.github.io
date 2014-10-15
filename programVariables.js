@@ -40,11 +40,12 @@ programVariables.initialize = function (){
 			programVariables.generalRecord = programVariables.generalRecord[0];
 			var record = programVariables.generalRecord;
 			// load values to storyMode module
-			storyMode.securityLevel = record.get('securityLevel');
-			storyMode.accountIndex = record.get('accountIndex');
-			storyMode.groupList = record.get('groupList').toArray();
-			storyMode.groupHashesList = record.get('groupHashesList').toArray();
-			storyMode.groupSaltList = record.get('groupSaltList').toArray();
+			storyMode.setSecurityLevel(record.get('securityLevel'));
+			storyMode.setAccountIndex(record.get('accountIndex'));
+			storyMode.setGroupList(record.get('groupList').toArray());
+			storyMode.setGroupHashesList(
+					record.get('groupHashesList').toArray());
+			storyMode.setGroupSaltList(record.get('groupSaltList').toArray());
 			//change to storyBank page
 			window.location = "https://aerinzhang.github.io/43story.html#bank";
 		} else {
@@ -53,14 +54,14 @@ programVariables.initialize = function (){
 		}
 
 		if (programVariables.stories.length === 0) {
-			storyMode.storyBank = [];
+			storyMode.emptyStoryBank();
 		} else {
 			var tempBank = [];
 			for (var i=0; i<programVariables.stories.length; i++) {
 				var story = programVariables.stories[i];
 				tempBank.push([story.get('person'), story.get('scene')]);
 			}
-			storyMode.storyBank = tempBank;
+			storyMode.setStoryBank(tempBank);
 		}
 		// if (programVariables.programRecord.length == 0) {
 		// 	//initialize values
@@ -80,8 +81,10 @@ programVariables.initialize = function (){
  		accountPage.updateAccountList();
 
  		//Ensure future changes update the list 
- 		programVariables.datastore.recordsChanged.addListener(storyMode.updateStoryBankList);
-		programVariables.datastore.recordsChanged.addListener(accountPage.updateAccountList);	
+ 		programVariables.datastore.recordsChanged.addListener(
+ 				storyMode.updateStoryBankList);
+		programVariables.datastore.recordsChanged.addListener(
+				accountPage.updateAccountList);	
 		console.log('accountLoaded Successfully');
 		//UI Change after logging in REFER TO pm.js
 	});
