@@ -101,6 +101,8 @@ var rehearsalModule = ( function () {
 
 	function checkEachStory () {
 		var story, originalDate, currentDate, check;
+		urgentRehearsalList = [];
+		rehearsalSoonList = [];
 		var records = programVariables.storyBankTable.query();
 		for (var i=0; i<records.length; i++) {
 			story = records[i];
