@@ -86,6 +86,16 @@ programVariables.initialize = function (){
 		programVariables.datastore.recordsChanged.addListener(
 				accountPage.updateAccountList);	
 		console.log('accountLoaded Successfully');
+		rehearsalModule.checkEachStory();
+		rehearsalModule.renderRehearsalBoard();
+		$('ul.rehearsalList li').on('click',
+			function (e) {
+				e.preventDefault();
+				var textList = $(this).find(".storyText");
+				var person = textList[0].innerHTML;
+				var scene = textList[1].innerHTML;
+				rehearsalModule.renderRehearsalPage(person, scene);
+			});
 		//UI Change after logging in REFER TO pm.js
 	});
 	return true;

@@ -402,17 +402,6 @@ $(document).ready( function() {
 	programVariables.client.authenticate();
 
 	if (programVariables.client.isAuthenticated()) {
-		if (programVariables.initialize()) {
-			rehearsalModule.checkEachStory();
-			rehearsalModule.renderRehearsalBoard();
-			$('ul.rehearsalList li').on('click',
-				function (e) {
-					e.preventDefault();
-					var textList = $(this).find(".storyText");
-					var person = textList[0].innerHTML;
-					var scene = textList[1].innerHTML;
-					rehearsalModule.renderRehearsalPage(person, scene);
-				});
-		}
+		programVariables.initialize();
 	}
 });
