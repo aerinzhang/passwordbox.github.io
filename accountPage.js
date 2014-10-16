@@ -83,7 +83,7 @@ var accountPage = (function() {
 		var answer = $('#' + web + 'Page').find('#' + web+'-password').val(); 
 		if (answer != '') {
 			//update reherasal time of each story as well as the account
-			var records = accountTable.query();
+			var records = programVariables.accountTable.query();
 			for (var i=0; i<records.length; i++) {
 				record = records[i];
 				if (record.get('account') == web) {
