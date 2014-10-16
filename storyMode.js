@@ -184,7 +184,7 @@ var storyMode = ( function () {
 		$.mobile.changePage('#bank');
 	}
 
-	function getherInfo () {
+	function gatherInfo () {
 		var securityNum = $('#slider').val();
 		var numberOfAccounts = $('#numAccountOption').val();
 		if (securityNum === 50) {
