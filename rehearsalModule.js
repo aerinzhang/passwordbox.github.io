@@ -27,7 +27,7 @@ var rehearsalModule = ( function () {
 		return totalTime;
 	}
 
-	function extractDate () {
+	function extractDate (time) {
 		var year = time.getFullYear();
 		var date = time.getDate();
 		var month = time.getMonth();
@@ -145,6 +145,14 @@ var rehearsalModule = ( function () {
 
 	module.renderRehearsalPage = function (person, scene) {
 		renderRehearsalPage(person, scene);
+	}
+
+	module.extractDate = function (time) {
+		extractDate(time);
+	}
+
+	module.calculateScoreForStory = function (story) {
+		calculateScoreForStory(story);
 	}
 	//VIEW
 

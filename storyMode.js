@@ -330,9 +330,10 @@ var storyMode = ( function () {
 						data-inset="true">';
 				for (var i=0; i<records.length; i++) {
 					record = records[i];
-					date = "Date Created";
-					score = 0; //Math.round(calculateScoreForStory(record));
-					//extractDate(record.get('lastRehearsed'));
+					date = rehearsalModule.extractDate(	
+							record.get('lastRehearsed'));
+					score = Math.round(
+							rehearsalModule.calculateScoreForStory(record));
 					person = record.get('person');
 					scene = record.get('scene');
 					used = record.get('used');
@@ -402,5 +403,16 @@ $(document).ready( function() {
 
 	if (programVariables.client.isAuthenticated()) {
 		programVariables.initialize();
+		rehearsalModule.checkEachStory();
+		rehearsalModule.renderRehearsalBoard();
+
+		$('ul.rehearsalList li').on('click',
+			function (e) {
+				e.preventDefault();
+				var textList = $(this).find(".storyText");
+				var person = textList[0].innerHTML;
+				var scene = textList[1].innerHTML;
+				rehearsalModule.renderRehearsalPage(person, scene);
+			});
 	}
 });
