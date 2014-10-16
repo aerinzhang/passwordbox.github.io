@@ -48,7 +48,6 @@ var storyMode = ( function () {
 
 	//for key -up 
 	function limits (obj, suffix) {
-		var limit = CHAR_LIMIT;
 		var counter = $("#charCounter".concat(suffix));
 		var uniqueCounter = $("#uniqueCharCounter".concat(suffix));
 		var txt = obj.val();
@@ -56,7 +55,7 @@ var storyMode = ( function () {
 		var uniqueLength = calculateUniqueChar(txt);
 
 		//if length not enough 
-		if ( !(length >= limit && uniqueLength >= uniqueLimit) ) {
+		if ( !(length >= CHAR_LIMIT && uniqueLength >= UNIQUE_CHAR_LIMIT) ) {
 			counter.html(length);
 			uniqueCounter.html(uniqueLength);
 		} else {
