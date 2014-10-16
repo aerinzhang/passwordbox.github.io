@@ -264,7 +264,7 @@ var rehearsalModule = ( function () {
 					<img class=pair src=images/person/{0}.jpg /><figcaption>\
 					<p class='storyText'>{1}</p><p class='dateText'>{4}</p>\
 					</figcaption></figure><figure><img class=pair \
-					src=images/scene/{2}.jpg /><figcaption><p 
+					src=images/scene/{2}.jpg /><figcaption><p \
 					class='storyText'>{3}</p><p class='scoreText'>Score:{5}</p>\
 					</figcaption></figure></span></li>";
 			newli = String.format(pair, story.get('person'), 
