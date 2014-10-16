@@ -279,4 +279,4 @@ var rehearsalModule = ( function () {
 	}
 	return module;
 
-});
+}());
