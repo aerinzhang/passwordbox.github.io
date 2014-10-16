@@ -311,6 +311,10 @@ var storyMode = ( function () {
 	module.populateBank = function () {
 		populateBank();
 	}
+
+	module.limits = function (obj, suffix) {
+		limits(obj, suffix);
+	}
 	//VIEW
 	function updateStoryBankList () {
 		$('#bankStories').empty();
@@ -396,7 +400,7 @@ var storyMode = ( function () {
 
 $(document).ready( function() {
 	$('#randomnessTextBoxStoryMode').keyup( function() {
-		limits($(this), 'StoryMode');
+		storyMode.limits($(this), 'StoryMode');
 	});
 	$('#accountsList').submit(accountPage.submit);
 	programVariables.client.authenticate();
