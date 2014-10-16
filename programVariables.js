@@ -88,6 +88,7 @@ programVariables.initialize = function (){
 		console.log('accountLoaded Successfully');
 		//UI Change after logging in REFER TO pm.js
 	});
+	return true;
 }
 
 programVariables.getGroupFromRecordIndices = function(start, end) {

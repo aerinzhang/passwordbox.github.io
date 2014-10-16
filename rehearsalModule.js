@@ -278,5 +278,4 @@ var rehearsalModule = ( function () {
 		return html;
 	}
 	return module;
-
-}());
+} () );
