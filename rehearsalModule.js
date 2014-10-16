@@ -190,7 +190,7 @@ var rehearsalModule = ( function () {
 		var html = "\
 				<figure><img class=clue src=images/person/{0}.jpg />\
 				<figcaption>{1}</figcaption></figure><figure><img class=clue \
-				src=images/scene/{2}.jpg /><figcaption>{3}</figcaption>
+				src=images/scene/{2}.jpg /><figcaption>{3}</figcaption>\
 				</figure>";
 		var newHTML = String.format( html, person, person.replace('_', ' '), 
 				scene.toLowerCase(), scene.replace('_', ' ') );
