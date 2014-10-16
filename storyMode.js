@@ -3,7 +3,7 @@ var storyMode = ( function () {
 	var module = {};
 	//Constants
 	var CHAR_LIMIT = 30;
-	var UNIQUE_CHAR_LIMIT = 20;
+	var UNIQUE_CHAR_LIMIT = 20;	
 
 	//program variables
 	var storyNumber;
@@ -233,7 +233,7 @@ var storyMode = ( function () {
 		programVariables.insertRecord(securityLevel, groupList,
 				createGroupHashesList(), createSaltList() );
 	}
-
+	
 	//CONTROLLER 
 	module.getGroupHashesList = function () {
 		return groupHashesList;

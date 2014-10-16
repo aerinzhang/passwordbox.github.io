@@ -241,6 +241,13 @@ var memoryGame = (function () {
 		$.mobile.changePage("#bank");
 	}
 
+	module.getVerbComboBoxWrapper = function (id) {
+		getVerbComboBox(id);
+	}
+
+	module.getObjectComboBoxWrapper = function (id) {
+		getObjectComboBox(id);
+	}
 	//VIEW FUNCTIONS
 	function displayStoryPage (person, action, object, scene) {
 		//person action object scene

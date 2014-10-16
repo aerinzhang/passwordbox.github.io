@@ -77,6 +77,59 @@ var accountPage = (function() {
 		//refer to page
 	}
 
+	function checkPassword (web, index) {
+		//update rehearsal time
+		var date, record, story, storyList;
+		var answer = $('#' + web + 'Page').find('#' + web+'-password').val(); 
+		if (answer != '') {
+			//update reherasal time of each story as well as the account
+			var records = accountTable.query();
+			for (var i=0; i<records.length; i++) {
+				record = records[i];
+				if (record.get('account') == web) {
+					//find the account record & set the time
+					record.set('lastRehearsal', new Date());
+					storyList = record.get('storyList');
+				}
+			}
+			storyList = parseStringToNestedArrays(storyList);
+			var records = programVariables.storyBankTable.query();
+			for (var i=0; i<records.length; i++) {
+				//check each story and update it
+				record = records[i];
+				for (var j=0; j<storyList.length; j++) {
+					story = storyList[j];
+					if ( record.get('person') == story[0] && 
+							record.get('scene') == story[1] ) {
+						//update record time
+						date = new Date();
+						//TEMP
+						console.log('calculating old ' + record.get('lastRehearsed').toString()  + ' new ' + date.toString());
+						record.set('lastRehearsed', date);
+						record.set('totalRehearsal',
+								record.get('totalRehearsal')+1);
+
+						//everything is 100% now?? cannot tell 
+						record.set('correctRehearsal',
+								record.get('correctRehearsal')+1);
+						console.log('story last reherased....');
+
+						//if that interval not satisfied
+						//length of satisfactory less than that intervalNum
+						if (record.get('rehearsalList').length() 
+								<= record.get('intervalNum')) {
+							record.get('rehearsalList').push(true);
+							record.set('intervalNum',
+									record.get('intervalNum')+1);
+						}
+
+					}
+				}
+			}
+		}
+		$.mobile.changePage($("#accounts"));
+
+	}
 	//CONTROLLER
 	module.submit = function (e) {
 		submitFunction(e);
@@ -86,6 +139,10 @@ var accountPage = (function() {
 	module.updateAccountList = function () {
 		updateAccountListWrapper();
 		return;
+	}
+
+	module.checkPassword = function (web, index) {
+		checkPassword(web, index);
 	}
 
 	//VIEW
@@ -119,11 +176,12 @@ var accountPage = (function() {
 		}
 
 		html += "</div><br><input type='text' autocorrect='off' name='password'\
-				 id='"+accountName+"-password' value='' placeholder='Type in \
-				 your password' autofocus='autofocus'/>\<a href=# \
+				 id='"+accountName+"-password' value='' \
+				 placeholder='Type in your password' \
+				 autofocus='autofocus'/>\<a href=# \
 				 data-role='button' data-rel='popup' \
-				 onclick='checkPasswordNew(\""  + accountName + "\", " + 
-				 index + ")' > Rehearse Account</a>";
+				 onclick='accountPage.checkPassword(\""  + accountName + 
+				 		"\", " + index + ")' > Rehearse Account</a>";
 
 		return html;
 	}
