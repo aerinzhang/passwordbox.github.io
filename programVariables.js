@@ -34,7 +34,7 @@ programVariables.initialize = function (){
 		if (programVariables.generalRecord.length === 0) {
 			//if security Level has not been set go to that page and store information generated 
 			//change to usability-security scale page
-			window.location = "https://aerinzhang.github.io/43story.html#userSelect";
+			window.location = "https://aerinzhang.github.io/43story.html#board";
 
 		} else if (programVariables.generalRecord.length === 1) {
 			programVariables.generalRecord = programVariables.generalRecord[0];
