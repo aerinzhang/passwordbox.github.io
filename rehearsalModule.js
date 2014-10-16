@@ -102,7 +102,7 @@ var rehearsalModule = ( function () {
 	function checkEachStory () {
 		var story, originalDate, currentDate, check;
 		urgentRehearsalList = [];
-		rehearsalSoonList = [];
+		rehearsalSoonList = [];g
 		var records = programVariables.storyBankTable.query();
 		for (var i=0; i<records.length; i++) {
 			story = records[i];
@@ -179,10 +179,11 @@ var rehearsalModule = ( function () {
 					placeholder='doing what'/></span><br><br><div \
 					class=halfbuttonDiv><a data-role='button' \
 					id='gameCheckNextButton' tabindex='3' class=right \
-					onclick='rehearseStory()' >Rehearse</a><a href='#' \
-					class=left data-role='button' tabindex='4' \
-					onclick='recoverStory()'>I Forget</a></div></span></form>\
-					</span></div></div>");
+					onclick='rehearsalModule.rehearseStory()' >Rehearse</a>\
+					<a href='#' class=left data-role='button' tabindex='4' \
+					onclick='recoveryMechanism.recoverStory()'>I Forget</a>\
+					</div></span></form></span></div></div>");
+					//recoverStory(i);// rehearseStory
 			newPage.appendTo( $.mobile.pageContainer );
 			memoryGame.getVerbComboBoxWrapper('rehearsal-password');
 			memoryGame.getObjectComboBoxWrapper('rehearsal-password-b');
