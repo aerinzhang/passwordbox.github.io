@@ -1,0 +1,27 @@
+{
+  "name": "PasswordManager",
+  "manifest_version": 2,
+  "version" : "1.0",
+  "description": "Tired of forgetting your passwords? Use PasswordManager!",
+  "background" : {"page": "background.html"},
+  "options_page": "options.html",
+  "icons": {
+    "16" : "box_logo.png",
+    "48" : "box_logo.png",
+    "128" : "box_logo.png"
+  },
+
+ "browser_action": {
+    "default_icon": "box_logo.png",
+    "default_title": "PasswordBox",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["tabs", "storage", "contextMenus"],
+  "web_accessible_resources" : ["cont.js", "*"],
+
+  "content_scripts": [{
+      "matches": ["https://*/*"],
+      "js": ["contentscript.js"]
+    }
+  ]
+}
